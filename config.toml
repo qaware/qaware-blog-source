@@ -1,0 +1,5 @@
+baseURL = "https://qaware.github.io/"
+languageCode = "en-us"
+title = "QAware Blog | Software Engineering"
+theme = "qaware-blog-theme"
+author = "QAware GmbH"
