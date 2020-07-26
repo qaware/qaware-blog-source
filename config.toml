@@ -15,3 +15,15 @@ github_name = "qaware"
 slideshare_name = "qaware"
 youtube_channel = "UCmNf72xADnO57idipq9jvMg"
 main_sections = ["blog"]
+
+[markup]
+   [markup.highlight]
+     codeFences = true
+     guessSyntax = false
+     hl_Lines = ""
+     lineNoStart = 1
+     lineNos = true
+     lineNumbersInTable = true
+     # style = "monokai"
+     noClasses = false
+     tabWidth = 2

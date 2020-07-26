@@ -138,7 +138,7 @@ public Flux<Customer> deleteCustomersByIds(Set<CustomerId> customerIds) {
 
 the following output is obtained:
 
-```
+```plaintext
 Subscribed to repository source
 Generating 0
 Deleting account AccountId[id=Account CustomerId[id=Customer 0]]
@@ -164,19 +164,22 @@ The reference documentation has an answer to this problem: Broadcasting to multi
 ```java
 @Override
 public Mono<Void> deleteCustomers(Set<CustomerId> customerIds) {
-    Flux<Customer> deletedCustomers = reactiveCustomerRepository.deleteCustomersByIds(customerIds);
+    Flux<Customer> deletedCustomers = reactiveCustomerRepository
+            .deleteCustomersByIds(customerIds);
 
     deletedCustomers = deletedCustomers.publish().autoConnect(2);
     Flux<AccountId> toBeDeletedAccounts = deletedCustomers
             .map(Customer::getAccount);
     Mono<Void> accountsDeleted = reactiveAccountService.deleteAccounts(toBeDeletedAccounts);
-    deletedCustomers = Flux.merge(deletedCustomers, accountsDeleted).map(customer -> (Customer)customer);
+    deletedCustomers = Flux.merge(deletedCustomers, accountsDeleted)
+            .map(customer -> (Customer)customer);
 
     deletedCustomers = deletedCustomers.publish().autoConnect(2);
     Flux<InvoiceId> toBeDeletedInvoices = deletedCustomers
             .flatMap(customer -> Flux.fromIterable(customer.getInvoices()));
     Mono<Void> invoicesDeleted = reactiveInvoiceService.deleteInvoices(toBeDeletedInvoices);
-    deletedCustomers = Flux.merge(deletedCustomers, invoicesDeleted).map(customer -> (Customer)customer);
+    deletedCustomers = Flux.merge(deletedCustomers, invoicesDeleted)
+            .map(customer -> (Customer)customer);
 
     return deletedCustomers.then();
 }
@@ -186,7 +189,7 @@ As `.autoConnect(2)` is used, the subscription to the repository publisher only 
 
 The output is then as expected
 
-```
+```plaintext
 Subscribed to repository source
 Generating 0
 Deleting invoice InvoiceId[id=Invoice CustomerId[id=Customer 0]]
