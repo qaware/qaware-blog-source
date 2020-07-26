@@ -9,7 +9,7 @@ I visited the building IoT at Cologne, Germany in June 2018. The following is a 
 ## Keynote: Threat Modeling and Risk Assessments Against Connected Cars
 Alissa Knight from Brier & Thorn gave an interesting talk about how threat modeling and risk assessment works. She presented multiple threat modeling frameworks and gave some anecdotes what she found in several years working as a penetration tester in the connected car industry. The talk was held in English.
 
-## Reaktives IoT with MQTT, Vert.x and Kubernetes
+## Reactive IoT with MQTT, Vert.x and Kubernetes
 (original German title: Reaktives IoT mit MQTT, Vert.x und Kubernetes)
 Jochen Mader from codecentric talked about the fallacies of distributed computing (you know that your network has latency, right?) and the reactive manifesto. He also talked, with funny self-painted slides, about the concept of back pressure and what can go wrong if you chose a framework without it. Jochen is a contributor to the Eclipse vert.x framework, which is a reactive, message driven framework for the JVM. It supports Java, but also every other JVM language, e.g. Scala, Kotlin or Groovy. In a live coding session, he created two small vert.x applications: a MQTT broker and a MQTT client. He then deployed those applications to a Kubernetes instance and demonstrated how vert.x, by magic, handles pod scaling.
 
