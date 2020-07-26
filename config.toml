@@ -4,7 +4,7 @@ title = "QAware | Software Engineering Blog"
 theme = "qaware-blog-theme"
 author = "QAware GmbH"
 copyright = "Copyright © 2020, QAware GmbH; all rights reserved."
-paginate = 10
+paginate = 11
 
 [params]
 logo = "/images/qaware_logo.png"
