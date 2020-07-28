@@ -2,6 +2,7 @@
 title: "How to dispatch flux to worker in Reactor"
 date: 2019-03-11T10:07:32+02:00
 draft: true
+author: Andreas Grub
 ---
 
 This post shows how to dispatch a flux of items to services of separated functional domains when using [Reactor](https://projectreactor.io/) in Java. The author encountered this problem while developing a larger reactive application, where a strict separation of different domains of the application is key to maintain a clean architecture.
@@ -38,7 +39,8 @@ An implementation of CustomerService should take care of deleting the account an
 public class CustomerServiceImpl {
   @Override
   public void deleteCustomers(Set<CustomerId> customerIds) {
-      Set<Customer> deletedCustomers = customerRepository.deleteCustomersByIds(customerIds);
+      Set<Customer> deletedCustomers = customerRepository
+               .deleteCustomersByIds(customerIds);
       Set<AccountId> toBeDeletedAccounts = deletedCustomers.stream()
               .map(Customer::getAccount)
               .collect(Collectors.toSet());
@@ -97,15 +99,18 @@ A first attempt to implement `CustomerService` reactively could lead to the foll
 ```java
 @Override
 public Mono<Void> deleteCustomers(Set<CustomerId> customerIds) {
-    Flux<Customer> deletedCustomers = reactiveCustomerRepository.deleteCustomersByIds(customerIds);
+    Flux<Customer> deletedCustomers = reactiveCustomerRepository
+            .deleteCustomersByIds(customerIds);
 
     Flux<AccountId> toBeDeletedAccounts = deletedCustomers
             .map(Customer::getAccount);
-    Mono<Void> accountsDeleted = reactiveAccountService.deleteAccounts(toBeDeletedAccounts);
+    Mono<Void> accountsDeleted = reactiveAccountService
+            .deleteAccounts(toBeDeletedAccounts);
 
     Flux<InvoiceId> toBeDeletedInvoices = deletedCustomers
             .flatMap(customer -> Flux.fromIterable(customer.getInvoices()));
-    Mono<Void> invoicesDeleted = reactiveInvoiceService.deleteInvoices(toBeDeletedInvoices);
+    Mono<Void> invoicesDeleted = reactiveInvoiceService
+            .deleteInvoices(toBeDeletedInvoices);
 
     return Flux.merge(accountsDeleted, invoicesDeleted).then();
 }
@@ -170,14 +175,16 @@ public Mono<Void> deleteCustomers(Set<CustomerId> customerIds) {
     deletedCustomers = deletedCustomers.publish().autoConnect(2);
     Flux<AccountId> toBeDeletedAccounts = deletedCustomers
             .map(Customer::getAccount);
-    Mono<Void> accountsDeleted = reactiveAccountService.deleteAccounts(toBeDeletedAccounts);
+    Mono<Void> accountsDeleted = reactiveAccountService
+            .deleteAccounts(toBeDeletedAccounts);
     deletedCustomers = Flux.merge(deletedCustomers, accountsDeleted)
             .map(customer -> (Customer)customer);
 
     deletedCustomers = deletedCustomers.publish().autoConnect(2);
     Flux<InvoiceId> toBeDeletedInvoices = deletedCustomers
             .flatMap(customer -> Flux.fromIterable(customer.getInvoices()));
-    Mono<Void> invoicesDeleted = reactiveInvoiceService.deleteInvoices(toBeDeletedInvoices);
+    Mono<Void> invoicesDeleted = reactiveInvoiceService
+            .deleteInvoices(toBeDeletedInvoices);
     deletedCustomers = Flux.merge(deletedCustomers, invoicesDeleted)
             .map(customer -> (Customer)customer);
 
@@ -213,10 +220,13 @@ public class ReactiveUtil {
         // static methods only
     }
 
-    public static <T> Flux<T> dispatchToWorker(Flux<T> input, Function<Flux<T>, Mono<Void>> worker) {
+    public static <T> Flux<T> dispatchToWorker(Flux<T> input,
+                                               Function<Flux<T>,
+                                               Mono<Void>> worker) {
         Flux<T> splitFlux = input.publish().autoConnect(2);
         Mono<Void> workerResult = worker.apply(splitFlux);
-        return Flux.mergeDelayError(Queues.XS_BUFFER_SIZE, workerResult, splitFlux)
+        return Flux.mergeDelayError(Queues.XS_BUFFER_SIZE, workerResult,
+                                    splitFlux)
                 .map(ReactiveUtil::uncheckedCast);
     }
 
@@ -240,7 +250,8 @@ return reactiveCustomerRepository.deleteCustomersByIds(customerIds)
                 workerFlux -> {
                     Flux<AccountId> toBeDeletedAccounts = workerFlux
                             .map(Customer::getAccount);
-                    return reactiveAccountService.deleteAccounts(toBeDeletedAccounts);
+                    return reactiveAccountService
+                            .deleteAccounts(toBeDeletedAccounts);
                 }
         ))
         .transform(deletedCustomers -> ReactiveUtil.dispatchToWorker(
@@ -248,7 +259,8 @@ return reactiveCustomerRepository.deleteCustomersByIds(customerIds)
                 workerFlux -> {
                     Flux<InvoiceId> toBeDeletedInvoices = workerFlux
                             .flatMap(customer -> Flux.fromIterable(customer.getInvoices()));
-                    return reactiveInvoiceService.deleteInvoices(toBeDeletedInvoices);
+                    return reactiveInvoiceService
+                            .deleteInvoices(toBeDeletedInvoices);
                 }
         ))
         .then();
