@@ -7,5 +7,5 @@ WORKDIR /src
 RUN hugo --buildDrafts --minify --baseURL=$BASE_URL --destination=/target
 
 # Build runtime image
-FROM nginx:1.19.1-alpine
+FROM nginx:1.18.0-alpine
 COPY --from=hugo /target /usr/share/nginx/html
