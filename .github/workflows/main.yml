@@ -34,6 +34,5 @@ jobs:
         run: docker push gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
         
       # Deploy the Docker image to Google Cloud Run
-      #- name: Deploy
-      #  run: gcloud components install beta && gcloud beta run deploy $SERVICE_NAME --quiet --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA --project $PROJECT_ID --region $RUN_REGION --platform managed --allow-unauthenticated  
-
+      - name: Deploy
+        run: gcloud components install beta && gcloud beta run deploy $SERVICE_NAME --quiet --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA --project $PROJECT_ID --region $RUN_REGION --platform managed --allow-unauthenticated  
