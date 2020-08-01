@@ -8,7 +8,7 @@ env:
   SERVICE_NAME: qawareblog
 
 jobs:
-  deploy-prod:
+  deploy:
     runs-on: ubuntu-18.04
     steps:
       - name: Git checkout
