@@ -1,64 +1,44 @@
-- item: Leistung
-  url: about/
-  subitems:
-    - item: Diagnose
-      url: foo/
-    - item: Sanierung
-      url: foo/
-    - item: Exploration
-      url: foo/
-    - item: Realisierung
-      url: foo/
-    - item: Referenzen
-      url: foo/
-- item: Karriere
-  url: ""
-  subitems:
-          - item: Arbeitsplatz
-            url: foo/
-          - item: Kultur
-            url: foo/
-          - item: Entwicklung
-            url: foo/
-          - item: Weiterbildung
-            url: foo/
-          - item: Jobs
-            url: foo/
-          - item: Veranstaltungen
-            url: foo/
-- item: Wissen
-  url: categories
-  subitems:
-          - item: Manifest
-            url: foo/
-          - item: Blog
-            url: foo/
-          - item: Konferenzen
-            url: foo/
-          - item: Fachartikel
-            url: foo/
-          - item: Bücher
-            url: foo/
-          - item: Vorlesungen
-            url: foo/
-          - item: Forschung
-            url: foo/
-- item: Unternehmen
+- item: Tags
   url: tags
+- item: Archive
+  url: posts
+- item: Ressources
+  url: 
   subitems:
-          - item: Mission
-            url: foo/
-          - item: Kennzahlen
-            url: foo/
-          - item: Management
-            url: foo/
-- item: Aktuelles
-  url: tags
+          - item: GitHub
+            url: https://www.github.com/qaware
+            external: true
+          - item: SlideShare
+            url: https://de.slideshare.net/QAware
+            external: true
+          - item: YouTube
+            url: https://www.youtube.com/user/QAwareGmbH 
+            external: true
+          - item: Meetup Mainz
+            url: https://www.meetup.com/de-DE/Cloud-Native-Night 
+            external: true
+          - item: Meetup Munich
+            url: https://www.meetup.com/de-DE/cloud-native-muc/
+            external: true
+- item: Company
+  url: https://www.qaware.de
+  external: true
   subitems:
-          - item: News
-            url: foo/
-          - item: Kalender
-            url: foo/
-- item: Kontakt
-  url: tags
+          - item: Website
+            url: https://www.qaware.de
+            external: true
+          - item: Twitter
+            url: https://twitter.com/qaware 
+            external: true
+          - item: Linkedin
+            url: http://www.linkedin.com/company/qaware-gmbh 
+            external: true
+          - item: Xing
+            url: http://www.xing.com/companies/qawaregmbh 
+            external: true
+          - item: Kununu
+            url: http://www.kununu.com/qaware 
+            external: true
+- item: Contact
+  url: https://www.qaware.de/kontakt
 
