@@ -1,7 +1,11 @@
-- item: Tags
-  url: tags
-- item: Archive
-  url: posts
+- item: Posts
+  url:
+  subitems:
+        - item: Tags
+          url: tags
+        - item: Archive
+          url: posts
+          
 - item: Ressources
   url: 
   subitems:
