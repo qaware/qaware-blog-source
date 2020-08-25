@@ -6,7 +6,7 @@
         - item: Archive
           url: posts
           
-- item: Ressources
+- item: Resources
   url: 
   subitems:
           - item: GitHub
