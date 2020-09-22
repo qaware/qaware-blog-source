@@ -1,0 +1,67 @@
+# This is a menu demo which looks exactly like
+# the QAware Website menu. In order to preview
+# this file, rename it to "menu.yml".
+- item: Leistung
+  url: about/
+  subitems:
+    - item: Diagnose
+      url: foo/
+    - item: Sanierung
+      url: foo/
+    - item: Exploration
+      url: foo/
+    - item: Realisierung
+      url: foo/
+    - item: Referenzen
+      url: foo/
+- item: Karriere
+  url: ""
+  subitems:
+          - item: Arbeitsplatz
+            url: foo/
+          - item: Kultur
+            url: foo/
+          - item: Entwicklung
+            url: foo/
+          - item: Weiterbildung
+            url: foo/
+          - item: Jobs
+            url: foo/
+          - item: Veranstaltungen
+            url: foo/
+- item: Wissen
+  url: categories
+  subitems:
+          - item: Manifest
+            url: foo/
+          - item: Blog
+            url: foo/
+          - item: Konferenzen
+            url: foo/
+          - item: Fachartikel
+            url: foo/
+          - item: Bücher
+            url: foo/
+          - item: Vorlesungen
+            url: foo/
+          - item: Forschung
+            url: foo/
+- item: Unternehmen
+  url: tags
+  subitems:
+          - item: Mission
+            url: foo/
+          - item: Kennzahlen
+            url: foo/
+          - item: Management
+            url: foo/
+- item: Aktuelles
+  url: tags
+  subitems:
+          - item: News
+            url: foo/
+          - item: Kalender
+            url: foo/
+- item: Kontakt
+  url: tags
+

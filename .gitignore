@@ -1,2 +1,5 @@
 /resources/_gen/
 /qaware.iml
+*.swp
+.DS_Store
+.idea/
