@@ -1,8 +1,9 @@
 ---
 title: "\"I know it when I see it\": Perceptions of Code Quality (Part 2)"
 date: 2017-12-20T15:06:32+02:00
-draft: true
+draft: false
 author: "Harald Störrle"
+tags: [Code Quality]
 image: "Code_is_fragile.png"
 ---
 ***Background*** *In Part 1 of this article, I have described the motivation and scope of a research project into the perceptions of code quality by different stakeholders. The project has been conducted by a consortium which two scientists from Sweden and I led. The first set of results from that project has been accepted for publication in the ITiCSE’17 proceedings recently[^3], and that is what I report on in this article. Comics in this blog post courtesy of [Geek & Poke](http://geek-and-poke.com/).*

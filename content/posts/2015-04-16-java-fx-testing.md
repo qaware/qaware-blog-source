@@ -1,7 +1,7 @@
 ---
 title: "GUI Tests for JavaFX"
 date: 2015-04-16T10:39:32+02:00
-draft: true
+draft: false
 author: Andreas Zitzelsberger
 tags: [Testing, GUI, JavaFX, Java, JUnit]
 ---

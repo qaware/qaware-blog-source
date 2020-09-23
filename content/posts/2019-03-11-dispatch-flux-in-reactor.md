@@ -1,8 +1,9 @@
 ---
 title: "How to dispatch flux to worker in Reactor"
 date: 2019-03-11T10:07:32+02:00
-draft: true
+draft: false
 author: Andreas Grub
+tags: [Flux, Reactor, Java, Reactive]
 ---
 
 This post shows how to dispatch a flux of items to services of separated functional domains when using [Reactor](https://projectreactor.io/) in Java. The author encountered this problem while developing a larger reactive application, where a strict separation of different domains of the application is key to maintain a clean architecture.

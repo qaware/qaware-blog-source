@@ -1,7 +1,7 @@
 ---
 title: "How to use Docker within IntelliJ"
 date: 2016-04-23T10:39:32+02:00
-draft: true
+draft: false
 author: Josef Adersberger
 tags: [IntelliJ, Docker, Gradle]
 ---

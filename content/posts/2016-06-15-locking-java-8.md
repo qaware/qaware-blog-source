@@ -1,7 +1,7 @@
 ---
 title: "Locking Alternatives in Java 8"
 date: 2016-06-15T10:39:32+02:00
-draft: true
+draft: false
 author: Stefan Billet
 tags: [Java, Locking, Memory, Performance]
 ---

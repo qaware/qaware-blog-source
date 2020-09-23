@@ -2,7 +2,8 @@
 title: "Breaking your build on SonarQube quality gate failure"
 author: "Moritz Kammerer"
 date: 2020-02-17T10:39:32+02:00
-draft: true
+draft: false
+tags: [Software Quality, SonarQube, Continuous Integration, DevOps]
 ---
 
 We use [SonarQube](https://sonarqube.com) to do a static analysis of our code for code smells, security bugs and more. SonarQube had a great feature in earlier versions: breaking the build if the quality gate of your project is red. A quality gate defines the metrics you want your code to have, for example: no detected bugs, code coverage 80% or more, no TODO comments. SonarQube quality gates help us to follow the rule "don't live with broken windows"[^1] in our daily work.
