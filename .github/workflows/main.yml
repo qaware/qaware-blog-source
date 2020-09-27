@@ -22,7 +22,7 @@ jobs:
           hugo-version: "0.75.1"
 
       - name: Build
-        run: hugo -s . --config ./config.toml --minify
+        run: hugo -s . --config ./config.toml --minify --cleanDestinationDir
 
       - name: Deploy
         if: github.ref == 'refs/heads/master'
