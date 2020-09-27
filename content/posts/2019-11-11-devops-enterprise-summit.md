@@ -2,8 +2,9 @@
 title: "DevOps Enterprise Summit"
 author: "Michael Rohleder"
 date: 2019-11-11T10:07:32+02:00
-draft: true
+draft: false
 image: IMG_20191028_202104.jpg
+tags: [Agile, DevOps, Productivity, Project]
 ---
 
 Die IT-Transformation in Richtung DevOps beschäftigt aktuell sehr viele Unternehmen der Welt, unter anderem auch unsere Kunden BMW, Deutsche Telekom und Allianz. Grund genug also auf dem Enterprise DevOps Summit zu sehen, welche Trends die DevOps-Community beschäftigen und wie es den Unternehmen bei Ihrer Transformation geht. Gastgeber der Konferenz ist Gene Kim, Gründer von IT Revolution. Er ist bekannt als Autor von einigen erfolgreichen Büchern, z.B. [The Phoenix Project](https://itrevolution.com/book/the-phoenix-project/), [The DevOps Handbook](https://itrevolution.com/book/the-devops-handbook/) und [Accelerate](https://itrevolution.com/book/accelerate/). Brandneu erschienen ist sein Buch [The Unicorn Project](https://itrevolution.com/book/the-unicorn-project/), welches auf der Konferenz heftig umworben wurde - so wie man das eben aus den USA kennt.

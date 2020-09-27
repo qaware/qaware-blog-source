@@ -3,6 +3,7 @@ title: "\"I know it when I see it\" - Perceptions of Code Quality"
 date: 2017-06-07T15:06:32+02:00
 draft: true
 author: Harald Störrle
+tags: [Code Quality]
 ---
 Everybody talks about code quality, so surely we have a good understanding of what good (or bad) code is, exactly. Right?
  

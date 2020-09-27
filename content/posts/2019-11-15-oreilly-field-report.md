@@ -2,9 +2,9 @@
 title: "A Field Report From the O’Reilly Software Architecture in Berlin"
 author: "Susanne Apel, Stephan Klapproth, and Andreas Zitzelsberger"
 date: 2019-11-15T19:15:32+02:00
-draft: true
+draft: false
 image: IMG_5684.jpg
-tags: "conference"
+tags: [Conference, Software Architecture, CRDT, Microservices, Reactive]
 ---
 
 Last week, we were at the O’Reilly Software Architecture in Berlin. Apart from showing off our toys at our booth and chatting with the nice people at the conference, Leander Reimer presented [a hitchhiker's guide to cloud native API gateways](https://www.slideshare.net/QAware/a-hitchhikers-guide-to-cloud-native-api-gateways-192707062) and we visited the conference talks. In this article we share our key learnings and takeaways with you. Slides or videos are provided where available.

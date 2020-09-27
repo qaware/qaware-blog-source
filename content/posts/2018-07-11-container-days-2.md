@@ -1,9 +1,10 @@
 ---
 title: "ContainerDays 2018: Top talks on day 2"
 date: 2018-07-11T15:06:32+02:00
-draft: true
+draft: false
 image: ContainerDays-Logo-2017.png
 author: "Moritz Kammerer"
+tags: [Conference, Cloud, GitKube, Microservices, Metrics, Istio, OpenCensus, DDD, CQRS, Containers, Vault, Security] 
 ---
 I attended the ContainerDays 2018 in the Hamburg Hafenmuseum. It was a very cool location midst containers (the real ones), cranes and big freight ships. There were three stages, the coolest stage was definitely in the belly of an old ship. I‘ll write about the talks I visited and give a short summary. You find a list of all talks here: [https://containerdays.io/program/conference-day-2.html](https://containerdays.io/program/conference-day-2.html). Videos are coming soon – I’ll edit this post when they are available.
 
