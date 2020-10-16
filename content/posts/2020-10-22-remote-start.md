@@ -2,7 +2,7 @@
 title: "Zero Presence But Many Presents: My Remote Start at QAware"
 date: 2020-10-22T09:00:00+02:00
 draft: true
-image: qaware_logo.png
+image: remote-start-cocktail-night.jpg
 author: Felix Kampfer
 tags: [Productivity]
 summary: Felix shares his impressions of starting work at QAware 100% remotely. 
@@ -27,7 +27,7 @@ Instead, I spent my first days being welcomed to the company (remotely), getting
 
 My new employer surprised me with the variety of equipment available, and especially with its logistics support. After signing my contract, I was asked about my preferences regarding my laptop, my phone, and various accessories. Several days later, Christmas came early:
 
-![](/images/qaware_logo.png)   
+![](/images/remote-start-christmas.jpg)   
 
 A masked ~~Santa Clause~~ delivery person showed up with presents: A shiny pre-configured Macbook Pro, a Pixel 3, a Thunderbolt dock, all the cables and adapters I could ever need, a new backpack, a Cherry MX keyboard, a wireless mouse, a pair of wireless Jabra headphones for teleconferencing, a pair of wireless Bose headphones for listening to music (as a gift for new employees), and a state-of-the-art ultra-ergonomic office *chair*, already assembled (Try ordering that from Amazon!).
 
@@ -51,7 +51,7 @@ Arranged coffee breaks and department meetings aren’t the only way to get to k
 
 There are also officially unofficial events in the form of biannual teambuilding events. 
 
-![](/images/qaware_logo.png)   
+![](/images/remote-start-cocktail-night.jpg)   
 
 Our department’s last event took place in the form of a remote cocktail mixing night, whereby a large group of us learned how to use a shaker, strainer, measuring cup, ice, herbs, sugar syrup, juice, fresh fruit, chocolate, and two kinds of rum to prepare some rather delicious cocktails. 
 
