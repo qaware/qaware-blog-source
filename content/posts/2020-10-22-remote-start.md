@@ -3,17 +3,15 @@ title: "Zero Presence But Many Presents: My Remote Start at QAware"
 date: 2020-10-22T09:00:00+02:00
 draft: true
 image: remote-start-cocktail-night.jpg
-author: Felix Kampfer
-tags: [Productivity]
+author: [Felix Kampfer](https://www.linkedin.com/in/felixkampfer/)
+tags: [Productivity, Remote Work, Home Office, Onboarding, WFH]
 summary: Felix shares his impressions of starting work at QAware 100% remotely. 
-
-
-## Zero Presence But Many Presents: My Remote Start at QAware
-*[by Felix Kampfer]*
-
 ---
 
-"I've got some bad news and I've got some good news. Nothing lasts forever." - Kate McGahan
+## Zero Presence But Many Presents: My Remote Start at QAware
+*by [Felix Kampfer](https://www.linkedin.com/in/felixkampfer/)*
+
+> "I've got some bad news and I've got some good news. Nothing lasts forever." - Kate McGahan
 
 ---
 
