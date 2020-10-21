@@ -52,8 +52,7 @@ Post text
 2. Add `author` attribute. Add a markdown link to your GitHub profile as value.
 3. Add `type` attribute with value `post`. Our theme supports more content type. But for the moment we only use `post`.
 4. Add `image` attribute. Put an image to the `/static/img` folder and write the link into attribute`s value. More infos about providing image files can be found in the next chapter.
-5. Add `categories`: Select one or more fitting categories for your post: `focus`, `collaborate`, `learn`, `socialize & serendipity`, and `rejuvenate`.
-6. Add `tags`: Select one or more fitting tags for your post: `tool`, `practice`, `culture`
+5. Add `tags`: Select one or more fitting tags for your post: e.g. `Testing`, `Architecture`, `Cloud Native`
 
 Final example:
 
@@ -65,25 +64,24 @@ lastmod: 2020-05-11T10:43:02+02:00
 author: "[Josef Fuchshuber](https://github.com/fuchshuber)"
 type: "post"
 image: "img/hello-world.jpg"
-categories: ["practice"]
-tags: ["collaborate", "learn", "socialize"]
+tags: ["Framework", "Tutorial", "Java"]
 draft: true
 ---
 ```
 
 ### Add images
 
-Please search and download your images by [gettyimages](https://www.gettyimages.de/). Store title and content images for your post in the same folder as the post's markdown file and refer them in markdown:
+Please use only own images, images with creative commons licence or search and download your images by [gettyimages](https://www.gettyimages.de/). Store images for your post in the `static/images` folder with a self explaining file name and refer them in markdown:
 
 ```md
-{{< img src="mypic.jpg" alt="mypic" >}}
+{{< img src="/images/hello-world.jpg" alt="Hello World title picture" >}}
 ```
 
 or as a figure with caption:
 
 ```md
-{{< figure figcaption="caption text" >}}
-  {{< img src="mypic.jpg" alt="mypic" >}}
+{{< figure figcaption="Hello World Caption" >}}
+  {{< img src="/images/hello-world.jpg" alt="Hello World title picture" >}}
 {{< /figure >}}
 ```
 ### Create pull request
