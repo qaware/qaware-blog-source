@@ -1,5 +1,10 @@
 # qaware-blog-source
 
+## Generated websites
+
+* https://blog.qaware.de: Target environment of our QAware software engineering blog
+* https://qawareblog-zkop4aqvwa-ez.a.run.app/: Testing environment with draft posts
+
 ## Write Content
 
 ### Fork our Github Repository
