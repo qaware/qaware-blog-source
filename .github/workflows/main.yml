@@ -36,7 +36,7 @@ jobs:
           user_name: fuchshuber
           user_email: josef.fuchshuber@qaware.de
           publish_branch: master
-          #cname: www.remoteworklibrary.io
+          cname: blog.qaware.de
 
       # Setup gcloud CLI
       - name: setup gcloud CLI
