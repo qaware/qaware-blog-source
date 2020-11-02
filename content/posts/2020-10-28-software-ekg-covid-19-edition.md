@@ -20,7 +20,7 @@ Our special *COVID-19 Edition* provides you with the latest data on COVID-19 fro
 
 When analyzing the impacts of the Coronavirus pandemic, considering only absolute numbers will not suffice. Instead, it is crucial to take the dimension of time into account. Thus, time series analysis is the key to fully understand current trends and developments regarding COVID-19 and to detect important correlations between metrics (See, for example, the correlation between new death cases (black) and postitive test rate (red) in Germany in the graph below).
 
-![](/images/software-ekg-covid-04.PNG)
+![The correlation between new death cases and postitive test rate in Germany](/images/software-ekg-covid-04.PNG)
 
 We are not offering yet another dashboard. What we are offering is our best and most powerful tool for time series analysis, combined with the latest, comprehensive data on COVID-19.
 
@@ -35,7 +35,7 @@ Software EKG - COVID-19 Edition uses data from [Our World in Data (OWID)](https:
 
 OWID data is trusted both in media (BBC, Washington Post, New York Times) and teaching (Harvard, Stanford, Berkeley). As one of the leading organizations publishing global data on the Coronavirus pandemic, OWID has created and maintained a worldwide database on COVID-19.
 
-Please note: We do *not*, in any way, manipulate or change data gathered by OWID. 
+Please note: We do *not*, in any way, manipulate or change data gathered by OWID.
 
 ## How to use Software EKG - COVID-19 Edition
 
@@ -49,4 +49,4 @@ Just as COVID-19 is a complex issue, so is the huge amount of data on the pandem
 
 ## How to get the tool
 
-In order to download Software EKG - COVID-19 Edition, please visit its [official website](<!-- insert final URL -->). We provide downloads for all three major operation systems (Windows, Mac and Linux). You will also find a detailed FAQ -section, should you have any further questions regarding the tool.
+In order to download Software EKG - COVID-19 Edition, please visit its [official website](https://info.qaware.de/software-ekg-covid-edition). We provide downloads for all three major operation systems (Windows, Mac and Linux). You will also find a detailed FAQ -section, should you have any further questions regarding the tool.
