@@ -45,7 +45,7 @@ In order to create the best user experience when using Software EKG - COVID-19 E
 
 ## How to interpret the data
 
-Just as COVID-19 is a complex issue, so is the huge amount of data on the pandemic. Software EKG - COVID-19 Edition provides you with a plethora of metrics that can be used for further analysis. In order to fully understand the meaning of each metric, please refer to the [official documentation](https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-codebook.csv) by *Our World in Data*. Besides an understandable explanation, OWID also provides the source of each metric. Thus, users can be sure they will get reliable and up-to-date raw data when working with Software EKG - COVID-19 Edition.
+Just as COVID-19 is a complex issue, so is the huge amount of data on the pandemic. Software EKG - COVID-19 Edition provides you with a plethora of metrics that can be used for further analysis. To fully understand the meaning of each metric, please refer to the [official documentation](https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-codebook.csv) by *Our World in Data*. Besides an understandable explanation, OWID also provides the source of each metric. Thus, users can be sure they will get reliable and up-to-date raw data when working with Software EKG - COVID-19 Edition.
 
 Our tool groups the provided data into four logical categories: 
 - Cases 
@@ -60,4 +60,4 @@ Also, it is noteworthy while some metrics like the number of new cases or new te
 
 ## How to get the tool
 
-In order to download Software EKG - COVID-19 Edition, please visit its [official website](https://info.qaware.de/software-ekg-covid-edition). We provide downloads for all three major operating systems (Windows, Mac and Linux). There you will also find a detailed FAQ-section if you should you have any further questions.
+In order to download Software EKG - COVID-19 Edition, please visit the [official website](https://info.qaware.de/software-ekg-covid-edition). We provide downloads for all three major operating systems (Windows, Mac and Linux). There you will also find a detailed FAQ section if you should you have any further questions.
