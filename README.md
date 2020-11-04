@@ -20,7 +20,7 @@ gh repo fork qaware/qaware-blog-source
 After this step, a fork is created for the current GitHub user of the Writer: `https://github.com/<GITHUB_USER>/qaware-blog-source`. To work with it locally on a computer, this fork must first be cloned. If the fork is created with the CLI tool, a clone can at once. When creating the fork via the Web UI, this step must be performed as an extra step.
 
 ```bash
-git clone --recurse-submodules https://github.com/<GITHUB_USER>/qaware/qaware-blog-source
+git clone --recurse-submodules https://github.com/<GITHUB_USER>/qaware-blog-source
 ```
 
 ### Start with our project  
