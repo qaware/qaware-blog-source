@@ -1,7 +1,7 @@
 ---
 title: "Presenting Software EKG - COVID-19 Edition"
 date: 2020-10-28T15:37:11+01:00
-lastmod: 2020-10-29T14:28:11+01:00
+lastmod: 2020-11-04T14:53:11+01:00
 author: "[Karl Herzog](https://github.com/herzogk)"
 type: "post"
 image: "software-ekg-covid-01.PNG"
@@ -44,6 +44,18 @@ In order to create the best user experience when using Software EKG - COVID-19 E
 {{< youtube PbVhHtFQI1I >}}
 
 ## How to interpret the data
+
+Just as COVID-19 is a complex issue, so is the huge amount of data on the pandemic. Software EKG - COVID-19 Edition provides you with a plethora of metrics that can be used for further analysis. To fully understand the meaning of each metric, please refer to the [official documentation](https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-codebook.csv) by *Our World in Data*. Besides an understandable explanation, OWID also provides the source of each metric. Thus, users can be sure they will get reliable and up-to-date raw data when working with Software EKG - COVID-19 Edition.
+
+Our tool groups the provided data into four logical categories: 
+- Cases 
+- Deaths
+- Tests
+- Miscellaneous data (Misc)
+
+Misc includes various metrics that might be of interest in conjunction with COVID-19 specific data. For example, users might find it informative to compare the positive rate of a country with its population, its median age or the percentage of other diseases like diabetes or cardiovascular diseases.
+Please note it cannot be guaranteed that data on each metric for each country worldwide will always be available. The existence of reliable data also depends on the individual circumstances in a certain country as well as on how data is collected by local authorities.
+Also, it is noteworthy while some metrics like the number of new cases or new tests will change on a daily basis, there are others like population or life expectancy that will remain constant over a longer period of time.
 
 Just as COVID-19 is a complex issue, so is the huge amount of data on the pandemic. Software EKG - COVID-19 Edition provides you with a plethora of metrics that can be used for further analysis. To fully understand the meaning of each metric, please refer to the [official documentation](https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-codebook.csv) by *Our World in Data*.
 
