@@ -13,9 +13,7 @@ draft: true
 
 A JDBC connection pool is essential for application servers where several parallel requests need access to a database. Especially on high load, an efficient JDBC connection pool is important to avoid locked threads, delayed request processing or partial service interruptions.
 
-Spring Boot uses [HikariCP](https://github.com/brettwooldridge/HikariCP) as JDBC database connection pool. HikariCP offers a fast, reliable and small implementation of a connection pool without further dependencies.
-
-Payara, closely related to the reference implementation of Jakarta EE, comes with its own implementation of a JDBC connection pool which has locking deficiencies when it comes to high load. Fortunately, this implementation can be replaced with HikariCP by standard means of Jakarta EE.
+Payara, closely related to the GlassFish reference implementation of Jakarta EE, comes with its own implementation of a JDBC connection pool. Under high load our application experienced locking deficiencies when it comes to high load. Fortunately, this implementation can be replaced with a custom connection pool using standard means of Jakarta EE. [HikariCP](https://github.com/brettwooldridge/HikariCP) offers a fast, reliable and small implementation of a connection pool without further dependencies.
 
 ## Data source definition
 
