@@ -99,7 +99,7 @@ Our talk @ [Cloud Native Night Meetup](https://www.meetup.com/de-DE/cloud-native
 
 ### Video
 
-{{< youtube 6Bft69-cJsM >}}
+{{< video 6Bft69-cJsM >}}
 
 ### Slides
 

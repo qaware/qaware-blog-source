@@ -41,7 +41,7 @@ Please note: We do *not*, in any way, manipulate or change data gathered by OWID
 
 In order to create the best user experience when using Software EKG - COVID-19 Edition, we have recorded several [video tutorials](https://www.youtube.com/playlist?list=PLeUCKzjz0gD5D6OHRnKDQwr5Rnhm2BXsa) that are meant to give you an easily understandable, concise overview of the tool's most important features.
 
-{{< youtube PbVhHtFQI1I >}}
+{{< video PbVhHtFQI1I >}}
 
 ## How to interpret the data
 
