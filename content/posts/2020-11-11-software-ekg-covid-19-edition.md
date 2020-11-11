@@ -1,12 +1,12 @@
 ---
 title: "Presenting Software EKG - COVID-19 Edition"
-date: 2020-10-28T15:37:11+01:00
-lastmod: 2020-11-04T14:53:11+01:00
+date: 2020-11-11
+lastmod: 2020-11-11
 author: "[Karl Herzog](https://github.com/herzogk)"
 type: "post"
 image: "software-ekg-covid-01.PNG"
 tags: ["Software EKG", "COVID-19", "Coronavirus"]
-draft: true
+draft: false
 summary: Our latest tool to analyze global COVID-19 data.
 ---
 
