@@ -18,6 +18,6 @@ We [open sourced the code](https://github.com/qaware/sonarqube-build-breaker), a
 
 At the end of the year, there is a price for the best QAlabs project. And guess which project had won? The SonarQube Build Breaker! Yeah!
 
-You have a cool idea for a QAlabs project and want to participate, too? We're hiring :)
+You have a cool idea for a QAlabs project and want to participate, too? [We're hiring](https://www.qaware.de/karriere) :)
 
-[^1]: Andrew Hunt, David Thomas (1999). The Pragmatic Programmer. Addison-Wesley 
+[^1]: Andrew Hunt, David Thomas (1999). The Pragmatic Programmer. Addison-Wesley
