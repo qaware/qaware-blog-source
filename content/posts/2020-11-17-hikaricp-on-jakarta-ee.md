@@ -1,12 +1,12 @@
 ---
 title: "HikariCP on Jakarta EE"
-date: 2020-11-10
-lastmod: 2020-11-10
+date: 2020-11-17
+lastmod: 2020-11-17
 author: "[Sascha Böhme](https://github.com/boehme-qaware)"
 type: "post"
 image: "hikari.png"
 tags: ["Jakarta EE", "Java EE", "HikariCP", "Connection Pool", "Payara"]
-draft: true
+draft: false
 ---
 
 ## Motivation
