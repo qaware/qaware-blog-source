@@ -1,11 +1,11 @@
 ---
 title: "HikariCP on Jakarta EE"
 date: 2020-11-17
-lastmod: 2020-11-17
+lastmod: 2020-11-21
 author: "[Sascha Böhme](https://github.com/boehme-qaware)"
 type: "post"
 image: "hikari.png"
-tags: ["Jakarta EE", "Java EE", "HikariCP", "Connection Pool", "Payara"]
+tags: ["Jakarta EE", "Java EE", "HikariCP", "Connection Pool", "Payara", "JEE"]
 draft: false
 ---
 
@@ -13,7 +13,7 @@ draft: false
 
 A JDBC connection pool is essential for application servers where several parallel requests need access to a database. Especially on high load, an efficient JDBC connection pool is important to avoid locked threads, delayed request processing or partial service interruptions.
 
-Payara, closely related to the GlassFish reference implementation of Jakarta EE, comes with its own implementation of a JDBC connection pool. Under high load our application experienced locking deficiencies when it comes to high load. Fortunately, this implementation can be replaced with a custom connection pool using standard means of Jakarta EE. [HikariCP](https://github.com/brettwooldridge/HikariCP) offers a fast, reliable and small implementation of a connection pool without further dependencies.
+Payara, closely related to the GlassFish reference implementation of Jakarta EE (JEE), comes with its own implementation of a JDBC connection pool. Under high load our application experienced locking deficiencies when it comes to high load. Fortunately, this implementation can be replaced with a custom connection pool using standard means of Jakarta EE. [HikariCP](https://github.com/brettwooldridge/HikariCP) offers a fast, reliable and small implementation of a connection pool without further dependencies.
 
 ## Data source definition
 
