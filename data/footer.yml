@@ -1,68 +1,68 @@
 links:
   - item: News
-    url: /foo/
+    url: https://www.qaware.de/newsbereich/
   - item: Eventkalender
-    url: /foo/
+    url: https://www.qaware.de/eventkalender/
   - item: Kontakt
-    url: /foo/
+    url: https://www.qaware.de/kontakt/
 legal_notice:
   name: Impressum
-  url : /legal/
+  url : https://www.qaware.de/impressum/
 privacy:
   name: Datenschutz
-  url : /privacy/
+  url : https://www.qaware.de/datenschutz/
 bottom_navigation:
   - item: Leistung
-    url: about/
+    url: https://www.qaware.de/leistung/
     subitems:
       - item: Diagnose
-        url: foo/
+        url: https://www.qaware.de/leistung/#diagnose
       - item: Sanierung
-        url: foo/
+        url: https://www.qaware.de/leistung/#sanierung
       - item: Exploration
-        url: foo/
+        url: https://www.qaware.de/leistung/#leistung-exploration
       - item: Realisierung
-        url: foo/
+        url: https://www.qaware.de/leistung/#leistung-realisierung
       - item: Referenzen
-        url: foo/
+        url: https://www.qaware.de/leistung/#kunden
   - item: Karriere
-    url: ""
+    url: https://www.qaware.de/karriere/
     subitems:
       - item: Arbeitsplatz
-        url: foo/
+        url: https://www.qaware.de/karriere/#arbeitsplatz
       - item: Kultur
-        url: foo/
+        url: https://www.qaware.de/karriere/#kultur
       - item: Entwicklung
-        url: foo/
+        url: https://www.qaware.de/karriere/#entwicklung
       - item: Weiterbildung
-        url: foo/
+        url: https://www.qaware.de/karriere/#weiterbildung
       - item: Jobs
-        url: foo/
+        url: https://www.qaware.de/karriere/#jobs
       - item: Veranstaltungen
-        url: foo/
+        url: https://www.qaware.de/karriere/#veranstaltungen
   - item: Wissen
-    url: categories
+    url: https://www.qaware.de/wissen/
     subitems:
       - item: Manifest
-        url: foo/
+        url: https://www.qaware.de/wissen/#manifest
       - item: Blog
-        url: foo/
+        url: https://www.qaware.de/wissen/#blog
       - item: Konferenzen
-        url: foo/
+        url: https://www.qaware.de/wissen/#konferenzen
       - item: Fachartikel
-        url: foo/
+        url: https://www.qaware.de/wissen/#fachartikel
       - item: Bücher
-        url: foo/
+        url: https://www.qaware.de/wissen/#buecher
       - item: Vorlesungen
-        url: foo/
+        url: https://www.qaware.de/wissen/#vorlesungen
       - item: Forschung
-        url: foo/
+        url: https://www.qaware.de/wissen/#forschung
   - item: Unternehmen
-    url: tags
+    url: https://www.qaware.de/unternehmen/
     subitems:
       - item: Mission
-        url: foo/
+        url: https://www.qaware.de/unternehmen/#unternehmenskultur
       - item: Kennzahlen
-        url: foo/
+        url: https://www.qaware.de/unternehmen/#kennzahlen
       - item: Management
-        url: foo/
+        url: https://www.qaware.de/unternehmen/#management

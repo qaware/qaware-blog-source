@@ -16,6 +16,28 @@ jobs:
         with:
           submodules: true
 
+      - name: Setup hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.76.5"
+          extended: true
+
+      - name: Build
+        run: hugo -s . --config ./config.toml --minify --cleanDestinationDir
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.TOKEN }}
+          external_repository: qaware/qaware.github.io
+          publish_dir: ./public
+          #keep_files: true
+          user_name: fuchshuber
+          user_email: josef.fuchshuber@qaware.de
+          publish_branch: master
+          cname: blog.qaware.de
+
       # Setup gcloud CLI
       - name: setup gcloud CLI
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
