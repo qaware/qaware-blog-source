@@ -25,7 +25,11 @@ git clone --recurse-submodules https://github.com/<GITHUB_USER>/qaware-blog-sour
 
 ### Start with our project  
 
-[Get used to Hugo](https://gohugo.io/getting-started/quick-start) and then:
+You'll need to install:
+
+* [Hugo extended](https://github.com/gohugoio/hugo) (in doubt: run `hugo version` and check if `extended` is in the version)
+
+Then [get used to Hugo](https://gohugo.io/getting-started/quick-start). Now you're ready for:
 
 1) `hugo new posts/<articleTitle>.md` (as file name without blanks, e.g. `hello-world.md`)
 2) edit content
