@@ -1,7 +1,7 @@
 ---
 title: "Zero Presence But Many Presents: My Remote Start at QAware"
-date: 2020-10-22
-draft: true
+date: 2020-10-25
+draft: false
 image: "remote-start-cocktail-night.jpg"
 author: "[Felix Kampfer](https://www.linkedin.com/in/felixkampfer/)"
 tags: [Productivity, Remote Work, Home Office, Onboarding, WFH]
