@@ -1,6 +1,6 @@
 ---
 title: "Zero Presence But Many Presents: My Remote Start at QAware"
-date: 2020-10-25
+date: 2020-11-25
 draft: false
 image: "remote-start-cocktail-night.jpg"
 author: "[Felix Kampfer](https://www.linkedin.com/in/felixkampfer/)"
