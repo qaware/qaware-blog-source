@@ -4,7 +4,7 @@ date: 2020-11-26T10:56:22+01:00
 draft: true
 author: "[Karl Herzog](https://github.com/herzogk)"
 type: "post"
-tags: ["Software EKG", "Software ECG", "COVID-19", "second wave"]
+tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
 image: software-ecg-new-cases-europe.png
 ---
 
