@@ -1,7 +1,7 @@
 ---
 title: "Software-ECG COVID-19 Edition: The Second Wave Is Breaking in Europe"
 date: 2020-11-26T10:56:22+01:00
-draft: true
+draft: false
 author: "[Karl Herzog](https://github.com/herzogk)"
 type: "post"
 tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
