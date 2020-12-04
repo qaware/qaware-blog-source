@@ -6,11 +6,11 @@ links:
   - item: Kontakt
     url: https://www.qaware.de/kontakt/
 legal_notice:
-  name: Impressum
-  url : https://www.qaware.de/impressum/
+  name: Legal Notice
+  url : https://info.qaware.de/en/legal-notice
 privacy:
-  name: Datenschutz
-  url : https://www.qaware.de/datenschutz/
+  name: Privacy
+  url : https://info.qaware.de/en/legal-notice
 bottom_navigation:
   - item: Leistung
     url: https://www.qaware.de/leistung/
