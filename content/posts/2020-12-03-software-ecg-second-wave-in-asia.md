@@ -1,9 +1,10 @@
 ---
 title: "Where Is The Second Wave In Russia And China?"
 date: 2020-12-03T13:50:00+01:00
-draft: true
+draft: false
+author: "[Johannes Weigend](https://www.qaware.de/unternehmen/johannes-weigend/) & [Karl Herzog](https://github.com/herzogk)"
 type: "post"
-tags: ["Software EKG", "Software ECG", "COVID-19", "second wave", "Russia", "China", "Asia"]
+tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
 image: software-ecg-both-waves-china.png
 ---
 
@@ -51,5 +52,3 @@ People could get nervous when they see the number of people tested positive is r
 China does not report any test numbers. So, just looking at the isolated numbers of the reported positive cases is useless. You do not have any reference point if you do not know how many people are actually ill or have been tested. It might seem that in China the pandemic is over. People go to parties, concerts and do normal activities again. It would be very interesting, however, if we were able to take a look at the same test metrics (number of tests, positive rate) which are available for Europe.
 
 We wanted to demonstrate that it is easy and fun to analyze the current COVID-19 situation with the latest available data in *Software-ECG COVID-19 Edition*. Feel free to download the tool and draw your own conclusions for your country, region or even all contries worldwide!
-
-Johannes Weigend
