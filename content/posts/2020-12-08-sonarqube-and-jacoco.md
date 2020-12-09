@@ -2,7 +2,10 @@
 title: "SonarQube with JaCoCo in multi-module Maven project"
 date: 2020-12-08T17:18:44+01:00 
 draft: true 
-author: Andreas Grub
+author: "[Andreas Grub](https://github.com/neiser)"
+type: "post"
+image: "2020-12-08-sonarqube-jacoco-title.png"
+tags: ["SonarQube", "Sonar", "JaCoCo", "Coverage", "Maven", "Analysis", "Code Quality"]
 ---
 
 This post explains in detail how to set up a SonarQube code analysis using the [Sonar Maven Plugin][SonarMavenPlugin]
