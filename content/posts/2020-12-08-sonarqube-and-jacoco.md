@@ -160,14 +160,14 @@ Using the `report-aggregate` goal has the following caveats:
 
 * The goal needs to run later than any test execution, so it might be worthwhile to bind to goal to the phase `verify`.
 
-An example how to setup the `report-aggregate` goal for `module-c`, which may run integration tests for the other
-modules, looks like this:
+An example how to set up the `report-aggregate` goal for `module-c`, which may run additional integration tests for the other
+modules as well, looks like this:
 
 ```xml
 <project>
     <dependencies>
         <dependency>
-            <!-- Explicitly include module-a for JaCoCo's report-aggreate goal, 
+            <!-- Explicitly include module-a for JaCoCo's report-aggregate goal, 
                  although it's already transitively included by module-b, 
                  see explanation above -->
             <dependency>
@@ -217,11 +217,25 @@ Make sure that the above output states that the execution data `jacoco.exec` are
 relevant modules are considered. You can now open `module-c/target/site/jacoco-aggregate/index.html` in your browser and verify
 that the report contains all coverage and source files you would expect. 
 
-If the JaCoCo report does not contain all coverage data you woulde expect, you probably have
+If the JaCoCo report does not contain all coverage data you would expect, you probably have
 forgotten to add another direct dependency to the module running the `report-aggregate` goal 
 (here `module-c`), or the JaCoCo agent was not properly set up.
 
+Note that `module-c` may play two distinct roles in the above example: 
+
+* Running additional integration for code contained in other modules, 
+  such as `module-a` or `module-b`.
+
+* Generating the JaCoCo XML report once all tests have run. 
+   
+[The official JaCoCo documentation][JaCoCoWiki] even recommends 
+adding a separate module, depending on all other module of the project, 
+just to aggregate the XML report, but I think 
+it is more elegant to bind to the `verify` phase instead and 
+making sure the tests run earlier than this phase.
+
 [JaCoCoReportAggregate]: https://www.eclemma.org/jacoco/trunk/doc/report-aggregate-mojo.html
+[JaCoCoWiki]: https://github.com/jacoco/jacoco/wiki/MavenMultiModule
 
 ### Step 3: Configure the SonarQube analysis
 
@@ -282,7 +296,7 @@ The [official documentation][SonarSourceDoc] recommends adding the above `xmlRep
 but configuring this once in the reactor pom using the relative path trick appears more elegant.
 
 Now, when running the Sonar Maven Plugin with `mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar`, one
-should see the following output whenever a module is anlayzed:
+should see the following output whenever a module is analyzed:
 
 ```
 [INFO] --- sonar-maven-plugin:3.7.0.1746:sonar (default-cli) @ reactor ---
