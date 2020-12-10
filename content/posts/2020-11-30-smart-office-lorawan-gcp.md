@@ -7,7 +7,7 @@ type: "post"
 image: "smart-office-lorawan-gcp.png"
 tags: ["Smart Office", "LoRaWAN", "IoT", "GCP", "Serverless", "Raspberry", "Pi"]
 summary: "Building a Smart QAware Office using LoRaWAN devices and GCP serverless technology"
-draft: true
+draft: false
 ---
 
 The initial idea for this project dates back to November 2019, when I attended an event about the digital strategy of my home town Rosenheim. One of the talks at this event was about Rosenheim becoming a Smart city presented by speakers from Komro, the local internet provider, and the municipal utilities. They presented many ideas different use cases, like power cicuit monitoring or room climate control. See https://smartcity-rosenheim.de for more details.
