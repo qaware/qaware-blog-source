@@ -1,6 +1,6 @@
 ---
-title: "Different Waves"
-date: 2020-12-10T11:59:04+01:00
+title: "Software-ECG COVID-19 Edition: Different Waves"
+date: 2020-12-11
 draft: true
 author: "[Johannes Weigend](https://www.qaware.de/unternehmen/johannes-weigend/) & [Karl Herzog](https://github.com/herzogk)"
 type: "post"
