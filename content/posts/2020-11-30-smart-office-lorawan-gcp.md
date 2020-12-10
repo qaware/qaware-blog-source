@@ -1,7 +1,7 @@
 ---
 title: "QAware Smart Office with LoRaWAN and GCP"
-date: 2020-11-30T08:31:00+01:00
-lastmod: 2020-12-07T11:22:00+01:00
+date: 2020-12-10
+lastmod: 2020-12-10
 author: "[M.-Leander Reimer](https://github.com/lreimer)"
 type: "post"
 image: "smart-office-lorawan-gcp.png"
