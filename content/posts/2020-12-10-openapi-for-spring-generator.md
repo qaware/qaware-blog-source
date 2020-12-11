@@ -27,13 +27,15 @@ you should see something like:
 {{< img src="/images/openapi-lib-swagger-ui.png" alt="Swagger UI of WebMVC demo" >}}
 
 If you don't see that, please [open an issue](https://github.com/qaware/openapi-generator-for-spring/issues). 
-The above screenshot is taken from the included [WebMVC demo application](WebMvcDemo).
+The above screenshot is taken from the included [WebMVC demo application](WebMvcDemo), 
+but it works also just the same for [WebFlux][WebFluxDemo].
 
 [OpenApiLib]: https://github.com/qaware/openapi-generator-for-spring
 [OpenApiSpec]: https://github.com/OAI/OpenAPI-Specification
 [SpringBoot]: https://spring.io/projects/spring-boot
 [QAware]: https://www.qaware.de
 [WebMvcDemo]: https://github.com/qaware/openapi-generator-for-spring/tree/master/demo/openapi-generator-for-spring-demo-webmvc
+[WebFluxDemo]: https://github.com/qaware/openapi-generator-for-spring/tree/master/demo/openapi-generator-for-spring-demo-webflux
 
 ## Why this library?
 
