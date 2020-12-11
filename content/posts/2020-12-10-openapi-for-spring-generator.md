@@ -42,7 +42,7 @@ The above screenshot is taken from the included [WebMVC demo application](WebMvc
 The library was built from ground up without any prerequisite except Spring Core. 
 It natively supports WebMVC and WebFlux and is customizable to any extent thanks to Spring Boot auto-configurations.
 The library adheres to as many "Spring best practices" as known to the authors and treats code quality and exhaustive 
-testing as a first citizen.
+testing as a first class citizen.
 
 *If you like a list of some (arbitrarily relevant) bullet points of reasons, here's one:*
 
@@ -92,7 +92,7 @@ seemed to have died down in 2019, although it got more lively recently.
 
 Spring Doc seemed to be the perfect alternative about a year ago, and one author
 of this new library [actually tried to contribute][SpringDocPRs] and adapt the existing one. However, we found 
-more and more that some useful things are not so easy to do event with Spring Doc, and started developing our own. 
+more and more that some useful things are not so easy to do even with Spring Doc, and started developing our own. 
 It was also just a fun experience!
 
 [SpringFox]: https://github.com/springfox/springfox
