@@ -101,5 +101,5 @@ It was also just a fun experience!
 
 ## Acknowledgements
 
-This library was developed by Dirk Kröhan and [Andreas Grub](https://github.com/neiser) and was gratefully supported by 
+This library was developed by [Dirk Kröhan](https://github.com/dkroehan) and [Andreas Grub](https://github.com/neiser) and was gratefully supported by 
 [QAware] by allowing us to do that during paid working hours. It was finally released thanks to the QAgarage day!
