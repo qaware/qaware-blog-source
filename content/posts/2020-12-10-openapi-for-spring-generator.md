@@ -8,7 +8,13 @@ image: "openapi-lib-title.png"
 tags: ["OpenApi", "Spring", "Spring Boot", "Library", "Tools"]
 ---
 
-We proudly present [a new library][OpenApiLib] for generating [OpenAPI v3 specifications][OpenApiSpec] from 
+An [OpenAPI specification file][OpenApiSpec] is a document describing the (HTTP) API endpoints of your application. 
+Based on the specification, you can generate clients directly interacting with your application for 
+almost any programming languages. For example, this is convenient for frontend development using the application's backend API.  
+You may know it also as "Swagger", which is the former name for the OpenAPI 
+specification version 2. It has now become an open initiative to promote well-documented application APIs everywhere.
+
+Today, we proudly present [a new library][OpenApiLib] for generating [OpenAPI v3 specifications][OpenApiSpec] from 
 your running [Spring Boot][SpringBoot] application.
 The development was supported by [QAware] and is now released [on GitHub][OpenApiLib].
 
@@ -103,5 +109,7 @@ It was also just a fun experience!
 
 ## Acknowledgements
 
-This library was developed by [Dirk Kröhan](https://github.com/dkroehan) and [Andreas Grub](https://github.com/neiser) and was gratefully supported by 
-[QAware] by allowing us to do that during paid working hours. It was finally released thanks to the QAgarage day!
+This library was developed by [Dirk Kröhan](https://github.com/dkroehan) and [Andreas Grub](https://github.com/neiser) 
+and was gratefully supported by [QAware] by allowing us to do that during paid working hours. 
+It was finally released thanks to the QAgarage day end of November, where many of us took the chance 
+to do useful stuff but never found time for it outside the usual project churn.
