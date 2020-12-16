@@ -1,7 +1,7 @@
 ---
 title: "Generating OpenApi specification from Spring Boot"
-date: 2020-12-10T14:30:44+01:00 
-draft: true 
+date: 2020-12-16
+draft: false 
 author: "[Andreas Grub](https://github.com/neiser)"
 type: "post"
 image: "openapi-lib-title.png"
