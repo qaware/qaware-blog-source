@@ -60,7 +60,7 @@ Post text
 1. Add `lastmod` attribute. Use value of `date` attribute for the first version of your new page.
 2. Add `author` attribute. Add a markdown link to your GitHub profile as value.
 3. Add `type` attribute with value `post`. Our theme supports more content type. But for the moment we only use `post`.
-4. Add `image` attribute. Put an image to the `/static/img` folder and write the link into attribute`s value. More infos about providing image files can be found in the next chapter.
+4. Add `image` attribute. Put an image to the `/static/images` folder and write the filename (without `images/`) into attribute's value. More infos about providing image files can be found in the next chapter.
 5. Add `tags`: Select one or more fitting tags for your post: e.g. `Testing`, `Architecture`, `Cloud Native`
 
 Final example:
@@ -72,7 +72,7 @@ date: 2020-05-11T10:43:02+02:00
 lastmod: 2020-05-11T10:43:02+02:00
 author: "[Josef Fuchshuber](https://github.com/fuchshuber)"
 type: "post"
-image: "img/hello-world.jpg"
+image: "hello-world.jpg"
 tags: ["Framework", "Tutorial", "Java"]
 draft: true
 ---
