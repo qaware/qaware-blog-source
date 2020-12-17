@@ -2,6 +2,7 @@
 title: "DevOps Enterprise Summit"
 author: "Michael Rohleder"
 date: 2019-11-11T10:07:32+02:00
+lastmod: 2021-12-17
 draft: false
 image: IMG_20191028_202104.jpg
 tags: [Agile, DevOps, Productivity, Project]
@@ -50,6 +51,8 @@ Dominica ist auch bekannt als Autorin des Buchs [Making Work Visible](https://it
 
 
 Die Folien und Video-Aufzeichnungen zum DevOps Enterprise Summit sind erfreulicherweise öffentlich gestellt:
+
+{{< video FbgWQhxFWr4 >}}
 
 * Folien: [https://github.com/devopsenterprise/2019-Las-Vegas](https://github.com/devopsenterprise/2019-Las-Vegas) 
 * Videos: [https://www.youtube.com/channel/UCkAQCw5_sIZmj2IkSrNy00A](https://www.youtube.com/channel/UCkAQCw5_sIZmj2IkSrNy00A) 
