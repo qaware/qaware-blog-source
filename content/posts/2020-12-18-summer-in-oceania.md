@@ -1,7 +1,7 @@
 ---
-title: "Summer in Oceania"
-date: 2020-12-17
-draft: true
+title: "Software-ECG COVID-19 Edition: Summer in Oceania"
+date: 2020-12-18
+draft: false
 author: "[Johannes Weigend](https://www.qaware.de/unternehmen/johannes-weigend/) & [Karl Herzog](https://github.com/herzogk)"
 type: "post"
 tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
