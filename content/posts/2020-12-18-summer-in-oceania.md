@@ -10,15 +10,13 @@ image: software-ecg-deaths-oceania.png
 
 *CW 51: Analyzing COVID-19 data with Software-ECG COVID-19 Edition*
 
-In this series of blogs we are looking at the current figures of the COVID-19 pandemic with *Software-ECG*. It is a free time series analysis tool originally developed for time series analysis for system analysis of computer problems in distributed systems. With its COVID-19 edition, QAware has adapted the tool so that the current data from the data hub of the University of Oxford (*Our World in Data* - OWID) are automatically loaded and immediately available for analysis. More information about Software-ECG and download links can be found here:
-
-[https://blog.qaware.de/posts/2020-11-11-software-ekg-covid-19-edition/](https://blog.qaware.de/posts/2020-11-11-software-ekg-covid-19-edition/)
+In this series of blogs we are looking at the current figures of the COVID-19 pandemic with *Software-ECG*. It is a free time series analysis tool originally developed for time series analysis for system analysis of computer problems in distributed systems. With its COVID-19 edition, QAware has adapted the tool so that the current data from the data hub of the University of Oxford (*Our World in Data* - [OWID](https://ourworldindata.org/)) are automatically loaded and immediately available for analysis. More information about Software-ECG and download links can be found here: [Presenting Software EKG - COVID-19 Edition]({{< relref "2020-11-11-software-ekg-covid-19-edition.md" >}} )
 
 *Note: The German translation for ECG is EKG (Elektrokardiogramm). We are Germans, therefore we use the names “Software ECG” and “Software EKG” as synonyms.*
 
  Software-ECG ist build on Open-JDK and JavaFX. It leverages the power of a compiled language with a native Rich Client Framework.
 
- ## CW 51: Summer in Oceania
+## CW 51: Summer in Oceania
 
 Recently, we looked at the current development in Europe, China and South America. In Europe, we saw that the second wave is breaking and has already peaked in most countries. However, the numbers in Germany and Russia have not dropped yet. Here, both the number of people tested positive and the number of people who died (with a positive COVID-19 test result) have continued to rise. The number of deaths are significantly higher in Germany (green line) and Russia (purple line) than in spring 2020.
 
@@ -50,7 +48,6 @@ Looking at the testing situation, it is noticeable that Australia and New Zealan
 {{< /figure >}}
 
 The cumulative view of the case numbers also shows very well that COVID-19 in Oceania has currently subsided to a background activity. We have too little information about the political decisions and actions that may have influenced or favored this development. In sum, however, you can see that fear of COVID-19 in these countries does not seem to be appropriate.
-
 
 {{< figure figcaption="Summer in Oceania: Aggregated sum view of case numbers in Oceania" >}}
   {{< img src="/images/software-ecg-oceania-aggregated-2.png" alt="Sum view Oceania" >}}
