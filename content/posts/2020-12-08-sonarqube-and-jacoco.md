@@ -13,7 +13,8 @@ including code coverage with the [JaCoCo Maven plugin][JaCoCoPlugin].
 
 Although the setup is already documented within [this SonarSource Community post][SonarSourceDoc], this post highlights
 pitfalls and enables you to adapt any Maven module structure such that it correctly measures and imports code coverage
-into your SonarQube analysis.
+into your SonarQube analysis. This post focuses on using the official documentation from JaCoCo and Sonar. 
+There are alternatives such as using the `merge` goal of the JaCoCo plugin, which are out of scope of this post.
 
 As SonarQube has rightfully deprecated the support of the internal JaCoCo binary format, this post focuses on importing
 the XML format into SonarQube.
@@ -349,7 +350,7 @@ that could be `module-c`:
 ### Suppress warning when analyzing reactor module
 
 As the Sonar Maven Plugin also runs on the reactor module, it expects an XML report to be present (although nothing is
-to be analyzed). To suppress this warning, add another path to ``
+to be analyzed). To suppress this warning, add another path to `xmlReportPaths` as follows:
 
 ```xml
 <sonar.coverage.jacoco.xmlReportPaths>
