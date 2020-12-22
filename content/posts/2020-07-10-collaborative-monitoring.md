@@ -1,7 +1,7 @@
 ---
 title: "Collaborative Monitoring"
-date: 2020-11-02T17:41:06+01:00
-lastmod: 2020-11-02T17:41:06+01:00
+date: 2020-07-10
+lastmod: 2020-12-22
 author: "[Florian Lautenschlager](https://www.linkedin.com/in/florian-lautenschlager-51a299b2/)"
 type: "post"
 image: "collaborative-monitoring-title.png"
