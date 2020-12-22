@@ -1,7 +1,7 @@
 ---
 title: "SonarQube with JaCoCo in multi-module Maven project"
-date: 2020-12-08T17:18:44+01:00 
-draft: true 
+date: 2020-12-22
+draft: false 
 author: "[Andreas Grub](https://github.com/neiser)"
 type: "post"
 image: "2020-12-08-sonarqube-jacoco-title.png"
