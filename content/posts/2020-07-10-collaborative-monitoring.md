@@ -6,7 +6,7 @@ author: "[Florian Lautenschlager](https://www.linkedin.com/in/florian-lautenschl
 type: "post"
 image: "collaborative-monitoring-title.png"
 tags: ["Diagnosibility", "DevOps", "Observability", "Collaborative Monitoring", "Logging", "Tracing", "Metrics"]
-draft: true
+draft: false
 ---
 
 ## Background
