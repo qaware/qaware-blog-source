@@ -10,7 +10,7 @@ draft: false
 ---
 
 In this blog post, we'll look at various ways to decorate a Spring bean. The [decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) is a software engineering
-pattern "that allows behavior to be added to an individual object, dynamically, without affecting the behavior of other objects from the same class."[^1]
+pattern "that allows behavior to be added to an individual object, dynamically, without affecting the behavior of other objects from the same class." [^1]
 
 First, let's create our interface:
 
