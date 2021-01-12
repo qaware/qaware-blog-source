@@ -1,12 +1,12 @@
 ---
 title: "Ways to decorate Spring beans"
-date: 2020-12-16T09:11:26+01:00
-lastmod: 2020-12-16T09:11:26+01:00
+date: 2021-01-12
+lastmod: 2021-01-12
 author: "[Moritz Kammerer](https://github.com/phxql)"
 type: "post"
 image: "decorator-pattern.png"
 tags: ["Java", "Spring"]
-draft: true
+draft: false
 ---
 
 In this blog post, we'll look at various ways to decorate a Spring bean. The [decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) is a software engineering
