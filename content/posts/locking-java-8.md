@@ -4,6 +4,8 @@ date: 2016-06-15T10:39:32+02:00
 draft: false
 author: Stefan Billet
 tags: [Java, Locking, Memory, Performance]
+aliases:
+    - /posts/2016-06-15-locking-java-8/
 ---
 # Abstract
 To provide synchronized data cache access, I discuss three alternatives in Java 8: [synchronized() blocks](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html), [ReadWriteLock](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/ReadWriteLock.html) and [StampedLock](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/StampedLock.html) (new in Java 8). I show code snippets and compare the performance impact on a real world application.

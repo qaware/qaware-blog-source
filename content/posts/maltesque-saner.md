@@ -4,6 +4,8 @@ date: 2018-05-09T15:06:32+02:00
 draft: false
 author: "Fabian Huch"
 tags: [Software Analysis, Quality, Code Quality]
+aliases:
+    - /posts/2018-05-09-maltesque-saner/
 ---
 The 25th conference on Software Analysis, Evaluation and Reengineering (SANER) and its co-located workshops took place in the Italian city of Campobasso on March 20-23, 2018. Due to its remoteness, and train and flight delays, it wasn’t easy to reach, but the hospitability and the amazing food made well up for that.
 

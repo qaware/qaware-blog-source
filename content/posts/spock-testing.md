@@ -4,6 +4,8 @@ date: 2015-08-31T10:39:32+02:00
 draft: false
 author: Mario-Leander Reimer
 tags: [Agile, BDD, Groovy, Integration Testing, Java, Specification, Spock, TDD, Unit Testing, Test]
+aliases:
+    - /posts/2015-08-31-spock-testing/
 ---
 Exploratory software testing is a technique every agile developer should know about. It's about test driving your application without a predetermined course of action. Although this seems like random free style testing, in the hands of an experienced developer this proves to be a powerful technique to find bugs and undesired behaviour.
 

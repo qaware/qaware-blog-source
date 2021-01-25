@@ -4,6 +4,8 @@ date: 2017-09-20T15:06:32+02:00
 draft: false
 author: "Moritz Kammerer"
 tags: [SmartHome, Eclipse, Java, Home Automation, IoT, IntelliJ, Docker]
+aliases:
+    - /posts/2017-09-20-eclipse-smart-home-bindings/
 ---
 Developing the Eclipse SmartHome (ESH) bindings with another IDE than Eclipse is difficult because the standard way of developing the bindings requires the tools provided by the Eclipse IDE. One can develop the ESH bindings with IntelliJ, however a crucial question remains open: how to test the developed bindings without having the Eclipse tools at hand?
 Using IntelliJ to develop the ESH bindings is different to using Eclipse for two main reasons:

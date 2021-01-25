@@ -4,6 +4,8 @@ date: 2016-04-23T10:39:32+02:00
 draft: false
 author: Josef Adersberger
 tags: [IntelliJ, Docker, Gradle]
+aliases:
+    - /posts/2016-04-23-docker-intellij/
 ---
 A short tutorial on how to use Docker within intelliJ and with a little help from Gradle. You can find the sample code & the full description [here](https://github.com/adersberger/intellij-docker-tutorial) 
 

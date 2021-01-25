@@ -4,6 +4,8 @@ date: 2017-09-18T15:06:32+02:00
 draft: false
 image: blue.png
 tags: [Conference, Machine Learning, AI, Software Architecture, DevOps]
+aliases:
+    - /posts/2017-09-18-software-circus/
 ---
 ## Intro
 We just came home from two days of talks, workshops and lots of fun during this year's Software Circus. "Cloudbusting" was the theme this year and it took place in the lovely city of Amsterdam. The organization team did a great job finding a unique venue: A festival location including a Big Top circus tent, a rusty hangar and a large outdoor area is not quite the setting you expect from a software conference!
