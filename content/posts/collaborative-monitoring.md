@@ -6,6 +6,9 @@ author: "[Florian Lautenschlager](https://www.linkedin.com/in/florian-lautenschl
 type: "post"
 image: "collaborative-monitoring-title.png"
 tags: ["Diagnosibility", "DevOps", "Observability", "Collaborative Monitoring", "Logging", "Tracing", "Metrics"]
+aliases:
+    - /posts/2020-07-10-collaborative-monitoring/
+summary: We found a helpful approach to collaborative monitoring in a large project that we want to share with you.
 draft: false
 ---
 

@@ -6,6 +6,7 @@ author: Andreas Zitzelsberger
 tags: [Testing, GUI, JavaFX, Java, JUnit]
 aliases:
     - /posts/2015-04-16-java-fx-testing/
+summary: This article summarizes my experiences when setting up UI tests for a new JavaFX application at QAware.
 ---
 This article summarizes my experiences when setting up UI tests for a new JavaFX application at QAware.
 

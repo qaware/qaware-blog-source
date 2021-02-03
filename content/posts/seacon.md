@@ -4,6 +4,9 @@ date: 2018-06-12T15:06:32+02:00
 draft: false
 author: "Silke Tautorat"
 tags: [Conference, Agile]
+aliases:
+    - /posts/2018-06-12-seacon/
+summary: Impressions of an extraordinary keynote by two 13-year old pupils and eleven lessons learned from a large agile project.
 ---
 ## An extraordinary keynote
 The first day’s keynote “Umgang mit Komplexität lernen” (learn how to deal with complexity) was held by two 13-year old pupils of the [Evangelische Schule Berlin](http://www.ev-schule-zentrum.de/) and has been a very interesting start for a Software Engineering & Architecture Conference.

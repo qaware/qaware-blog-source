@@ -7,6 +7,7 @@ tags: [Code Quality]
 image: "Code_is_fragile.png"
 aliases:
     - /posts/2017-12-20-i-know-it-when-i-see-it-2/
+summary: The first set of results from a research project into the perceptions of code quality.
 ---
 ***Background*** *In Part 1 of this article, I have described the motivation and scope of a research project into the perceptions of code quality by different stakeholders. The project has been conducted by a consortium which two scientists from Sweden and I led. The first set of results from that project has been accepted for publication in the ITiCSE’17 proceedings recently[^3], and that is what I report on in this article. Comics in this blog post courtesy of [Geek & Poke](http://geek-and-poke.com/).*
 
