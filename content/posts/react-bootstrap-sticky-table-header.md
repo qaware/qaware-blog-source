@@ -6,6 +6,9 @@ author: "[Kilian Schneider](https://github.com/koax064)"
 type: "post"
 image: "sticky-header-table.png"
 tags: ["Java", "React", "Bootstrap", "UI"]
+aliases:
+    - /posts/2021-01-27-react-bootstrap-sticky-table-header/
+summary: This post shows you how to handle common problems when adding a sticky header to a table using react-bootstrap.
 draft: true
 ---
 Tables are a popular choice within the design of UIs to visualize and structure data in a clear way and to allow its manipulation via different actions by the user. As soon as several rows of data will be displayed and scrolling through the table gets necessary, there is a particular feature for each table that can significantly increase its clearness and usability: a *sticky header* showing the column names when scrolling would have pushed the header row out of the user’s view.

@@ -7,6 +7,7 @@ tags: [BDD, Java, Microservices, REST, Spock, Test, WireMock]
 summary: A short tutorial on how to use WireMock together with Spock.
 aliases:
     - /posts/2015-12-30-wirespock/
+summary: I want to showcase a neat technology integration between Spock and the WireMock framework for testing your REST service client components. 
 ---
 
 In a [previous post](../2015-08-31-spock-testing/) I have written about using the Spock framework for the exploratory testing of open source software. In this post I want to showcase a neat technology integration between Spock and the WireMock framework for testing your REST service client components. This is especially useful when testing micro service based architectures, since you want to test the individual service integrations without firing up all the collaborators.

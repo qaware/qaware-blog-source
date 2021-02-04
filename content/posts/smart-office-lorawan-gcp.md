@@ -6,6 +6,8 @@ author: "[M.-Leander Reimer](https://github.com/lreimer)"
 type: "post"
 image: "smart-office-lorawan-gcp.png"
 tags: ["Smart Office", "LoRaWAN", "IoT", "GCP", "Serverless", "Raspberry", "Pi"]
+aliases:
+    - /posts/2020-12-10-smart-office-lorawan-gcp/
 summary: "Building a Smart QAware Office using LoRaWAN devices and GCP serverless technology"
 draft: false
 ---

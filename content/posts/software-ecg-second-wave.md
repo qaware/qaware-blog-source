@@ -5,7 +5,10 @@ draft: false
 author: "[Karl Herzog](https://github.com/herzogk)"
 type: "post"
 tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
+aliases:
+    - /posts/2020-11-26-software-ecg-second-wave/
 image: software-ecg-new-cases-europe.png
+summary: Looking at the second wave of COVID-19 using the Software-ECG.
 ---
 
 *CW 48: Analyzing COVID-19 data with Software-ECG COVID-19 Edition.*

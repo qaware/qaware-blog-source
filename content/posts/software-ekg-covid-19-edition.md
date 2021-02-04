@@ -6,6 +6,8 @@ author: "[Karl Herzog](https://github.com/herzogk)"
 type: "post"
 image: "software-ekg-covid-01.PNG"
 tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
+aliases:
+    - /posts/2020-11-11-software-ekg-covid-19-edition/
 draft: false
 summary: Our latest tool to analyze global COVID-19 data.
 ---

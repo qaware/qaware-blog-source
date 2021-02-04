@@ -6,6 +6,9 @@ author: "[Andreas Grub](https://github.com/neiser)"
 type: "post"
 image: "openapi-lib-title.png"
 tags: ["OpenApi", "Spring", "Spring Boot", "Library", "Tools"]
+aliases:
+    - /posts/2020-12-16-openapi-for-spring-generator/
+summary: This post highlights some features what the new library for generating OpenAPI v3 specifications from your running Spring Boot application can do.
 ---
 
 An [OpenAPI specification file][OpenApiSpec] is a document describing the (HTTP) API endpoints of your application. 

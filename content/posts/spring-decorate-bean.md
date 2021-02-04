@@ -6,6 +6,9 @@ author: "[Moritz Kammerer](https://github.com/phxql)"
 type: "post"
 image: "decorator-pattern.png"
 tags: ["Java", "Spring"]
+aliases:
+    - /posts/2021-01-12-spring-decorate-bean/
+summary: In this blog post, we'll look at various ways to decorate a Spring bean.
 draft: false
 ---
 

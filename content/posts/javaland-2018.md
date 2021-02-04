@@ -5,6 +5,7 @@ draft: false
 tags: [Conference, REST, Security, Legacy, Jupyter Notebooks, Java, Java 10, Valhalla, Pattern Matching, Test, Regression Testing]
 aliases:
     - /posts/2018-04-27-javaland/
+summary: Our highlights of JavaLand 2018
 ---
  
 JavaLand is a Java-focused conference which takes place in the theme park Phantasialand close to Cologne. Every year Java developers from all over the country visit exciting talks to expand their knowledge.

@@ -3,6 +3,9 @@ title: "Virtual Kubelet - Run pods without nodes"
 date: 2018-07-12T15:06:32+02:00
 draft: false
 tags: [Container, Conference, Kubernetes, Kubelet]
+aliases:
+    - /posts/2018-07-12-virtual-kubelet/
+summary: An introduction to Virtual Kubelet - run pods without nodes
 ---
 During my recent visit of the ContainerDays 2018 in Hamburg (19.-20.06.2018) I attended an interesting talk held by Ria Bhatia from Microsoft about Virtual Kubelet.
 

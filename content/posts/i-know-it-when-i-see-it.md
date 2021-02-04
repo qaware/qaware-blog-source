@@ -6,6 +6,7 @@ author: Harald Störrle
 tags: [Code Quality]
 aliases:
     - /posts/2017-06-07-i-know-it-when-i-see-it/
+summary: Motivation and scope of a research project into the perceptions of code quality by different stakeholders
 ---
 Everybody talks about code quality, so surely we have a good understanding of what good (or bad) code is, exactly. Right?
  

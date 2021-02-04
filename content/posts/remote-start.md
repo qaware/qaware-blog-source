@@ -5,6 +5,8 @@ draft: false
 image: "remote-start-cocktail-night.jpg"
 author: "[Felix Kampfer](https://www.linkedin.com/in/felixkampfer/)"
 tags: [Productivity, Remote Work, Home Office, Onboarding, WFH]
+aliases:
+    - /posts/2020-11-25-remote-start/
 summary: "Felix shares his impressions of starting work at QAware 100% remotely."
 ---
 

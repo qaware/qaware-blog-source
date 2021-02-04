@@ -5,14 +5,17 @@ draft: false
 author: "[Johannes Weigend](https://www.qaware.de/unternehmen/johannes-weigend/) & [Karl Herzog](https://github.com/herzogk)"
 type: "post"
 tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
+aliases:
+    - /posts/2020-12-11-software-ecg-different-waves/
 image: software-ecg-daily-deaths-europe.png
+summary: Looking at the different waves of COVID-19 using the Software-ECG.
 ---
 
 *CW 50: Analyzing COVID-19 data with Software-ECG COVID-19 Edition*
 
 In this series of blogs we are looking at the current figures of the COVID-19 pandemic with *Software-ECG*. It is a free time series analysis tool originally developed for time series analysis for system analysis of computer problems in distributed systems. With its COVID-19 edition, QAware has adapted the tool so that the current data from the data hub of the University of Oxford (*Our World in Data* - OWID) are automatically loaded and immediately available for analysis. More information about Software-ECG and download links can be found here:
 
-[https://blog.qaware.de/posts/2020-11-11-software-ekg-covid-19-edition/](https://blog.qaware.de/posts/2020-11-11-software-ekg-covid-19-edition/)
+[https://blog.qaware.de/posts/software-ekg-covid-19-edition/](https://blog.qaware.de/posts/software-ekg-covid-19-edition/)
 
 *Note: The German translation for ECG is EKG (Elektrokardiogramm). We are Germans, therefore we use the names “Software ECG” and “Software EKG” as synonyms.*
 

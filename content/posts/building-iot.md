@@ -6,6 +6,7 @@ author: "Moritz Kammerer"
 tags: [SmartHome, IoT, Home Automation, Conference, Risk Assessment, Connected Cars, MQTT, Kubernetes, Vert.x, IOTA, Privacy by Design, SIMATIC S7, Security, UX Testing, Voice User Interfaces]
 aliases:
     - /posts/2018-06-08-building-iot/
+summary: I visited the building IoT at Cologne, Germany in June 2018. The following is a list of the talks I attended and found interesting.
 ---
 I visited the building IoT at Cologne, Germany in June 2018. The following is a list of the talks I attended and found interesting. The building IoT is a small conference (180 attendees, 39 talks, 2 days + 1 day of workshops) from heise Developer and the dpunkt publisher. Its target audience are developers and architects who develop hard- and software for the Internet of Things (IoT). Most of the talks were given in German. You can find [some of the talks' videos on the building IoT homepage](https://www.buildingiot.de/videos.php).
 

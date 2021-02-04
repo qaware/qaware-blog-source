@@ -5,7 +5,10 @@ draft: false
 author: "[Johannes Weigend](https://www.qaware.de/unternehmen/johannes-weigend/) & [Karl Herzog](https://github.com/herzogk)"
 type: "post"
 tags: ["Software EKG", "Software ECG", "COVID-19", "JavaFX", "Data Science", "Data Analytics"]
+aliases:
+    - /posts/2020-12-03-software-ecg-second-wave-in-asia/
 image: software-ecg-both-waves-china.png
+summary: Looking at the 2nd wave of COVID-19 In Russia, Ukraine, Serbia And China using the Software-ECG.
 ---
 
 *CW 49: Analyzing COVID-19 data with Software-ECG COVID-19 Edition*
@@ -18,7 +21,7 @@ In this series of blogs we are looking at the current figures of the COVID-19 pa
 
  Software-ECG ist build on Open-JDK and JavaFX. It leverages the power of a compiled language with a native Rich Client Framework.
 
-## The 2nd Wave in Russia, Ukrain, Serbia and China
+## The 2nd Wave in Russia, Ukraine, Serbia and China
 
 In our last week's blog we took a look at the current situation in Europe. We saw that the second wave is already breaking in Europe. During last week this trend seems to continues. The number of people tested positive is decreasing significantly in France (black line), Italy (top green line), and Great Britain (top purple line).
 

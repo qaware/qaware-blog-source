@@ -4,6 +4,9 @@ date: 2018-06-14T15:06:32+02:00
 draft: false
 author: "Harald Störrle"
 tags: [DDD, Domain Driven Design, Conference]
+aliases:
+    - /posts/2018-06-14-seacon-2/
+summary: I give you my impressions from a presentation on Domain Driven Design at the SEACON.
 ---
 ## "Domain Driven Design" and "Taylorism"
 
