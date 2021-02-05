@@ -3,13 +3,23 @@
 ## Generated websites
 
 * https://blog.qaware.de: Target environment of our QAware software engineering blog
-* https://qawareblog-zkop4aqvwa-ez.a.run.app/: Testing environment with draft posts
+* https://qawareblog-zkop4aqvwa-ez.a.run.app/: Testing environment with draft posts included
 
 ## Write Content
 
+Pre-requisites:
+* Github account
+* git
+* IntelliJ
+* hugo (only required if you want test the blog locally --> for installation see details below)
+
 ### Fork our Github Repository
 
-Writers work on a fork of the repository. A fork can be created either via the [web interface](https://github.com/qaware/qaware-blog-source) or with the [GitHub command line tool](https://cli.github.com/).
+Writers work on a fork of the repository (and then later create a pull request for merging). 
+
+A fork can be created either 
+* via the [web interface](https://github.com/qaware/qaware-blog-source) (click on the fork button on the right side and then select your GitHub account) or
+* with the [GitHub command line tool](https://cli.github.com/).
 
 GitHub CLI example
 
@@ -17,23 +27,31 @@ GitHub CLI example
 gh repo fork qaware/qaware-blog-source
 ```
 
-After this step, a fork is created for the current GitHub user of the Writer: `https://github.com/<GITHUB_USER>/qaware-blog-source`. To work with it locally on a computer, this fork must first be cloned. If the fork is created with the CLI tool, a clone can at once. When creating the fork via the Web UI, this step must be performed as an extra step.
+After this step, a fork is created for the current GitHub user of the Writer: `https://github.com/<GITHUB_USER>/qaware-blog-source`. 
+
+To work with it locally on a computer, this fork must first be cloned. 
+
 
 ```bash
 git clone --recurse-submodules https://github.com/<GITHUB_USER>/qaware-blog-source
 ```
 
-### Start with our project  
+### Write your post (with or without hugo) 
 
-You'll need to install:
+If you don't want to use hugo just add and edit your post md-file manually in `content/posts`. Then add the meta data at the beginning of your md-file like in the example below!
 
-* [Hugo extended](https://github.com/gohugoio/hugo) (in doubt: run `hugo version` and check if `extended` is in the version)
+If you want to use hugo to generate your new post and to test locally, you'll need to install:
 
-Then [get used to Hugo](https://gohugo.io/getting-started/quick-start). Now you're ready for:
+* [Hugo extended](https://gohugo.io/getting-started/installing/) (in doubt: run `hugo version` and check if `extended` is in the version)
 
-1) `hugo new posts/<articleTitle>.md` (as file name without blanks, e.g. `hello-world.md`)
-2) edit content
-3) `hugo server -D --minify`
+Then [get used to Hugo](https://gohugo.io/getting-started/quick-start). 
+
+Now you can use the hugo-commands in your IntelliJ terminal:
+
+1) `hugo new posts/<articleTitle>.md` (as file name without blanks, e.g. `hello-world.md`) --> 
+this will locally add a new post as a draft in the blog in `content/posts`.
+2) edit content: write your blog post in the created md-file
+3) `hugo server -D` --> this will start the local webserver and show you the blog locally on http://localhost:1313
 
 ### Edit page meta data
 
@@ -51,6 +69,7 @@ image: ""
 categories: []
 tags: []
 draft: true
+summary: This post shows you how to ...
 ---
 
 Post text
@@ -62,6 +81,8 @@ Post text
 3. Add `type` attribute with value `post`. Our theme supports more content type. But for the moment we only use `post`.
 4. Add `image` attribute. Put an image to the `/static/images` folder and write the filename (without `images/`) into attribute's value. More infos about providing image files can be found in the next chapter.
 5. Add `tags`: Select one or more fitting tags for your post: e.g. `Testing`, `Architecture`, `Cloud Native`
+6. Add `summary`: Add a short sentence as summary. This will be the description shown under page name and url in search engine result pages.
+7. `draft` is initially set to "true", which means that it will only be visible on the test environment https://qawareblog-zkop4aqvwa-ez.a.run.app/ . Set `draft` to false when your post is ready!
 
 Final example:
 
@@ -75,6 +96,7 @@ type: "post"
 image: "hello-world.jpg"
 tags: ["Framework", "Tutorial", "Java"]
 draft: true
+summary: An introduction to ... 
 ---
 ```
 
