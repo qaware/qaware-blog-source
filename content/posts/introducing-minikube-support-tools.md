@@ -1,6 +1,6 @@
 ---
-title: "Introducing the Minikube Support Tools"
-date: 2021-02-01
+title: "Introducing Minikube Support Tools"
+date: 2021-02-05
 author: "[Christian Fritz](https://github.com/chr-fritz)"
 type: "post"
 image: "minikube-support-run.png"
