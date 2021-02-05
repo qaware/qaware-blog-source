@@ -12,28 +12,28 @@ In this blog post, we want to introduce the
 [minikube-support](https://github.com/qaware/minikube-support) tools, which we recently released in
 the first version. The
 [minikube-support](https://github.com/qaware/minikube-support) tools are intended to automate and
-simplify common tasks which you need to do every time you set up a new minikube cluster. For this
+simplify common tasks which you need to do every time you set up a new minikube cluster. For this,
 they combine some cluster internal and external tools to provide a better interaction between
 minikube and the developers local os. Basically the minikube-support tools are a collection of
-tools, and it's configuration which were usually required to work or develop with a minikube cluster
-but not pre-installed or properly configured.
+tools and their configuration which are usually required to work or develop with a minikube cluster
+but are not pre-installed or properly configured.
 
 ## Idea
 
 The idea for the
-[minikube-support](https://github.com/qaware/minikube-support) tools were born in 2019 when we
-discovered, that nearly every time we want to use minikube we need to do the same steps after
+[minikube-support](https://github.com/qaware/minikube-support) tools was born in 2019 when we
+discovered that nearly every time we wanted to use minikube, we needed to do the same steps after
 creating a new minikube cluster. The first idea was to use a bunch of shell scripts which install
-the tools and try to configure them properly. Even with that scripts there were some steps which
+the tools and try to configure them properly. Even with those scripts there were some steps which
 were not automated. One point was to write the hostnames, and the correct minikube ip into the
 `/etc/hosts` file. Of course this also was a repeating step for every new hostname which we want to
 publish using an ingress.
 
-That was the point where the idea came up to combine that all into a single command line tool.
+That was the point where the idea came up to combine all into a single command line tool.
 Basically it should meet the following two requirements:
 
 1. Install and configure all the components which were usually required and
-2. Simplifying the access to services and ingresses within the cluster.
+2. Simplify the access to services and ingresses within the cluster.
 
 ## Features
 
@@ -51,7 +51,7 @@ command. For this it installs, configures and provides the following tools and f
 - A
   [Nginx Ingress Controller](https://kubernetes.github.io/ingress-nginx/) to provide access to the
   ingresses deployed in minikube.
-- A dashboard that shows the status of Ingresses, `LoadBalancer`-Services, served DNS entries and
+- A dashboard that shows the status of ingresses, `LoadBalancer`-Services, served DNS entries and
   the `minikube tunnel` status.
 
 ## Quickstart
@@ -83,9 +83,9 @@ command. For this it installs, configures and provides the following tools and f
 
 ## Configuration
 
-The minikube-support tools do not have own configuration properties, but requires to configure the
+The minikube-support tools do not have their own configuration properties, but require to configure the
 dns resolver of the local os. For macOS the minikube-support tools will do this automatically. Just
-ensure that all your Ingresses uses the top level domain `.minikube`.
+ensure that all your ingresses uses the top level domain `.minikube`.
 
 For Windows and Linux systems there are no known interfaces or configuration properties to configure
 conditional forwarding for DNS requests to `.minikube` programmatically. In this case you have to
