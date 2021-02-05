@@ -1,7 +1,7 @@
 ---
 title: "\"I know it when I see it\" - Perceptions of Code Quality"
 date: 2017-06-07T15:06:32+02:00
-draft: true
+draft: false
 author: Harald Störrle
 tags: [Code Quality]
 aliases:

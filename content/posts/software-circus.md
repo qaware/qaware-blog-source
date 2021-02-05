@@ -2,6 +2,7 @@
 title: "Software Circus"
 date: 2017-09-18T15:06:32+02:00
 draft: false
+author: Felix Obenauer
 image: blue.png
 tags: [Conference, Machine Learning, AI, Software Architecture, DevOps]
 aliases:

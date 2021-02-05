@@ -2,9 +2,9 @@
   url:
   subitems:
         - item: Tags
-          url: tags
+          url: tags/
         - item: Archive
-          url: posts
+          url: posts/
           
 - item: Resources
   url: 
