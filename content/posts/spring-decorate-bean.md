@@ -275,6 +275,14 @@ bean the post processor has created.
 
 And that's how you decorate beans for which you can't change the `@Bean` methods.
 
+----
+
+## Related posts
+
+* [Generating OpenApi Specification From Spring Boot]({{< ref "/posts/openapi-for-spring-generator.md" >}})
+* [WireSpock - Testing REST Service Client Components With Spock And WireMock]({{< ref "/posts/wirespock.md" >}})
+
+
 *The banner image is from [Wikipedia](https://en.wikipedia.org/wiki/Decorator_pattern#/media/File:UML2_Decorator_Pattern.png).*
 
 [^1]: Gamma, Erich; et al. (1995). Design Patterns. Reading, MA: Addison-Wesley Publishing Co, Inc. pp. 175ff. ISBN 0-201-63361-2.

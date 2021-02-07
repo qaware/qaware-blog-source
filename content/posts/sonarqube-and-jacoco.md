@@ -412,3 +412,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 ```
+
+----
+
+## Related posts
+
+* [Breaking Your Build On SonarQube Quality Gate Failure]({{< ref "/posts/sonar-qube-build-breaker.md" >}})
+* ["I Know It When I See It" - Perceptions Of Code Quality]({{< ref "/posts/i-know-it-when-i-see-it.md" >}})
+* ["I Know It When I See It": Perceptions Of Code Quality (Part 2)]({{< ref "/posts/i-know-it-when-i-see-it-2.md" >}})
