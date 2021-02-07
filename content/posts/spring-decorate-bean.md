@@ -279,8 +279,8 @@ And that's how you decorate beans for which you can't change the `@Bean` methods
 
 ## Related posts
 
-* [Generating OpenApi Specification From Spring Boot]({{< ref "/posts/openapi-for-spring-generator.md" >}})
-* [WireSpock - Testing REST Service Client Components With Spock And WireMock]({{< ref "/posts/wirespock.md" >}})
+* [Generating OpenApi Specification From Spring Boot]({{< relref "/posts/openapi-for-spring-generator.md" >}})
+* [WireSpock - Testing REST Service Client Components With Spock And WireMock]({{< relref "/posts/wirespock.md" >}})
 
 
 *The banner image is from [Wikipedia](https://en.wikipedia.org/wiki/Decorator_pattern#/media/File:UML2_Decorator_Pattern.png).*
