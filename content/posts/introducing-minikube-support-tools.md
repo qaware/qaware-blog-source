@@ -109,5 +109,5 @@ me to do that during paid working hours.
 
 ## Related posts
 
-[Virtual Kubelet - Run Pods Without Nodes]({{< relref "/posts/virtual-kubelet.md" >}})
-[Generating OpenApi Specification From Spring Boot]({{< relref "/posts/openapi-for-spring-generator.md" >}})
+* [Virtual Kubelet - Run Pods Without Nodes]({{< relref "/posts/virtual-kubelet.md" >}})
+* [Generating OpenApi Specification From Spring Boot]({{< relref "/posts/openapi-for-spring-generator.md" >}})
