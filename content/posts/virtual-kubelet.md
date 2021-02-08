@@ -2,7 +2,7 @@
 title: "Virtual Kubelet - Run pods without nodes"
 date: 2018-07-12T15:06:32+02:00
 draft: false
-tags: [Container, Conference, Kubernetes, Kubelet]
+tags: [Containers, Conference, Kubernetes, Kubelet]
 aliases:
     - /posts/2018-07-12-virtual-kubelet/
 summary: An introduction to Virtual Kubelet - run pods without nodes

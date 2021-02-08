@@ -3,7 +3,7 @@ title: "Exploratory Open Source Software Testing with Spock"
 date: 2015-08-31T10:39:32+02:00
 draft: false
 author: Mario-Leander Reimer
-tags: [Agile, BDD, Groovy, Integration Testing, Java, Specification, Spock, TDD, Unit Testing, Test]
+tags: [Agile, BDD, Groovy, Integration Testing, Java, Specification, Spock, TDD, Unit Testing, Testing]
 aliases:
     - /posts/2015-08-31-spock-testing/
 summary: I will talk about exploratory software testing of open source software components, libraries or whole frameworks.
