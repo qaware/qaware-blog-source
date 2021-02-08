@@ -94,8 +94,8 @@ configure your DNS resolving by your own.
 ## Acknowledgements
 
 This cli tool was developed by
-[Christian Fritz](https://github.com/chr-fritz) and was gratefully supported by [QAware] by allowing
-me to do that during paid working hours.
+[Christian Fritz](https://github.com/chr-fritz) and was gratefully supported by
+[QAware](https://www.qaware.de/) by allowing me to do that during paid working hours.
 
 ## Links
 
