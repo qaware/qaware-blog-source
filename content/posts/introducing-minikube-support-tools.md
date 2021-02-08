@@ -104,3 +104,10 @@ me to do that during paid working hours.
 - [cert-manager](https://github.com/jetstack/cert-manager)
 - [mkcert](https://github.com/FiloSottile/mkcert)
 - [minikube tunnel](https://minikube.sigs.k8s.io/docs/commands/tunnel/)
+
+----
+
+## Related posts
+
+[Virtual Kubelet - Run Pods Without Nodes]({{< relref "/posts/virtual-kubelet.md" >}})
+[Generating OpenApi Specification From Spring Boot]({{< relref "/posts/openapi-for-spring-generator.md" >}})
