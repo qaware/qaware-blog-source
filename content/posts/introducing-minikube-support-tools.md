@@ -1,11 +1,11 @@
 ---
 title: "Introducing Minikube Support Tools"
-date: 2021-02-05
+date: 2021-02-08
 author: "[Christian Fritz](https://github.com/chr-fritz)"
 type: "post"
 image: "minikube-support-run.png"
 tags: ["Kubernetes", "Minikube", "Cert-Manager", "Nginx-Ingress", "OSS", "Open Source"]
-draft: true
+draft: false
 ---
 
 In this blog post, we want to introduce the
@@ -104,7 +104,3 @@ me to do that during paid working hours.
 - [cert-manager](https://github.com/jetstack/cert-manager)
 - [mkcert](https://github.com/FiloSottile/mkcert)
 - [minikube tunnel](https://minikube.sigs.k8s.io/docs/commands/tunnel/)
-
-
-[QAware]: https://www.qaware.de
-
