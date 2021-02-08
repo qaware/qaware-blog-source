@@ -46,3 +46,9 @@ I am not sure, how much slack this distinction cuts a team. And what about those
 [^7]: Schwentner, Henning: “Models, Modules, and Microservices” Speakerdeck.com/hschwentner
 
 [^8]: Vernon, Vaughn: “Domain-driven design distilled” Addison-Wesley, 2016.
+
+----
+
+## Related posts
+
+* [Impressions from SEACON 2018 - Part 1]({{< relref "/posts/seacon.md" >}})
