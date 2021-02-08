@@ -57,3 +57,9 @@ From a more personal perspective, the one thing I took away is the degree to whi
 [^4]: Robert Kraut, Judith Olson, Mahzarin R. Banaji, Amy Bruckman, Jeffrey Cohen, and Mick Couper. Psychological research online: Report of Board of Scientific Affairs’ Advisory Group on the conduct of research on the Internet. American Psychologist, 59:105–117, 2004.
 [^5]: Daryl Posnett, Abram Hindle, Premkumar Devanbu. "A simpler model of software readability." Proc. 8th Working Conf. Mining Software Repositories. ACM, 2011.
 [^6]: SonarQube – the leading product for continuous code quality. https://www.sonarqube.org/, last accessed 2017-12-0
+
+----
+
+## Related posts
+
+* [\"I know it when I see it\" - Perceptions of Code Quality]({{< relref "/posts/i-know-it-when-i-see-it.md" >}})

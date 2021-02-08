@@ -3,7 +3,7 @@ title: "Impressions from SEACON 2018 - Part 2"
 date: 2018-06-14T15:06:32+02:00
 draft: false
 author: "Harald Störrle"
-tags: [DDD, Domain Driven Design, Conference]
+tags: [Domain Driven Design, Conference]
 aliases:
     - /posts/2018-06-14-seacon-2/
 summary: I give you my impressions from a presentation on Domain Driven Design at the SEACON.
@@ -46,3 +46,9 @@ I am not sure, how much slack this distinction cuts a team. And what about those
 [^7]: Schwentner, Henning: “Models, Modules, and Microservices” Speakerdeck.com/hschwentner
 
 [^8]: Vernon, Vaughn: “Domain-driven design distilled” Addison-Wesley, 2016.
+
+----
+
+## Related posts
+
+* [Impressions from SEACON 2018 - Part 1]({{< relref "/posts/seacon.md" >}})

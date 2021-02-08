@@ -50,3 +50,12 @@ A wave is most likely to be seen in Brazil (brown line) during the winter months
 {{< /figure >}}
 
 It would certainly be nice if the curves of the northern and southern hemisphere were the same. Then, you could flee from the virus by travelling. However, the data do not support this. In Brazil it is summer now and, of course, it is more pleasant there than in Europe at the moment. However, you will still be confronted with COVID-19 there.
+
+----
+
+## Related posts
+
+* [Presenting Software EKG - COVID-19 Edition]({{< relref "/posts/software-ekg-covid-19-edition.md" >}})
+* [Software-ECG COVID-19 Edition: The Second Wave Is Breaking in Europe]({{< relref "/posts/software-ecg-second-wave.md" >}})
+* [Software-ECG COVID-19 Edition: Where Is The Second Wave In Russia And China?]({{< relref "/posts/software-ecg-second-wave-in-asia.md" >}})
+* [Software-ECG COVID-19 Edition: Summer in Oceania]({{< relref "/posts/summer-in-oceania.md" >}})

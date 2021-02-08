@@ -3,7 +3,7 @@ title: "MaLTeSQuE / SANER 2018"
 date: 2018-05-09T15:06:32+02:00
 draft: false
 author: "Fabian Huch"
-tags: [Software Analysis, Quality, Code Quality]
+tags: [Software Analysis, Code Quality]
 aliases:
     - /posts/2018-05-09-maltesque-saner/
 summary: Talks and workshops I attended of the 25th conference on Software Analysis, Evaluation and Reengineering (SANER).

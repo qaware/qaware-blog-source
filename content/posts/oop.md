@@ -4,7 +4,7 @@ date: 2020-02-28T10:39:32+02:00
 draft: false
 image: IMG_7017.jpg
 author: Florian Kowalski, Uli Schweikl, Vanessa Paulisch and Stefan Billet
-tags: [Agile, Continuous Delivery, DevOps, Digital Transformation, Microservices, OOP, Pattern, pitest, Software Architecture, Specification, Testing, Conference]
+tags: [Agile, Continuous Delivery, Conference, DevOps, Digital Transformation, Microservices, OOP, pitest, Software Architecture, Specification, Testing, Conference]
 aliases:
     - /posts/2020-02-28-oop/
 summary: A field report from the 2020 OOP conference in Munich.

@@ -64,3 +64,12 @@ Just as COVID-19 is a complex issue, so is the huge amount of data on the pandem
 ## How to get the tool
 
 In order to download Software EKG - COVID-19 Edition, please visit the [official website](https://qaware.de/software-ekg-covid-edition). We provide downloads for all three major operation systems (Windows, Mac and Linux). You will also find a detailed FAQ section, should you have any further questions regarding the tool.
+
+----
+
+## Related posts
+
+* [Software-ECG COVID-19 Edition: The Second Wave Is Breaking in Europe]({{< relref "/posts/software-ecg-second-wave.md" >}})
+* [Software-ECG COVID-19 Edition: Where Is The Second Wave In Russia And China?]({{< relref "/posts/software-ecg-second-wave-in-asia.md" >}})
+* [Software-ECG COVID-19 Edition: Different Waves]({{< relref "/posts/software-ecg-different-waves.md" >}})
+* [Software-ECG COVID-19 Edition: Summer in Oceania]({{< relref "/posts/summer-in-oceania.md" >}})

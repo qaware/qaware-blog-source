@@ -68,3 +68,12 @@ With *Software ECG COVID-19 Edition* you can evaluate the most important COVID-1
 [https://blog.qaware.de/posts/2020-11-11-software-ekg-covid-19-edition/](https://blog.qaware.de/posts/2020-11-11-software-ekg-covid-19-edition/)
 
 *Disclaimer: The tool displays data from the COVID-19 data hub of Our World in Data. The respective countries, authorities and publications are responsible for the data quality. The data collection varies regionally in quality and periods of time. QAware assumes no responsibility for incorrect analysis and conclusions from these data.*
+
+----
+
+## Related posts
+
+* [Presenting Software EKG - COVID-19 Edition]({{< relref "/posts/software-ekg-covid-19-edition.md" >}})
+* [Software-ECG COVID-19 Edition: Where Is The Second Wave In Russia And China?]({{< relref "/posts/software-ecg-second-wave-in-asia.md" >}})
+* [Software-ECG COVID-19 Edition: Different Waves]({{< relref "/posts/software-ecg-different-waves.md" >}})
+* [Software-ECG COVID-19 Edition: Summer in Oceania]({{< relref "/posts/summer-in-oceania.md" >}})

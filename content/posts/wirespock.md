@@ -3,7 +3,7 @@ title: "WireSpock - Testing REST service client components with Spock and WireMo
 date: 2015-12-30T10:39:32+02:00
 draft: false
 author: Mario-Leander Reimer
-tags: [BDD, Java, Microservices, REST, Spock, Test, WireMock]
+tags: [BDD, Java, Microservices, REST, Spock, Testing, WireMock]
 summary: A short tutorial on how to use WireMock together with Spock.
 aliases:
     - /posts/2015-12-30-wirespock/
