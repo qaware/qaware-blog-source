@@ -57,3 +57,12 @@ The cumulative view of the case numbers also shows very well that COVID-19 in Oc
 {{< /figure >}}
 
 As Europeans you might become envious but let us not forget we also had a nice summer and were able to let some normality return into our lives. With this in mind, the people in Oceania should also be granted some normality. However, those having relatives in Oceania should really consider moving their home offices into this region (at least until April).
+
+----
+
+## Related posts
+
+* [Presenting Software EKG - COVID-19 Edition]({{< relref "/posts/software-ekg-covid-19-edition.md" >}})
+* [Software-ECG COVID-19 Edition: The Second Wave Is Breaking in Europe]({{< relref "/posts/software-ecg-second-wave.md" >}})
+* [Software-ECG COVID-19 Edition: Where Is The Second Wave In Russia And China?]({{< relref "/posts/software-ecg-second-wave-in-asia.md" >}})
+* [Software-ECG COVID-19 Edition: Different Waves]({{< relref "/posts/software-ecg-different-waves.md" >}})

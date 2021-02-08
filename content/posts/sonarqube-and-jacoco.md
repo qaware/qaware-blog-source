@@ -5,7 +5,7 @@ draft: false
 author: "[Andreas Grub](https://github.com/neiser)"
 type: "post"
 image: "2020-12-08-sonarqube-jacoco-title.png"
-tags: ["SonarQube", "Sonar", "JaCoCo", "Coverage", "Maven", "Analysis", "Code Quality"]
+tags: ["SonarQube", "JaCoCo", "Coverage", "Maven", "Analysis", "Code Quality"]
 aliases:
     - /posts/2020-12-22-sonarqube-and-jacoco/
 summary: How to set up a SonarQube code analysis using the Sonar Maven Plugin including code coverage with the JaCoCo Maven plugin.

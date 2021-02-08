@@ -4,7 +4,7 @@ date: 2018-07-11T15:06:32+02:00
 draft: false
 image: ContainerDays-Logo-2017.png
 author: "Moritz Kammerer"
-tags: [Conference, Cloud, GitKube, Microservices, Metrics, Istio, OpenCensus, DDD, CQRS, Containers, Vault, Security] 
+tags: [Conference, Cloud, GitKube, Microservices, Metrics, Istio, OpenCensus, Domain Driven Design, CQRS, Containers, Vault, Security] 
 aliases:
     - /posts/2018-07-11-container-days-2/
 summary: I attended the ContainerDays 2018 in Hamburg and want to give you a short summary of the talks I visited.

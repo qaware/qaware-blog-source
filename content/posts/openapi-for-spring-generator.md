@@ -116,3 +116,10 @@ This library was developed by [Dirk Kröhan](https://github.com/dkroehan) and [A
 and was gratefully supported by [QAware] by allowing us to do that during paid working hours. 
 It was finally released thanks to the QAgarage day end of November, where many of us took the chance 
 to do useful stuff but never found time for it outside the usual project churn.
+
+----
+
+## Related posts
+
+* [Introducing Minikube Support Tools]({{< relref "/posts/introducing-minikube-support-tools.md" >}})
+* [Virtual Kubelet - Run Pods Without Nodes]({{< relref "/posts/virtual-kubelet.md" >}})

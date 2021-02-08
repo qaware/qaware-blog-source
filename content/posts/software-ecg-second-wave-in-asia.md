@@ -55,3 +55,12 @@ People could get nervous when they see the number of people tested positive is r
 China does not report any test numbers. So, just looking at the isolated numbers of the reported positive cases is useless. You do not have any reference point if you do not know how many people are actually ill or have been tested. It might seem that in China the pandemic is over. People go to parties, concerts and do normal activities again. It would be very interesting, however, if we were able to take a look at the same test metrics (number of tests, positive rate) which are available for Europe.
 
 We wanted to demonstrate that it is easy and fun to analyze the current COVID-19 situation with the latest available data in *Software-ECG COVID-19 Edition*. Feel free to download the tool and draw your own conclusions for your country, region or even all contries worldwide!
+
+----
+
+## Related posts
+
+* [Presenting Software EKG - COVID-19 Edition]({{< relref "/posts/software-ekg-covid-19-edition.md" >}})
+* [Software-ECG COVID-19 Edition: The Second Wave Is Breaking in Europe]({{< relref "/posts/software-ecg-second-wave.md" >}})
+* [Software-ECG COVID-19 Edition: Different Waves]({{< relref "/posts/software-ecg-different-waves.md" >}})
+* [Software-ECG COVID-19 Edition: Summer in Oceania]({{< relref "/posts/summer-in-oceania.md" >}})

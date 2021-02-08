@@ -64,3 +64,9 @@ Stay tuned for the initial results of our study due in late June, and follow [me
 [^7]: Posnett, Daryl, Abram Hindle, Premkumar Devanbu. "A simpler model of software readability." Proc. 8th Working Conf. Mining Software Repositories. ACM, 2011.
 [^8]: Stegeman, Martijn, Erik Barendsen, Sjaak Smetsers. "Towards an empirically validated model for assessment of code quality." Proceedings of the 14th Koli Calling Intl. Conf. on Computing Education Research. ACM, 2014.
 [^9]: Stevenson, Jamie, Murray Wood. "How do practitioners recognise software design quality: a questionnaire survey." (2016).
+
+----
+
+## Related posts
+
+* [\"I know it when I see it\" - Perceptions of Code Quality  (Part 2)]({{< relref "/posts/i-know-it-when-i-see-it-2.md" >}})

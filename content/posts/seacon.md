@@ -36,3 +36,10 @@ Maik Wurdel summarized the twelve lesssons learned (he spontaneously added the t
 1. Agility is nothing you just do, agility is a state of mind and has its reasons. You don't do agile, you are agile - with good cause...
 1. Agility has its price: transparency and sprinting is strenuous.
 1. Agile transformation starts with the first team member. Everyone is different and has diverging experiences.
+
+
+----
+
+## Related posts
+
+* [Impressions from SEACON 2018 - Part 2]({{< relref "/posts/seacon-2.md" >}})

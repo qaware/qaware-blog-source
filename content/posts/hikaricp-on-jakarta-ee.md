@@ -5,7 +5,7 @@ lastmod: 2020-11-21
 author: "[Sascha Böhme](https://github.com/boehme-qaware)"
 type: "post"
 image: "hikari.png"
-tags: ["Jakarta EE", "Java EE", "HikariCP", "Connection Pool", "Payara", "JEE"]
+tags: ["Jakarta EE", "Java EE", "HikariCP", "Connection Pool", "Payara"]
 aliases:
     - /posts/2020-11-17-hikaricp-on-jakarta-ee/
 summary: Examples for an implementation of an efficient JDBC connection pool using Jakarta EE on Payara.

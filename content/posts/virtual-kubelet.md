@@ -2,7 +2,7 @@
 title: "Virtual Kubelet - Run pods without nodes"
 date: 2018-07-12T15:06:32+02:00
 draft: false
-tags: [Container, Conference, Kubernetes, Kubelet]
+tags: [Containers, Conference, Kubernetes, Kubelet]
 aliases:
     - /posts/2018-07-12-virtual-kubelet/
 summary: An introduction to Virtual Kubelet - run pods without nodes
@@ -26,3 +26,10 @@ The interaction with external services out of the Virtual Kubelet is abstracted 
 The project is still in an early state and currently not ready for use in production. However, it’s a very interesting link between container orchestration platforms and serverless platforms and has numerous use cases.
 
 Further information: [https://github.com/virtual-kubelet/virtual-kubelet#virtual-kubelet](https://github.com/virtual-kubelet/virtual-kubelet#virtual-kubelet)
+
+----
+
+## Related posts
+
+* [Introducing Minikube Support Tools]({{< relref "/posts/introducing-minikube-support-tools.md" >}})
+* [Generating OpenApi Specification From Spring Boot]({{< relref "/posts/openapi-for-spring-generator.md" >}})
