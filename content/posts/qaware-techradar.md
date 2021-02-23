@@ -1,7 +1,7 @@
 ---
 title: "Building our own QAware Technology Radar"
 date: 2021-02-20
-lastmod: 2021-12-20
+lastmod: 2021-12-23
 author: "[M.-Leander Reimer](https://github.com/lreimer)"
 type: "post"
 image: "build-your-own-radar.png"
