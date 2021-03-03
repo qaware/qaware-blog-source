@@ -80,7 +80,7 @@ method:
       grace_period: 0
 ```
 
-As soon as Kubernetes detects that a pod is missing from the replica set, a new pod is started. This does not happen immediately, but takes a few seconds depending on the Kubernetes configuration and the application in the pod. At the beginne, our example has a replica set of size 1, so there will be a short downtime when terminating the pod. This fails the validation of the steady state and thus the complete chaos test. After increasing the replica set to two instances of the search service, the test can be successfully executed. The following recording shows the failure of the first execution, the fix by rescaling and then the successful repetition of the test.
+As soon as Kubernetes detects that a pod is missing from the replica set, a new pod is started. This does not happen immediately, but takes a few seconds depending on the Kubernetes configuration and the application in the pod. At the beginning, our example has a replica set of size 1, so there will be a short downtime when terminating the pod. This fails the validation of the steady state and thus the complete chaos test. After increasing the replica set to two instances of the search service, the test can be successfully executed. The following recording shows the failure of the first execution, the fix by rescaling and then the successful repetition of the test.
 
 {{< asciinema hwvzMTDPy1SxrrafyXoNeNJBN >}}
 
@@ -174,17 +174,17 @@ The source code of the experiment can be found on [Github](https://github.com/qa
 
 ## Summary
 
-The Chaos Toolkit is a stable open source tooling for Choas Engineering. The existing driver extensions, the possibility for own extensions or to be able to execute processes directly as action or probe results in a very large flexibility for any kind of Chaos tests.
+The Chaos Toolkit is a stable open source tooling for Chaos Engineering. The existing driver extensions, the possibility for own extensions or to be able to execute processes directly as action or probe results in a very large flexibility for any kind of Chaos tests.
 
 Because a test always includes the complete experiment (Steady State & Action), Chaos Toolkit is ideal for continuous automated quality assurance.
 
 ## Workshop
 
-If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More infos and Infos & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Chaos Engineering on Azure AKS" on March 29, 2021. More infos and registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
 
 
-{{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
-  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
+{{< figure figcaption="Workshop: Chaos Engineering on Azure AKS" >}}
+  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Chaos Engineering on Azure AKS" >}}
 {{< /figure >}}
 
 ## Image sources

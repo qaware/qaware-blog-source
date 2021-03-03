@@ -49,7 +49,7 @@ The most lightweight start of Chaos Engineering is Game Days. On Game Day, the c
 
 Everyone knows this meme and no one should be as ignorant as our little friend from the comic. You can ignore things deliberately or you can't ignore them in the beginning because you don't see them. This is exactly what happens when we don't have proper monitoring for our application, platform and infrastructure components. For example, from an end-to-end perspective, the RED method [^4] provides a good view of the state of a microservice architecture. So take care of your monitoring first.
 
-The most common question at the beginning is: In which environment do I run my first experiments? In the beginning, you should always work in the environment closest to production (no mocks, preferably identical cloud infrastructure), but not production. But: choas engineering experiments in production are the goal to be, because only there you will find the reality. If you start in a test environment, you must be aware that you have no real customer load during your experiments. You need load generators or acceptance tests to check that the system responds as we assume it will. If these do not yet exist, you will need to build them before your first experiment. Don't worry, sometimes a small shell script is enough or even our Chaos Testing tooling supports validation.
+The most common question at the beginning is: In which environment do I run my first experiments? In the beginning, you should always work in the environment closest to production (no mocks, preferably identical cloud infrastructure), but not production. But: chaos engineering experiments in production are the goal to be, because only there you will find the reality. If you start in a test environment, you must be aware that you have no real customer load during your experiments. You need load generators or acceptance tests to check that the system responds as we assume it will. If these do not yet exist, you will need to build them before your first experiment. Don't worry, sometimes a small shell script is enough or even our Chaos Testing tooling supports validation.
 
 Now that we have an environment and monitoring, we can start with the first experiments. This image will help us to do so:
 
@@ -119,10 +119,10 @@ To give you a better insight into the Chaos Engineering tools, we introduce some
 
 ## Workshop
 
-If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More infos and Infos & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Chaos Engineering on Azure AKS" on March 29, 2021. More infos and registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
 
-{{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
-  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
+{{< figure figcaption="Workshop: Chaos Engineering on Azure AKS" >}}
+  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Chaos Engineering on Azure AKS" >}}
 {{< /figure >}}
 
 ## Image sources
@@ -135,5 +135,5 @@ If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our rem
 [^2]: [Mean time to recovery(MTTR)](https://en.wikipedia.org/wiki/Mean_time_to_recovery)
 [^3]: [Charity Majors, @mipsytipsy CTO @ Honeycomb](https://de.slideshare.net/CharityMajors/chaos-engineering-without-observability-is-just-chaos)
 [^4]: [The RED Method: key metrics for microservices architecture](https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/)
-[^5]: [Choas Engineering Category in CNCF Cloud Native Landscape](https://landscape.cncf.io/card-mode?category=chaos-engineering&grouping=category)
+[^5]: [Chaos Engineering Category in CNCF Cloud Native Landscape](https://landscape.cncf.io/card-mode?category=chaos-engineering&grouping=category)
 
