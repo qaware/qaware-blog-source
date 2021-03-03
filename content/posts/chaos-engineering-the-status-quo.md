@@ -1,6 +1,6 @@
 ---
 title: "The status quo of Chaos Engineering"
-date: 2021-02-18
+date: 2021-03-03T18:00:00+02:00
 draft: true
 author: "[Josef Fuchshuber](https://www.linkedin.com/in/fuchshuber)"
 type: "post"
@@ -15,7 +15,7 @@ This article shows you the current status of Chaos Engineering rituals, procedur
 
 ## Where can Chaos Engineering help us?
 
-Cloud native software solutions have many advantages. However, there is always one negative point: the execution complexity of the platforms and our micro service components increases. Our architectures are made up of many building blocks in the runtime view. With Chaos Engineering (mindset & process) and Chaos Testing (tooling) we can get a grip on this challenge and build trust in our complex applications. With Chaos Engineering (Mindset & Procedure) and Chaos Testing (Tooling) we can get a grip on this challenge and build more resilient applications and achieve trust in our complex applications.
+Cloud native software solutions have many advantages. However, there is always one negative point: the execution complexity of the platforms and our micro service components increases. Our architectures are made up of many building blocks in the runtime view. With Chaos Engineering (mindset & process) and Chaos Testing (tooling) we can get a grip on this challenge and build more resilient applications and achieve trust in our complex applications.
 
 The human factor is almost more central in Chaos Engineering than our applications. As described above, it is very important that we know the behavior of our cloud native architectures and thus build trust. The second aspect are our ops processes. Is our monitoring and alerting working? Do all on-call colleagues have the knowledge to analyze and fix problems quickly?
 
@@ -23,7 +23,7 @@ The human factor is almost more central in Chaos Engineering than our applicatio
   {{< img src="/images/chaos-engineering/chaos-engineering-levels.png" alt="Chaos Engineering Levels" >}}
 {{< /figure >}}
 
-The "what will be tested" with Chaos Engineering can be divided into four categories:
+The "what will be tested" with Chaos Engineering can be divided into four categories (from bottom to top):
 
 * **Infrastructure:** This is about our virtual infrastructure at our cloud providers. We can test to see if our infrastructure-as-code tooling has created everything correctly and whether, for example, the high-availability VPN connection to our own data center is really highly available and fail-safe.
 * **Platform:** In the next level, our platform components are involved - Kubernetes, DevOps Deployment Tooling, Observability Tooling. Examples of questions that test can answer at this level are: Does the self-healing of a node pool work if a node fails? What happens if the central container registry fails and new pods have to be started in the cluster?
@@ -44,7 +44,7 @@ The most lightweight start of Chaos Engineering is Game Days. On Game Day, the c
 > Chaos Engineering without observability … is just chaos [^3]
 
 {{< figure figcaption="With open eyes into the disaster." >}}
-  {{< img src="/images/chaos-engineering/this-is-fine.jpg" alt="With open eyes into the .disaster" >}}
+  {{< img src="/images/chaos-engineering/this-is-fine.jpg" alt="With open eyes into the disaster." >}}
 {{< /figure >}}
 
 Everyone knows this meme and no one should be as ignorant as our little friend from the comic. You can ignore things deliberately or you can't ignore them in the beginning because you don't see them. This is exactly what happens when we don't have proper monitoring for our application, platform and infrastructure components. For example, from an end-to-end perspective, the RED method [^4] provides a good view of the state of a microservice architecture. So take care of your monitoring first.
@@ -92,7 +92,7 @@ There is a lot of activity in chaos testing tooling at the moment. New open sour
 
 The features of chaos engineering tools are manifold:
 
-* **API or operator based:** Does the tool only use the public APIs of cloud providers or Kubernetes or installs invasive agents / operators in the cluster (e.g. as sidecars).
+* **API or operator based:** Uses the tool only the public APIs of cloud providers and Kubernetes or installs invasive agents / operators in the cluster (e.g. as sidecars).
 * **Support of Chaos Engineering Level:** Not all tools support all levels. AWS and Kubernetes are supported by many tools. Cloud providers or platforms with less market adoption are often second-class citizens.
 * **Random or experiment-based:** For randomly acting tools (e.g. terminate any pod of a namespace), the blast radius estimation is much harder and comparative result repetition in CI/CD pipelines is also difficult. On the other hand, these tools may identify unknown sources of errors.
 
@@ -119,14 +119,21 @@ To give you a better insight into the Chaos Engineering tools, we introduce some
 
 ## Workshop
 
+If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More infos and Infos & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+
 {{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
   {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
 {{< /figure >}}
 
-If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More infos and Infos & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+## Image sources
+
+* Title image: Blindfolded Businessman At Desk Covered With Papers – [gettyimages.de](http://gettyimages.de)
+* This is fine meme: [Gunshow (webcomic), KC Green](https://en.wikipedia.org/wiki/Gunshow_(webcomic))
+* CNCF landscape: [CNCF Landscape](Chttps://landscape.cncf.io/)
 
 [^1]: [Principles of Chaos Engineering](https://principlesofchaos.org/)
 [^2]: [Mean time to recovery(MTTR)](https://en.wikipedia.org/wiki/Mean_time_to_recovery)
 [^3]: [Charity Majors, @mipsytipsy CTO @ Honeycomb](https://de.slideshare.net/CharityMajors/chaos-engineering-without-observability-is-just-chaos)
 [^4]: [The RED Method: key metrics for microservices architecture](https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/)
 [^5]: [Choas Engineering Category in CNCF Cloud Native Landscape](https://landscape.cncf.io/card-mode?category=chaos-engineering&grouping=category)
+

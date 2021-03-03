@@ -1,6 +1,6 @@
 ---
 title: "Chaos Engineering: Chaos Toolkit Demo"
-date: 2021-02-18
+date: 2021-03-03T17:00:00+02:00
 draft: true
 author: "[Josef Fuchshuber](https://www.linkedin.com/in/fuchshuber)"
 type: "post"
@@ -180,13 +180,17 @@ Because a test always includes the complete experiment (Steady State & Action), 
 
 ## Workshop
 
+If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More infos and Infos & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+
+
 {{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
   {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
 {{< /figure >}}
 
-If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More infos and Infos & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+## Image sources
 
-
+* Title image: [Chaos Toolkit Logo](https://chaostoolkit.org/)
+* Contacts App Architecture: [Azure Developer College](https://github.com/azuredevcollege/trainingdays)
 
 [^1]: [Chaos Toolkit Probe Provider](https://docs.chaostoolkit.org/reference/api/experiment/#action-or-probe-provider)
 [^2]: [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/services/kubernetes-service/)
