@@ -16,6 +16,10 @@ This blog article demonstrates the usage and functionality of the open source ch
 
 The drivers include actions and probes. Probes are used to validate the steady state, the state before and after the actions. The actions are the core of the experiment. They simulates failures of the application or platform, or perform a slowdown in network traffic. CKT always runs actions and probes by using public APIs of the platforms and applications. The experiment runs outside the cluster and adds no inverse software blocks (e.g. services meshes) to the cluster.
 
+{{< figure figcaption="The Chaos Toolkit CLI orchestrates your experiment" >}}
+  {{< img src="/images/chaos-engineering/chaostoolkit.png" alt="The Chaos Toolkit CLI orchestrates your experiment" >}}
+{{< /figure >}}
+
 The best feature of CTK is that you can not only run experiments, you have also to define the steady state as a part of your test cases. This makes CTK tests ideal for integration into ongoing CI/CD processes.
 
 ## Demo App

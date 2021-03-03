@@ -21,21 +21,21 @@ The human factor is almost more central in Chaos Engineering than our applicatio
   {{< img src="/images/chaos-engineering/chaos-engineering-levels.png" alt="Chaos Engineering Levels" >}}
 {{< /figure >}}
 
-Beim Chaos Engineering kann das Was wird getestet in vier Kategorien eingeteilt werden:
+The "what will be tested" with Chaos Engineering can be divided into four categories:
 
-* **Infrastructure:** Hierbei geht es um unsre virtuelle Infrastruktur bei unseren Cloud Providern. Wir können Testen, ob unser Infrastructuer-as-Code Tooling alles korrekt angelegt hat und ob z.B. die High-Availability VPN Verbindung ins eigene Datacenter wirklich hochferfügbar und ausfallsicher ist.
-* **Platform:** In der nächsten Ebene kommen unsere Plattformkomponenten ins Spiel - Kubernetes, DevOps Deployment Tooling, Observability Tooling. Beispiele für Fragen, die Test auf dieser Ebene beantworten können sind: Funktoniert die Selbsteheilung ein Node-Pools falls ein Node ausfällt? Was passiert, wenn die zentrale Container Registry ausfällt und im Cluster neue Pods gestartet werden müssen?
-* **Application:** Auf diesem Level wird das Verhalten unserer Anwendungen im Zusammenspiel der Microservices untereinander und mit den Plattformkomponenten getestet: Stimmt das Exception Handling? Sind alle Circuit Breaker und Connection Pools mit ihren Timeouts und Retries korrekt konfiguriert? Wir ein (Teil-)Ausfall eines Service an den Healthchecks korrekt und schnell genug erkannt?
-* **People, Ptractices & Process:** In diesem Level geht es weniger um Tooling, sondern um die Menschen im Team. Stimmen in einem Notfall die Kommunikationswege und werden die richtigen Menschen zur richtigen Zeit informiert? Haben die Kollegen alle relevanten Permissions um Analysen und Fehlerbehebungen durchführen zu können? Haben sie das Know-How um die MTTR[^2] nicht zu gefährden.
+* **Infrastructure:** This is about our virtual infrastructure at our cloud providers. We can test to see if our infrastructure-as-code tooling has created everything correctly and whether, for example, the high-availability VPN connection to our own data center is really highly available and fail-safe.
+* **Platform:** In the next level, our platform components are involved - Kubernetes, DevOps Deployment Tooling, Observability Tooling. Examples of questions that test can answer at this level are: Does the self-healing of a node pool work if a node fails? What happens if the central container registry fails and new pods have to be started in the cluster?
+* **Application:** At this level, we test the behavior of our applications in the interaction of the microservices with each other and with the platform components: Is the exception handling correct? Are all circuit breakers and connection pools correctly configured with their timeouts and retries? Is a (partial) failure of a service detected correctly and quickly enough by the health checks?
+* **People, Practices & Process:** This level is less about tooling and more about the people in the team.In an emergency, are the communication channels correct and are the right people informed at the right time? Do colleagues have all the relevant permissions to perform analyses and troubleshooting? Do they have the know-how not to threaten the MTTR[^2]?
 
-Fasst man die Ebenen und ihre Fragestellugen zusammen, so kann man als Team bei diesen Aufgaben mit Chaos Engineering starten:
+If you summarize the levels and their questions, you can start as a team with Chaos Engineering for these tasks:
 
-* Battle Test für neue Infrastruktur und Services
-* Quality Review: Kontinuierlich die Robustheit von Anwendungen verbessern
-* Post Mortem: Reproduktion von Ausfällen
+* Battle Test for new infrastructure and services.
+* Quality Review: Continuously improve the resilience of applications.
+* Post Mortem: Reproduction of failures
 * On-Call Training
 
-Der leichtgewichtigste Start von Chaos Engineering sind Game Days. Am Game Day führt das komplette Team (Dev, Ops, QA, Product Owner, ...) Experimente aus. Dabei steht das Tooling zuerst im Hintergrund. In erster Linie geht es darum, dass das gesamte Team das Chaos Engineering Mindeset verinnerlicht und dabei Anomalien entdeckt und behoben werden.
+The most lightweight start of Chaos Engineering is Game Days. On Game Day, the complete team (Devs, Ops, QA, Product Owner, ...) runs experiments. Tooling is placed in the background first. The primary goal is for the entire team to internalize the Chaos Engineering mindset and to discover and fix anomalies in the process.
 
 ## How to start?
 
@@ -45,69 +45,70 @@ Der leichtgewichtigste Start von Chaos Engineering sind Game Days. Am Game Day f
   {{< img src="/images/chaos-engineering/this-is-fine.jpg" alt="With open eyes into the .disaster" >}}
 {{< /figure >}}
 
-Jeder kennt dieses Meme und niemand sollte so ignorant sein, wie unser kleiner Freund aus dem Comic. Man kann Dinge bewusst ignoriren oder man kann sie erst gar nicht ignoriren, weil man sie nicht sieht. Genau das passiert, wenn wir kein ausreichendes Monitoring für unseren Anwendungs- und Plattformkomponten haben. Aus End-To-End sicht bietet die RED Methode [^4] z.B. eine gute Sicht auf den Zustand einer Microservice Architektur. Kümmert euch also zuerst um euer Monitoring.
+Everyone knows this meme and no one should be as ignorant as our little friend from the comic. You can ignore things deliberately or you can't ignore them in the beginning because you don't see them. This is exactly what happens when we don't have proper monitoring for our application, platform and infrastructure components. For example, from an end-to-end perspective, the RED method [^4] provides a good view of the state of a microservice architecture. So take care of your monitoring first.
 
-Die häufigste Frage am Anfang ist: In welcher Umgebung führe ich meine ersten Tests auf? Am Anfang sollte man immer in der Umgebung arbeiten, die der Produktion am nächsten ist (keine Mocks, möglichst identische Cloud Infrastruktur), aber nicht die Produktion. Aber: Choas Engineering Experimente in Produktion sind das Ziel sein, dann nur dort findet ihr die Realität. Wenn ihr in einer Testumgebung startet, muss euch bewust sein, dass ihr keine echte Kundenlast während eurer Experimente habt. Ihr braucht Lastgeneratoren oder Akzeptanztests, über die ihr prüfen könnt, ob euer System so reagiert wie wir annehmt. Falls es diese noch nicht gibt, müsst ihr diese vor dem ersten Experiemnt bauen. Keine Angst, manchmal reicht auch schon ein kleine Shell-Skript oder auch Chaos Testing Tooling bringt die Validierung gleich mit.
+The most common question at the beginning is: In which environment do I run my first experiments? In the beginning, you should always work in the environment closest to production (no mocks, preferably identical cloud infrastructure), but not production. But: choas engineering experiments in production are the goal to be, because only there you will find the reality. If you start in a test environment, you must be aware that you have no real customer load during your experiments. You need load generators or acceptance tests to check that the system responds as we assume it will. If these do not yet exist, you will need to build them before your first experiment. Don't worry, sometimes a small shell script is enough or even our Chaos Testing tooling supports validation.
 
-Nachdem wir jetzt eine Umgebung und Monitoring haben, können wir mit den ersten Experimenten starten. Dabei hilft uns dieses Bild:
+Now that we have an environment and monitoring, we can start with the first experiments. This image will help us to do so:
 
 {{< figure figcaption="The Phases of Chaos Engineering" >}}
   {{< img src="/images/chaos-engineering/chaos-experiment-phases.png" alt="The Phases of Chaos Engineering" >}}
 {{< /figure >}}
 
-Die Phasen des Chaos Engineerings können als zyklischen Prozess dargetellt werden. Ein Zyklus startet und endet im _Steady State_.
+The phases of chaos engineering can be represented as a cyclic process. A cycle starts and ends in the _steady state_.
 
-* **Steady State:** Der wichtigste Status des Chaos-Engineerings. Denn dieser beschreibt das Verhalten des Systems unter normalen Bedingungen. 
-* **Hypothesis:** In dieser Phase stellen wir eine Hypothese auf. Wir designen also unser Experiment indem wir eine Action ausführen (z.B. den Ausfall einer Datenbank) und das erwartete Ergebnis beschreiben (z.B. Fehlerseite in der Web-UI wird angezeigt, HTTP-Status 200 und nicht 500).
-* **Run Experiment:** Wir führen die definierte Aktion aus. In einem Game Day kann man dies manuell (z.B. CLI Tooling der Cloudprovider, `kubectl`) oder automatisiert über ein geeignetes Chaos Test Tooling.
-* **Verify:** In dieser Phase validieren wir, ob das erwartete Ergebnis eingetreten ist. Dazu gehört das Verhalten der Anwendung, aber auch das gemessene Verhalten in unseren Monitoring- und Alarmierungstools.
-* **Analyze and Improve:** Falls das erwartete Ergebnis nicht engetreten ist, analysieren wir die Ursache und beheben diese.
+* **Steady State:** The most important chaos engineering state. Because this describes the behavior of the system under normal conditions. 
+* **Hypothesis:** In this phase we make a hypothesis. We design our experiment by executing an action (e.g. database failure) and describing the expected result (e.g. error page in web UI is shown, with HTTP status 200 and not 500).
+* **Run Experiment:** We execute the defined action. In a game day, this can be done manually (e.g. CLI tooling of cloud providers or `kubectl`) or automated via a suitable chaos test tooling.
+* **Verify:** In this phase we validate whether the expected result has occurred. This includes the behavior of the application, but also the measured behavior in our monitoring and alerting tools.
+* **Analyze and Improve:** If the expected result did not occur, we analyze the cause and fix it.
 
-Nach einem erfolgreichen Test muss das System wieder im *Steady State* sein. Das ist entweder der Fall, wenn die ausgeführte Aktion den Steady State nicht ändert (z.B. Das Cluster erkennt eine Anomalie automatisch und kann sich selbst heilen) oder ein Rollback durchgeführt wird (z.B. Datenbank wird wieder hochgefahren).
+After a successful test, the system must be back in *steady state*. This is the case either if the executed action does not change the steady state (e.g. the cluster detects an anomaly automatically and can heal itself) or a rollback is performed (e.g. database is started up again).
 
-Beim Design und Ausführung des Experiments ist eines der wichtigsten Dinge immer den potenziellen Blast Radius, also die Auswirkung des Fehlers, so minimal wie möglich zu halten und ständig zu beobachten. Dabei ist hilfreich, dass man sich im Vorfeld überlegt, wie das Experimten im Notfall abgebrochen werden kann und die der *Steady State* möglichst schnell wieder hergestellt werden kann. Anwendungen, die ein Canary Deployment unterstützten, sind hierbei klar im Vorteil. Denn hierbei kann der User-Strom detailiert auf das Experiment oder die normale Version der Anwendung gelenkt werden.
+When designing and running the experiment, one of the most important things is always to keep the potential blast radius, i.e., the impact of the error, as minimal as possible and to continuously monitor it. It is helpful to consider in advance how the experiment can be terminated in an emergency and how the *steady state* can be restored as quickly as possible. Applications that support canary deployment have a clear advantage here. Because here we can control our work load to the experiment or the normal version of the application.
 
-Jedes Chaos Engineering Experiment erfodert eine detailierte Planung und muss in irgendeiner Form dokumentiert werden. Beispiel:
+Any Chaos Engineering experiment requires detailed planning and must be documented in in some form. Example:
 
-|              |  |
-|--------------|-------|
-| Target       | Billing Service  |
-| Experiment   | Schnittstelle zu Paypal steht nicht zu Verfügung |
-| Hypothesis   | Die Anwendung erkennt den Ausfall automatisch und bietet unseren Kunden die Bezahlart nicht mehr an. Die Kunden können nur noch per Kreditkarte oder Vorkasse bezahlen. Das Monitoring erkennt den Ausfall und erstellt automatisch einen Prio-1 Incident |
-| Steady State | Alle Arten der Bezahlung stehen für die Kunden zur Verfügung |
-| Blast Radius | Während dem Experiment steht den Kunden die Bezahlung per Paypal nicht zur Vefügung. Die alternativen Bezahlungswege sind davon nicht beeinträchtigt. |
+|                       |                             |
+|-----------------------|-----------------------------|
+| Target                | Billing Service             |
+| Experiment            | Paypal API is not available |
+| Hypothesis            | The application automatically detects the outage and no longer offers the payment method to our customers. Customers can still pay by credit card or prepayment. Monitoring detects the failure and automatically creates a Prio-1 Incident. |
+| Steady State          | All types of payment are available for customers |
+| Blast Radius          | During the experiment, customers will not be able to pay with Paypal. The alternative payment methods are not affected. |
+| Technical information | We simulate the outage of the Paypal API by extremely slowing down the outgoing network traffic of the billing service. We can implement this via the service mesh (sidecar proxies). |
 
-Tipp zum Design von Experimenten und Hypthesen: Stellt keine Hypothese auf, von der ihr im Vorfeld schon wisst, dass sie euere Anwendung kaputt macht und somit nicht hatbar ist! Diese Probleme, falls sie wichtig sind, könnt ihr gleich in Angriff nehmen und beheben. Stellt nur Hypothesen über eure Anwendungen auf, von denen ihr glaubt, dass sie belastbar sind. Denn das ist der Sinn eines Experiments.
+Tip for the design of experiments and hypotheses: Don't make a hypothesis that you know in advance will break your application and thus is not sustainable! These problems, if they are important, you can address and fix immediately. Only hypothesize about your applications that you believe in. Because that is the point of an experiment.
 
 ## Chaos Engineering Tooling
 
-Im Tooling für Chaos Tests ist im Moment viel Bewebung. Es kommen ständig neue OpenSource und komerzielle Produkte hinzu. Eine aktuelle Übersicht über den Markt bietet uns die Cloud Native Landscape der CNCF. Hier gibt es inzwischen eine eigene Chaos Engineering Kategorie [^5].
+There is a lot of activity in chaos testing tooling at the moment. New open source and commercial products are constantly being launched. A current overview of the market is provided by the Cloud Native Landscape of the CNCF. There is now a separate Chaos Engineering category [^5].
 
 {{< figure figcaption="Chaos Engineering Tools @ CNCF Landscape" >}}
   {{< img src="/images/chaos-engineering/chaos-engineering-cncf-landscape.png" alt="Chaos Engineering Tools @ CNCF Landscape" >}}
 {{< /figure >}}
 
-Die Eigenschaften der Chaos Engineering Tools sind vielfältig:
+The features of chaos engineering tools are manifold:
 
-* **API oder Operator basierend:** Verwendet das Tool nur die öffentlichen APIs von Cloud Providern oder Kubernetes oder müssen im Cluster invasive Agents / Operatoren installiert werden (z.B. als Sidecars).
-* **Support des Chaos Engineering Levels:** Nicht alle Tools unterstützen alle Levels. AWS und Kubernetes wird von vielen Tools unterstützt. Cloud Provider oder Plattformen mit weniger Marktdurchdringung sind oft Second-Class-Citizen.
-* **Zufallsbasiert oder experimentbasiert:** Bei Tools die nach dem Zufallsprinzip agieren, lässt sich der Blast Radius viel schwerer abschätzen und auch die vergleichbare Wiederholung in CI/CD-Pipelines ist schwierig. Dafür bringen diese Tools eventuell unbekannte Fehlerquellen zu Tage.
+* **API or operator based:** Does the tool only use the public APIs of cloud providers or Kubernetes or installs invasive agents / operators in the cluster (e.g. as sidecars).
+* **Support of Chaos Engineering Level:** Not all tools support all levels. AWS and Kubernetes are supported by many tools. Cloud providers or platforms with less market adoption are often second-class citizens.
+* **Random or experiment-based:** For randomly acting tools (e.g. terminate any pod of a namespace), the blast radius estimation is much harder and comparative result repetition in CI/CD pipelines is also difficult. On the other hand, these tools may identify unknown sources of errors.
 
-Es gibt momentan leider keinen "One-Stop-Shop", der alle Teams glücklich macht. Jedes Team muss sich also Gedanken über die eigenen Anforderungen machen und ein oder mehrere Werkzeuge aussuchen.
+Unfortunately, there is currently no "one-stop-shop" that will make all teams happy. So each team has to think about their own requirements and pick one or more tools.
 
 ## Summary
 
-Chaos Engineering ist keine Jobbeschreibung, sondern eine Mindset und Vorgehen, das das komplette Team betrifft.  Das wichtigste am Chaos Engineering ist, dass man es macht:
+Chaos Engineering is not a job description, but a mindset and approach that involves the entire team.  The most important thing about Chaos Engineering is that you do it:
 
-* Regelmäßige Game Days im gesamten Team sollten zum festen Ritual werden.
-* Startet in einer produktionsnahen Umgebung und prüft zuerst ob euer Monitoring ausreichend ist.
+* Holding periodic game days for the entire team should become a regular ritual.
+* Start in a pre-production environment and first check if your monitoring is good enough.
 
-Werkzeuge kommen und gehen:
+Tools will come and go:
 
-* Die Chaos Engineering Werkzeuge im Cloud Native Ökosystem entwickeln sich weiter.
-* Der Kontext eurer Chaos Engineering Experimente wird sich erweitern.
+* Chaos engineering tools in the Cloud Native ecosystem are evolving fast.
+* The context of your Chaos Engineering experiments will also expand.
 
-Damit ihr einen besseren Einblick in die Chaos Engineering Werkzeuge bekommt, stellen wir euch ein paar vor. Wir staten mit [Chaos Toolkit]({{< relref "/posts/chaos-engineering-chaostoolkit.md" >}})
+To give you a better insight into the Chaos Engineering tools, we introduce some of them. We starts with [Chaos Toolkit]({{< relref "/posts/chaos-engineering-chaostoolkit.md" >}})
 
 
 ## ContainerConf 2021 Presentation
