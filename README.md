@@ -48,7 +48,7 @@ Then [get used to Hugo](https://gohugo.io/getting-started/quick-start).
 
 Now you can use the hugo-commands in your IntelliJ terminal:
 
-1) `hugo new posts/<articleTitle>.md` (as file name without blanks, e.g. `hello-world.md`) --> 
+1) `hugo new content/posts/<articleTitle>.md` (as file name without blanks, e.g. `hello-world.md`) --> 
 this will locally add a new post as a draft in the blog in `content/posts`.
 2) edit content: write your blog post in the created md-file
 3) `hugo server -D` --> this will start the local webserver and show you the blog locally on http://localhost:1313
