@@ -1,7 +1,7 @@
 ---
 title: "Chaos Engineering: Chaos Toolkit Demo"
 date: 2021-03-03T17:00:00+02:00
-draft: true
+draft: false
 author: "[Josef Fuchshuber](https://www.linkedin.com/in/fuchshuber)"
 type: "post"
 image: chaos-engineering/chaostoolkit-logo.png

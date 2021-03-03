@@ -1,7 +1,7 @@
 ---
 title: "The status quo of Chaos Engineering"
 date: 2021-03-03T18:00:00+02:00
-draft: true
+draft: false
 author: "[Josef Fuchshuber](https://www.linkedin.com/in/fuchshuber)"
 type: "post"
 image: chaos-engineering/81773288.jpg
