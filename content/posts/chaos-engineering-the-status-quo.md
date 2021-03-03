@@ -3,6 +3,8 @@ title: "The status quo of Chaos Engineering"
 date: 2021-02-18
 draft: true
 author: "[Josef Fuchshuber](https://www.linkedin.com/in/fuchshuber)"
+type: "post"
+image: chaos-engineering/81773288.jpg
 tags: ["Diagnosibility", "DevOps", "Observability", "Chaos Engineering", "Testing", "Quality"]
 summary: This article shows you the current status of Chaos Engineering rituals, procedures and tooling in the Cloud Native ecosystem.
 ---
@@ -114,6 +116,14 @@ To give you a better insight into the Chaos Engineering tools, we introduce some
 ## ContainerConf 2021 Presentation
 
 {{< slides key="KZzazUQd1hKSpS" id="der-status-quo-des-chaos-engineerings" title="Der Status Quo des Chaos Engineerings" >}}
+
+## Workshop
+
+{{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
+  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
+{{< /figure >}}
+
+If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More infos and Infos & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
 
 [^1]: [Principles of Chaos Engineering](https://principlesofchaos.org/)
 [^2]: [Mean time to recovery(MTTR)](https://en.wikipedia.org/wiki/Mean_time_to_recovery)

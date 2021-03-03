@@ -3,6 +3,8 @@ title: "Chaos Engineering: Chaos Toolkit Demo"
 date: 2021-02-18
 draft: true
 author: "[Josef Fuchshuber](https://www.linkedin.com/in/fuchshuber)"
+type: "post"
+image: chaos-engineering/chaostoolkit-logo.png
 tags: ["Diagnosibility", "DevOps", "Observability", "Chaos Engineering", "Testing", "Quality"]
 summary: This blog article demonstrates the usage and functionality of the open source chaos engineering tool Chaos Toolkit.
 ---
