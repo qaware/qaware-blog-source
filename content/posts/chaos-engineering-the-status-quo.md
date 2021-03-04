@@ -119,7 +119,7 @@ To give you a better insight into the Chaos Engineering tools, we introduce some
 
 ## Workshop
 
-If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Choas Engineering on Azure AKS" on March 29, 2021. More details & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Chaos Engineering on Azure AKS" on March 29, 2021. More details & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
 
 {{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
   {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
