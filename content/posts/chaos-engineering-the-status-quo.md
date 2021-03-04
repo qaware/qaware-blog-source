@@ -9,7 +9,7 @@ tags: ["Diagnosibility", "DevOps", "Observability", "Chaos Engineering", "Testin
 summary: This article shows you the current status of Chaos Engineering rituals, procedures and tooling in the Cloud Native ecosystem.
 ---
 
-This article shows you the current status of Chaos Engineering rituals, procedures and tooling in the Cloud Native ecosystem. The most important thing up front. Chaos engineering does not mean creating chaos, it means preventing chaos in IT operations.
+This article shows you the current status of Chaos Engineering rituals, procedures and tooling for the Cloud Native ecosystem. The most important thing up front. Chaos Engineering does not mean creating chaos, it means preventing chaos in IT operations.
 
 > Chaos Engineering is the discipline of experimenting on a system in order to build confidence in the system’s capability to withstand turbulent conditions in production. [^1]
 
