@@ -37,7 +37,7 @@ If you summarize the levels and their questions, you can start as a team with Ch
 * Post Mortem: Reproduction of failures
 * On-Call Training
 
-The most lightweight start of Chaos Engineering is Game Days. On Game Day, the complete team (Devs, Ops, QA, Product Owner, ...) runs experiments. Tooling is placed in the background first. The primary goal for the entire team is to internalize the Chaos Engineering mindset and to discover and fix anomalies in the process.
+The most lightweight start of Chaos Engineering are Game Days. On Game Day, the complete team (Devs, Ops, QA, Product Owner, ...) runs experiments. Tooling is placed in the background first. The primary goal for the entire team is to internalize the Chaos Engineering mindset and to discover and fix anomalies in the process.
 
 ## How to start?
 
