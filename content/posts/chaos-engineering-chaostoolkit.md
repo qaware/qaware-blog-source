@@ -9,20 +9,20 @@ tags: ["Diagnosibility", "DevOps", "Observability", "Chaos Engineering", "Testin
 summary: This blog article demonstrates the usage and functionality of the open source chaos engineering tool Chaos Toolkit.
 ---
 
-This blog article demonstrates the usage and functionality of the open source chaos testing engineering [Chaos Toolkit (CTK)](https://chaostoolkit.org/) with two simple examples. If you want to learn more about Chaos Engineering first, read our article ["The status quo of Chaos Engineering"]({{< relref "/posts/chaos-engineering-the-status-quo.md" >}}). With CTK, chaos engineering experiments can be specified with a custom [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) as a JSON or YAML description. CTK is open source (Apache-2.0), implemented in Python and can be extended by drivers. Some drivers are provided out-of-the-box by the project:
+This blog article demonstrates the usage and functionality of the open-source Chaos Engineering [Chaos Toolkit (CTK)](https://chaostoolkit.org/) with two simple examples. If you want to learn more about Chaos Engineering first, read our article ["The Status Quo of Chaos Engineering"]({{< relref "/posts/chaos-engineering-the-status-quo.md" >}}). With CTK, Chaos Engineering experiments can be specified with a custom [DSL](https://en.wikipedia.org/wiki/Domain-specific_language) as a JSON or YAML description. CTK is open source (Apache-2.0), implemented in Python and can be extended by drivers. Some drivers are provided out-of-the-box by the project:
 
 * Infrastructure & platform level: AWS, Azure, Cloud Foundry, Gandi, Google Cloud Platform, Kubernetes, Service Fabric
 * Application level: Spring Boot
 * Network: Istio, ToxiProxy, WireMock
 * Observability: Dynatrace, Humio, Open Tracing, Prometheus
 
-The drivers include actions and probes. Probes are used to validate the steady state, the state before and after the actions. The actions are the core of the experiment. They simulates failures of the application or platform, or perform a slowdown in network traffic. CKT always runs actions and probes by using public APIs of the platforms and applications. The experiment runs outside the cluster and adds no inverse software blocks (e.g. services meshes) to the cluster.
+The drivers include actions and probes. Probes are used to validate the Steady State, the state before and after the actions. The actions are the core of the experiment. They simulates failures of the application or platform or perform a slowdown in network traffic. CKT always runs actions and probes by using public APIs of the platforms and applications. The experiment runs outside the cluster and adds no inverse software blocks (e.g. service meshes) to the cluster.
 
 {{< figure figcaption="The Chaos Toolkit CLI orchestrates your experiment" >}}
   {{< img src="/images/chaos-engineering/chaostoolkit.png" alt="The Chaos Toolkit CLI orchestrates your experiment" >}}
 {{< /figure >}}
 
-The best feature of CTK is that you can not only run experiments, you have also to define the steady state as a part of your test cases. This makes CTK tests ideal for integration into ongoing CI/CD processes.
+The best feature of CTK is that you can not only run experiments, you also have to define the Steady State as a part of your test cases. This makes CTK tests ideal for integration into ongoing CI/CD processes.
 
 ## Demo App
 
@@ -34,7 +34,7 @@ We will demonstrate our two examples using a demo application, a contacts manage
 
 ## Example #1
 
-The first example is the Kubernetes "hello world" of chaos testing. What happens if the contact service fails?
+The first example is the Kubernetes "hello world" of Chaos Testing. What happens if the contact service fails?
 
 To interact with Kubernetes, CTK has its own extension [^3]. The tool and extension can be easily installed in an existing Python environment ([installation details](https://docs.chaostoolkit.org/reference/usage/install/)).
 
@@ -45,7 +45,7 @@ pip install chaostoolkit-kubernetes
 
 After we have installed the tool, we can write our first "hello world" test. For the declarative description you can choose between JSON and YAML. JSON should be avoided just because of the missing capability of comments.
 
-The first part of the test describes the Steady State. The CTK core supports three different probe providers: HTTP, Process, Python [^1]. Our first exampe uses the HTTP provider and sends a HTTP request to the search service and vallidates its HTTP response code.
+The first part of the test describes the Steady State. The CTK core supports three different probe providers: HTTP, Process, Python[^1]. Our first example uses the HTTP provider and sends a HTTP request to the search service and validates its HTTP response code.
 
 ```yaml
 # define the steady state hypothesis
@@ -80,7 +80,7 @@ method:
       grace_period: 0
 ```
 
-As soon as Kubernetes detects that a pod is missing from the replica set, a new pod is started. This does not happen immediately, but takes a few seconds depending on the Kubernetes configuration and the application in the pod. At the beginning, our example has a replica set of size 1, so there will be a short downtime when terminating the pod. This fails the validation of the steady state and thus the complete chaos test. After increasing the replica set to two instances of the search service, the test can be successfully executed. The following recording shows the failure of the first execution, the fix by rescaling and then the successful repetition of the test.
+As soon as Kubernetes detects that a pod is missing from the replica set, a new pod is started. This does not happen immediately, but takes a few seconds depending on the Kubernetes configuration and the application in the pod. At the beginning, our example has a replica set of size 1, so there will be a short downtime when terminating the pod. This fails the validation of the Steady State and thus the complete chaos test. After increasing the replica set to two instances of the search service, the test can be successfully executed. The following recording shows the failure of the first execution, the fix by rescaling and then the successful repetition of the test.
 
 {{< asciinema hwvzMTDPy1SxrrafyXoNeNJBN >}}
 
@@ -104,7 +104,7 @@ The source code of the experiment can be found on [Github](https://github.com/qa
 
 ## Example #2
 
-The second example uses the Azure Driver extension [^4] from CTK. In this example, a node from the Kubernetes node pool managed by Azure AKS [^2] is shut down temporarily, simulating a virtual machine failure.
+The second example uses the Azure Driver extension[^4] from CTK. In this example, a node from the Kubernetes node pool managed by Azure AKS[^2] is shut down temporarily, simulating a virtual machine failure.
 
 ```bash
 pip install -U chaostoolkit-azure
@@ -134,7 +134,7 @@ credentials.json:
 }
 ```
 
-Store the path to the file in an environment variable called `AZURE_AUTH_LOCATION` and make sure that your experiment does NOT contain secrets section. When this is done, our Azure experiments can be run. Our experiment stops an instance from the filtered virtual machine scale set (vmss). The filtering is done by the resource group, the scale set name and the instance ID.
+Store the path to the file in an environment variable called `AZURE_AUTH_LOCATION` and make sure that your experiment does NOT contain secret section. When this is done, our Azure experiment can be run. Our experiment stops an instance from the filtered virtual machine scale set (vmss). The filtering is done by the resource group, the scale set name and the instance ID.
 
 ```yaml
 method:
@@ -152,9 +152,9 @@ method:
     after: 15
 ```
 
-This test can be used to verify that the instances of the Search service have been deployed on more than one Kubernetes node, thus guaranteeing the availability of the service in the unavailability of a node.
+This test can be used to verify that the instances of the search service have been deployed on more than one Kubernetes node, thus guaranteeing the availability of the service in the unavailability of a node.
 
-Because in this test the node remains stopped even after the second steady state validation, we need to execute a rollback. In our example we restart the node with the function `restart_vmss`.
+Because in this test the node remains stopped even after the second Steady State validation, we need to execute a rollback. In our example we restart the node with the function `restart_vmss`.
 
 ```yaml
 rollbacks:
@@ -174,17 +174,17 @@ The source code of the experiment can be found on [Github](https://github.com/qa
 
 ## Summary
 
-The Chaos Toolkit is a stable open source tooling for Chaos Engineering. The existing driver extensions, the possibility for own extensions or to be able to execute processes directly as action or probe results in a very large flexibility for any kind of Chaos tests.
+The Chaos Toolkit is a stable open-source tooling for Choas Engineering. The existing driver extensions, the possibility for own extensions or to be able to execute processes directly as action or probe results in a very large flexibility for any kind of chaos tests.
 
 Because a test always includes the complete experiment (Steady State & Action), Chaos Toolkit is ideal for continuous automated quality assurance.
 
 ## Workshop
 
-If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Chaos Engineering on Azure AKS" on March 29, 2021. More infos and registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
+If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Chaos Engineering on Azure AKS" on March 29, 2021. More details & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
 
 
-{{< figure figcaption="Workshop: Chaos Engineering on Azure AKS" >}}
-  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Chaos Engineering on Azure AKS" >}}
+{{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
+  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
 {{< /figure >}}
 
 ## Image sources
