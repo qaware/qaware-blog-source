@@ -1,4 +1,4 @@
-FROM klakegg/hugo:0.80.0-ext-ubuntu AS hugo
+FROM klakegg/hugo:0.82.0-ext-ubuntu AS hugo
 
 ARG BASE_URL=http://localhost:1313/
 
