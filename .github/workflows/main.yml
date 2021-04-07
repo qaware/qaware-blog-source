@@ -40,7 +40,7 @@ jobs:
 
       # Setup gcloud CLI
       - name: setup gcloud CLI
-        uses: google-github-actions/setup-gcloud@master@master
+        uses: google-github-actions/setup-gcloud@master
         with:
           version: "335.0.0"
           service_account_key: ${{ secrets.RUN_SA_KEY }}
