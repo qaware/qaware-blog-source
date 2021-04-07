@@ -94,7 +94,9 @@ In summary, we found the approach so good that we would like to share it with yo
 
 We also presented these ideas at Container Days 2018. You will find our slides on slideshare: https://de.slideshare.net/QAware/observability-in-action-the-wild
 
-{{< slides key="2i3e6PXCYTF4DU" id="observability-in-action-the-wild" title="Observability in a̶c̶t̶i̶o̶n̶! the wild!" >}}
+{{< slides id="observability-in-action-the-wild" title="Observability in a̶c̶t̶i̶o̶n̶! the wild!" >}}
+  {{<img src="/images/collaborative-monitoring/observability-in-action-the-wild.jpg" alt="Observability in a̶c̶t̶i̶o̶n̶! the wild!">}}
+{{< /slides >}}
 
 ---
 
@@ -106,4 +108,6 @@ Our talk @ [Cloud Native Night Meetup](https://www.meetup.com/de-DE/cloud-native
 
 ### Slides
 
-{{< slides key="kilUPFtcmLExYM" id="from-zero-to-useless-to-hero-make-runtime-data-useful-in-teams-observability" title="From Zero to Useless to Hero – Make Runtime Data Useful in Teams (Observability)" >}}
+{{< slides id="from-zero-to-useless-to-hero-make-runtime-data-useful-in-teams-observability" title="From Zero to Useless to Hero – Make Runtime Data Useful in Teams (Observability)" >}}
+  {{<img src="/images/collaborative-monitoring/from-zero-to-useless-to-hero-make-runtime-data-useful-in-teams-observability.jpg" alt="From Zero to Useless to Hero – Make Runtime Data Useful in Teams (Observability)">}}
+{{< /slides >}}

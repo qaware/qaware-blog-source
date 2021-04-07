@@ -115,15 +115,9 @@ To give you a better insight into the Chaos Engineering tools, we introduce some
 
 ## ContainerConf 2021 Presentation
 
-{{< slides key="KZzazUQd1hKSpS" id="der-status-quo-des-chaos-engineerings" title="Der Status Quo des Chaos Engineerings" >}}
-
-## Workshop
-
-If you want to learn more about using Chaos Toolkit and Chaos Mesh, join our remote workshop "Chaos Engineering on Azure AKS" on March 29, 2021. More details & registration: [www.containerconf.de](https://www.containerconf.de/lecture_workshop.php?id=12764)
-
-{{< figure figcaption="Workshop: Choas Engineering on Azure AKS" >}}
-  {{< img src="/images/chaos-engineering/workshop.png" alt="Workshop: Choas Engineering on Azure AKS" >}}
-{{< /figure >}}
+{{< slides id="der-status-quo-des-chaos-engineerings" title="Der Status Quo des Chaos Engineerings" >}}
+  {{< img src="/images/chaos-engineering/der-status-quo-des-chaos-engineerings.jpg" alt="Der Status Quo des Chaos Engineerings" >}}
+{{< /slides >}}
 
 ## Image sources
 
