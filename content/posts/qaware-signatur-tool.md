@@ -44,5 +44,5 @@ Keep It Simple, Stupid :*
 * A project is especially fun when others are also happy about your product :)  
 {{< img src="/images/qaware-signatur-tool-feedback.png" alt="Feedback" >}}
 
-Here is the link to the code: https://github.com/susisonnenschein/QAmail-Signatur-Tool
+Here is the link to the code: https://github.com/susisonnenschein/QAmail-Signatur-Tool  
 And here the link to the tool: https://confluence.qaware.de/confluence/display/QAWAREMARKT/QAmail-Signatur-Tool
