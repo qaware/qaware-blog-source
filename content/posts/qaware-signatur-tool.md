@@ -1,43 +1,42 @@
 ---
-title: "Eine Produktreise: Das QAmail-Signatur-Tool"
+title: "A product journey: The QAmail Signature Tool"
 date: 2021-05-20T13:50:02+02:00
 lastmod: 2021-05-20T13:50:02+02:00
 author: "[Susanna Suchan](https://github.com/susisonnenschein)"
 type: "post"
 image: "qaware-signatur-tool.png"
-tags: ["Produktreise", "Confluence"]
+tags: ["Product Journey", "Confluence", "Signature Tool"]
 draft: true
-summary: Eine Produktreise: Das QAmail-Signatur-Tool generiert aus hinterlegten Confluence-Profil-Daten eine E-Mail-Signatur.
----
+summary: A product journey: The QAmail Signature Tool generates an email signature from stored Confluence profile data
 
-# Eine Produktreise: Das QAmail-Signatur-Tool
+# A product journey: The QAmail Signature Tool
 
-Das QAmail-Signatur-Tool generiert aus hinterlegten Confluence-Profil-Daten automatisch eine E-Mail-Signatur. In diesem Blog-Artikel möchte ich euch auf meine Reise von der Idee zum Endprodukt mitnehmen. Leinen los! 
+The QAmail Signature Tool automatically generates an email signature from stored Confluence profile data. In this blog article, I want to take you on my journey from the idea to the final product. Cast off! 
 
-### Ausgangssituation – 1001 Signaturen – „Sie müssen nur den Nippel durch die Lasche ziehn…“ 
-Bisher hatte jeder seine E-Mail-Signatur je nach E-Mail-Client anhand von .txt und .htm Vorlagen selbst gebastelt. Das war nicht sonderlich intuitiv und dadurch umständlich. Was wiederum dazu führte, dass manche Signatur-Aktualisierungen hinauszögerten und andere die Vorlagen gar nicht mehr nutzten. So ergab sich eine erstaunliche Vielfalt unterschiedlicher Signaturen inklusive vereinzelter Tippfehler („Beste Arbeitgeber ITK 2002“, ist im Jahr 2020 leider nur halb so beeindruckend wie „Beste Arbeitgeber ITK 2020“), Zahlendrehern in Telefonnummern und übersehene, veraltete Links. Ein Kollege hatte die Idee, dass doch mal zu automatisieren. Ich fand die Idee super und wollte sie umsetzen. Es stellte sich nun die Frage, wie man so ein Tool am besten baut…
+### Initial situation - 1001 signatures
+Until now, everyone had been crafting their own email signature using .txt and .htm templates, depending on their email client. This was not very intuitive and thus cumbersome, which in turn led to some delaying signature updates and others not using the templates at all. This resulted in an astonishing variety of different signatures, including occasional typos ("Beste Arbeitgeber ITK 2002", is unfortunately only half as impressive in 2020 as " Beste Arbeitgeber ITK 2020"), transposed digits in phone numbers and overlooked outdated links. A colleague had the idea to automate this. I thought it was a great idea and wanted to implement it. Now the question arose, how to build such a tool best?
 
-### Wie setze ich das um? Hip oder doch besser praktisch? 
-Meine erste Idee: ein hippes Tool mit schicker UI, das seine Daten über eine Google-API bezieht. Ich habe mich also eingelesen und war schon Feuer und Flamme. Leider musste ich feststellen, dass zwar einige Angaben in unseren Google Kontakten gespeichert waren, aber andere Angaben (wie z. B. der genutzte QAware-Standort) dort fehlten. Blöd. Die Daten der Personal-Abteilung konnte ich aus datenschutzrechtlichen Gründen leider auch nicht nutzen. Schade. Woher also die Daten für die Signaturen bekommen? Es stellte sich heraus, dass die meisten benötigten Daten in Confluence hinterlegt sind (oder zumindest theoretisch hinterlegt sein sollten). Die neue Idee: ein Confluence-Makro. Das Tool ließe sich leicht in unser Confluence integrieren, wäre somit leicht zur Hand, ließe sich ohne weitere Freigabeprozesse nutzen und die nötigen Daten wären spätestens bei der zweiten Nutzung im persönlichen Confluence-Profil hinterlegt, was dann sogar nicht nur theoretisch, sondern auch praktisch gepflegt wäre. Ich entschied mich also schweren Herzens gegen ein hippes Google-Tool und für die praktischere Confluence-Alternative.
+### How do I implement it? Hip or better practical? 
+My first idea: a hip tool with a fancy UI that gets its data via a Google API. So I read up and was already on fire. Unfortunately, I found that while some data was stored in our Google Contacts, other data (such as the QAware location used) was missing there. Bummer. For privacy reasons I couldn't use the HR department's data either. Too bad. So where to get the data for the signatures? It turned out that most of the required data is stored in Confluence (or at least theoretically should be). The new idea: a Confluence macro. The tool could be easily integrated into our Confluence, would therefore be readily available, could be used without any further approval processes, and by the second use at the latest the necessary data would already be stored in the personal Confluence profile, which would then even be maintained not only theoretically, but also practically. So with a heavy heart, I decided against a hip Google tool and for the more practical Confluence alternative.
 
-### Ran ans Werk – Die Tücken liegen immer woanders als gedacht
-Ich habe mich also nochmal eingelesen. Diesmal wie man ein Confluence-Makro schreibt. Leider muss man Confluence-Admin sein, um ein neues Confluence-Makro erstellen und bearbeiten zu können. Ich habe mir daher ein eigenes Confluence hochgefahren und darin rumprobiert. Das Coden war leichter als erwartet. Ich habe unsere alte Vorlage verwendet und mit Hilfe der Confluence-API die Daten aus dem hinterlegten Confluence-Profil ausgelesen und eingesetzt. Da das Confluence-Profil keinen akademischen Titel beinhaltet, frage ich diesen am Anfang ab und beziehe ihn als Input-Parameter in mein Makro ein. Sprechende Fehlermeldungen weisen den Nutzer darauf hin, welche Daten ggf. in seinem Confluence-Profil zu ergänzen sind. Noch eine schöne Anleitung dazu und schon war meine Seite bereit für erste Testnutzer :)
+### Let's get to work - the pitfalls are always somewhere else than expected
+So I read up again. This time how to write a Confluence macro. Unfortunately, you have to be a Confluence admin to create and edit a new Confluence macro. So I booted up my own Confluence and tried my hand at it. Coding was easier than expected. I used our old template and the Confluence API to read and paste the data from the stored Confluence profile. Since the Confluence profile does not include an academic title, I query it at the beginning and include it as an input parameter in my macro. Speaking error messages inform the user which data, if any, needs to be added to his Confluence profile. A nice tutorial and my site was ready for the first test users :)
 
-### Feedback herzlich willkommen – Der Nutzer weiß am besten was er braucht & will
-Ich bat also ein paar Kollegen das Tool zu testen und die hatten gute Ideen: Sie wünschten sich einen Kasten um die generierte Signatur und einen Copy-Button. Ihr Wunsch war mir Befehl.  
-In der nächsten Iteration mit anderen Testnutzern stelle sich heraus, dass bei manchen Kombinationen aus Browser und E-Mail-Client, horizontale Trennlinien der Signatur verschwanden. Zauberei? Nach einiger Recherche stellte sich heraus, dass die Signatu-Vorlage in ihrer ursprünglichen Form einfach zu viele Freiheitsgrade ließ. Nachdem der Grund gefunden war, war dem Zauber schnell das Handwerk gelegt. 
+### Feedback welcome - the users know best what they need & want
+So I asked some colleagues to test the tool and they had good ideas: They wanted a box around the generated signature and a copy button. Their wish was my command.   
+In the next iteration with other test users, it turned out that with some combinations of browser and email client, horizontal separators of the signature disappeared. Magic? After some research, it turned out that the signature template in its original form simply left too many degrees of freedom. After finding the reason, the magic was quickly put to rest. 
 
-### In die Firma tragen – Schaut mal, was es Neues gibt
-Nun ging es daran das neue Tool in die Breite zu tragen. Mit Hilfe eines Confluence-Admins ging das Tool in unserem Firmen-Confluence live. Ich schrieb unten auf die Confluence-Seite, dass Feedback herzlich willkommen sei. Daraufhin meldete sich eine Kollegin mit einem Use-Case auf den ich selbst nie gekommen wäre: Es scheint Kollegen mit so vielen Jobtiteln zu geben, dass sie einen extra Zeilenumbruch in ihrer Signatur benötigen. Die Lösung: Man kann Zeilenumbrüche in der Signatur seither durch Semikola (ja, das ist ein richtiger Plural für Semikolon) im entsprechenden Confluence-Profil-Feld erzeugen.  
-Wenige Wochen später folgte eine Rundmail an alle Mitarbeitenden mit der Bitte, ihre Signaturen anzupassen und dafür gerne das neue Tool zu verwenden. Seither darf ich mich über viel positives Feedback von Kollegen freuen, die sich gerade ein paar Minuten Arbeit gespart haben.  
+### Spreading the word - see what's new
+Now it was time to roll out the new tool. With the help of a Confluence admin, the tool went live in our company Confluence. I added on the page that feedback was welcome. Thereupon a colleague came forward with a use case that I would never have thought of myself: there seem to be colleagues with so many job titles that they need an extra line break in their signature. The solution: Now you can create line breaks in the signature by using semicolons in the corresponding Confluence profile field.  
+A few weeks later, a circular email was sent to all employees asking them to adapt their signatures and offering them to use the new tool for this purpose. Since then, I've been pleased to receive a lot of positive feedback from colleagues who just saved themselves a few minutes of work.  
 
 ### Lessons Learned:
-*	Das Werkzeug sollte zum Rohstoff passen - oft ist praktisch besser als hip.  
+* The tool should fit the purpose - often practical is better than hip.  
 Keep It Simple, Stupid :*
-*	Nutzer-Feedback ist Gold wert!
-*	Das Leben wäre doch langweilig, wenn alle die gleiche Kombination aus Browser und E-Mail-Client verwenden würden.
-*	Etwas Zeit vergehen lassen und mit neuen Augen auf das eigene Produkt schauen. Nachdem ich selbst vergessen hatte, was in meiner Anleitung stand, konnte ich eine deutlich übersichtlichere schreiben.
-*	Ein Projekt macht besonders viel Spaß, wenn sich auch andere über dein Produkt freuen :)  
+* User feedback is worth its weight in gold!
+* After all, life would be boring if everyone used the same combination of browser and email client.
+* Let some time pass and look at your own product with new eyes. After I myself had forgotten what was written in my manual, I was able to write a much clearer one.
+* A project is especially fun when others are also happy about your product :)  
 {{< img src="/images/qaware-signatur-tool-feedback.png" alt="Feedback" >}}
 
-Hier noch der Link zum Code: https://github.com/susisonnenschein/QAmail-Signatur-Tool
+Here is the link to the code: https://github.com/susisonnenschein/QAmail-Signatur-Tool
