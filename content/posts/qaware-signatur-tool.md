@@ -22,7 +22,7 @@ My first idea: a hip tool with a fancy UI that gets its data via a Google API. S
 
 ## Let's get to work - the pitfalls are always somewhere else than expected
 
-So I read up again. This time how to write a Confluence macro. Unfortunately, you have to be a Confluence admin to create and edit a new Confluence macro. So I booted up my own Confluence and tried my hand at it. Coding was easier than expected. I used our old template and the Confluence API to read and paste the data from the stored Confluence profile. Since the Confluence profile does not include an academic title, I query it at the beginning and include it as an input parameter in my macro. Speaking error messages inform the user which data, if any, needs to be added to his Confluence profile. A nice tutorial and my site was ready for the first test users :smiley:
+So I read up again. This time how to write a Confluence macro. Unfortunately, you have to be a Confluence admin to create and edit a new Confluence macro. So I booted up my own Confluence and tried my hand at it. Coding was easier than expected. I used our old template and the Confluence API to read and paste the data from the stored Confluence profile. Since the Confluence profile does not include an academic title, I query it at the beginning and include it as an input parameter in my macro. Speaking error messages inform the user which data, if any, needs to be added to his Confluence profile. A nice tutorial and my site was ready for the first test users :confetti_ball:
 
 ## Feedback welcome - the users know best what they need & want
 
