@@ -5,6 +5,7 @@ theme = "qaware-blog-theme"
 author = "QAware GmbH"
 copyright = "Copyright © 2020, QAware GmbH; all rights reserved."
 paginate = 11
+enableEmoji = true
 
 [params]
 logo = "/images/qaware_logo.png"
