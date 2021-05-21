@@ -22,7 +22,7 @@ My first idea: a hip tool with a fancy UI that gets its data via a Google API. S
 
 ## Let's get to work - the pitfalls are always somewhere else than expected
 
-So I read up again. This time how to write a Confluence macro. Unfortunately, you have to be a Confluence admin to create and edit a new Confluence macro. So I booted up my own Confluence and tried my hand at it. Coding was easier than expected. I used our old template and the Confluence API to read and paste the data from the stored Confluence profile. Since the Confluence profile does not include an academic title, I query it at the beginning and include it as an input parameter in my macro. Speaking error messages inform the user which data, if any, needs to be added to his Confluence profile. A nice tutorial and my site was ready for the first test users :)
+So I read up again. This time how to write a Confluence macro. Unfortunately, you have to be a Confluence admin to create and edit a new Confluence macro. So I booted up my own Confluence and tried my hand at it. Coding was easier than expected. I used our old template and the Confluence API to read and paste the data from the stored Confluence profile. Since the Confluence profile does not include an academic title, I query it at the beginning and include it as an input parameter in my macro. Speaking error messages inform the user which data, if any, needs to be added to his Confluence profile. A nice tutorial and my site was ready for the first test users :smiley:
 
 ## Feedback welcome - the users know best what they need & want
 
@@ -37,11 +37,11 @@ A few weeks later, a circular email was sent to all employees asking them to ada
 ## Lessons Learned:
 
 * The tool should fit the purpose - often practical is better than hip.  
-Keep It Simple, Stupid :*
+Keep It Simple, Stupid :kissing_heart:
 * User feedback is worth its weight in gold!
 * After all, life would be boring if everyone used the same combination of browser and email client.
 * Let some time pass and look at your own product with new eyes. After I myself had forgotten what was written in my manual, I was able to write a much clearer one.
-* A project is especially fun when others are also happy about your product :)  
+* A project is especially fun when others are also happy about your product :smiley:  
 {{< img src="/images/qaware-signatur-tool-feedback.png" alt="Feedback" >}}
 
 Here is the link to the code: https://github.com/susisonnenschein/QAmail-Signatur-Tool  
