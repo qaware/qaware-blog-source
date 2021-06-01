@@ -14,7 +14,7 @@ The QAmail Signature Tool automatically generates an email signature from stored
 
 ## Initial situation - 1001 signatures
 
-Until now, everyone had been crafting their own email signature using .txt and .htm templates, depending on their email client. This was not very intuitive and thus cumbersome, which in turn led to some delaying signature updates and others not using the templates at all. This resulted in an astonishing variety of different signatures, including occasional typos ("Beste Arbeitgeber ITK 2002", is unfortunately only half as impressive in 2020 as " Beste Arbeitgeber ITK 2020"), transposed digits in phone numbers and overlooked outdated links. A colleague had the idea to automate this. I thought it was a great idea and wanted to implement it. Now the question arose, how to build such a tool best?
+Until now, everyone had been crafting their own email signature using .txt and .htm templates, depending on their email client. This was not very intuitive and thus cumbersome, which in turn led to some delaying signature updates and others not using the templates at all. This resulted in an astonishing variety of different signatures, including occasional typos ("Beste Arbeitgeber ITK 2002", is unfortunately only half as impressive in 2020 as "Beste Arbeitgeber ITK 2020"), transposed digits in phone numbers and overlooked outdated links. A colleague had the idea to automate this. I thought it was a great idea and wanted to implement it. Now the question arose, how to build such a tool best?
 
 ## How do I implement it? Hip or better practical? 
 
@@ -26,23 +26,24 @@ So I read up again. This time how to write a Confluence macro. Unfortunately, yo
 
 ## Feedback welcome - the users know best what they need & want
 
-So I asked some colleagues to test the tool and they had good ideas: They wanted a box around the generated signature and a copy button. Their wish was my command.   
-In the next iteration with other test users, it turned out that with some combinations of browser and email client, horizontal separators of the signature disappeared. Magic? After some research, it turned out that the signature template in its original form simply left too many degrees of freedom. After finding the reason, the magic was quickly put to rest. 
+So I asked some colleagues to test the tool, and they came up with good ideas: They proposed a box around the generated signature and a copy button. Their wish was my command.   
+In the next iteration with other test users, it turned out that with some combinations of browser and email client, horizontal separators of the signature disappeared. Magic? After some research, I found out that the signature template in its original form simply left the styling too many degrees of freedom. After finding the reason, the magic was quickly put to rest. 
 
 ## Spreading the word - see what's new
 
-Now it was time to roll out the new tool. With the help of a Confluence admin, the tool went live in our company Confluence. I added on the page that feedback was welcome. Thereupon a colleague came forward with a use case that I would never have thought of myself: there seem to be colleagues with so many job titles that they need an extra line break in their signature. The solution: Now you can create line breaks in the signature by using semicolons in the corresponding Confluence profile field.  
-A few weeks later, a circular email was sent to all employees asking them to adapt their signatures and offering them to use the new tool for this purpose. Since then, I've been pleased to receive a lot of positive feedback from colleagues who just saved themselves a few minutes of work.  
+Now it was time to roll out the new tool. With the help of a Confluence admin, the tool went live in QAware's Confluence. I explicitly stated on the page that feedback was welcome. Thereupon a colleague came forward with a use case that I would never have thought of myself: there seem to be colleagues with so many job titles that they need an extra line break in their signature. The solution: Now you can create line breaks in the signature by using semicolons in the corresponding Confluence profile field.  
+A few weeks later, a circular email was sent to all employees asking them to adapt their signatures and offering them to use the new tool for this purpose. Since then, I've been pleased to receive a lot of positive feedback from colleagues who have just saved themselves a few minutes of work.  
 
 ## Lessons Learned:
 
 * The tool should fit the purpose - often practical is better than hip.  
-Keep It Simple, Stupid :kissing_heart:
+Keep It Simple, Stupid (KISS :kissing_heart:)
 * User feedback is worth its weight in gold!
 * After all, life would be boring if everyone used the same combination of browser and email client.
-* Let some time pass and look at your own product with new eyes. After I myself had forgotten what was written in my manual, I was able to write a much clearer one.
+* Let some time pass and look at your own product with new eyes. After I had forgotten what was written in my own manual, I was able to write a much clearer one.
 * A project is especially fun when others are also happy about your product :smiley:  
 {{< img src="/images/qaware-signatur-tool-feedback.png" alt="Feedback" >}}
 
-Here is the link to the code: https://github.com/susisonnenschein/QAmail-Signatur-Tool  
-And here the link to the tool: https://confluence.qaware.de/confluence/display/QAWAREMARKT/QAmail-Signatur-Tool
+If you want to take a look,  
+... here you can find the code: https://github.com/susisonnenschein/QAmail-Signatur-Tool  
+... here you can find the tool: https://confluence.qaware.de/confluence/display/QAWAREMARKT/QAmail-Signatur-Tool
