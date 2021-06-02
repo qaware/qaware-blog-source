@@ -14,7 +14,7 @@ The QAmail Signature Tool automatically generates an email signature from stored
 
 ## Initial situation - 1001 signatures
 
-Until now, everyone had been crafting their own email signature using .txt and .htm templates, depending on their email client. This was not very intuitive and thus cumbersome, which in turn led to some delaying signature updates and others not using the templates at all. This resulted in an astonishing variety of different signatures, including occasional typos ("Beste Arbeitgeber ITK 2002", is unfortunately only half as impressive in 2020 as "Beste Arbeitgeber ITK 2020"), transposed digits in phone numbers and overlooked outdated links. A colleague had the idea to automate this. I thought it was a great idea and wanted to implement it. Now the question arose: How to build such a tool best?
+Until now, everyone had been crafting their own email signature using .txt and .htm templates, depending on their email client. This was not very intuitive and thus cumbersome, which in turn led to some delaying signature updates and others not using the templates at all. This resulted in an astonishing variety of different signatures, including occasional typos ("Beste Arbeitgeber ITK 2002", is unfortunately only half as impressive in 2020 as "Beste Arbeitgeber ITK 2020"), transposed digits in phone numbers and overlooked outdated links. A colleague had the idea to automate this. I thought it was a great idea and wanted to implement it. Now the question arose, how to build such a tool best.
 
 ## How do I implement it? Hip or better practical? 
 
@@ -22,11 +22,11 @@ My first idea: a hip tool with a fancy UI that gets its data via a Google API. S
 
 ## Let's get to work - the pitfalls are always somewhere else than expected
 
-So I read up again. This time how to write a Confluence macro. Unfortunately, you have to be a Confluence admin to create and edit a new Confluence macro. So I booted up my own Confluence and tried my hand at it. Coding was easier than expected. I used our old template and the Confluence API to read and paste the data from the stored Confluence profile. Since the Confluence profile does not include an academic title, I query it at the beginning and include it as an input parameter in my macro. Speaking error messages inform the user which data, if any, needs to be added to his Confluence profile. A nice tutorial and my site was ready for the first test users :confetti_ball:
+So I read up again. This time how to write a Confluence macro. Unfortunately, you have to be a Confluence admin to create and edit a new Confluence macro. So I booted up my own Confluence and tried my hand at it. Coding was easier than expected. I used our old template and the Confluence API to read and paste the data from the stored Confluence profile. Since the Confluence profile does not include an academic title, I query it at the beginning and include it as an input parameter in my macro. Speaking error messages inform the user which data, if any, needs to be added to his Confluence profile. Last but not least I added a nice tutorial and my site was ready for the first test users :confetti_ball:
 
 ## Feedback welcome - the users know best what they need & want
 
-So I asked some colleagues to test the tool, and they came up with good ideas: They proposed a box around the generated signature and a copy button. Their wish was my command.   
+I asked some colleagues to test the tool, and they came up with good ideas: They proposed a box around the generated signature and a copy button. Their wish was my command.   
 In the next iteration with other test users, it turned out that with some combinations of browser and email client, horizontal separators of the signature disappeared. Magic? After some research, I found out that the signature template in its original form simply left the styling too many degrees of freedom. After finding the reason, the magic was quickly put to rest. 
 
 ## Spreading the word - see what's new
