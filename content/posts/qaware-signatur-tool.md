@@ -14,7 +14,7 @@ The QAmail Signature Tool automatically generates an email signature from stored
 
 ## Initial situation - 1001 signatures
 
-Until now, everyone had been crafting their own email signature using .txt and .htm templates, depending on their email client. This was not very intuitive and thus cumbersome, which in turn led to some delaying signature updates and others not using the templates at all. This resulted in an astonishing variety of different signatures, including occasional typos ("Beste Arbeitgeber ITK 2002", is unfortunately only half as impressive in 2020 as "Beste Arbeitgeber ITK 2020"), transposed digits in phone numbers and overlooked outdated links. A colleague had the idea to automate this. I thought it was a great idea and wanted to implement it. Now the question arose, how to build such a tool best?
+Until now, everyone had been crafting their own email signature using .txt and .htm templates, depending on their email client. This was not very intuitive and thus cumbersome, which in turn led to some delaying signature updates and others not using the templates at all. This resulted in an astonishing variety of different signatures, including occasional typos ("Beste Arbeitgeber ITK 2002", is unfortunately only half as impressive in 2020 as "Beste Arbeitgeber ITK 2020"), transposed digits in phone numbers and overlooked outdated links. A colleague had the idea to automate this. I thought it was a great idea and wanted to implement it. Now the question arose: How to build such a tool best?
 
 ## How do I implement it? Hip or better practical? 
 
