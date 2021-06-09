@@ -6,7 +6,7 @@ author: "[Susanna Suchan](https://github.com/susisonnenschein)"
 type: "post"
 image: "qaware-signatur-tool.png"
 tags: ["Product Journey", "Confluence", "Signature Tool"]
-draft: true
+draft: false
 summary: "A product journey: The QAmail Signature Tool generates an email signature from stored Confluence profile data"
 ---
 
