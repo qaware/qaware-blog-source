@@ -1,7 +1,7 @@
 ---
 title: "A product journey: The QAmail Signature Tool"
-date: 2021-05-20T13:50:02+02:00
-lastmod: 2021-05-20T13:50:02+02:00
+date: 2021-06-09
+lastmod: 2021-06-09
 author: "[Susanna Suchan](https://github.com/susisonnenschein)"
 type: "post"
 image: "qaware-signatur-tool.png"
