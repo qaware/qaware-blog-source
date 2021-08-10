@@ -32,7 +32,7 @@ This overall strategy allows to migrate with confidence, in time and budget.
 
 **Lift and extend**: The software is adapted to run on a cloud platform.
 The strategy of choice for software that can be economically adapted.
-We've had great success with a *cloud friendly* strategy - defining a mandatory baseline of cloud friendliness for application migrations:
+We've had great success with a *cloud-friendly* strategy - defining a mandatory baseline of cloud friendliness for application migrations:
 
 * Security
 * Elimination of toxic dependencies
@@ -42,7 +42,7 @@ We've had great success with a *cloud friendly* strategy - defining a mandatory 
 * Resilience
 
 Migration teams are encouraged to exceed the baseline if possible within the frame of the migration. New applications are build cloud-natively.
-With *cloud friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
+With *cloud-friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
 
 ![Cloud Nativity Levels](/images/cloud-migration/cloud-levels.jpg)
 
@@ -52,16 +52,16 @@ Nevertheless, this can be a good strategy to get going. At first, critical core 
 
 **Full rebuild**: Applications are rebuilt cloud-natively from scratch.
 In most cases, it will be to expensive and time-consuming to rebuild entire application landscapes.
-Therefore, this method should ony be used if an application cannot be brought up to a *cloud friendly* level in a meaningful, economic way.
+Therefore, this method should ony be used if an application cannot be brought up to a *cloud-friendly* level in a meaningful, economic way.
 
 **Replacement**: Applications are replaced by a Software-as-a-Service (SaaS) or a cloud-native self-hosted product. \
 Feasible, if an application implements a functionality already covered by products.
 
 ## Application Types
 
-**Custom applications** that can be changed at will. The migration strategy depends on the overall state of the application and the migration goals. In most cases, a lift and extend strategy with the goal of making the application *cloud friendly* works well.
+**Custom applications** that can be changed at will. The migration strategy depends on the overall state of the application and the migration goals. In most cases, a lift and extend strategy with the goal of making the application *cloud-friendly* works well.
 
-**Self-operated purchased products**. Only configuration changes are possible. The product can only be operated in the cloud as offered by the provider. In the worst case, it has to be replaced by an alternate, *cloud friendly* product.
+**Self-operated purchased products**. Only configuration changes are possible. The product can only be operated in the cloud as offered by the provider. In the worst case, it has to be replaced by an alternate, *cloud-friendly* product.
 
 **Infrastructure** such as databases. In most cases, you want to replace those with platform services or SaaS solutions instead of migrating them. Heavy weight proprietary infrastructure components should be replaced. In special cases, there may be a justification to keep exotic components.
 
