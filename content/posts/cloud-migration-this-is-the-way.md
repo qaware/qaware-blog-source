@@ -14,7 +14,7 @@ Typical goals are:
 
 * Cost savings
 * Migrating within a budget
-* Improving the user experience by improving performance
+* Better user experience by improving performance
 * Improving developer and operations experience
 * Decommissioning data centers
 
