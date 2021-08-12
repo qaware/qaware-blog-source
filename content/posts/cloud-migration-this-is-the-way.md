@@ -14,7 +14,7 @@ Typical goals are:
 
 * Cost savings
 * Migrating within a budget
-* Improving the user experience by improving performance
+* Better user experience by improving performance
 * Improving developer and operations experience
 * Decommissioning data centers
 
@@ -32,7 +32,7 @@ This overall strategy allows to migrate with confidence, in time and budget.
 
 **Lift and extend**: The software is adapted to run on a cloud platform.
 The strategy of choice for software that can be economically adapted.
-We've had great success with a *cloud friendly* strategy - defining a mandatory baseline of cloud friendliness for application migrations:
+We've had great success with a *cloud-friendly* strategy - defining a mandatory baseline of cloud friendliness for application migrations:
 
 * Security
 * Elimination of toxic dependencies
@@ -42,7 +42,7 @@ We've had great success with a *cloud friendly* strategy - defining a mandatory 
 * Resilience
 
 Migration teams are encouraged to exceed the baseline if possible within the frame of the migration. New applications are build cloud-natively.
-With *cloud friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
+With *cloud-friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
 
 ![Cloud Nativity Levels](/images/cloud-migration/cloud-levels.jpg)
 
@@ -52,16 +52,16 @@ Nevertheless, this can be a good strategy to get going. At first, critical core 
 
 **Full rebuild**: Applications are rebuilt cloud-natively from scratch.
 In most cases, it will be to expensive and time-consuming to rebuild entire application landscapes.
-Therefore, this method should ony be used if an application cannot be brought up to a *cloud friendly* level in a meaningful, economic way.
+Therefore, this method should ony be used if an application cannot be brought up to a *cloud-friendly* level in a meaningful, economic way.
 
 **Replacement**: Applications are replaced by a Software-as-a-Service (SaaS) or a cloud-native self-hosted product. \
 Feasible, if an application implements a functionality already covered by products.
 
 ## Application Types
 
-**Custom applications** that can be changed at will. The migration strategy depends on the overall state of the application and the migration goals. In most cases, a lift and extend strategy with the goal of making the application *cloud friendly* works well.
+**Custom applications** that can be changed at will. The migration strategy depends on the overall state of the application and the migration goals. In most cases, a lift and extend strategy with the goal of making the application *cloud-friendly* works well.
 
-**Self-operated purchased products**. Only configuration changes are possible. The product can only be operated in the cloud as offered by the provider. In the worst case, it has to be replaced by an alternate, *cloud friendly* product.
+**Self-operated purchased products**. Only configuration changes are possible. The product can only be operated in the cloud as offered by the provider. In the worst case, it has to be replaced by an alternate, *cloud-friendly* product.
 
 **Infrastructure** such as databases. In most cases, you want to replace those with platform services or SaaS solutions instead of migrating them. Heavy weight proprietary infrastructure components should be replaced. In special cases, there may be a justification to keep exotic components.
 
@@ -78,17 +78,17 @@ If you don't rebuild, the mainframe remains a massive liability.
 
 ![How a migration program is set up](/images/cloud-migration/migration-program-setup.jpg)
 
-1. We take care to help shape, understand and communicate the goals and constraints of the migration and align the organization.
+1. **We take care to help shape, understand and communicate the goals and constraints of the migration and align the organization**.
     The journey will only be successful if the destination is clear.
-2. We create a single source of truth that reliably provides in-depth transparency about the state of the application landscape to migrate.
+2. **We create a single source of truth that reliably provides in-depth transparency about the state of the application landscape to migrate.**
     We tap into existing sources of information and use a tool-based approach to analyze and classify applications.
     Born from experience, we act with a healthy distrust of pre-existing documentation and high-level declarations. The truth is in the code.
-3. We link the business view and the technical foundations. Results:
+3. **We link the business view and the technical foundations.** Results:
     * Reliable bottom-up assessment and planning of the migrations
     * Detecting and resolving problems before they hurt
     * Ensuring compliance and security
     * Confidence that the goals can be achieved
-4. We ensure and efficient and effective migration by:
+4. **We ensure and efficient and effective migration by:**
     * Helping you design and set up the migration program right from the start
     * Industrializing architecture, common parts and work:
         We solve challenges once, automated as far as possible and in high quality.
@@ -96,7 +96,7 @@ If you don't rebuild, the mainframe remains a massive liability.
     * Including enabling from the beginning. The existing teams know their applications best. We ensure that they will be
         able to maintain their newly cloudified applications easily. Many teams will be able to carry out the migrations themselves.
     * Taking responsibility for the outcome and working closely with you and your partners.
-5. We support the after-migration period, ensuring that cost, stability and performance goals are met.
+5. **We support the after-migration period, ensuring that cost, stability and performance goals are met.**
 
 ## See also
 
