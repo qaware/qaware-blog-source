@@ -1,7 +1,7 @@
 ---
 title: "Cloud Migration: This is the Way"
 date: 2021-07-28T10:54:33+02:00
-draft: true
+draft: false
 author: "[Andreas Zitzelsberger](https://github.com/az82/)"
 tags: ["Cloud", "Migration", "Architecture", "Business and IT"]
 image: "cloud-migration/road-to-cloud.jpg"
