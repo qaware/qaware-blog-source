@@ -1,7 +1,7 @@
 ---
 title: "Cloud Native Dev Tooling With Go"
 date: 2021-08-16T16:57:04+02:00
-draft: true
+draft: false
 author: "[Markus Zimmermann](https://github.com/markuszm/)"
 image: "cloud-native-dev-tools-with-go/tools-hero-image.jpg"
 tags: ["Cloud", "Cloud Native", "Containers", "DevOps", "Kubernetes", "Tools"]
