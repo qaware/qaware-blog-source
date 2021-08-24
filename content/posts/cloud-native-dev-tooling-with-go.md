@@ -105,7 +105,7 @@ Take a look at our [Challenge 3](https://github.com/qaware/go-for-operations/blo
 This post should give you an introduction to Cloud Native Dev Tools and how to implement your own tools in the main language of the Cloud native stack, Go. 
 With the workshop exercises, you can get hands-on experience and implement Dev tools yourself. Maybe, they can help you at your work to automate some tedious job you need to do everyday and gives you room for more important tasks. We will try to continue doing the workshop at other conferences, to give more engineers experience in Go to write Cloud Native Dev tools and have an exchange on our experiences with the Cloud Native stack.
 
-## Image sources
+## Image sources.
 
 * Title image: [Barn Images](https://unsplash.com/photos/t5YUoHW6zRo) on [Unsplash](https://unsplash.com/)
 * Kubernetes Operator explained: [Container Solutions Blog](https://blog.container-solutions.com/kubernetes-operators-explained)
