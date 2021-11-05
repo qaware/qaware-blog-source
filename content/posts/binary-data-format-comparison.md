@@ -10,7 +10,8 @@ summary: A comparison of different binary data formats in terms of read/write pe
 draft: true
 ---
 
-When it comes to storing or exchanging medium-sized sets of data, there are quite some data formats to choose from. In this article, we will compare some possible choices, namely:
+We recently had the requirement to store some medium-sized data (like 100 MB to 1 GB) in a file which should then be fully read into the heap by the application on startup.
+So we analyzed different file formats in terms of size, read/write performance and overall handling and flexibility:
 
 * [Google Protobuf](https://developers.google.com/protocol-buffers)
 * [Apache Avro](https://avro.apache.org/)
