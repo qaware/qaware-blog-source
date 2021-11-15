@@ -17,6 +17,9 @@ So we analyzed different file formats in terms of size, read/write performance a
 * [Apache Avro](https://avro.apache.org/)
 * [Apache Parquet](https://parquet.apache.org/)
 * [SQLite](https://www.sqlite.org/index.html)
+* JSON with [Yasson](https://github.com/eclipse-ee4j/yasson)
+* [Kryo](https://github.com/EsotericSoftware/kryo)
+* [MicroStream](https://microstream.one/)
 
 The source code for this comparison can be found [on GitHub](https://github.com/qaware/binary-data-format-comparison).
 
@@ -41,6 +44,16 @@ The generated Java classes from Avro can be used as well as the GenericRecord. A
 SQLite is a well-known self-contained SQL database which is supported by many languages, including Java. It can basically be used by any database framework using JDBC. The whole database with all tables is stored in a single file.
 For performance comparison, a database with a single table is used and all data is retrieved with a single select.
 
+### JSON
+JSON is not a binary format and obviously not very efficient in terms of file size, but it is interesting to see how it compares with the other formats. Yasson, which is an implementation of JSON-B, is used here.
+The entities have been written as new-line delimited JSON-stream.
+
+### Kryo
+Kryo is an object graph serialization framework. It can serialize Java objects directly, but thus only supports Java and can not be used in other languages.
+
+### MicroStream
+MicroStream is similar to Kryo. One notable advantage is that it supports immutable data classes (like Lomboks `@Value`). It writes data into a folder consisting of multiple files, while all other formats write into a single file.
+
 
 ## Performance Measurement
 The data format performance was analyzed by generating a random set of data (10.000.000 entries), writing it with each format into a file and reading it back into the heap afterwards.
@@ -61,12 +74,13 @@ The file size per format is as follows:
 {{< /figure >}}
 
 Parquet is significantly smaller than the others. This is, because parquet will store duplicate strings much more efficient by de-duplicating the data. The additional gzip compression thus does not reduce the file size much further. The effect is much less significant when there is not so much duplication.
+JSON is by far the largest one, as expected, but with compression the size is relatively similar to the others.
 
 {{< figure figcaption="Diagram of write time" >}}
 {{< img src="/images/binary-data-format-comparison/write-time.png" alt="Diagram of write time" >}}
 {{< /figure >}}
 
-Looking at the write times, Avro is by far the fastest when not compressing data, but compression takes a lot of extra time for both Avro and Protobuf.
+Looking at the write times, Avro and Kryo are by far the fastest ones when not compressing data, but compression takes a lot of extra time for all formats.
 Compressing the SQLite DB even takes several minutes and is thus not shown in the diagram to keep it readable.
 
 {{< figure figcaption="Diagram of read time" >}}
@@ -75,7 +89,8 @@ Compressing the SQLite DB even takes several minutes and is thus not shown in th
 
 When reading the data back, Parquet is leading again, as long as data is directly mapped to the Avro-generated classes.
 The example group provided by Parquet is very inefficient, both in reading performance and in heap usage.
-The SQLite DB is slower than the others, as was expected, but it is a full database after all and thus provides other advantages, so it is worse considering it, if the performance overhead is acceptable.
+The SQLite DB is slower than the others (except for JSON), as was expected, but it is a full database after all and thus provides other advantages, so it is worse considering it, if the performance overhead is acceptable.
+Reading and parsing JSON takes 2-3 times more time than the other formats, which is also to be expected.
 
 {{< figure figcaption="Diagram of heap usage" >}}
 {{< img src="/images/binary-data-format-comparison/heap.png" alt="Diagram of heap usage" >}}
@@ -90,28 +105,38 @@ The full set of result metrics is shown in the following two tables:
 
 | format       | write time [s] | file size [MB] |
 |--------------|----------------|----------------|
-| parquet      |         15.832 |    276.4046516 |
-| parquet.gzip |         20.191 |     275.317874 |
-| avro         |          3.662 |    741.1535063 |
-| avro.gzip    |         21.466 |    650.8264256 |
-| proto        |         29.689 |    960.6373882 |
-| proto.gzip   |         53.235 |    740.5153246 |
-| sqlite       |         30.952 |     830.546875 |
-| sqlite.gzip  |        463.966 |    669.6497068 |
+| parquet      |         15.326 |     276.395299 |
+| parquet.gzip |         20.151 |      275.26266 |
+| avro         |          4.219 |    735.7714748 |
+| avro.gzip    |         20.776 |    646.4380121 |
+| proto        |         32.301 |    955.0142479 |
+| proto.gzip   |          53.36 |    735.7686195 |
+| sqlite       |         32.296 |    825.0039063 |
+| sqlite.gzip  |        523.713 |      665.55159 |
+| json         |         29.169 |    1948.877819 |
+| json.gzip    |         89.793 |    781.1700859 |
+| kryo         |          4.218 |    692.8155756 |
+| kryo.gzip    |         28.313 |    596.4506216 |
+| microStream  |         17.015 |    962.2537918 |
 
-| format             | class          | read time [s] | heap usage [MB]    |
-|--------------------|----------------|---------------|--------------------|
-| group.parquet      | SimpleGroup    |        15.614 |           9,980.34 |
-| group.parquet.gzip | SimpleGroup    |         14.62 |           9,980.35 |
-| gen.parquet        | SampleDataAvro |         6.526 |             597.24 |
-| gen.parquet.gzip   | SampleDataAvro |         6.574 |             597.24 |
-| avro               | Record         |         8.529 |           4,469.58 |
-| avro.gzip          | Record         |        11.725 |           4,469.56 |
-| gen.avro           | SampleDataAvro |         8.328 |           3,041.01 |
-| gen.avro.gzip      | SampleDataAvro |        12.831 |           3,040.98 |
-| proto              | SampleDataPb   |        10.168 |           3,193.58 |
-| proto.gzip         | SampleDataPb   |         18.65 |           3,193.58 |
-| sqlite             | SampleDataAvro |        27.376 |           3,133.14 |
+| format             | class                 | read time [s] | heap usage [MB] |
+|--------------------|-----------------------|---------------|-----------------|
+| group.parquet      | SimpleGroup           |        15.686 |        9,965.98 |
+| group.parquet.gzip | SimpleGroup           |        14.289 |        9,965.99 |
+| gen.parquet        | SampleDataAvro        |         6.495 |          582.86 |
+| gen.parquet.gzip   | SampleDataAvro        |         6.663 |          582.86 |
+| avro               | Record                |         9.356 |        4,446.56 |
+| avro.gzip          | Record                |        11.819 |        4,446.54 |
+| gen.avro           | SampleDataAvro        |         8.494 |        3,014.56 |
+| gen.avro.gzip      | SampleDataAvro        |         12.11 |        3,014.53 |
+| proto              | SampleDataPb          |         10.57 |        3,167.13 |
+| proto.gzip         | SampleDataPb          |        18.374 |        3,167.13 |
+| sqlite             | SampleDataAvro        |        28.578 |        3,112.41 |
+| json               | SampleDataJson        |        44.899 |        3,073.29 |
+| json.gzip          | SampleDataJson        |         53.56 |        3,073.30 |
+| kryo               | SampleDataKryo        |        10.887 |        3,014.62 |
+| kryo.gzip          | SampleDataKryo        |         7.819 |        3,014.62 |
+| microStream        | SampleDataMicroStream |        15.338 |          576.06 |
 
 
 ## Summary
@@ -120,5 +145,9 @@ The analysis showed some interesting metrics of the different formats.
 Parquet is a very efficient data format, but comes with a lot of dependencies and thus extra complexity. It is also less common and available tools are sparse.
 Avro and Protobuf are very similar, but Avro has more features in terms of writing multiple rows and overall showed better performance when working with larger data sets.
 SQLite, given it is a full SQL database, compares pretty well against the other optimized binary data formats. If you consider reading only parts of the data, consider using such a database to get more flexibility.
+Kryo is very efficient and especially useful if data is only accessed by a single Java application. The main downside is the absence of a language-independent data schema.
+MicroStream is similar to Kryo, but significantly slower. On the other hand, it can even (de-)serialize immutable classes.
 
-Note that all the metrics depend a lot on the actual data, so if you want to find the best data format for your use case, clone the GitHub project and run the benchmark with your own data format.
+There is no perfect data format. It always depends on your use-case, but the comparison should help to point you to the right direction for your individual use-case.
+
+Note that all the metrics depend a lot on the actual data, so if you want to find the best data format for your use case, clone the GitHub project and run the benchmark with your own data model.
