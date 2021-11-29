@@ -89,7 +89,7 @@ Compressing the SQLite DB even takes several minutes and is thus not shown in th
 
 When reading the data back, Parquet is leading again, as long as data is directly mapped to the Avro-generated classes.
 The example group provided by Parquet is very inefficient, both in reading performance and in heap usage.
-The SQLite DB is slower than the others (except for JSON), as was expected, but it is a full database after all and thus provides other advantages, so it is worse considering it, if the performance overhead is acceptable.
+The SQLite DB is slower than the others (except for JSON), as was expected, but it is a full database after all and thus provides other advantages, so it is worth considering it, if the performance overhead is acceptable.
 Reading and parsing JSON takes 2-3 times more time than the other formats, which is also to be expected.
 
 {{< figure figcaption="Diagram of heap usage" >}}
@@ -105,19 +105,19 @@ The full set of result metrics is shown in the following two tables:
 
 | format       | write time [s] | file size [MB] |
 |--------------|----------------|----------------|
-| parquet      |         15.326 |     276.395299 |
-| parquet.gzip |         20.151 |      275.26266 |
-| avro         |          4.219 |    735.7714748 |
-| avro.gzip    |         20.776 |    646.4380121 |
-| proto        |         32.301 |    955.0142479 |
-| proto.gzip   |          53.36 |    735.7686195 |
-| sqlite       |         32.296 |    825.0039063 |
-| sqlite.gzip  |        523.713 |      665.55159 |
-| json         |         29.169 |    1948.877819 |
-| json.gzip    |         89.793 |    781.1700859 |
-| kryo         |          4.218 |    692.8155756 |
-| kryo.gzip    |         28.313 |    596.4506216 |
-| microStream  |         17.015 |    962.2537918 |
+| parquet      |         15.326 |         276.40 |
+| parquet.gzip |         20.151 |         275.26 |
+| avro         |          4.219 |         735.77 |
+| avro.gzip    |         20.776 |         646.44 |
+| proto        |         32.301 |         955.01 |
+| proto.gzip   |          53.36 |         735.77 |
+| sqlite       |         32.296 |         825.00 |
+| sqlite.gzip  |        523.713 |         665.55 |
+| json         |         29.169 |        1948.88 |
+| json.gzip    |         89.793 |         781.17 |
+| kryo         |          4.218 |         692.82 |
+| kryo.gzip    |         28.313 |         596.45 |
+| microStream  |         17.015 |         962.25 |
 
 | format             | class                 | read time [s] | heap usage [MB] |
 |--------------------|-----------------------|---------------|-----------------|
@@ -149,5 +149,7 @@ Kryo is very efficient and especially useful if data is only accessed by a singl
 MicroStream is similar to Kryo, but significantly slower. On the other hand, it can even (de-)serialize immutable classes.
 
 There is no perfect data format. It always depends on your use-case, but the comparison should help to point you to the right direction for your individual use-case.
+
+In our case, we initially started with Parquet, but then moved to SQLite after the analysis. We wanted to get rid of the large dependency tree that included several dependencies with security issues raised during the OWASP analysis. Additionally, using a database gives us more common and powerful tools for reading and linking the data entities. For these advantages we accepted the larger file size.
 
 Note that all the metrics depend a lot on the actual data, so if you want to find the best data format for your use case, clone the GitHub project and run the benchmark with your own data model.
