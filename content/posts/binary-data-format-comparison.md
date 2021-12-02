@@ -7,7 +7,7 @@ type: "post"
 image: "binary-data-format-comparison/title.jpg"
 tags: ["Memory", "Performance", "Java", "Storage", "Comparison"]
 summary: A comparison of different binary data formats in terms of read/write performance and storage usage.
-draft: true
+draft: false
 ---
 
 We recently had the requirement to store some medium-sized data (like 100 MB to 1 GB) in a file which should then be fully read into the heap by the application on startup.
