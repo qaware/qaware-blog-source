@@ -12,3 +12,4 @@ vscode:
   extensions:
     - budparr.language-hugo-vscode
     - ms-azuretools.vscode-docker
+    - eamodio.gitlens
