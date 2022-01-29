@@ -8,3 +8,6 @@ tasks:
 ports:
   - port: 1313
     onOpen: open-preview
+vscode:
+  extensions:
+    - budparr.language-hugo-vscode
