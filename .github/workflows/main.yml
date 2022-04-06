@@ -39,10 +39,10 @@ jobs:
           cname: blog.qaware.de
 
       # Setup gcloud CLI
-      - id: 'Setup Cloud Auth'
+      - name: 'Setup Cloud Auth'
         uses: 'google-github-actions/auth@v0'
         with:
-          service_account:  ${{ secrets.RUN_SA_KEY }}
+          credentials_json:  ${{ secrets.RUN_SA_KEY }}
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0'
