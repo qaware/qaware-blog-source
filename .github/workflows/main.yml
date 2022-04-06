@@ -39,11 +39,14 @@ jobs:
           cname: blog.qaware.de
 
       # Setup gcloud CLI
-      - name: setup gcloud CLI
-        uses: google-github-actions/setup-gcloud@master
+      - id: 'Setup Cloud Auth'
+        uses: 'google-github-actions/auth@v0'
         with:
-          version: "370.0.0"
-          service_account_key: ${{ secrets.RUN_SA_KEY }}
+          service_account:  ${{ secrets.RUN_SA_KEY }}
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+        with:
           project_id: ${{ secrets.RUN_PROJECT }}
 
       # Configure docker to use the gcloud command-line tool as a credential helper 
