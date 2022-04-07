@@ -13,29 +13,43 @@ draft: true
 [demo]: https://github.com/qaware/cloud-observability-grafana-spring-boot
 [minikube]: https://minikube.sigs.k8s.io/docs/start/
 [spring-boot]: https://spring.io/projects/spring-boot
+[grafana-blog-exemplars]: https://grafana.com/blog/2021/03/31/intro-to-exemplars-which-enable-grafana-tempos-distributed-tracing-at-massive-scale/
 
-Cloud observability is a crucial feature of any serious deployment in Kubernetes. 
-This post presents a demo in [Minikube][minikube] which instruments and observes a [Spring Boot application][spring-boot] using Grafana with Prometheus, Loki and Tempo.
+Cloud observability is a crucial component of any serious deployment in Kubernetes. 
+It tells operations that something is working too slowly with metrics or helps developers debugging tricky issues only occurring on production environments with logs. 
+However, have you ever looked at a 0.9-percentile request latency graph and wondered why it spiked at certain times? 
+Of course, those spikes are only happening on the busy production environment and not reproducible with simpler means. 
+You, as the poor soul tasked with debugging this issue, start combing the logs for interesting errors around that time span. 
+Usually, that is cumbersome as there are so much logs and so little hints where to look at.
 
-If you're impatient, check out [how to run the demo locally][demo] . 
+[Here, exemplars may help][grafana-blog-exemplars]: In short, they are shown together with metrics and tell you about example events contributing to that 0.9 percentile bucket. Those events (or requests) are uniquely identified with a trace id, which makes it quick and easy to correlate with logs or look at the corresponding request trace across the whole cluster.   
+
+This post presents a demo in [Minikube][minikube] which instruments and observes a simple [Spring Boot application][spring-boot] using Grafana with Prometheus, Loki and Tempo. 
+It focuses on how to use the promoted and rather new feature called exemplars, enabling a quick transition from metrics to traces and logs.
+
+If you're impatient, check out [how to run the demo locally][demo]. 
 
 # A short introduction to cloud observability
 
 Being able to observe an application or workload within the cloud is crucial for a reliable operation and also for debugging potential issues. 
 To this end, observability usually consists of metrics, logs and traces, as detailed in the following:
 
-**Metrics** are usually counters and gauges exposed by the application, which may tell about the healthiness or enable looking at "rate/error/duration" (RED) type information. 
+[usered]: https://orangematter.solarwinds.com/2017/10/05/monitoring-and-observability-with-use-and-red/
+
+**Metrics** are usually counters and gauges exposed by the application, which may tell about the healthiness or enable looking at ["utilization/saturation/rate/error/duration" (USERED)][usered] type information. 
 Metrics are limited in cardinality and certainly do not allow per-request investigation. 
 
 **Logs** are written by the application and, depending on the log level, may contain very detailed information about the application. 
 They may contain structured data, such as a trace id, to correlate them with particular requests made against the application. 
 
-**Traces** are gathered during a single request and are typically propagated across many applications communicating within a cluster.
+**Traces** are collected during a single request, uniquely identified with a trace id, and are typically propagated across many applications communicating within a cluster. 
+They show application internals such as database accesses and record the duration of each such operation as separate spans.
 
 [kubernetes]: https://kubernetes.io/
+[grafana]: https://grafana.com/
 
-For all three above, many tools and SaaS offerings exist already. 
-Here, we will propose using the following stack for a [Kubernetes][kubernetes] cluster, which is completely free software:
+There is a large amount of tools and SaaS providers that support the aggregation of the above-mentioned data sources. 
+Here, we will propose using the following [Grafana][grafana]-based stack for a [Kubernetes][kubernetes] cluster, which is completely free software:
 
 * [Prometheus](https://prometheus.io/) to collect metrics
 * [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) to forward logs to [Loki](https://grafana.com/docs/loki/latest/)
@@ -44,8 +58,8 @@ Here, we will propose using the following stack for a [Kubernetes][kubernetes] c
 [opentelemetry-java-agent]: https://github.com/open-telemetry/opentelemetry-java-instrumentation
 
 In order to enable observability for a specific workload, the workload needs to be instrumented. 
-How the instrumentation works depends on the chosen programming language and frameworks the applications are using. 
-Here, we use the [OpenTelemetry Java Agent][opentelemetry-java-agent] to instrument a Spring Boot application.
+How the instrumentation works depends on the chosen programming language and frameworks the application is using. 
+Here, we use the [OpenTelemetry Java Agent][opentelemetry-java-agent] to instrument a Spring Boot application written in Java.
 
 # Visual guide through the Observability Demo
 
@@ -56,7 +70,7 @@ See below for a thorough explanation what design decision are made for the demo 
 [grafana-local]: http://localhost:3000/
 [grafana-demo-dashboard]: http://localhost:3000/d/qiDRdxsnk/spring-boot-demo
 
-Opening the [locally running Grafana][grafana-local] and browse to the [Spring Boot Demo dashboard][grafana-demo-dashboard]. 
+Open the [locally running Grafana][grafana-local] and browse to the [Spring Boot Demo dashboard][grafana-demo-dashboard]. 
 You'll see the following panel:
 
 {{< img src="/images/cloud-observability-grafana-spring-boot/screenshot-request-latency.png.svg" alt="Spring Boot Demo dashboard" >}}
@@ -261,7 +275,10 @@ For Prometheus, the `urlDisplayLabel` wasn't really documented in Grafana and om
 
 Currently, the demo just deploys some carefully configured Helm charts into Minikube. 
 This could be improved by developing an `cloud-observability-stack` helm chart combining Loki, Tempo, Prometheus, Promtail and Grafana. 
-There's also the idea to use a Kubernetes operator to inject Java instrumentation into any deployment (possibly labeled accordingly), as the provided [OpenTelemetry operator][opentelemetry-operator] unfortunately requires Cert Manager and also deploys the [OpenTelemetry collector][opentelemetry-collector], which is not required for the stack presented here.
+
+Furthermore, one could build a Kubernetes operator to inject Java instrumentation into the running workloads during startup based on an opt-in Kubernetes annotation. 
+Such a solution exists in the form of the [OpenTelemetry operator][opentelemetry-operator]. 
+Unfortunately, this operator is less well integrated with Grafana as it is using the OpenTelemetry collector and requires the deployment of the Cert Manager Operator which causes additional operational overhead.
 
 Feel free to raise [issues in the demo project][demo] or [contact the author via mail](mailto:andreas.grub@qaware.de) if you have further ideas or suggestions what to improve.
 
