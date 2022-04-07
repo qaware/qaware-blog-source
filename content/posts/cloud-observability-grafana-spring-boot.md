@@ -15,23 +15,23 @@ draft: true
 [spring-boot]: https://spring.io/projects/spring-boot
 [grafana-blog-exemplars]: https://grafana.com/blog/2021/03/31/intro-to-exemplars-which-enable-grafana-tempos-distributed-tracing-at-massive-scale/
 
-Cloud observability is a crucial component of any serious deployment in Kubernetes. 
-It tells operations that something is working too slowly with metrics or helps developers debugging tricky issues only occurring on production environments with logs. 
+Cloud observability is a crucial component of any serious Kubernetes deployment. 
+It tells operations that something is working too slowly with metrics or helps developers debug tricky issues only occurring on production environments with logs. 
 However, have you ever looked at a 0.9-percentile request latency graph and wondered why it spiked at certain times? 
-Of course, those spikes are only happening on the busy production environment and not reproducible with simpler means. 
+Of course, those spikes are only happening on the busy production environment and are not reproducible with simpler means. 
 You, as the poor soul tasked with debugging this issue, start combing the logs for interesting errors around that time span. 
 Usually, that is cumbersome as there are so much logs and so little hints where to look at.
 
-[Here, exemplars may help][grafana-blog-exemplars]: In short, they are shown together with metrics and tell you about example events contributing to that 0.9 percentile bucket. Those events (or requests) are uniquely identified with a trace id, which makes it quick and easy to correlate with logs or look at the corresponding request trace across the whole cluster.   
+[Here, exemplars may help][grafana-blog-exemplars]: In short, they are shown together with metrics and tell you about example events contributing to that 0.9 percentile bucket. Those events (or requests) are uniquely identified with a trace id, which makes it quick and easy to correlate them with logs or look at the corresponding request trace across the whole cluster.   
 
 This post presents a demo in [Minikube][minikube] which instruments and observes a simple [Spring Boot application][spring-boot] using Grafana with Prometheus, Loki and Tempo. 
-It focuses on how to use the promoted and rather new feature called exemplars, enabling a quick transition from metrics to traces and logs.
+It focuses on how to use the new and heavily promoted **exemplars** feature, which enables a quick transition from metrics to traces and logs.
 
 If you're impatient, check out [how to run the demo locally][demo]. 
 
 # A short introduction to cloud observability
 
-Being able to observe an application or workload within the cloud is crucial for a reliable operation and also for debugging potential issues. 
+Being able to observe an application or workload within the cloud is crucial for a reliable operation and for debugging potential issues. 
 To this end, observability usually consists of metrics, logs and traces, as detailed in the following:
 
 [usered]: https://orangematter.solarwinds.com/2017/10/05/monitoring-and-observability-with-use-and-red/
@@ -48,7 +48,7 @@ They show application internals such as database accesses and record the duratio
 [kubernetes]: https://kubernetes.io/
 [grafana]: https://grafana.com/
 
-There is a large amount of tools and SaaS providers that support the aggregation of the above-mentioned data sources. 
+There is a large amount of tools and SaaS providers that support the aggregation of the above-mentioned diagnosability data. 
 Here, we will propose using the following [Grafana][grafana]-based stack for a [Kubernetes][kubernetes] cluster, which is completely free software:
 
 * [Prometheus](https://prometheus.io/) to collect metrics
@@ -63,7 +63,7 @@ Here, we use the [OpenTelemetry Java Agent][opentelemetry-java-agent] to instrum
 
 # Visual guide through the Observability Demo
 
-This highlights the [accompanying demo][demo] for this blog post. 
+This section highlights the [accompanying demo][demo] for this blog post. 
 It's now a good time to spin up the demo locally and then follow this guide interactively on your local machine. 
 See below for a thorough explanation what design decision are made for the demo and what technical details are taken care of.
 
@@ -76,7 +76,7 @@ You'll see the following panel:
 {{< img src="/images/cloud-observability-grafana-spring-boot/screenshot-request-latency.png.svg" alt="Spring Boot Demo dashboard" >}}
 
 It uses the default Spring Boot `http_server_requests` metric to display the average, 0.7-percentile and 0.9-percentile latency of all HTTP requests made against the application. 
-For demo purposes, a cron job runs inside the cluster every 5 minutes executing a requests against the `/trigger-me` endpoint of the Spring Boot application. 
+For demo purposes, a cron job runs inside the cluster every 5 minutes executing a request against the `/trigger-me` endpoint of the Spring Boot application. 
 So it might take a while to actually see metrics if you've just spun up the demo.
 
 Hovering one of the "exemplar dots" shows:
@@ -160,7 +160,7 @@ The `KUBE_POD_NAME` is important to show logs from a given trace of that pod.
 [spring-boot-pr]:https://github.com/spring-projects/spring-boot/pull/30472
 [micrometer-releases]: https://github.com/micrometer-metrics/micrometer/releases
 
-Finally, getting the rather new Exemplar support working with Spring Boot Actuator currently requires to manually import the `1.9.0-SNAPSHOT` version of Micrometer and also wiring up the `PrometheusMetricsRegistry` with a `DefaultExemplarSampler`. This little hack will become obsolete once [Micrometer 1.9.0 is released][micrometer-releases] and [this PR against Spring Boot][spring-boot-pr] is merged.
+Finally, getting the rather new exemplar support working with Spring Boot Actuator currently requires to manually import the `1.9.0-SNAPSHOT` version of Micrometer and also wiring up the `PrometheusMetricsRegistry` with a `DefaultExemplarSampler`. This little hack will become obsolete once [Micrometer 1.9.0 is released][micrometer-releases] and [this PR against Spring Boot][spring-boot-pr] is merged.
 
 Note that exemplars for timer metrics, such as `http_server_requests`, are only reported for histogram bucket counters, from which the quantiles are calculated. 
 That means you need to explicitly enable distribution statistics within your `application.yaml` as follows:
@@ -179,7 +179,7 @@ management:
 
 ## Enabling exemplar support in Prometheus
 
-The Prometheus deployment needs to have the feature for exemplar support explicitly enabled. This is done in the `kube-prometheus-stack` Helm chart using the following `values.yaml` config part:
+The Prometheus deployment needs to explicitly enable the feature for exemplar support. This is done in the `kube-prometheus-stack` Helm chart using the following `values.yaml` config part:
 ```yaml
 kube-prometheus-stack:
   prometheus:
@@ -222,7 +222,7 @@ See [documentation](https://grafana.com/docs/grafana/latest/datasources/tempo/#p
 ```
 
 
-You might consider using adding one or both of the following lines here: 
+You might consider adding one or both of the following lines here: 
 ```yaml
 filterByTraceID: true
 filterBySpanID: true
