@@ -39,7 +39,7 @@ To this end, observability usually consists of metrics, logs and traces, as deta
 **Metrics** are usually counters and gauges exposed by the application, which may tell about the healthiness or enable looking at ["utilization/saturation/rate/error/duration" (USERED)][usered] type information. 
 Metrics are limited in cardinality and certainly do not allow per-request investigation. 
 
-**Logs** are written by the application and, depending on the log level, may contain very detailed information about the application. 
+**Logs** are written by the application and, depending on the log level, may contain very detailed human-readable information about the application. 
 They may contain structured data, such as a trace id, to correlate them with particular requests made against the application. 
 
 **Traces** are collected during a single request, uniquely identified with a trace id, and are typically propagated across many applications communicating within a cluster. 
@@ -83,6 +83,7 @@ Hovering one of the "exemplar dots" shows:
 
 {{< img src="/images/cloud-observability-grafana-spring-boot/screenshot-request-latency-exemplar2.png.svg" alt="Spring Boot Demo dashboard Exemplar Mouse Over" >}}
 
+Note how exemplars represent the bridge from aggregated metrics to request-based traces and subsequent detailed logs.
 Then, clicking the "View in Tempo" button takes you to the trace of the recorded exemplar:
 
 {{< img src="/images/cloud-observability-grafana-spring-boot/screenshot-tempo.png.svg" alt="Trace viewed in Tempo" >}}
@@ -135,7 +136,9 @@ ENTRYPOINT ["java", \
   ]
 ```
 
-The OpenTelemetry agent then injects the `trace_id` into Logback's MDC, which can then be added to all log statements as part of the `application.yaml`:
+[opentel-java-agent-mdc-doc]: https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/logger-mdc-instrumentation.md
+
+The OpenTelemetry agent then injects the `trace_id` into [Logback's Mapped Diagnostic Context (MDC)][opentel-java-agent-mdc-doc], which can then be added to all log statements as part of the `application.yaml`:
 ```yaml
 logging.pattern.level: '%prefix(%mdc{trace_id:-0}) %5p'
 ```
