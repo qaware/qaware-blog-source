@@ -7,7 +7,7 @@ type: "post"
 image: "cloud-observability-grafana-spring-boot/title.svg"
 tags: ["Cloud", "Observability", "Grafana", "Tempo", "Loki", "Prometheus", "Spring Boot", "Spring", "Kubernetes", "Exemplars", "Tracing", "Telemetry", "Instrumentation"]
 summary: Cloud Observability of Spring Boot applications in Kubernetes with Grafana, Tempo, Loki, Prometheus showing Traces 2 Logs, Logs 2 Traces and Metrics 2 Traces (Exemplars)
-draft: true
+draft: false
 ---
 
 [demo]: https://github.com/qaware/cloud-observability-grafana-spring-boot
