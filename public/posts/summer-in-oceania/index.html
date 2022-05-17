@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>Software-ECG COVID-19 Edition: Summer in Oceania - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='Looking at COVID-19 case numbers in Oceania using the Software-ECG.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'Software-ECG COVID-19 Edition: Summer in Oceania' />
+<meta property = 'og:description' content = 'Looking at COVID-19 case numbers in Oceania using the Software-ECG.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/summer-in-oceania/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/software-ecg-deaths-oceania.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/summer-in-oceania/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>18. December 2020</p>
+      <h1 class = 'post_title'>Software-ECG COVID-19 Edition: Summer in Oceania</h1>
+      <p class = 'pale'>by <a href="https://www.qaware.de/unternehmen/johannes-weigend/">Johannes Weigend</a> &amp; <a href="https://github.com/herzogk">Karl Herzog</a> |  813 words | ~4 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/software-ekg/'>software ekg</a>
+          <a class="post_tag" href='/tags/software-ecg/'>software ecg</a>
+          <a class="post_tag" href='/tags/covid-19/'>covid-19</a>
+          <a class="post_tag" href='/tags/javafx/'>javafx</a>
+          <a class="post_tag" href='/tags/data-science/'>data science</a>
+          <a class="post_tag" href='/tags/data-analytics/'>data analytics</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/software-ecg-deaths-oceania.png' alt = 'software-ecg-deaths-oceania.png' class = 'post_thumbnail mt-1'>
+        
+          <p><em>CW 51: Analyzing COVID-19 data with Software-ECG COVID-19 Edition</em></p>
+<p>In this series of blogs we are looking at the current figures of the COVID-19 pandemic with <em>Software-ECG</em>. It is a free time series analysis tool originally developed for time series analysis for system analysis of computer problems in distributed systems. With its COVID-19 edition, QAware has adapted the tool so that the current data from the data hub of the University of Oxford (<em>Our World in Data</em> - <a href="https://ourworldindata.org/">OWID</a>) are automatically loaded and immediately available for analysis. More information about Software-ECG and download links can be found here: <a href="/posts/software-ekg-covid-19-edition/">Presenting Software EKG - COVID-19 Edition</a></p>
+<p><em>Note: The German translation for ECG is EKG (Elektrokardiogramm). We are Germans, therefore we use the names “Software ECG” and “Software EKG” as synonyms.</em></p>
+<p>Software-ECG ist build on Open-JDK and JavaFX. It leverages the power of a compiled language with a native Rich Client Framework.</p>
+<h2 id="cw-51-summer-in-oceania">CW 51: Summer in Oceania</h2>
+<p>Recently, we looked at the current development in Europe, China and South America. In Europe, we saw that the second wave is breaking and has already peaked in most countries. However, the numbers in Germany and Russia have not dropped yet. Here, both the number of people tested positive and the number of people who died (with a positive COVID-19 test result) have continued to rise. The number of deaths are significantly higher in Germany (green line) and Russia (purple line) than in spring 2020.</p>
+<figure>
+  
+  <img src='/images/software-ecg-number-deaths-europe-17-12.png' alt='Current deaths in Europe'>
+<figcaption>
+      <p>Number of deceased in all European countries as of 12/17/2020
+        </p>
+    </figcaption>
+</figure>
+<p>Unfortunately, this does not look good and therefore we prefer to go back to the southern hemisphere today where it is summer at the moment. In our last blog, we looked at South America and saw that, unfortunately, the recovery phase in Brazil during summer was not as significant as the one we observed in Europe in the summer of 2020.</p>
+<p>The data from the <a href="https://ourworldindata.org/">Our World In Data (OWID)</a> COVID-19 dataset includes the pseudo-continent of Oceania as a collective term for all countries in Australia, New Zealand and Polynesia. In <em>Software-ECG COVID-19 Edition</em>, all metrics from this region can be displayed individually or in an aggregated way. To achieve this, you need to select the continent <em>Oceania</em> in the tree view on the left side of the application. As a sub-node, you can either select an individual country or the metrics of all countries with <em>*</em>. By clicking on a metric in the category <em>DEATHS</em>, for example, you will get this metric for all countries in Oceania.</p>
+<figure>
+  
+  <img src='/images/software-ecg-wildcard-selection.png' alt='Wildcard selection'>
+<figcaption>
+      <p>Software-ECG wildcard selection
+        </p>
+    </figcaption>
+</figure>
+<p>The non-smoothed curves showing the numbers of new deaths associated with COVID-19 are remarkably low.</p>
+<figure>
+  
+  <img src='/images/software-ecg-deaths-oceania.png' alt='Deaths Oceania'>
+<figcaption>
+      <p>Aggregated view as stacked graph of daily COVID-19 death counts in Oceania
+        </p>
+    </figcaption>
+</figure>
+<p>The curve shows the daily death counts associated with COVID-19 as a stacked graph. The highest value is still very low at 59. Since the curve is almost entirely made up of a yellow area, you can see that essentially only Australia was really affected. In early October the numbers dropped to almost 0 with the exception of a few isolated cases. This is exactly interlaced with the situation in Europe where the second wave was spreading at high speed at the beginning of October.</p>
+<p>This curve looks very good and it shows what you would actually expect during the summer months. In our last blog, however, we saw that unfortunately, South America is an exception here.
+Looking at the testing situation, it is noticeable that Australia and New Zealand dominate the graph with regard to the daily number of tests performed. Also, the number of tests is relatively constant. This is good because it allows us to estimate the true prevalence of the virus from the graph of the current number of cases, since the number of tests correlates with the number of cases.</p>
+<figure>
+  
+  <img src='/images/software-ecg-tests-oceania.png' alt='Tests Oceania'>
+<figcaption>
+      <p>Number of COVID-19 PCR tests performed in Australia (red) and New Zealand (blue)
+        </p>
+    </figcaption>
+</figure>
+<p>The cumulative view of the case numbers also shows very well that COVID-19 in Oceania has currently subsided to a background activity. We have too little information about the political decisions and actions that may have influenced or favored this development. In sum, however, you can see that fear of COVID-19 in these countries does not seem to be appropriate.</p>
+<figure>
+  
+  <img src='/images/software-ecg-oceania-aggregated-2.png' alt='Sum view Oceania'>
+<figcaption>
+      <p>Summer in Oceania: Aggregated sum view of case numbers in Oceania
+        </p>
+    </figcaption>
+</figure>
+<p>As Europeans you might become envious but let us not forget we also had a nice summer and were able to let some normality return into our lives. With this in mind, the people in Oceania should also be granted some normality. However, those having relatives in Oceania should really consider moving their home offices into this region (at least until April).</p>
+<hr>
+<h2 id="related-posts">Related posts</h2>
+<ul>
+<li><a href="/posts/software-ekg-covid-19-edition/">Presenting Software EKG - COVID-19 Edition</a></li>
+<li><a href="/posts/software-ecg-second-wave/">Software-ECG COVID-19 Edition: The Second Wave Is Breaking in Europe</a></li>
+<li><a href="/posts/software-ecg-second-wave-in-asia/">Software-ECG COVID-19 Edition: Where Is The Second Wave In Russia And China?</a></li>
+<li><a href="/posts/software-ecg-different-waves/">Software-ECG COVID-19 Edition: Different Waves</a></li>
+</ul>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about Software-ECG%20COVID-19%20Edition%3a%20Summer%20in%20Oceania&url=https%3a%2f%2fblog.qaware.de%2fposts%2fsummer-in-oceania%2f&hashtags=SoftwareEKG%2cSoftwareECG%2cCOVID-19%2cJavaFX%2cDataScience%2cDataAnalytics">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fsummer-in-oceania%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=Software-ECG%20COVID-19%20Edition%3a%20Summer%20in%20Oceania&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fsummer-in-oceania%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

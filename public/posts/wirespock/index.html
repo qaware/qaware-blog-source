@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>WireSpock - Testing REST service client components with Spock and WireMock - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='I want to showcase a neat technology integration between Spock and the WireMock framework for testing your REST service client components.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'WireSpock - Testing REST service client components with Spock and WireMock' />
+<meta property = 'og:description' content = 'I want to showcase a neat technology integration between Spock and the WireMock framework for testing your REST service client components.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/wirespock/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/images/qaware_logo.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/wirespock/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>30. December 2015</p>
+      <h1 class = 'post_title'>WireSpock - Testing REST service client components with Spock and WireMock</h1>
+      <p class = 'pale'>by Mario-Leander Reimer |  867 words | ~5 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/bdd/'>bdd</a>
+          <a class="post_tag" href='/tags/java/'>java</a>
+          <a class="post_tag" href='/tags/microservices/'>microservices</a>
+          <a class="post_tag" href='/tags/rest/'>rest</a>
+          <a class="post_tag" href='/tags/spock/'>spock</a>
+          <a class="post_tag" href='/tags/testing/'>testing</a>
+          <a class="post_tag" href='/tags/wiremock/'>wiremock</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <p>In a <a href="../2015-08-31-spock-testing/">previous post</a> I have written about using the Spock framework for the exploratory testing of open source software. In this post I want to showcase a neat technology integration between Spock and the WireMock framework for testing your REST service client components. This is especially useful when testing micro service based architectures, since you want to test the individual service integrations without firing up all the collaborators.</p>
+<h1 id="introducing-wiremock">Introducing WireMock</h1>
+<p>As stated on it&rsquo;s <a href="http://wiremock.org/index.html">webpage</a>, WireMock is &ldquo;a web service test double for all occasions&rdquo;. It supports stubbing and mocking of HTTP calls, as well as request verification, record and playback of stubs, fault injection and much more. It actually fires up a small embedded HTTP server, so your code and test interacts with it on the protocol level.</p>
+<p>The most convenient way to use WireMock in your test cases is via a JUnit 4.x rule that handles the lifecycle of starting and stopping the mock server before and after each test. There also is a class rule available in case it is sufficient to use the same WireMock instance for the lifetime of the whole test case. The official documentation for the rule can be found <a href="http://wiremock.org/junit-rule.html">here</a>.</p>
+<p>The good thing is that you can use the WireMock rule in your Spock specification just like in an ordinary JUnit based test. No magic here. Let&rsquo;s have a look at the following example.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">BookServiceClientSpec</span> <span class="kd">extends</span> <span class="n">Specification</span> <span class="o">{</span>
+
+    <span class="nd">@Rule</span>
+    <span class="n">WireMockRule</span> <span class="n">wireMockRule</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WireMockRule</span><span class="o">(</span><span class="n">18080</span><span class="o">)</span>
+
+    <span class="nd">@Shared</span>
+    <span class="n">def</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BookServiceClient</span><span class="o">(</span><span class="s">&#34;http://localhost:18080&#34;</span><span class="o">)</span>
+
+    <span class="n">def</span> <span class="s">&#34;Find all books using a WireMock stub server&#34;</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">given</span><span class="o">:</span> <span class="s">&#34;a stubbed GET request for all books&#34;</span>
+        <span class="c1">// TODO
+</span><span class="c1"></span><span class="nl">
+</span><span class="nl">        when:</span> <span class="s">&#34;we invoke the REST client to find all books&#34;</span>
+        <span class="n">def</span> <span class="n">books</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">findAll</span><span class="o">()</span>
+<span class="nl">
+</span><span class="nl">        then:</span> <span class="s">&#34;we expect two books to be found&#34;</span>
+        <span class="n">books</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">2</span>
+<span class="nl">
+</span><span class="nl">        and:</span> <span class="s">&#34;the mock to be invoked exactly once&#34;</span>
+        <span class="c1">// TODO
+</span><span class="c1"></span>    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>First, the JUnit WireMock rule is created and initialized to listen on port 18080. Next the REST client component under test is created and configured to access the local wire mock server. The test method itself does not do much yet. For it to work we need to stub the response for the <code>findAll()</code> query and we want to check that the mock has been invoked once. Before we continue, let&rsquo;s have a look at the test dependencies required to compile and run the example.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">testCompile</span> <span class="s1">&#39;junit:junit:4.12&#39;</span>
+    <span class="n">testCompile</span> <span class="s1">&#39;org.spockframework:spock-core:1.0-groovy-2.4&#39;</span>
+
+    <span class="n">testCompile</span> <span class="s1">&#39;com.github.tomakehurst:wiremock:1.57&#39;</span>
+    <span class="n">testCompile</span> <span class="s1">&#39;com.github.tomjankes:wiremock-groovy:0.2.0&#39;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="making-wiremock-groovy">Making WireMock Groovy</h1>
+<p>The last dependency is a small Groovy binding library for WireMock that plays together nicely with Spock. It allows for a more concise stubbing and verification syntax instead of using WireMock&rsquo;s default static imports API. Have a look at the following example to get the idea.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="kt">def</span> <span class="n">wireMock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WireMockGroovy</span><span class="o">(</span><span class="mi">18080</span><span class="o">)</span>
+
+<span class="kt">def</span> <span class="s2">&#34;Find all books using a WireMock stub server&#34;</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nl">given:</span> <span class="s2">&#34;a stubbed GET request for all books&#34;</span>
+    <span class="n">wireMock</span><span class="o">.</span><span class="na">stub</span> <span class="o">{</span>
+        <span class="n">request</span> <span class="o">{</span>
+            <span class="n">method</span> <span class="s2">&#34;GET&#34;</span>
+            <span class="n">url</span> <span class="s2">&#34;/book&#34;</span>
+        <span class="o">}</span>
+        <span class="n">response</span> <span class="o">{</span>
+            <span class="n">status</span> <span class="mi">200</span>
+            <span class="n">body</span> <span class="s2">&#34;&#34;&#34;[
+</span><span class="s2">                      {&#34;title&#34;: &#34;Book 1&#34;, &#34;isbn&#34;: &#34;4711&#34;},
+</span><span class="s2">                      {&#34;title&#34;: &#34;Book 2&#34;, &#34;isbn&#34;: &#34;4712&#34;}
+</span><span class="s2">                    ]
+</span><span class="s2">                 &#34;&#34;&#34;</span>
+            <span class="n">headers</span> <span class="o">{</span> <span class="s2">&#34;Content-Type&#34;</span> <span class="s2">&#34;application/json&#34;</span> <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nl">when:</span> <span class="s2">&#34;we invoke the REST client to find all books&#34;</span>
+    <span class="kt">def</span> <span class="n">books</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">findAll</span><span class="o">()</span>
+
+    <span class="nl">then:</span> <span class="s2">&#34;we expect two books to be found&#34;</span>
+    <span class="n">books</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span>
+
+    <span class="nl">and:</span> <span class="s2">&#34;the mock to be invoked exactly once&#34;</span>
+    <span class="mi">1</span> <span class="o">==</span> <span class="n">wireMock</span><span class="o">.</span><span class="na">count</span> <span class="o">{</span>
+        <span class="n">method</span> <span class="s2">&#34;GET&#34;</span>
+        <span class="n">url</span> <span class="s2">&#34;/book&#34;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>First, we create the WireMock Groovy binding to create stubbed requests and responses. The stub closure takes the definitions of the REST request and response using the WireMock JSON API. As you can see we can even specify the response body as inline JSON multiline <em>GString</em>. Finally, we check that the invocation count for the expected request is correct.</p>
+<p>Clearly, specifying the responses inline is not very maintenance friendly especially for large response structures. So a better alternative is to externalize the response body in a separate file. The file needs to be located in a directory named <code>__files</code> within <code>src/test/resources</code>.
+The <code>bodyFileName</code> value is relative to the <code>__files</code> directory and contain any content. You could even return binary files like JPEGs using this mechanism.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">response</span> <span class="o">{</span>
+    <span class="n">status</span> <span class="mi">200</span>
+    <span class="n">bodyFileName</span> <span class="s2">&#34;books.json&#34;</span>
+    <span class="n">headers</span> <span class="o">{</span> <span class="s2">&#34;Content-Type&#34;</span> <span class="s2">&#34;application/json&#34;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>A further way of specifying the response body is by using plain Java or Groovy objects that get serialized to JSON automatically.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">response</span> <span class="o">{</span>
+    <span class="n">status</span> <span class="mi">200</span>
+    <span class="n">jsonBody</span> <span class="k">new</span> <span class="nf">Book</span><span class="o">(</span><span class="nl">title:</span> <span class="s2">&#34;WireSpock Showcase&#34;</span><span class="o">,</span> <span class="nl">isbn:</span> <span class="s2">&#34;4713&#34;</span><span class="o">)</span>
+    <span class="n">headers</span> <span class="o">{</span> <span class="s2">&#34;Content-Type&#34;</span> <span class="s2">&#34;application/json&#34;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The stubbing capabilities of WireMock are quite powerful. You can perform different matchings on the URL, request headers, query parameters or the request body to determine the correct response. Have a look at the <a href="http://wiremock.org/stubbing.html">WireMock</a> stubbing documentation for a complete description of all features.</p>
+<p>So there is only one thing left to say: <em>Test long and prosper with Spock!</em></p>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://spockframework.github.io/spock/docs/">Spock Reference Documentation</a></li>
+<li><a href="http://wiremock.org/index.html">WireMock Homepage</a></li>
+<li><a href="https://github.com/tomjankes/wiremock-groovy">Spock Reference Documentation</a></li>
+</ul>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about WireSpock%20-%20Testing%20REST%20service%20client%20components%20with%20Spock%20and%20WireMock&url=https%3a%2f%2fblog.qaware.de%2fposts%2fwirespock%2f&hashtags=BDD%2cJava%2cMicroservices%2cREST%2cSpock%2cTesting%2cWireMock">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fwirespock%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=WireSpock%20-%20Testing%20REST%20service%20client%20components%20with%20Spock%20and%20WireMock&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fwirespock%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

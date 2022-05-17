@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JUnit on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/junit/</link>
+    <description>Recent content in JUnit on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Thu, 16 Apr 2015 10:39:32 +0200</lastBuildDate><atom:link href="https://blog.qaware.de/tags/junit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GUI Tests for JavaFX</title>
+      <link>https://blog.qaware.de/posts/java-fx-testing/</link>
+      <pubDate>Thu, 16 Apr 2015 10:39:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/java-fx-testing/</guid>
+      <description>This article summarizes my experiences when setting up UI tests for a new JavaFX application at QAware.</description>
+    </item>
+    
+  </channel>
+</rss>

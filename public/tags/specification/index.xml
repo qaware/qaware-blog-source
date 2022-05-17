@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Specification on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/specification/</link>
+    <description>Recent content in Specification on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Fri, 28 Feb 2020 10:39:32 +0200</lastBuildDate><atom:link href="https://blog.qaware.de/tags/specification/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OOP 2020</title>
+      <link>https://blog.qaware.de/posts/oop/</link>
+      <pubDate>Fri, 28 Feb 2020 10:39:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/oop/</guid>
+      <description>A field report from the 2020 OOP conference in Munich.</description>
+    </item>
+    
+    <item>
+      <title>Exploratory Open Source Software Testing with Spock</title>
+      <link>https://blog.qaware.de/posts/spock-testing/</link>
+      <pubDate>Mon, 31 Aug 2015 10:39:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/spock-testing/</guid>
+      <description>I will talk about exploratory software testing of open source software components, libraries or whole frameworks.</description>
+    </item>
+    
+  </channel>
+</rss>

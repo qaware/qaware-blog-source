@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>&#34;I know it when I see it&#34;: Perceptions of Code Quality (Part 2) - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='The first set of results from a research project into the perceptions of code quality.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = '&#34;I know it when I see it&#34;: Perceptions of Code Quality (Part 2)' />
+<meta property = 'og:description' content = 'The first set of results from a research project into the perceptions of code quality.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/i-know-it-when-i-see-it-2/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/Code_is_fragile.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/i-know-it-when-i-see-it-2/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>20. December 2017</p>
+      <h1 class = 'post_title'>&#34;I know it when I see it&#34;: Perceptions of Code Quality (Part 2)</h1>
+      <p class = 'pale'>by Harald Störrle |  1015 words | ~5 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/code-quality/'>code quality</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/Code_is_fragile.png' alt = 'Code_is_fragile.png' class = 'post_thumbnail mt-1'>
+        
+          <p><em><strong>Background</strong></em> <em>In Part 1 of this article, I have described the motivation and scope of a research project into the perceptions of code quality by different stakeholders. The project has been conducted by a consortium which two scientists from Sweden and I led. The first set of results from that project has been accepted for publication in the ITiCSE’17 proceedings recently<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, and that is what I report on in this article. Comics in this blog post courtesy of <a href="http://geek-and-poke.com/">Geek &amp; Poke</a>.</em></p>
+<p>Code quality is a key issue in software development. One would expect, therefore, that such a basic concept is well understood. In fact, we had expected that introductory courses in computing of higher education programs would communicate this topic clearly and would be the primary source of information for professionals.</p>
+<p>It turns out, however, that this is not the case. Actually, different groups of people have very different perceptions of code quality, how they learn about the topic, and what can (and should) be done to improve code quality.</p>
+<h2 id="study-method">Study Method</h2>
+<p>In the study<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, we administered questionnaires and conducted structured interviews with 34 students, educators, and professional developers regarding their percept­ions of code quality. Participants brought along code from their own experience to discuss and exemplify code quality. From this rich set of data, we so far only analyzed the quantitative part, that is, the study so far is effectively a survey.</p>
+<h2 id="results-1--quality-aspects">Results 1 : Quality Aspects</h2>
+<p>Quality was mostly described in terms of indicators that could measure an aspect of code quality. Among these indicators, readability<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> was named most frequently by all groups. The next two most frequent mentions were structure and comprehensibility. All other aspects (documentation, dynamic behavior, testability, correctness, and maintainability) were mentioned roughly equally often. There were few differences between different sub populations regarding readability as the single most important aspect, but marked differences about all other aspects. As far as developers are concerned, comprehensibility and correctness follow after readability, while educators name structure, documentation, and dynamic behavior as the most important aspects after readability. For students, structure is almost as important as readability, while correctness is not mentioned at all by students. Similar findings were made when investigating the importance of identifiers in programs<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
+<p><img src="/images/Properties_by_Group.png" alt=""></p>
+<p>Summing up: developers, educators and students seem to have quite different perceptions of what makes good code quality.</p>
+<h2 id="results-2-information-sources">Results 2: Information Sources</h2>
+<p>We also looked at the sources people consult to learn about code quality. When asked about the most important sources of information about code quality, both students and developers point to colleagues, while educators refer to textbooks – which is hardly surprising. However, while the internet was mentioned most often as a source by all groups, no group referred to the internet as their dominant first choice. Specifically, developers mentioned the internet only as a secondary point of reference.</p>
+<p><img src="/images/InformationSources.png" alt=""></p>
+<p>So, while everybody talks about StackOverflow and such, colleagues are really the most used inforamtion &ldquo;resource&rdquo; for developers and students. Academics mostly refer to textbooks.</p>
+<h2 id="results-3-tool-support">Results 3: Tool support</h2>
+<p>Looking at tool support, we see that educators and students rely heavily on Integrated Development Environments (IDEs), while developers mention continuous integration more frequently. Interestingly though, developers mention static analysis tools as their most frequent primary choice of tools, while both educators and students mention it only as a secondary tool of choice. We conclude from this that education should pay greater emphasis to static analysis tools and continuous integration as tools for code quality assessment.</p>
+<p><img src="/images/Tools.png" alt=""></p>
+<p>We conclude that static analysis is a topic underappreciated in academic teaching (or learning).</p>
+<h2 id="summary--outlook">Summary &amp; Outlook</h2>
+<p>Educators, students, and professional developers have different opinions on what code quality is, and how they form their opinions. Practitioners, it appears, follow an apprenticing model. The internet is an important source of information, but not the first source consulted. Tools are widely used, particularly static analysis tools such as SonarQube<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> or the checks built into IDEs.</p>
+<p>It is important to note that the data presented here should not be overstretched. It is (so far) only a humble survey after all, and many questions can be asked from a scientific validity point of view (see the source section<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> for a more indepth discussion). Particularly, one can complain about the lack of sample representativity, but, frankly, that is virtually impossible anyway<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>.</p>
+<p>As pointed out above, we have yet to analyze the data from the qualitative part of our study. We expect further clues as to which role code quality plays. For an educational setting, we want to explore further what students expect, and which teaching methods are the most promising. This may, in turn, benefit industrial software engineering by better educated junior developers.</p>
+<p>From a more personal perspective, the one thing I took away is the degree to which developers and students depend on their colleagues for information. This underscores once more how important communication and learning are in software development. So much for the cliché of the asocial coder in the dark&hellip;</p>
+<h3 id="one-for-the-road">One for the road</h3>
+<p><img src="/images/CommentsImportant.png" alt=""></p>
+<hr>
+<h2 id="related-posts">Related posts</h2>
+<ul>
+<li><a href="/posts/i-know-it-when-i-see-it/">&quot;I know it when I see it&quot; - Perceptions of Code Quality</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>J. Börstler, H. Störrle, D. Toll, J. v. Assema, R. Duran, S. Hooshangi, J. Jeuring, H. Keuning, C. Kleiner, B. MacKellar: &ldquo;I know it when I see it&rdquo; - Perceptions of Code Quality. In: Proc. ACM Conf. Innovation and Technology in Computer Science Education (ITiCSE), 389, <a href="http://dx.doi.org/10.1145/3059009.3081328">http://dx.doi.org/10.1145/3059009.3081328</a>, ACM 2017&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Jürgen Börstler, Michael E. Caspersen, Marie Nordström. &ldquo;Beauty and the Beast: on the readability of object-oriented example programs.&rdquo; Software Quality Journal 24.2 (2016): 231-246.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Daryl Posnett, Abram Hindle, Premkumar Devanbu. &ldquo;A simpler model of software readability.&rdquo; Proc. 8th Working Conf. Mining Software Repositories. ACM, 2011.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>Dave Binkley, Marcia Davis, Dawn Lawrie, Jonathan I. Maletic, Christopher Morrell, and Bonita Sharif. The impact of identifier style on effort and comprehension. Empirical Software Engineering, 18(2):219–276, 2013&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>SonarQube – the leading product for continuous code quality. <a href="https://www.sonarqube.org/">https://www.sonarqube.org/</a>, last accessed 2017-12-0&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>Robert Kraut, Judith Olson, Mahzarin R. Banaji, Amy Bruckman, Jeffrey Cohen, and Mick Couper. Psychological research online: Report of Board of Scientific Affairs’ Advisory Group on the conduct of research on the Internet. American Psychologist, 59:105–117, 2004.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about %22I%20know%20it%20when%20I%20see%20it%22%3a%20Perceptions%20of%20Code%20Quality%20%28Part%202%29&url=https%3a%2f%2fblog.qaware.de%2fposts%2fi-know-it-when-i-see-it-2%2f&hashtags=CodeQuality">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fi-know-it-when-i-see-it-2%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=%22I%20know%20it%20when%20I%20see%20it%22%3a%20Perceptions%20of%20Code%20Quality%20%28Part%202%29&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fi-know-it-when-i-see-it-2%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

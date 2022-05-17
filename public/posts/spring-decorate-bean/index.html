@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>Ways to decorate Spring beans - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='In this blog post, we&rsquo;ll look at various ways to decorate a Spring bean.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'Ways to decorate Spring beans' />
+<meta property = 'og:description' content = 'In this blog post, we&rsquo;ll look at various ways to decorate a Spring bean.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/spring-decorate-bean/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/decorator-pattern.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/spring-decorate-bean/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>12. January 2021</p>
+      <h1 class = 'post_title'>Ways to decorate Spring beans</h1>
+      <p class = 'pale'>by <a href="https://github.com/phxql">Moritz Kammerer</a> |  1242 words | ~6 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/java/'>java</a>
+          <a class="post_tag" href='/tags/spring/'>spring</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/decorator-pattern.png' alt = 'decorator-pattern.png' class = 'post_thumbnail mt-1'>
+        
+          <p>In this blog post, we&rsquo;ll look at various ways to decorate a Spring bean. The <a href="https://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a> is a software engineering
+pattern &ldquo;that allows behavior to be added to an individual object, dynamically, without affecting the behavior of other objects from the same class.&rdquo; <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>First, let&rsquo;s create our interface:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OurService</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="nf">doSomething</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>and one simple implementation:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OurServiceImpl</span> <span class="kd">implements</span> <span class="n">OurService</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;something&#34;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now, let&rsquo;s create our decorator object which will decorate other <code>OurService</code> instances:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoggingOurService</span> <span class="kd">implements</span> <span class="n">OurService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LoggingOurService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">OurService</span> <span class="n">delegate</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">LoggingOurService</span><span class="o">(</span><span class="n">OurService</span> <span class="n">delegate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">delegate</span> <span class="o">=</span> <span class="n">delegate</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;doSomething() called&#34;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">delegate</span><span class="o">.</span><span class="na">doSomething</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you see, this class takes another instance of <code>OurService</code> via constructor injection and stores it in the <code>delegate</code> field.</p>
+<p>When the <code>doSomething()</code> method is called (that&rsquo;s the method defined in the interface), first a log message is printed and then
+the delegate is called.</p>
+<p>Using this in a non-Spring application is really easy:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">NonSpringMain</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">NonSpringMain</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">OurService</span> <span class="n">ourService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LoggingOurService</span><span class="o">(</span><span class="k">new</span> <span class="n">OurServiceImpl</span><span class="o">());</span>
+
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ourService</span><span class="o">.</span><span class="na">doSomething</span><span class="o">();</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Result: &#39;{}&#39;&#34;</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We just created a new <code>LoggingOurService</code> and passed a new <code>OurServiceImpl</code> via the constructor.</p>
+<p>This setup prints:</p>
+<pre tabindex="0"><code>de.qaware.blog.decorator.decorator.impl.LoggingOurService - doSomething() called
+de.qaware.blog.decorator.decorator.NonSpringMain - Result: 'something'
+</code></pre><p>the &ldquo;doSomething() called&rdquo; log message is from <code>LoggingOurService</code>, the result is returned from the delegate <code>OurServiceImpl</code>.</p>
+<p>So far, so good. Now let&rsquo;s get this setup running in Spring. I&rsquo;m using Spring Boot here, but all this stuff is also applicable to plain Spring.</p>
+<p>Our first attempt looks like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">class</span> <span class="nc">OurConfiguration</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">OurService</span> <span class="nf">ourServiceDelegate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">OurServiceImpl</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">OurService</span> <span class="nf">loggingOurService</span><span class="o">(</span><span class="n">OurService</span> <span class="n">delegate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">LoggingOurService</span><span class="o">(</span><span class="n">delegate</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This defines two beans, first the delegate and second the decorator. The decorator has a dependency on the delegate.</p>
+<p>Now we have to use that bean somewhere. We&rsquo;ll use a <code>CommandLineRunner</code> which gets executed when the application is started:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Component</span>
+<span class="kd">class</span> <span class="nc">Runner</span> <span class="kd">implements</span> <span class="n">CommandLineRunner</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">Runner</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">OurService</span> <span class="n">ourService</span><span class="o">;</span>
+
+    <span class="n">Runner</span><span class="o">(</span><span class="n">OurService</span> <span class="n">ourService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">ourService</span> <span class="o">=</span> <span class="n">ourService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Class of ourService: {}&#34;</span><span class="o">,</span> <span class="n">ourService</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ourService</span><span class="o">.</span><span class="na">doSomething</span><span class="o">();</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Result: &#39;{}&#39;&#34;</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>When we start that application, Spring fails with:</p>
+<pre tabindex="0"><code>Parameter 0 of constructor in de.qaware.blog.decorator.decorator.Runner required a single bean, but 2 were found:
+	- ourServiceDelegate: defined by method 'ourServiceDelegate' in class path resource [de/qaware/blog/decorator/decorator/OurConfiguration.class]
+	- loggingOurService: defined by method 'loggingOurService' in class path resource [de/qaware/blog/decorator/decorator/OurConfiguration.class]
+</code></pre><p>Spring is complaining that it found 2 beans and now it&rsquo;s confused which one to inject into the <code>Runner</code>.</p>
+<p>One way to fix that is to mark the <code>loggingOurService</code> bean method as <code>@Primary</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">class</span> <span class="nc">OurConfiguration</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">OurServiceImpl</span> <span class="nf">ourServiceDelegate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">OurServiceImpl</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Primary</span>
+    <span class="kd">public</span> <span class="n">OurService</span> <span class="nf">loggingOurService</span><span class="o">(</span><span class="n">OurServiceImpl</span> <span class="n">delegate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">LoggingOurService</span><span class="o">(</span><span class="n">delegate</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now Spring knows that if there are multiple beans of that type (<code>OurService</code>), it has to pick the one marked as <code>@Primary</code>.</p>
+<p>Another option is to use <code>@Qualifier</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">class</span> <span class="nc">OurConfiguration</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">OurServiceImpl</span> <span class="nf">ourServiceDelegate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">OurServiceImpl</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;logging&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">OurService</span> <span class="nf">loggingOurService</span><span class="o">(</span><span class="n">OurServiceImpl</span> <span class="n">delegate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">LoggingOurService</span><span class="o">(</span><span class="n">delegate</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>but now you have to change all the injection points to use the qualifier, too:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Runner</span> <span class="kd">implements</span> <span class="n">CommandLineRunner</span> <span class="o">{</span>
+<span class="c1">// ...
+</span><span class="c1"></span>    <span class="n">Runner</span><span class="o">(</span><span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;logging&#34;</span><span class="o">)</span> <span class="n">OurService</span> <span class="n">ourService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">ourService</span> <span class="o">=</span> <span class="n">ourService</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="c1">// ...
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Spring still finds two beans, but as the injection point in the <code>Runner</code> class has the same qualifier as the <code>@Bean</code> method, Spring knows which
+bean to pick.</p>
+<p>That&rsquo;s the story so far if you have control over the <code>@Bean</code> methods, as you&rsquo;ll either have to add <code>@Primary</code> or <code>@Qualifier</code> to them.
+But what should we do if we don&rsquo;t have the ability to change those methods, for example if you try to decorate beans which are created by an autoconfiguration?
+There must be a way in the mighty Spring framework?</p>
+<h2 id="decorating-spring-beans-if-you-have-no-control-over-the-bean-creation">Decorating Spring beans if you have no control over the bean creation</h2>
+<p>And of course, there is. The concept is called <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanPostProcessor.html"><code>BeanPostProcessor</code></a>,
+which is an interface we&rsquo;ll have to implement. The processor is called for each Spring bean in the context and has the ability to replace the bean
+with some other bean.</p>
+<p>First, let&rsquo;s take a look at our configuration:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">class</span> <span class="nc">OurConfiguration</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">OurService</span> <span class="nf">ourServiceDelegate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">OurServiceImpl</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">LoggingOurServiceBeanProcessor</span> <span class="nf">beanProcessor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">LoggingOurServiceBeanProcessor</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This configuration class just creates the delegate service and a bean processor. It does <strong>not</strong> create the <code>LoggingOurService</code>.</p>
+<p>The bean processor is where the magic happens:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">// This bean processor gets called for every bean in the context
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">LoggingOurServiceBeanProcessor</span> <span class="kd">implements</span> <span class="n">BeanPostProcessor</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LoggingOurServiceBeanProcessor</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">postProcessAfterInitialization</span><span class="o">(</span><span class="n">Object</span> <span class="n">bean</span><span class="o">,</span> <span class="n">String</span> <span class="n">beanName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">BeansException</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!(</span><span class="n">bean</span> <span class="k">instanceof</span> <span class="n">OurService</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// We are only interested in OurService beans
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">bean</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">bean</span> <span class="k">instanceof</span> <span class="n">LoggingOurService</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// The bean has already been decorated
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">bean</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// The bean is of type OurService and is no LoggingOurService already -&gt; Wrap LoggingOurService around it
+</span><span class="c1"></span>        <span class="c1">// Spring will then replace the original bean with the return type of this method
+</span><span class="c1"></span>        <span class="n">LOGGER</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;Decorating bean of type {}&#34;</span><span class="o">,</span> <span class="n">bean</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">LoggingOurService</span><span class="o">((</span><span class="n">OurService</span><span class="o">)</span> <span class="n">bean</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>postProcessAfterInitialization</code> gets called for <strong>every</strong> bean in the Spring context.</p>
+<p>The first <code>if</code> statement returns early if the bean is not of type <code>OurService</code>.</p>
+<p>The second <code>if</code> statement returns early if the bean is already of type <code>LoggingOurService</code>, as we don&rsquo;t want to wrap a <code>LoggingOurService</code> in another <code>LoggingOurService</code>.</p>
+<p>The last line wraps a new <code>LoggingOurService</code> around the bean (which is a <code>OurService</code>) and returns it. Spring now replaces the original bean (the one in the <code>bean</code> argument, type <code>OurService</code>) with
+the one returned from this method (type <code>LoggingOurService</code>).</p>
+<p>Let&rsquo;s run our application:</p>
+<pre tabindex="0"><code>guration6$LoggingOurServiceBeanProcessor : Decorating bean of type de.qaware.blog.decorator.decorator.impl.OurServiceImpl
+d.q.blog.decorator.decorator.Runner      : Class of ourService: de.qaware.blog.decorator.decorator.impl.LoggingOurService
+d.q.b.d.d.impl.LoggingOurService         : doSomething() called
+d.q.blog.decorator.decorator.Runner      : Result: 'something'
+</code></pre><p>As you see from the first log message, our bean processor has been called and decorated a bean of type <code>OurServiceImpl</code>.</p>
+<p>When the bean is used in the <code>Runner</code>, it&rsquo;s no longer of type <code>OurServiceImpl</code>, but of type <code>LoggingOurService</code> because that&rsquo;s the
+bean the post processor has created.</p>
+<p>And that&rsquo;s how you decorate beans for which you can&rsquo;t change the <code>@Bean</code> methods.</p>
+<hr>
+<h2 id="related-posts">Related posts</h2>
+<ul>
+<li><a href="/posts/openapi-for-spring-generator/">Generating OpenApi Specification From Spring Boot</a></li>
+<li><a href="/posts/wirespock/">WireSpock - Testing REST Service Client Components With Spock And WireMock</a></li>
+</ul>
+<p><em>The banner image is from <a href="https://en.wikipedia.org/wiki/Decorator_pattern#/media/File:UML2_Decorator_Pattern.png">Wikipedia</a>.</em></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Gamma, Erich; et al. (1995). Design Patterns. Reading, MA: Addison-Wesley Publishing Co, Inc. pp. 175ff. ISBN 0-201-63361-2.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about Ways%20to%20decorate%20Spring%20beans&url=https%3a%2f%2fblog.qaware.de%2fposts%2fspring-decorate-bean%2f&hashtags=Java%2cSpring">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fspring-decorate-bean%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=Ways%20to%20decorate%20Spring%20beans&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fspring-decorate-bean%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

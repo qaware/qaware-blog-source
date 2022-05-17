@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code Quality on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/code-quality/</link>
+    <description>Recent content in Code Quality on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 22 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.qaware.de/tags/code-quality/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SonarQube with JaCoCo in multi-module Maven project</title>
+      <link>https://blog.qaware.de/posts/sonarqube-and-jacoco/</link>
+      <pubDate>Tue, 22 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/sonarqube-and-jacoco/</guid>
+      <description>How to set up a SonarQube code analysis using the Sonar Maven Plugin including code coverage with the JaCoCo Maven plugin.</description>
+    </item>
+    
+    <item>
+      <title>MaLTeSQuE / SANER 2018</title>
+      <link>https://blog.qaware.de/posts/maltesque-saner/</link>
+      <pubDate>Wed, 09 May 2018 15:06:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/maltesque-saner/</guid>
+      <description>Talks and workshops I attended of the 25th conference on Software Analysis, Evaluation and Reengineering (SANER).</description>
+    </item>
+    
+    <item>
+      <title>&#34;I know it when I see it&#34;: Perceptions of Code Quality (Part 2)</title>
+      <link>https://blog.qaware.de/posts/i-know-it-when-i-see-it-2/</link>
+      <pubDate>Wed, 20 Dec 2017 15:06:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/i-know-it-when-i-see-it-2/</guid>
+      <description>The first set of results from a research project into the perceptions of code quality.</description>
+    </item>
+    
+    <item>
+      <title>&#34;I know it when I see it&#34; - Perceptions of Code Quality</title>
+      <link>https://blog.qaware.de/posts/i-know-it-when-i-see-it/</link>
+      <pubDate>Wed, 07 Jun 2017 15:06:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/i-know-it-when-i-see-it/</guid>
+      <description>Motivation and scope of a research project into the perceptions of code quality by different stakeholders</description>
+    </item>
+    
+  </channel>
+</rss>

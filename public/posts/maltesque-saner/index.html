@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>MaLTeSQuE / SANER 2018 - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='Talks and workshops I attended of the 25th conference on Software Analysis, Evaluation and Reengineering (SANER).'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'MaLTeSQuE / SANER 2018' />
+<meta property = 'og:description' content = 'Talks and workshops I attended of the 25th conference on Software Analysis, Evaluation and Reengineering (SANER).'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/maltesque-saner/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/images/qaware_logo.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/maltesque-saner/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>09. May 2018</p>
+      <h1 class = 'post_title'>MaLTeSQuE / SANER 2018</h1>
+      <p class = 'pale'>by Fabian Huch |  1160 words | ~6 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/software-analysis/'>software analysis</a>
+          <a class="post_tag" href='/tags/code-quality/'>code quality</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <p>The 25th conference on Software Analysis, Evaluation and Reengineering (SANER) and its co-located workshops took place in the Italian city of Campobasso on March 20-23, 2018. Due to its remoteness, and train and flight delays, it wasn’t easy to reach, but the hospitability and the amazing food made well up for that.</p>
+<p>Day 0 (workshop day)
+The first day after the long journey started with different workshops. I participated in the workshop on machine learning techniques for software quality evaluation (MaLTeSQuE), presenting an <a href="https://doi.org/10.1109/MALTESQUE.2018.8368453">industrial evaluation of machine learning (ML) approaches for run-time anomaly detection</a>.</p>
+<p>After several talks about advances in static code analysis (e.g. class-level defect prediction, prediction of branch coverage of automated tests, or code change prediction), Serge Demeyer hit the nerve with his keynote about “in vivo” software engineering (SE) research: SE research needs to be carried out in practice. For example, to obtain data about human-bot interaction, a student of his chair built a Stack Overflow bot to answer duplicate questions. When it pretended to be a human (the user <a href="https://stackoverflow.com/users/4461216/joey-dorrani">Joey Dorrani</a>), it did quite well, with an average score – <a href="http://doi.org/10.1145/2851581.2892311">but once it stated that it was a bot, other users hardly up-voted or accepted answers any more</a>. At other times, cooperating with industry can be crucial to obtain relevant data.</p>
+<p>My other main takeaway from the talk was the concept of mutation testing: To verify that passing tests would indeed fail at faulty code, they are run on a version of the code that is mutated so it contains errors. This way, test coverage can be measured as the ratio of passed mutations/killed mutations, which tells more about test quality than the percentage of lines covered. In the java world, <a href="http://pitest.org/">Pitest</a> seemed to be the most popular tool for this – in an example project, it was very good at highlighting the parts of the code I hadn’t thoroughly tested with unit tests. Unfortunately, it was a bit hard to integrate into my gradle multi-module project (also couldn’t aggregate the reports), and there is no proper IntelliJ plugin yet. But apparently, there is a good <a href="https://github.com/VinodAnandan/sonar-pitest">SonarQube plugin</a> out there (which does aggregate reports)!
+Afterwards, some more tools and approaches were presented. As for the tools, <a href="https://doi.org/10.1109/MALTESQUE.2018.8368457">ConfigFile++</a> uses ML to extract information about c/c++ configuration parameters from multiple sources and utilizes that information to enhance config file documentation. <a href="https://doi.org/10.1109/MALTESQUE.2018.8368458">PyID</a> can detect type mismatches in Python documentation. Lastly, a model to predict code reusability was introduced.</p>
+<h2 id="day-1">Day 1</h2>
+<p>The next day started with a keynote by Elmar Jürgens. Similar to the one of the previous day, his topic was also about putting research to practice. He outlined how the clone detection tool developed by the <a href="https://www.cqse.eu/en/">CQSE</a> evolved from an “in vitro” approach to an “in vivo” solution – the run-once analysis didn’t help developers much at first, because it found too many clones that they knew about, but could not fix due to project specific reasons. It was much more successful when built upon an incremental analysis engine that could filter for newly introduced clones. Today, the tool is part of the <a href="https://www.cqse.eu/en/products/teamscale/landing/">Teamscale</a> solution.</p>
+<p>In the following talks, machine learning techniques still dominated the topics of presented papers. I was particularly impressed by the RENE 1 track, where past results were re-examined by other researchers. Verifying results seems especially important given the abundance of ML approaches, and in fact, two papers reported significantly lower performance than what was previously found. In one of the works, <a href="https://doi.org/10.1109/SANER.2018.8330264">the reason for this was an unrealistic evaluation setting</a>; in the other, <a href="https://doi.org/10.1109/SANER.2018.8330262">the model and data were not published, so a re-implementation had to be evaluated on a new data set</a>. It shows that it is crucial to make results reproducible in papers about ML approaches, e.g. by publishing model parameters and datasets.</p>
+<p>Another interesting research topic on that day was automated program repair. As much as the technology is still in its infancy, the ability of automatically fixing simpler code issues overnight could greatly enhance productivity when developing.</p>
+<h2 id="day-2">Day 2</h2>
+<p>A very passionate keynote from Jan Bosch about “a new digital business operating model” kicked off the following day. He outlined that a lot of products are becoming software products, since more and more functionality is done in software. This allows for faster release cycles: While in hardware development it can take several years until the next release, with continuous integration/continuous deployment, software release cycles can be as low as several weeks or days. The advantage of shorter cycles, in combination with collected user data, means that the usefulness of features that are in development can be judged early on, thus allowing businesses to focus on what is important to their users.</p>
+<p>In the next research track, an approach to modeling complex software behavior using hierarchical recursive models caught my interest. From logging statements, the process hierarchy is made explicit; then, the resulting tree is processed to build a recursive model. The tool for this (<a href="https://svn.win.tue.nl/repos/prom/Packages/Statechart/">Statechart Workbench</a>) was also presented in the tool demo afterwards, and although it was not that easy to use, its process visualizations were amazing – clear and well readable.</p>
+<p>After the tool demo (that was far too short to be able to give all the tools proper credit here), and a binary analysis track, the banquet dinner rounded up the day.</p>
+<h2 id="day-3">Day 3</h2>
+<p>Peter Gromov from JetBrains started the last conference day with a very technical keynote about what distinguishes an IDE from a compiler. Among other things, IDEs need to understand broken code, whereas the compiler can simply give up. He outlined the different resulting challenges, and how to tackle them. For instance, the code model needs to be efficient enough to be re-built after each keystroke. In IntelliJ, the abstract syntax tree (AST) maps code fragments to their respective syntax tree element. In combination with an efficient symbol cache, only the AST for the current file has to be kept up-to-date – and AST elements can be evaluated individually, thus allowing to compile only valid ones. This example illustrates why the title “Compilers are sprinters – IDEs are marathoners” was very fitting for the keynote.</p>
+<p>In the afterwards track about code smell detection, it was found that deep learning models, in particular convolutional neural networks, did not perform much better or even worse than traditional ML models. <a href="https://doi.org/10.1109/SANER.2018.8330265">But they required several days of computaton time for tuning compared to a few minutes</a>. I did not find those results too surprising given that in our work about anomaly detection, deep learning models only performed slightly better. When performing ML for software engineering topics, this is definitely something to keep in mind.</p>
+<p>Finally, I want to highlight an innovative approach for unit tests in excel spreadsheets: The &ldquo;<a href="https://arxiv.org/abs/1612.03813">Spreadsheet Guardian</a>&rdquo; tool allows to set assertions for calculations, which can prevent errors, especially in multi-user environments.</p>
+<p>This concludes my report on SANER 2018 and its co-located workshops. For any questions or remarks, feel free to leave a comment.</p>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about MaLTeSQuE%20%2f%20SANER%202018&url=https%3a%2f%2fblog.qaware.de%2fposts%2fmaltesque-saner%2f&hashtags=SoftwareAnalysis%2cCodeQuality">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fmaltesque-saner%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=MaLTeSQuE%20%2f%20SANER%202018&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fmaltesque-saner%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

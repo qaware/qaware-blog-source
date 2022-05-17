@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>Introducing Minikube Support Tools - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='In this blog post, we want to introduce the minikube-support tools, which we recently released in the first version. The minikube-support tools are …'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'Introducing Minikube Support Tools' />
+<meta property = 'og:description' content = 'In this blog post, we want to introduce the minikube-support tools, which we recently released in the first version. The minikube-support tools are …'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/introducing-minikube-support-tools/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/minikube-support-run.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/introducing-minikube-support-tools/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>08. February 2021</p>
+      <h1 class = 'post_title'>Introducing Minikube Support Tools</h1>
+      <p class = 'pale'>by <a href="https://github.com/chr-fritz">Christian Fritz</a> |  580 words | ~3 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/kubernetes/'>kubernetes</a>
+          <a class="post_tag" href='/tags/minikube/'>minikube</a>
+          <a class="post_tag" href='/tags/cert-manager/'>cert-manager</a>
+          <a class="post_tag" href='/tags/nginx-ingress/'>nginx-ingress</a>
+          <a class="post_tag" href='/tags/oss/'>oss</a>
+          <a class="post_tag" href='/tags/open-source/'>open source</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/minikube-support-run.png' alt = 'minikube-support-run.png' class = 'post_thumbnail mt-1'>
+        
+          <p>In this blog post, we want to introduce the
+<a href="https://github.com/qaware/minikube-support">minikube-support</a> tools, which we recently released in
+the first version. The
+<a href="https://github.com/qaware/minikube-support">minikube-support</a> tools are intended to automate and
+simplify common tasks which you need to do every time you set up a new minikube cluster. For this,
+they combine some cluster internal and external tools to provide a better interaction between
+minikube and the developers local os. Basically the minikube-support tools are a collection of
+tools and their configuration which are usually required to work or develop with a minikube cluster
+but are not pre-installed or properly configured.</p>
+<h2 id="idea">Idea</h2>
+<p>The idea for the
+<a href="https://github.com/qaware/minikube-support">minikube-support</a> tools was born in 2019 when we
+discovered that nearly every time we wanted to use minikube, we needed to do the same steps after
+creating a new minikube cluster. The first idea was to use a bunch of shell scripts which install
+the tools and try to configure them properly. Even with those scripts there were some steps which
+were not automated. One point was to write the hostnames, and the correct minikube ip into the
+<code>/etc/hosts</code> file. Of course this also was a repeating step for every new hostname which we want to
+publish using an ingress.</p>
+<p>That was the point where the idea came up to combine all into a single command line tool.
+Basically it should meet the following two requirements:</p>
+<ol>
+<li>Install and configure all the components which were usually required and</li>
+<li>Simplify the access to services and ingresses within the cluster.</li>
+</ol>
+<h2 id="features">Features</h2>
+<p>The main entry point to run everything on the current minikube instance, is the <code>minikube-support</code>
+command. For this it installs, configures and provides the following tools and features:</p>
+<ul>
+<li>A local
+<a href="https://coredns.io/">CoreDNS</a> instance to access the services and ingresses using a domain name
+<code>*.minikube</code>.</li>
+<li><a href="https://github.com/FiloSottile/mkcert">mkcert</a> to set up a locally-trusted CA for generating
+certificates for the domain names served by CoreDNS.</li>
+<li>The
+<a href="https://github.com/jetstack/cert-manager">Cert-Manager</a> to manage that certificate generation
+within the cluster using the locally-trusted CA created by mkcert.</li>
+<li>A
+<a href="https://kubernetes.github.io/ingress-nginx/">Nginx Ingress Controller</a> to provide access to the
+ingresses deployed in minikube.</li>
+<li>A dashboard that shows the status of ingresses, <code>LoadBalancer</code>-Services, served DNS entries and
+the <code>minikube tunnel</code> status.</li>
+</ul>
+<h2 id="quickstart">Quickstart</h2>
+<ol>
+<li>Install <code>minikube</code>:
+<ul>
+<li>
+<p>Download the
+<a href="https://github.com/qaware/minikube-support/releases/latest">latest release</a> and place it
+somewhere into your <code>$PATH</code> or use our brew tap:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">brew install qaware/minikube-support/minikube-support  
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>Start your cluster <code>minikube start</code></li>
+<li>Install internal and external components with <code>minikube-support install -l</code>
+<ul>
+<li>If you don&rsquo;t want to install the external components (mkcert, CoreDNS), because you already
+installed it, just run <code>minikube-support install</code>.</li>
+</ul>
+</li>
+<li>Run the dashboard: <code>minikube-support run</code></li>
+</ol>
+<figure>
+    
+<img src='/images/minikube-support-run.png' alt='minikube-support run dashboard'>  
+<figcaption>
+      <p>The minikube-support run dashboard
+        </p>
+    </figcaption>
+</figure>
+<ol start="5">
+<li>
+<p>Deploy our application or use our test deployment:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/qaware/minikube-support/master/docs/demo-deployment.yaml
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Open your application in your browser when it is visible in the &ldquo;Status of Coredns-Grpc&rdquo; box.</p>
+</li>
+</ol>
+<h2 id="configuration">Configuration</h2>
+<p>The minikube-support tools do not have their own configuration properties, but require to configure the
+dns resolver of the local os. For macOS the minikube-support tools will do this automatically. Just
+ensure that all your ingresses uses the top level domain <code>.minikube</code>.</p>
+<p>For Windows and Linux systems there are no known interfaces or configuration properties to configure
+conditional forwarding for DNS requests to <code>.minikube</code> programmatically. In this case you have to
+configure your DNS resolving by your own.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>This cli tool was developed by
+<a href="https://github.com/chr-fritz">Christian Fritz</a> and was gratefully supported by
+<a href="https://www.qaware.de/">QAware</a> by allowing me to do that during paid working hours.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://github.com/qaware/minikube-support">minikube-support on GitHub</a></li>
+<li><a href="https://github.com/kubernetes/ingress-nginx">nginx-ingress-controller</a></li>
+<li><a href="https://github.com/jetstack/cert-manager">cert-manager</a></li>
+<li><a href="https://github.com/FiloSottile/mkcert">mkcert</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/commands/tunnel/">minikube tunnel</a></li>
+</ul>
+<hr>
+<h2 id="related-posts">Related posts</h2>
+<ul>
+<li><a href="/posts/virtual-kubelet/">Virtual Kubelet - Run Pods Without Nodes</a></li>
+<li><a href="/posts/openapi-for-spring-generator/">Generating OpenApi Specification From Spring Boot</a></li>
+</ul>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about Introducing%20Minikube%20Support%20Tools&url=https%3a%2f%2fblog.qaware.de%2fposts%2fintroducing-minikube-support-tools%2f&hashtags=Kubernetes%2cMinikube%2cCert-Manager%2cNginx-Ingress%2cOSS%2cOpenSource">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fintroducing-minikube-support-tools%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=Introducing%20Minikube%20Support%20Tools&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fintroducing-minikube-support-tools%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/devops/</link>
+    <description>Recent content in DevOps on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 16 Aug 2021 16:57:04 +0200</lastBuildDate><atom:link href="https://blog.qaware.de/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cloud Native Dev Tooling With Go</title>
+      <link>https://blog.qaware.de/posts/cloud-native-dev-tooling-with-go/</link>
+      <pubDate>Mon, 16 Aug 2021 16:57:04 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/cloud-native-dev-tooling-with-go/</guid>
+      <description>Faster DevOps flow and higher productivity with Cloud Native Dev Tools using Go</description>
+    </item>
+    
+    <item>
+      <title>The status quo of Chaos Engineering</title>
+      <link>https://blog.qaware.de/posts/chaos-engineering-the-status-quo/</link>
+      <pubDate>Wed, 03 Mar 2021 18:00:00 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/chaos-engineering-the-status-quo/</guid>
+      <description>This article shows you the current status of Chaos Engineering rituals, procedures and tooling in the Cloud Native ecosystem.</description>
+    </item>
+    
+    <item>
+      <title>Chaos Engineering: Chaos Toolkit Demo</title>
+      <link>https://blog.qaware.de/posts/chaos-engineering-chaostoolkit/</link>
+      <pubDate>Wed, 03 Mar 2021 17:00:00 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/chaos-engineering-chaostoolkit/</guid>
+      <description>This blog article demonstrates the usage and functionality of the open source chaos engineering tool Chaos Toolkit.</description>
+    </item>
+    
+    <item>
+      <title>Collaborative Monitoring</title>
+      <link>https://blog.qaware.de/posts/collaborative-monitoring/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/collaborative-monitoring/</guid>
+      <description>We found a helpful approach to collaborative monitoring in a large project that we want to share with you.</description>
+    </item>
+    
+    <item>
+      <title>OOP 2020</title>
+      <link>https://blog.qaware.de/posts/oop/</link>
+      <pubDate>Fri, 28 Feb 2020 10:39:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/oop/</guid>
+      <description>A field report from the 2020 OOP conference in Munich.</description>
+    </item>
+    
+    <item>
+      <title>Breaking your build on SonarQube quality gate failure</title>
+      <link>https://blog.qaware.de/posts/sonar-qube-build-breaker/</link>
+      <pubDate>Mon, 17 Feb 2020 10:39:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/sonar-qube-build-breaker/</guid>
+      <description>A summary on my QAlabs project for a Maven plugin and a standalone application to break the build on SonarQube quality gate failure</description>
+    </item>
+    
+    <item>
+      <title>DevOps Enterprise Summit</title>
+      <link>https://blog.qaware.de/posts/devops-enterprise-summit/</link>
+      <pubDate>Mon, 11 Nov 2019 10:07:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/devops-enterprise-summit/</guid>
+      <description>Dieser Artikel liefert eine Zusammenfassung meiner persönlichen Eindrücke zum Besuch des DevOps Enterprise Summits in Las Vegas.</description>
+    </item>
+    
+    <item>
+      <title>Software Circus</title>
+      <link>https://blog.qaware.de/posts/software-circus/</link>
+      <pubDate>Mon, 18 Sep 2017 15:06:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/software-circus/</guid>
+      <description>The most interesting topics we experienced during this year&amp;rsquo;s Software Circus include AI/ Machine Learning, Software Architecture, DevOps.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>Cloud Native Dev Tooling With Go - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='Faster DevOps flow and higher productivity with Cloud Native Dev Tools using Go'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'Cloud Native Dev Tooling With Go' />
+<meta property = 'og:description' content = 'Faster DevOps flow and higher productivity with Cloud Native Dev Tools using Go'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/cloud-native-dev-tooling-with-go/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/cloud-native-dev-tools-with-go/tools-hero-image.jpg'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/cloud-native-dev-tooling-with-go/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>16. August 2021</p>
+      <h1 class = 'post_title'>Cloud Native Dev Tooling With Go</h1>
+      <p class = 'pale'>by <a href="https://github.com/markuszm/">Markus Zimmermann</a> |  1367 words | ~7 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/cloud/'>cloud</a>
+          <a class="post_tag" href='/tags/cloud-native/'>cloud native</a>
+          <a class="post_tag" href='/tags/containers/'>containers</a>
+          <a class="post_tag" href='/tags/devops/'>devops</a>
+          <a class="post_tag" href='/tags/kubernetes/'>kubernetes</a>
+          <a class="post_tag" href='/tags/tools/'>tools</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/cloud-native-dev-tools-with-go/tools-hero-image.jpg' alt = 'cloud-native-dev-tools-with-go/tools-hero-image.jpg' class = 'post_thumbnail mt-1'>
+        
+          <p>In the new Cloud Native world, operation tooling must enable DevOps teams for high productivity and fast flow to production. Architectures often contain dozens of microservices which need to be quickly deployed and operated in the cloud. This is a lot of additional management effort for developers and having separate operations teams does not scale to support all services of a project. Without good tooling that automates most of the day-to-day operation work away from developers, no large platform can be maintained for long. Automation is key!</p>
+<h1 id="what-are-cloud-native-dev-tools">What are Cloud Native Dev Tools?</h1>
+<p>The Cloud Native Computing Foundation (CNCF) officially defines Cloud Native as:</p>
+<p><code>Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.</code> <a href="https://github.com/cncf/toc/blob/main/DEFINITION.md">(Source)</a>.</p>
+<p>Cloud Native technologies require Cloud Native Dev Tools to provide solutions for enabling Cloud Native applications to run on container platforms and make operations as automated as possible. Tools are needed for the full development flow of a Cloud Native application from development of containers to deployment of the container to the observability and security of the application itself.</p>
+<figure>
+  
+  <img src='/images/cloud-native-dev-tools-with-go/development-flow.png' alt='DevOps Development Flow'>
+<figcaption>
+      <p>DevOps Development Flow
+        </p>
+    </figcaption>
+</figure>
+<p>Let&rsquo;s look at some examples in how dev tools can support the different steps in the development flow:</p>
+<p><strong>Build</strong>:</p>
+<ul>
+<li><a href="https://www.docker.com/why-docker">Docker</a> is the best example here, which helps developers build containers of their application locally, test the containers and then push them to any container registry in the cloud.</li>
+<li>Vulnerability scanning tools like <a href="https://github.com/aquasecurity/trivy">Trivy</a> scan containers or application artifacts for vulnerabilities to prevent security incidents before the application is deployed in production.</li>
+</ul>
+<p><strong>Deploy</strong>:</p>
+<ul>
+<li>Kubernetes deployments can be difficult to create with all the necessary resources for a single microservice. As such, blueprint templates for microservices are important and tools such as <a href="https://helm.sh/">Helm</a> help generalize the deployment of microservices throughout the whole project.</li>
+<li>GitOps tooling such as <a href="https://argo-cd.readthedocs.io/en/stable/">ArgoCD</a> help developers to deploy faster to Kubernetes without the need to write deployment scripts or adding authentication inside application deployment pipelines.</li>
+</ul>
+<p><strong>Operate</strong>:</p>
+<ul>
+<li>The Command-line interface (CLI) every DevOps engineer needs in their toolkit is <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl</a>. It is the tool to manage everything inside a Kubernetes cluster. It is extendable through plugins which lets us integrate any customization within the CLI.</li>
+<li>Kubernetes operators help with all regular operations tasks around a Kubernetes deployment. They enable auto-updating, self-monitoring and a self-healing infrastructure. There are operators for databases, cloud infrastructure provisioning or security needs. Check the <a href="https://operatorhub.io/">OperatorHub</a> for a curated list of Kubernetes operators.</li>
+</ul>
+<h1 id="why-use-go-for-cloud-native-dev-tools">Why use Go for Cloud Native Dev Tools?</h1>
+<p>What is the right tool to develop Cloud Native Dev Tools? Over the years, <a href="https://golang.org/">Go</a> managed to position itself as the major language behind the Cloud Native stack. Docker, Kubernetes, Kubectl and many other known tools and infrastructure components are all implemented in Go.</p>
+<figure>
+  
+  <img src='/images/cloud-native-dev-tools-with-go/cloud-native-tools-in-go.png' alt='Cloud Native Tools written in go'>
+<figcaption>
+      <p>Cloud Native Tool examples written in go
+        </p>
+    </figcaption>
+</figure>
+<p>Go is an open source language maintained by Google.
+The language has the following key advantages:</p>
+<ul>
+<li>efficient garbage-collected systems programming language</li>
+<li>easy to learn due to fewer language features</li>
+<li>single, self contained binaries which can be built for nearly any platform and OS</li>
+<li>out-of-the-box development tooling for testing, code formatting, dependency management</li>
+</ul>
+<p>Choosing Go lets us participate in the vivid Cloud Native community and use the SDKs that power the Cloud Native stack to write our own Dev Tools.</p>
+<h1 id="doing-a-workshop-for-the-community">Doing a Workshop for the community</h1>
+<p>For the <em>betterCode</em> in 2021, we (<a href="https://github.com/lreimer/">M.-Leander Reimer</a> and <a href="https://github.com/markuszm/">Markus Zimmermann</a>) created a workshop titled <a href="https://www.bettercode.eu/lecture_compact1.php?id=12938&amp;source=0">&ldquo;Go for Operations&rdquo;</a> which introduced fellow software engineers to Cloud Native Dev Tooling in Go.</p>
+<p>The workshop showed that everyone had different DevOps experiences in their jobs, from having strong compliance requirements to being able to quickly prototype their infrastructure. The Go knowledge-level was also mixed between beginners and advanced users. Through hands-on exercises, we showcased different operational automation concepts and showed how to implement them using Go. At the end, everyone took something home which they wanted to apply in their day-to-day operational work.</p>
+<p>The content of the workshop is open-source and the exercise descriptions are written as step-by-step guides, so anyone can try the exercises themselves. Just visit our GitHub repository to go through <a href="https://github.com/qaware/go-for-operations/tree/master/workshop">the workshop</a>!</p>
+<h1 id="automation-concepts-and-their-drivers">Automation Concepts and their drivers</h1>
+<p>Let&rsquo;s quickly go through some of the automation concepts that were part of the workshop to learn what libraries/frameworks are the drivers to implement such concepts in Go.</p>
+<h2 id="building-cli-applications-with-cobra">Building CLI applications with Cobra</h2>
+<p>Command-line interfaces (CLIs) are tools every developer is used to work with. They are faster to use than graphical interfaces and can be easily automated by calling them in Continuous Integration pipelines. <em>kubectl</em> is one example for a good CLI and used for managing Kubernetes clusters. It is written in Go and its implementation can be used as a blueprint for CLI applications. It uses the popular CLI libraries <a href="https://github.com/spf13/cobra">Cobra</a> and <a href="https://github.com/spf13/viper">Viper</a> which are the main drivers of Go CLI applications. With these libraries, you can quickly write a CLI and gets many features such as auto-completion, help generation and config management as added bonuses.</p>
+<p>You can do <a href="https://github.com/qaware/go-for-operations/blob/master/workshop/challenge-1/challenge-1.md">Challenge 1</a> of our workshop to learn how to use Cobra/Viper to write CLIs.</p>
+<p>The result in the challenge is a working Kubectl plugin that creates chaos in our cluster to test the resilience of our deployed services. Kubectl plugins are easy to integrate since the installed binary simply needs to have the <code>kubectl-</code> prefix. The only limitation is that plugins cannot overwrite an already existing kubectl command. For example, you cannot create a plugin with the name kubectl-create because it collides with the kubectl command create.</p>
+<h2 id="building-a-sidecar-container">Building a Sidecar container</h2>
+<p>Sidecars are an easy way to extend a deployed service in Kubernetes. It is a container that runs along-side your application inside the same pod. The sidecar shares storage volumes, networking and other things with the application container, thus it can be used for intercepting traffic, sharing files with the application or to add monitoring.</p>
+<p>Such a sidecar container can be easily implemented with plain Go and due to a self-contained binary the container will be rather small.</p>
+<figure>
+  
+  <img src='/images/cloud-native-dev-tools-with-go/log-shipping-sidecar.png' alt='Log shipping sidecar example'>
+<figcaption>
+      <p>Log shipping sidecar example
+        </p>
+    </figcaption>
+</figure>
+<p>Check out <a href="https://github.com/qaware/go-for-operations/blob/master/workshop/challenge-2/challenge-2.md">Challenge 2</a> of the workshop where you build a log shipping container which extends any application that only writes logs to disk to ship logs to any logging provider via standard Kubernetes log handling.</p>
+<h2 id="building-a-kubernetes-operator-in-go">Building a Kubernetes Operator in Go</h2>
+<p>As mentioned earlier, Kubernetes operators help us with maintenance tasks that need to be automated in running Kubernetes deployments. Operators can define Custom Resources and manage their state with them. This is facilitated using the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">Custom Resource Definition extension of Kubernetes</a>. One advantage of using Kubernetes custom resources is that they can be managed in the same way as your other Kubernetes resources.
+Operators have a working loop that watches for changes in their custom resources and act upon changes by doing actions inside Kubernetes on the resources they manage.</p>
+<figure>
+  
+  <img src='/images/cloud-native-dev-tools-with-go/kubernetes-operator-explained.png' alt='Kubernetes operators explained'>
+<figcaption>
+      <p>Kubernetes operators explained
+        </p>
+    </figcaption>
+</figure>
+<p>One popular framework for writing operators is <a href="https://sdk.operatorframework.io/">Operator SDK</a>. It features scaffolding, i.e. it generates all needed code and enables you to quickly write your operator and deploy it directly to a cluster.</p>
+<p>Take a look at our <a href="https://github.com/qaware/go-for-operations/blob/master/workshop/challenge-3/challenge-3.md">Challenge 3</a> of the workshop where you build a microservice operator using Operator SDK that abstracts the Kubernetes resources which are necessary to deploy a microservice to Kubernetes. With this operator, you only need to define one resource to deploy a microservice instead of defining all needed Kubernetes resources like the Deployment and the Service.</p>
+<h1 id="where-to-go-from-here">Where to go from here?</h1>
+<p>This post should give you an introduction to Cloud Native Dev Tools and how to implement your own tools in the main language of the Cloud Native stack, Go.
+With the workshop exercises, you can get hands-on experience and implement Dev tools yourself. Maybe, they can help you at your work to automate some tedious job you need to do everyday and they give you room for more important tasks. We will try to continue doing the workshop at other conferences, to give more engineers experience in Go to write Cloud Native Dev tools and have an exchange on our experiences with the Cloud Native stack.</p>
+<h2 id="image-sources">Image sources:</h2>
+<ul>
+<li>Title image: <a href="https://unsplash.com/photos/t5YUoHW6zRo">Barn Images</a> on <a href="https://unsplash.com/">Unsplash</a></li>
+<li>Kubernetes Operator explained: <a href="https://blog.container-solutions.com/kubernetes-operators-explained">Container Solutions Blog</a></li>
+</ul>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about Cloud%20Native%20Dev%20Tooling%20With%20Go&url=https%3a%2f%2fblog.qaware.de%2fposts%2fcloud-native-dev-tooling-with-go%2f&hashtags=Cloud%2cCloudNative%2cContainers%2cDevOps%2cKubernetes%2cTools">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fcloud-native-dev-tooling-with-go%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=Cloud%20Native%20Dev%20Tooling%20With%20Go&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fcloud-native-dev-tooling-with-go%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

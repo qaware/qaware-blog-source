@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maven on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/maven/</link>
+    <description>Recent content in Maven on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 22 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.qaware.de/tags/maven/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SonarQube with JaCoCo in multi-module Maven project</title>
+      <link>https://blog.qaware.de/posts/sonarqube-and-jacoco/</link>
+      <pubDate>Tue, 22 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/sonarqube-and-jacoco/</guid>
+      <description>How to set up a SonarQube code analysis using the Sonar Maven Plugin including code coverage with the JaCoCo Maven plugin.</description>
+    </item>
+    
+  </channel>
+</rss>

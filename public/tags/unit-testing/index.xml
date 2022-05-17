@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unit Testing on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/unit-testing/</link>
+    <description>Recent content in Unit Testing on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 31 Aug 2015 10:39:32 +0200</lastBuildDate><atom:link href="https://blog.qaware.de/tags/unit-testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploratory Open Source Software Testing with Spock</title>
+      <link>https://blog.qaware.de/posts/spock-testing/</link>
+      <pubDate>Mon, 31 Aug 2015 10:39:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/spock-testing/</guid>
+      <description>I will talk about exploratory software testing of open source software components, libraries or whole frameworks.</description>
+    </item>
+    
+  </channel>
+</rss>

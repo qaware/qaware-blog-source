@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>Chaos Engineering: Chaos Toolkit Demo - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='This blog article demonstrates the usage and functionality of the open source chaos engineering tool Chaos Toolkit.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'Chaos Engineering: Chaos Toolkit Demo' />
+<meta property = 'og:description' content = 'This blog article demonstrates the usage and functionality of the open source chaos engineering tool Chaos Toolkit.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/chaos-engineering-chaostoolkit/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/chaos-engineering/chaostoolkit-logo.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/chaos-engineering-chaostoolkit/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>03. March 2021</p>
+      <h1 class = 'post_title'>Chaos Engineering: Chaos Toolkit Demo</h1>
+      <p class = 'pale'>by <a href="https://www.linkedin.com/in/fuchshuber">Josef Fuchshuber</a> |  1085 words | ~6 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/diagnosibility/'>diagnosibility</a>
+          <a class="post_tag" href='/tags/devops/'>devops</a>
+          <a class="post_tag" href='/tags/observability/'>observability</a>
+          <a class="post_tag" href='/tags/chaos-engineering/'>chaos engineering</a>
+          <a class="post_tag" href='/tags/testing/'>testing</a>
+          <a class="post_tag" href='/tags/quality/'>quality</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/chaos-engineering/chaostoolkit-logo.png' alt = 'chaos-engineering/chaostoolkit-logo.png' class = 'post_thumbnail mt-1'>
+        
+          <p>This blog article demonstrates the usage and functionality of the open-source Chaos Engineering <a href="https://chaostoolkit.org/">Chaos Toolkit (CTK)</a> with two simple examples. If you want to learn more about Chaos Engineering first, read our article <a href="/posts/chaos-engineering-the-status-quo/">&ldquo;The Status Quo of Chaos Engineering&rdquo;</a>. With CTK, Chaos Engineering experiments can be specified with a custom <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> as a JSON or YAML description. CTK is open source (Apache-2.0), implemented in Python and can be extended by drivers. Some drivers are provided out-of-the-box by the project:</p>
+<ul>
+<li>Infrastructure &amp; platform level: AWS, Azure, Cloud Foundry, Gandi, Google Cloud Platform, Kubernetes, Service Fabric</li>
+<li>Application level: Spring Boot</li>
+<li>Network: Istio, ToxiProxy, WireMock</li>
+<li>Observability: Dynatrace, Humio, Open Tracing, Prometheus</li>
+</ul>
+<p>The drivers include actions and probes. Probes are used to validate the Steady State, the state before and after the actions. The actions are the core of the experiment. They simulates failures of the application or platform or perform a slowdown in network traffic. CKT always runs actions and probes by using public APIs of the platforms and applications. The experiment runs outside the cluster and adds no inverse software blocks (e.g. service meshes) to the cluster.</p>
+<figure>
+  
+  <img src='/images/chaos-engineering/chaostoolkit.png' alt='The Chaos Toolkit CLI orchestrates your experiment'>
+<figcaption>
+      <p>The Chaos Toolkit CLI orchestrates your experiment
+        </p>
+    </figcaption>
+</figure>
+<p>The best feature of CTK is that you can not only run experiments, you also have to define the Steady State as a part of your test cases. This makes CTK tests ideal for integration into ongoing CI/CD processes.</p>
+<h2 id="demo-app">Demo App</h2>
+<p>We will demonstrate our two examples using a demo application, a contacts management app based on a microservice architecture and Kubernetes runtime. The demo app is taken from the <a href="https://github.com/azuredevcollege/trainingdays">Azure Developer College</a>.</p>
+<figure>
+  
+  <img src='/images/chaos-engineering/demo-app.png' alt='Contacts App Architecture'>
+<figcaption>
+      <p>Contacts App Architecture
+        </p>
+    </figcaption>
+</figure>
+<h2 id="example-1">Example #1</h2>
+<p>The first example is the Kubernetes &ldquo;hello world&rdquo; of Chaos Testing. What happens if the contact service fails?</p>
+<p>To interact with Kubernetes, CTK has its own extension <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. The tool and extension can be easily installed in an existing Python environment (<a href="https://docs.chaostoolkit.org/reference/usage/install/">installation details</a>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install -U chaostoolkit
+pip install chaostoolkit-kubernetes
+</code></pre></td></tr></table>
+</div>
+</div><p>After we have installed the tool, we can write our first &ldquo;hello world&rdquo; test. For the declarative description you can choose between JSON and YAML. JSON should be avoided just because of the missing capability of comments.</p>
+<p>The first part of the test describes the Steady State. The CTK core supports three different probe providers: HTTP, Process, Python<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. Our first example uses the HTTP provider and sends a HTTP request to the search service and validates its HTTP response code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># define the steady state hypothesis</span><span class="w">
+</span><span class="w"></span><span class="nt">steady-state-hypothesis</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Verifying search api remains healthy</span><span class="w">
+</span><span class="w">  </span><span class="nt">probes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">probe</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">search-api-must-still-respond</span><span class="w">
+</span><span class="w">    </span><span class="nt">tolerance</span><span class="p">:</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="c"># http response code 200 is expected</span><span class="w">
+</span><span class="w">    </span><span class="nt">provider</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span><span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">http://${azure_app_endpoint}/api/search/contacts?phrase=mustermann</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The second part of the test describes our experimental method. Our example uses the Kubernetes driver extension and terminates exactly one pod from the &ldquo;contactsapp&rdquo; namespace of all deployments with the label <code>service=searchapi</code>. The driver uses your current kubectl context (<code>~/.kube/config</code>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">method</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">action</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">terminate-pod</span><span class="w">
+</span><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">python</span><span class="w">
+</span><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="l">chaosk8s.pod.actions</span><span class="w">
+</span><span class="w">    </span><span class="nt">func</span><span class="p">:</span><span class="w"> </span><span class="l">terminate_pods</span><span class="w">
+</span><span class="w">    </span><span class="c"># Terminates one &#34;searchapi&#34; pod randomly</span><span class="w">
+</span><span class="w">    </span><span class="nt">arguments</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">label_selector</span><span class="p">:</span><span class="w"> </span><span class="l">service=searchapi</span><span class="w">
+</span><span class="w">      </span><span class="nt">ns</span><span class="p">:</span><span class="w"> </span><span class="l">contactsapp</span><span class="w">
+</span><span class="w">      </span><span class="nt">qty</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">      </span><span class="nt">rand</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">      </span><span class="nt">grace_period</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>As soon as Kubernetes detects that a pod is missing from the replica set, a new pod is started. This does not happen immediately, but takes a few seconds depending on the Kubernetes configuration and the application in the pod. At the beginning, our example has a replica set of size 1, so there will be a short downtime when terminating the pod. This fails the validation of the Steady State and thus the complete chaos test. After increasing the replica set to two instances of the search service, the test can be successfully executed. The following recording shows the failure of the first execution, the fix by rescaling and then the successful repetition of the test.</p>
+
+<script src="https://asciinema.org/a/hwvzMTDPy1SxrrafyXoNeNJBN.js" id="asciicast-hwvzMTDPy1SxrrafyXoNeNJBN" data-rows="20" data-theme="solarized-dark" async></script>
+<p>Execution plan used by Chaos Toolkit when running an experiment:</p>
+<ol>
+<li>Validate experiment description</li>
+<li>Run Steady State Hypothesis</li>
+<li>Run Method</li>
+<li>Run Steady State Hypothesis</li>
+<li>Run Rollbacks</li>
+</ol>
+<p>If one of the steps fails, the experiment is classified as a failure.</p>
+<p>The results of the experiment are output directly in the terminal and additionally logged with more detailed information in the output file <code>journal.json</code>. With this file HTML or PDF reports of the experiment can be generated.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">chaos report --export-format<span class="o">=</span>html journal.json report.html
+</code></pre></td></tr></table>
+</div>
+</div><p>The source code of the experiment can be found on <a href="https://github.com/qaware/chaos-engineering/blob/master/chaostoolkit/experiment-kill-search-pod.yaml">Github</a>.</p>
+<h2 id="example-2">Example #2</h2>
+<p>The second example uses the Azure Driver extension<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> from CTK. In this example, a node from the Kubernetes node pool managed by Azure AKS<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> is shut down temporarily, simulating a virtual machine failure.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install -U chaostoolkit-azure
+</code></pre></td></tr></table>
+</div>
+</div><p>Before the extension can be used, the Azure secrets must be deployed in the Azure credential file. This requires the Azure CLI and the permission for service principal creation (<a href="https://github.com/chaostoolkit-incubator/chaostoolkit-azure">full doc</a>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">az login
+az ad sp create-for-rbac --sdk-auth &gt; credentials.json
+</code></pre></td></tr></table>
+</div>
+</div><p>credentials.json:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;subscriptionId&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;azure_aubscription_id&gt;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;tenantId&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;tenant_id&gt;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;clientId&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;application_id&gt;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;clientSecret&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;application_secret&gt;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;activeDirectoryEndpointUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://login.microsoftonline.com&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;resourceManagerEndpointUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://management.azure.com/&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;activeDirectoryGraphResourceId&#34;</span><span class="p">:</span> <span class="s2">&#34;https://graph.windows.net/&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;sqlManagementEndpointUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://management.core.windows.net:8443/&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;galleryEndpointUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://gallery.azure.com/&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;managementEndpointUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;https://management.core.windows.net/&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Store the path to the file in an environment variable called <code>AZURE_AUTH_LOCATION</code> and make sure that your experiment does NOT contain secret section. When this is done, our Azure experiment can be run. Our experiment stops an instance from the filtered virtual machine scale set (vmss). The filtering is done by the resource group, the scale set name and the instance ID.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">method</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">action</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">stop-instace</span><span class="w">
+</span><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">python</span><span class="w">
+</span><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="l">chaosazure.vmss.actions</span><span class="w">
+</span><span class="w">    </span><span class="nt">func</span><span class="p">:</span><span class="w"> </span><span class="l">stop_vmss</span><span class="w">
+</span><span class="w">    </span><span class="nt">arguments</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="l">where resourceGroup=~&#39;${azure_resource_group}&#39; and name=~&#39;${azure_vmss_name}&#39;</span><span class="w">
+</span><span class="w">      </span><span class="nt">instance_criteria</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">${azure_vmss_instanceId}</span><span class="w">
+</span><span class="w">  </span><span class="nt">pauses</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">after</span><span class="p">:</span><span class="w"> </span><span class="m">15</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>This test can be used to verify that the instances of the search service have been deployed on more than one Kubernetes node, thus guaranteeing the availability of the service in the unavailability of a node.</p>
+<p>Because in this test the node remains stopped even after the second Steady State validation, we need to execute a rollback. In our example we restart the node with the function <code>restart_vmss</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">rollbacks</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">action</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">restart-instance</span><span class="w">
+</span><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">python</span><span class="w">
+</span><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="l">chaosazure.vmss.actions</span><span class="w">
+</span><span class="w">    </span><span class="nt">func</span><span class="p">:</span><span class="w"> </span><span class="l">restart_vmss</span><span class="w">
+</span><span class="w">    </span><span class="nt">arguments</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="l">where resourceGroup=~&#39;${azure_resource_group}&#39; and name=~&#39;${azure_vmss_name}&#39;</span><span class="w">
+</span><span class="w">      </span><span class="nt">instance_criteria</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">${azure_vmss_instanceId}</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The source code of the experiment can be found on <a href="https://github.com/qaware/chaos-engineering/blob/master/chaostoolkit/experiment-stop-node.yaml">Github</a>.</p>
+<h2 id="summary">Summary</h2>
+<p>The Chaos Toolkit is a stable open-source tooling for Choas Engineering. The existing driver extensions, the possibility for own extensions or to be able to execute processes directly as action or probe results in a very large flexibility for any kind of chaos tests.</p>
+<p>Because a test always includes the complete experiment (Steady State &amp; Action), Chaos Toolkit is ideal for continuous automated quality assurance.</p>
+<h2 id="image-sources">Image sources</h2>
+<ul>
+<li>Title image: <a href="https://chaostoolkit.org/">Chaos Toolkit Logo</a></li>
+<li>Contacts App Architecture: <a href="https://github.com/azuredevcollege/trainingdays">Azure Developer College</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://docs.chaostoolkit.org/drivers/kubernetes/">chaosk8s Extension</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://docs.chaostoolkit.org/reference/api/experiment/#action-or-probe-provider">Chaos Toolkit Probe Provider</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://docs.chaostoolkit.org/drivers/azure/">Azure Extension</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">Azure Kubernetes Service (AKS)</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about Chaos%20Engineering%3a%20Chaos%20Toolkit%20Demo&url=https%3a%2f%2fblog.qaware.de%2fposts%2fchaos-engineering-chaostoolkit%2f&hashtags=Diagnosibility%2cDevOps%2cObservability%2cChaosEngineering%2cTesting%2cQuality">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fchaos-engineering-chaostoolkit%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=Chaos%20Engineering%3a%20Chaos%20Toolkit%20Demo&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fchaos-engineering-chaostoolkit%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

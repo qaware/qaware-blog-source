@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Metrics on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/metrics/</link>
+    <description>Recent content in Metrics on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Fri, 10 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.qaware.de/tags/metrics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Collaborative Monitoring</title>
+      <link>https://blog.qaware.de/posts/collaborative-monitoring/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/collaborative-monitoring/</guid>
+      <description>We found a helpful approach to collaborative monitoring in a large project that we want to share with you.</description>
+    </item>
+    
+    <item>
+      <title>ContainerDays 2018: Top talks on day 2</title>
+      <link>https://blog.qaware.de/posts/container-days-2/</link>
+      <pubDate>Wed, 11 Jul 2018 15:06:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/container-days-2/</guid>
+      <description>I attended the ContainerDays 2018 in Hamburg and want to give you a short summary of the talks I visited.</description>
+    </item>
+    
+  </channel>
+</rss>

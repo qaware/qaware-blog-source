@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>The status quo of Chaos Engineering - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='This article shows you the current status of Chaos Engineering rituals, procedures and tooling in the Cloud Native ecosystem.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'The status quo of Chaos Engineering' />
+<meta property = 'og:description' content = 'This article shows you the current status of Chaos Engineering rituals, procedures and tooling in the Cloud Native ecosystem.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/chaos-engineering-the-status-quo/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/chaos-engineering/81773288.jpg'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/chaos-engineering-the-status-quo/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>03. March 2021</p>
+      <h1 class = 'post_title'>The status quo of Chaos Engineering</h1>
+      <p class = 'pale'>by <a href="https://www.linkedin.com/in/fuchshuber">Josef Fuchshuber</a> |  1632 words | ~8 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/diagnosibility/'>diagnosibility</a>
+          <a class="post_tag" href='/tags/devops/'>devops</a>
+          <a class="post_tag" href='/tags/observability/'>observability</a>
+          <a class="post_tag" href='/tags/chaos-engineering/'>chaos engineering</a>
+          <a class="post_tag" href='/tags/testing/'>testing</a>
+          <a class="post_tag" href='/tags/quality/'>quality</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/chaos-engineering/81773288.jpg' alt = 'chaos-engineering/81773288.jpg' class = 'post_thumbnail mt-1'>
+        
+          <p>This article shows you the current status of Chaos Engineering rituals, procedures and tooling for the Cloud Native ecosystem. The most important thing up front. Chaos Engineering does not mean creating chaos, it means preventing chaos in IT operations.</p>
+<blockquote>
+<p>Chaos Engineering is the discipline of experimenting on a system in order to build confidence in the system’s capability to withstand turbulent conditions in production. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</blockquote>
+<h2 id="where-can-chaos-engineering-help-us">Where can Chaos Engineering help us?</h2>
+<p>Cloud native software solutions have many advantages. However, there is always one negative point: the execution complexity of the platforms and our microservice components increase. Our architectures are made up of many building blocks in the runtime view. With Chaos Engineering (mindset &amp; process) and Chaos Testing (tooling) we can get a grip on this challenge and build more resilient applications and achieve trust in our complex applications.</p>
+<p>The human factor is almost more central in Chaos Engineering than our applications. As described above, it is very important that we know the behavior of our cloud native architectures and thus build trust. The second aspect are our ops processes. Is our monitoring and alerting working? Do all on-call colleagues have the knowledge to analyze and fix problems quickly?</p>
+<figure>
+  
+  <img src='/images/chaos-engineering/chaos-engineering-levels.png' alt='Chaos Engineering Levels'>
+<figcaption>
+      <p>Chaos Engineering Levels
+        </p>
+    </figcaption>
+</figure>
+<p>The &ldquo;what will be tested&rdquo; with Chaos Engineering can be divided into four categories (from bottom to top):</p>
+<ul>
+<li><strong>Infrastructure:</strong> This is about our virtual infrastructure at our cloud providers. We can test to see if our infrastructure-as-code tooling has created everything correctly and whether, for example, the high-availability VPN connection to our own data center is really highly available and fail-safe.</li>
+<li><strong>Platform:</strong> In the next level, our platform components are involved - Kubernetes, DevOps Deployment Tooling, Observability Tooling. Examples of questions that test can answer at this level are: Does the self-healing of a node pool work if a node fails? What happens if the central container registry fails and new pods have to be started in the cluster?</li>
+<li><strong>Application:</strong> At this level, we test the behavior of our applications in the interaction of the microservices with each other and with the platform components: Is the exception handling correct? Are all circuit breakers and connection pools correctly configured with their timeouts and retries? Is a (partial) failure of a service detected correctly and quickly enough by the health checks?</li>
+<li><strong>People, Practices &amp; Process:</strong> This level is less about tooling and more about the people in the team. In an emergency, are the communication channels correct and are the right people informed at the right time? Do colleagues have all the relevant permissions to perform analysis and troubleshooting? Do they have the know-how not to threaten the MTTR<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>?</li>
+</ul>
+<p>If you summarize the levels and their questions, you can start as a team with Chaos Engineering for these tasks:</p>
+<ul>
+<li>Battle Test for new infrastructure and services.</li>
+<li>Quality Review: Continuously improve the resilience of applications.</li>
+<li>Post Mortem: Reproduction of failures</li>
+<li>On-Call Training</li>
+</ul>
+<p>The most lightweight start of Chaos Engineering are Game Days. On Game Day, the complete team (Devs, Ops, QA, Product Owner, &hellip;) runs experiments. Tooling is placed in the background first. The primary goal for the entire team is to internalize the Chaos Engineering mindset and to discover and fix anomalies in the process.</p>
+<h2 id="how-to-start">How to start?</h2>
+<blockquote>
+<p>Chaos Engineering without observability … is just chaos<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+</blockquote>
+<figure>
+  
+  <img src='/images/chaos-engineering/this-is-fine.jpg' alt='With open eyes into the disaster.'>
+<figcaption>
+      <p>With open eyes into the disaster.
+        </p>
+    </figcaption>
+</figure>
+<p>Everyone knows this meme and no one should be as ignorant as our little friend from the comic. You can ignore things deliberately or you can&rsquo;t ignore them in the beginning because you don&rsquo;t see them. This is exactly what happens when we don&rsquo;t have proper monitoring for our application, platform and infrastructure components. For example, from an end-to-end perspective, the RED method<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> provides a good view of the state of a microservice architecture. So take care of your monitoring first.</p>
+<p>The most common question at the beginning is: In which environment do I run my first experiments? In the beginning, you should always work in the environment closest to production (no mocks, preferably identical cloud infrastructure), but not production. But: Choas Engineering experiments in production are the goal to be, because only there you will find the reality. If you start in a test environment, you must be aware that you have no real customer load during your experiments. You need load generators or acceptance tests to check that the system responds as we assume it will. If these do not yet exist, you will need to build them before your first experiment. Don&rsquo;t worry, sometimes a small shell script is enough or even our Chaos Testing tooling supports validation.</p>
+<p>Now that we have an environment and monitoring, we can start with the first experiments. This image will help us to do so:</p>
+<figure>
+  
+  <img src='/images/chaos-engineering/chaos-experiment-phases.png' alt='The Phases of Chaos Engineering'>
+<figcaption>
+      <p>The Phases of Chaos Engineering
+        </p>
+    </figcaption>
+</figure>
+<p>The phases of Chaos Engineering can be represented as a cyclic process. A cycle starts and ends in the <em>steady state</em>.</p>
+<ul>
+<li><strong>Steady State:</strong> The most important Chaos Engineering state. Because this describes the behavior of the system under normal conditions.</li>
+<li><strong>Hypothesis:</strong> In this phase we make a hypothesis. We design our experiment by executing an action (e.g. database failure) and describing the expected result (e.g. error page in web UI is shown, with HTTP status 200 and not 500).</li>
+<li><strong>Run Experiment:</strong> We execute the defined action. In a game day, this can be done manually (e.g. CLI tooling of cloud providers or <code>kubectl</code>) or automated via a suitable chaos test tooling.</li>
+<li><strong>Verify:</strong> In this phase we validate whether the expected result has occurred. This includes the behavior of the application, but also the measured behavior in our monitoring and alerting tools.</li>
+<li><strong>Analyze and Improve:</strong> If the expected result did not occur, we analyze the cause and fix it.</li>
+</ul>
+<p>After a successful test, the system must be back in <em>Steady State</em>. This is the case either if the executed action does not change the Steady State (e.g. the cluster detects an anomaly automatically and can heal itself) or a rollback is performed (e.g. database is started up again).</p>
+<p>When designing and running the experiment, one of the most important things is always to keep the potential blast radius, i.e., the impact of the error, as minimal as possible and to continuously monitor it. It is helpful to consider in advance how the experiment can be terminated in an emergency and how the <em>Steady State</em> can be restored as quickly as possible. Applications that support canary deployment have a clear advantage here. Because here we can control our work load to the experiment or the normal version of the application.</p>
+<p>Any Chaos Engineering experiment requires detailed planning and must be documented in some form. Example:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target</td>
+<td>Billing Service</td>
+</tr>
+<tr>
+<td>Experiment</td>
+<td>Paypal API is not available</td>
+</tr>
+<tr>
+<td>Hypothesis</td>
+<td>The application automatically detects the outage and no longer offers the payment method to our customers. Customers can still pay by credit card or prepayment. Monitoring detects the failure and automatically creates a Prio-1 Incident.</td>
+</tr>
+<tr>
+<td>Steady State</td>
+<td>All types of payment are available for customers</td>
+</tr>
+<tr>
+<td>Blast Radius</td>
+<td>During the experiment, customers will not be able to pay with Paypal. The alternative payment methods are not affected.</td>
+</tr>
+<tr>
+<td>Technical information</td>
+<td>We simulate the outage of the Paypal API by extremely slowing down the outgoing network traffic of the billing service. We can implement this via the service mesh (sidecar proxies).</td>
+</tr>
+</tbody>
+</table>
+<p>Tip for the design of experiments and hypothesis: Don&rsquo;t make a hypothesis that you know in advance will break your application and thus is not sustainable! These problems, if they are important, you can address and fix immediately. Only hypothesize about your applications that you believe in. Because that is the point of an experiment.</p>
+<h2 id="chaos-engineering-tooling">Chaos Engineering Tooling</h2>
+<p>There is a lot of activity in chaos testing tooling at the moment. New open source and commercial products are constantly being launched. A current overview of the market is provided by the Cloud Native Landscape of the CNCF. There is now a separate Chaos Engineering category<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.</p>
+<figure>
+  
+  <img src='/images/chaos-engineering/chaos-engineering-cncf-landscape.png' alt='Chaos Engineering Tools @ CNCF Landscape'>
+<figcaption>
+      <p>Chaos Engineering Tools @ CNCF Landscape
+        </p>
+    </figcaption>
+</figure>
+<p>The features of Chaos Engineering tools are manifold:</p>
+<ul>
+<li><strong>API or operator based:</strong> Uses the tool only the public APIs of cloud providers and Kubernetes or installs invasive agents / operators in the cluster (e.g. as sidecars).</li>
+<li><strong>Support of Chaos Engineering Level:</strong> Not all tools support all levels. AWS and Kubernetes are supported by many tools. Cloud providers or platforms with less market adoption are often second-class citizens.</li>
+<li><strong>Random or experiment-based:</strong> For randomly acting tools (e.g. terminate any pod of a namespace), the blast radius estimation is much harder and comparative result repetition in CI/CD pipelines is also difficult. On the other hand, these tools may identify unknown sources of errors.</li>
+</ul>
+<p>Unfortunately, there is currently no &ldquo;one-stop-shop&rdquo; that will make all teams happy. So each team has to think about their own requirements and pick one or more tools.</p>
+<h2 id="summary">Summary</h2>
+<p>Chaos Engineering is not a job description, but a mindset and approach that involves the entire team.  The most important thing about Chaos Engineering is that you do it:</p>
+<ul>
+<li>Holding periodic game days for the entire team should become a regular ritual.</li>
+<li>Start in a pre-production environment and first check if your monitoring is good enough.</li>
+</ul>
+<p>Tools will come and go:</p>
+<ul>
+<li>Chaos Engineering tools in the Cloud Native ecosystem are evolving fast.</li>
+<li>The context of your Chaos Engineering experiments will also expand.</li>
+</ul>
+<p>To give you a better insight into the Chaos Engineering tools, we introduce some of them. We start with <a href="/posts/chaos-engineering-chaostoolkit/">Chaos Toolkit</a></p>
+<h2 id="containerconf-2021-presentation">ContainerConf 2021 Presentation</h2>
+<figure>
+	<a href='//www.slideshare.net/QAware/der-status-quo-des-chaos-engineerings' target='_blank'>
+  <img src='/images/chaos-engineering/der-status-quo-des-chaos-engineerings.jpg' alt='Der Status Quo des Chaos Engineerings'>
+</a>
+	<figcaption>
+		<p>
+			<a href='//www.slideshare.net/QAware/der-status-quo-des-chaos-engineerings' target='_blank'>Der Status Quo des Chaos Engineerings</a> von <a href='https://www.slideshare.net/QAware' target='_blank'>QAware GmbH</a>
+		</p>
+      </figcaption>
+</figure>
+<h2 id="image-sources">Image sources</h2>
+<ul>
+<li>Title image: Blindfolded Businessman At Desk Covered With Papers – <a href="http://gettyimages.de">gettyimages.de</a></li>
+<li>This is fine meme: <a href="https://en.wikipedia.org/wiki/Gunshow_(webcomic)">Gunshow (webcomic), KC Green</a></li>
+<li>CNCF landscape: <a href="Chttps://landscape.cncf.io/">CNCF Landscape</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://principlesofchaos.org/">Principles of Chaos Engineering</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://en.wikipedia.org/wiki/Mean_time_to_recovery">Mean time to recovery(MTTR)</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="https://de.slideshare.net/CharityMajors/chaos-engineering-without-observability-is-just-chaos">Charity Majors, @mipsytipsy CTO @ Honeycomb</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://www.weave.works/blog/the-red-method-key-metrics-for-microservices-architecture/">The RED Method: key metrics for microservices architecture</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p><a href="https://landscape.cncf.io/card-mode?category=chaos-engineering&amp;grouping=category">Choas Engineering Category in CNCF Cloud Native Landscape</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about The%20status%20quo%20of%20Chaos%20Engineering&url=https%3a%2f%2fblog.qaware.de%2fposts%2fchaos-engineering-the-status-quo%2f&hashtags=Diagnosibility%2cDevOps%2cObservability%2cChaosEngineering%2cTesting%2cQuality">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fchaos-engineering-the-status-quo%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=The%20status%20quo%20of%20Chaos%20Engineering&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fchaos-engineering-the-status-quo%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

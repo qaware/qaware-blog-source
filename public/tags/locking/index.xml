@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Locking on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/locking/</link>
+    <description>Recent content in Locking on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Wed, 15 Jun 2016 10:39:32 +0200</lastBuildDate><atom:link href="https://blog.qaware.de/tags/locking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Locking Alternatives in Java 8</title>
+      <link>https://blog.qaware.de/posts/locking-java-8/</link>
+      <pubDate>Wed, 15 Jun 2016 10:39:32 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/locking-java-8/</guid>
+      <description>To provide synchronized data cache access, I discuss three alternatives in Java 8.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>Building our own QAware Technology Radar - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='Building a Technology Radar using Serverless GCP services (inspired by ThoughtWorks)'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'Building our own QAware Technology Radar' />
+<meta property = 'og:description' content = 'Building a Technology Radar using Serverless GCP services (inspired by ThoughtWorks)'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/qaware-techradar/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/build-your-own-radar.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/qaware-techradar/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>20. February 2021</p>
+      <h1 class = 'post_title'>Building our own QAware Technology Radar</h1>
+      <p class = 'pale'>by <a href="https://github.com/lreimer">M.-Leander Reimer</a> |  862 words | ~5 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/technology/'>technology</a>
+          <a class="post_tag" href='/tags/radar/'>radar</a>
+          <a class="post_tag" href='/tags/tools/'>tools</a>
+          <a class="post_tag" href='/tags/techniques/'>techniques</a>
+          <a class="post_tag" href='/tags/platforms/'>platforms</a>
+          <a class="post_tag" href='/tags/serverless/'>serverless</a>
+          <a class="post_tag" href='/tags/gcp/'>gcp</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/build-your-own-radar.png' alt = 'build-your-own-radar.png' class = 'post_thumbnail mt-1'>
+        
+          <p>Cool technology comes and goes! Keeping track of every change and innovation regarding the tools, platforms, techniques or languages we use to build enterprise systems is challenging. To address this problem the concept of the <em>Technology Radar</em> is now widely known and adopted by the community. The initial idea was probably born and made popular at ThoughtWorks and since then many other companies followed and published their own technology radar:</p>
+<ul>
+<li><a href="https://www.thoughtworks.com/en/radar">https://www.thoughtworks.com/en/radar</a></li>
+<li><a href="https://opensource.zalando.com/tech-radar/">https://opensource.zalando.com/tech-radar/</a></li>
+<li><a href="https://techradar.qaware.de">https://techradar.qaware.de</a></li>
+</ul>
+<p>To get you started quickly with your own radar, have a look ath the <a href="https://radar.thoughtworks.com">Build Your Own Radar</a> initiative from ThoughtWorks: simply enter your radar data in a Google Sheet and you are ready to go. But in case you want to build and host your own technology radar instance the source code can be found <a href="https://github.com/thoughtworks/build-your-own-radar">here</a>.</p>
+<h2 id="conceptual-architecture">Conceptual Architecture</h2>
+<p>So we started off by forking the official repository. Great! But we soon realized that we wanted more and we needed to make a few modications to the original soures:</p>
+<ul>
+<li>
+<p><strong>Static Datasource</strong>: instead of specifying a URL to a Google Sheet that contains the radar data at every start, we wanted the UI to use a static or hard-coded URL to a known data source instead.</p>
+</li>
+<li>
+<p><strong>No Google Sheet</strong>: for some reason I didn&rsquo;t like to the idea of using a Google Sheet as datasoure for our radar data. I wanted to use a <em>proper</em> database instead.</p>
+</li>
+<li>
+<p><strong>Serverless Infrastructure</strong>: many internal IT services at QAware are hosted in the Google Cloud. So it was pretty obvious that our Technology Radar should also be run on GCP as well, ideally using Serverless technology to save costs and not worry about infrastructure maintenance. We use <em>Cloud Run</em> to run the Web UI container, <em>Cloud Functions</em> for the backend logic to access the radar data and <em>Firestore</em> to store the actual radar data.</p>
+</li>
+</ul>
+<img src='/images/conceptual-techradar.png' alt='Conceptual Architecture of QAware Tech Radar'>
+<p>This is what we ended up with, the code of this customized technology radar version can be found in the follwing <a href="https://github.com/qaware/build-your-own-radar">GitHub</a> repository.</p>
+<h2 id="technical-details">Technical Details</h2>
+<p>The logic to display the technology radar UI had already been implemented in the <a href="https://github.com/thoughtworks/build-your-own-radar">upstream project</a> from ThoughtWorks. The first thing we added was a Cloud Build based pipeline to continuously build and deploy the Web UI container and the required Cloud functions. The following snippet is a simple example <code>cloudbuild.yaml</code> that get&rsquo;s the job done.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c"># build the Docker image for the Web UI using Kaniko</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gcr.io/kaniko-project/executor:latest&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;--dockerfile=./Dockerfile&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">           </span><span class="s2">&#34;--cache=true&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">           </span><span class="s2">&#34;--destination=gcr.io/qaware-techradar/techradar:latest&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="c"># deploy the previously build image to Cloud Run</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gcr.io/cloud-builders/gcloud&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;techradar&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--image&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;gcr.io/$PROJECT_ID/techradar&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--region&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;europe-west1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--platform&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;managed&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--allow-unauthenticated&#39;</span><span class="p">]</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="c"># deploy the CSV data function to Cloud Functions</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gcr.io/cloud-builders/gcloud&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;get-source-as-csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--entry-point&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;getSourceAsCsv&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--runtime&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;nodejs10&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--region&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;europe-west1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--source&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;./functions/get-source-as-csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--trigger-http&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--allow-unauthenticated&#39;</span><span class="p">]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>To store the radar data we decided to use Firebase as a serverless NoSQL database. Connecting to Firebase from a Cloud function is fairly straight forward and well documented with many samples. By using the <code>json2csv</code> library we were able to transform the JSON data documents to CSV in just a few lines of JavaScript code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">functions</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;firebase-functions&#39;</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">admin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;firebase-admin&#39;</span><span class="p">)</span>
+<span class="nx">admin</span><span class="p">.</span><span class="nx">initializeApp</span><span class="p">(</span><span class="nx">functions</span><span class="p">.</span><span class="nx">config</span><span class="p">().</span><span class="nx">firebase</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="p">{</span> <span class="nx">Parser</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;json2csv&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;quadrant&#39;</span><span class="p">,</span> <span class="s1">&#39;ring&#39;</span><span class="p">,</span> <span class="s1">&#39;isNew&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">]</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getSourceAsCsv</span> <span class="o">=</span> <span class="nx">functions</span><span class="p">.</span><span class="nx">https</span><span class="p">.</span><span class="nx">onRequest</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// allow OPTIONS requests
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Methods&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">)</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="p">,</span> <span class="s1">&#39;Authorization&#39;</span><span class="p">)</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Max-Age&#39;</span><span class="p">,</span> <span class="s1">&#39;3600&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">204</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// required because of UI and function have different origins
+</span><span class="c1"></span>  <span class="nx">response</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+  <span class="kd">var</span> <span class="nx">jsondata</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">admin</span><span class="p">.</span><span class="nx">firestore</span><span class="p">()</span>
+  <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">).</span><span class="nx">doc</span><span class="p">(</span><span class="s1">&#39;currentVersion&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">ver</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">version</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="nx">ver</span><span class="p">.</span><span class="nx">data</span><span class="p">().</span><span class="nx">version</span>
+    <span class="kr">const</span> <span class="nx">dBData</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="nx">version</span><span class="p">)</span>
+
+    <span class="c1">// get all data from the versioned data collection
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">dBData</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">querySnapshot</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">querySnapshot</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">doc</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">jsondata</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">data</span><span class="p">())</span>
+      <span class="p">})</span>
+
+      <span class="c1">// produce CSV from JSON documents
+</span><span class="c1"></span>      <span class="kd">var</span> <span class="nx">json2csv</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Parser</span><span class="p">({</span> <span class="nx">delimiter</span><span class="o">:</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="nx">fields</span><span class="o">:</span> <span class="nx">fields</span> <span class="p">})</span>
+      <span class="kr">const</span> <span class="nx">csv</span> <span class="o">=</span> <span class="nx">json2csv</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">jsondata</span><span class="p">)</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span>
+        <span class="s1">&#39;Content-disposition&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;attachment; filename=files.csv&#39;</span>
+      <span class="p">)</span>
+      
+      <span class="nx">response</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/csv&#39;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">csv</span><span class="p">)</span>
+    <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Finally, we added a few convenience functions to upload the radar data to Firebase either via HTTP POST or via a storage bucket. Have a look at the sources in the <a href="https://github.com/qaware/build-your-own-radar">GitHub</a> repository for more details.</p>
+<h2 id="planned-improvements-and-outlook">Planned Improvements and Outlook</h2>
+<p>After the initial release of our technology radar we realized that we are only at the beginning of our journey and that there are some improvements required.</p>
+<p>The dynamic nature of the single-page application (SPA) of the technology radar is not ideal for proper search engine optimization (SEO). Although, we have performed some minor tuning on the initial loaded page, we know that this is far from ideal. So we are currently working on improving this situation. Ideally, we will use some sort of server-side pre-rendering to produce a static version of each possible page of the radar.</p>
+<p>Another issue was more of an organisantional nature: how could we orchestrate the curation of the content of our technology radar so that every project and business division is equally involved? To solve this we established a dedicated guild that takes care of the curation and also serves as an internal technology adivisory to all our projects and teams.</p>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about Building%20our%20own%20QAware%20Technology%20Radar&url=https%3a%2f%2fblog.qaware.de%2fposts%2fqaware-techradar%2f&hashtags=Technology%2cRadar%2cTools%2cTechniques%2cPlatforms%2cServerless%2cGCP">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fqaware-techradar%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=Building%20our%20own%20QAware%20Technology%20Radar&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fqaware-techradar%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

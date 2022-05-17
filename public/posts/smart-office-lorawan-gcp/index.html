@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>QAware Smart Office with LoRaWAN and GCP - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='Building a Smart QAware Office using LoRaWAN devices and GCP serverless technology'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'QAware Smart Office with LoRaWAN and GCP' />
+<meta property = 'og:description' content = 'Building a Smart QAware Office using LoRaWAN devices and GCP serverless technology'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/smart-office-lorawan-gcp/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/smart-office-lorawan-gcp.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/smart-office-lorawan-gcp/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>10. December 2020</p>
+      <h1 class = 'post_title'>QAware Smart Office with LoRaWAN and GCP</h1>
+      <p class = 'pale'>by <a href="https://github.com/lreimer">M.-Leander Reimer</a> |  1092 words | ~6 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/smart-office/'>smart office</a>
+          <a class="post_tag" href='/tags/lorawan/'>lorawan</a>
+          <a class="post_tag" href='/tags/iot/'>iot</a>
+          <a class="post_tag" href='/tags/gcp/'>gcp</a>
+          <a class="post_tag" href='/tags/serverless/'>serverless</a>
+          <a class="post_tag" href='/tags/raspberry/'>raspberry</a>
+          <a class="post_tag" href='/tags/pi/'>pi</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/smart-office-lorawan-gcp.png' alt = 'smart-office-lorawan-gcp.png' class = 'post_thumbnail mt-1'>
+        
+          <p>The initial idea for this project dates back to November 2019, when I attended an event about the digital strategy of my home town Rosenheim. One of the talks at this event was about Rosenheim becoming a Smart city presented by speakers from Komro, the local internet provider, and the municipal utilities. They presented many ideas different use cases, like power cicuit monitoring or room climate control. See <a href="https://smartcity-rosenheim.de">https://smartcity-rosenheim.de</a> for more details.</p>
+<p>Pretty much at the same time, we had just opened our QAware office in Rosenheim. It was apparant to me that the presented LoRaWAN technology together with a serverless backend would be an awesome combination to implement simple use cases such as CO2 monitoring in our meeting rooms or temparature readings in our server room. Unfortunately, COVID19 kicked in then and we had to transform our offices into safe environments to work. And guess what: even more use cases emerged like occupancy detection on shared desks and even toilets.</p>
+<p>During our QAgarage day I finally found the time to write up this blog post and build the <em>Klo Ampel</em>, a digital occupancy indicator for toilets. Great fun!</p>
+<h2 id="required-hardware">Required Hardware</h2>
+<p>The following is a shopping list of some of the hardware we used for this project. Of course there are many other LoRaWAN sensor devices you can buy.</p>
+<ul>
+<li><a href="https://www.elsys.se/en/ers-co2/">ELSYS ERS CO2</a> for indoor environment monitoring, with sensors for temperature, CO2, humidity, light and motion.</li>
+<li><a href="https://www.elsys.se/en/ers-eye/">ELSYS ERS Eye</a> to detect people by movement and also by heat.</li>
+<li><a href="https://www.elsys.se/en/ers-desk/">ELSYS ERS Desk</a> for occupancy detection of shared desks.</li>
+<li><a href="https://www.amazon.de/gp/product/B07D5G3459/ref=ox_sc_act_title_2?smid=A2KDI895FDYZAF&amp;psc=1">Raspberry Pi Zero W Starter Kit</a> as a small MQTT client device.</li>
+<li><a href="https://www.getdigital.de/blink-1-mk3.html">blink(1) mk3</a> as a simple LED status display.</li>
+</ul>
+<h2 id="conceptual-architecture">Conceptual Architecture</h2>
+<p>The general idea was to host the complete backend on Google Cloud and mainly use serverless technologies such as <em>Cloud Functions</em>, <em>Cloud Firestore</em> or <em>Cloud Run</em>. The basic infrastructure setup for the project is performed using Terraform, in order to create</p>
+<ul>
+<li>the <em>Cloud Source Repositories</em> to mirror the sources for each function from our GitLab instance,</li>
+<li>the <em>Cloud Build</em> triggers for each repository to build and deploy the functions and containers,</li>
+<li>several <em>Cloud Pup/Sub</em> topics to publish current temperature and CO2 values to,</li>
+<li>a <em>Cloud Scheduler</em> to run regular cleanup jobs,</li>
+<li>a <em>Cloud IoT Registry</em> to register external MQTT clients.</li>
+</ul>
+<p>The LoRaWAN devices are registered and connected to the local available LoRaWAN network. For our Rosenheim office we are using the network provided by Komro, and for our Munich office we use <a href="https://www.thethingsnetwork.org">The Things Network</a> with the HTTP integration configured. The sensor data is delivered to an HTTP receiver Cloud function, that decodes and stores the original payload as document in a Firestore collection. This function looks something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">functions</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;firebase-functions&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">admin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;firebase-admin&#39;</span><span class="p">)</span>
+<span class="nx">admin</span><span class="p">.</span><span class="nx">initializeApp</span><span class="p">(</span><span class="nx">functions</span><span class="p">.</span><span class="nx">config</span><span class="p">().</span><span class="nx">firebase</span><span class="p">)</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">receive</span> <span class="o">=</span> <span class="nx">functions</span><span class="p">.</span><span class="nx">https</span><span class="p">.</span><span class="nx">onRequest</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span> <span class="o">!==</span> <span class="s1">&#39;POST&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">405</span><span class="p">).</span><span class="nx">end</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;content-type&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;application/json&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">415</span><span class="p">).</span><span class="nx">end</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">rawBody</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+    <span class="nx">json</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">decodePayload</span><span class="p">(</span><span class="nx">hexToBytes</span><span class="p">(</span><span class="nx">json</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+        
+    <span class="nx">admin</span><span class="p">.</span><span class="nx">firestore</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s1">&#39;raw-device-data&#39;</span><span class="p">)</span>
+                     <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span>
+                     <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;Added raw device data&#39;</span><span class="p">));</span>
+    
+    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The whole backend logic is event driven and solely built using functions. Once the data has been persisted to Firestore, we use a series of Cloud functions to further process and aggregate the raw data. Some functions are trigger by the add and update events emitted by Firestore itself, others are trigger by Pub/Sub messages or cron jobs. As you can see from the conceptual architecture diagram we experimented with different runtime environments and languages. For simple functions it is really fast and convenient to write the function in plain JavaScript and use Node as runtime. However, using Go and Java for me felt very natural since these are my home turf.</p>
+<p>We also built a small admin dashboard web UI using Vue. Nothing fancy, just a simple timeline view of the received data for each device and a device view with all current device readings. The UI itself is served from a containerized Nginx that is deployed on <strong>Cloud Run</strong>. The following code shows the <code>cloudbuild.yaml</code> used to build the Docker image using Kaniko and to deploy the image using the Google Cloud CLI.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c"># build Docker image with Kaniko and push to Container Registry</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gcr.io/kaniko-project/executor:latest&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;--dockerfile=./Dockerfile&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">           </span><span class="s2">&#34;--cache=true&#34;</span><span class="p">,</span><span class="w">
+</span><span class="w">           </span><span class="s2">&#34;--destination=gcr.io/lorawan-office-qaware/web-ui:latest&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">  
+</span><span class="w">  </span><span class="c"># deploy and run image with Cloud Run</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gcr.io/cloud-builders/gcloud&#39;</span><span class="w">
+</span><span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;web-ui&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--image&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;gcr.io/lorawan-office-qaware/web-ui&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--region&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;europe-west1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;--platform&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;managed&#39;</span><span class="p">]</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The data for the UI is exposed via a REST API implemented as a JavaScript function leveraging the Express.js framework. Each API endpoint is a simple function that queries Firestore and returns the result documents as JSON. I was impressed how quick and easy simple CRUD style APIs can be implemented this way.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">application</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./application&#39;</span><span class="p">);</span>
+<span class="c1">// ... more imports ...
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="c1">// the REST API endpoints
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/applications&#39;</span><span class="p">,</span> <span class="nx">application</span><span class="p">.</span><span class="nx">applications</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/applications/:applicationid&#39;</span><span class="p">,</span> <span class="nx">application</span><span class="p">.</span><span class="nx">application</span><span class="p">);</span>
+<span class="c1">// ... more endpoints ...
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">unsupported</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">unsupported</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">api</span> <span class="o">=</span> <span class="nx">app</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">unsupported</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Unknown API.&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">options</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Credentials&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="p">,</span> <span class="s1">&#39;access-control-allow-origin,authorization,content-type&#39;</span><span class="p">)</span>
+    <span class="kr">const</span> <span class="nx">ORIGIN</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">origin</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="nx">ORIGIN</span><span class="p">)</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">204</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The final piece of the architecture is to connect further external devices to receive and act upon certain thresholds and events. For this we use the <em>Cloud IoT Core</em> and <em>Pub/Sub</em> APIs from GCP. Each client device (or application) is registered together with its public key at the device manager. The device later authenicates itself using a JSON Web Token (JWT) that is signed with its own matching private key. To communicated with the backend the client connects via the MQTT protocol to receive the commands from the backend. Have a look at the official <a href="https://cloud.google.com/iot/docs/quickstart?hl=en">Quickstart</a> documentation for further details.</p>
+<p>The following pictures show the final result: a Raspberry Pi Zero W with a connected blink(1) mk3 LED. The Pi runs a small Go program that establishes the MQTT connection and then toggles the LED between red and green depending on the occupancy data sent by the backend. Finally, you do not have to manually turn the sign anymore!</p>
+<img src='/images/kloampel-00.jpg' alt='Raspberry Pi Zero W with blink(1) mk3'>
+<h2 id="cloud-costs">Cloud Costs</h2>
+<p>Of course, there is the initial investment for the hardware. The prices for the sensors vary quite significantly, somewhere between 60 and 180 Euro. But this is a one-time investment. The cloud costs are much much cheaper than this. In an average month the costs are somewhere in the range of 10 Euro cent!</p>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about QAware%20Smart%20Office%20with%20LoRaWAN%20and%20GCP&url=https%3a%2f%2fblog.qaware.de%2fposts%2fsmart-office-lorawan-gcp%2f&hashtags=SmartOffice%2cLoRaWAN%2cIoT%2cGCP%2cServerless%2cRaspberry%2cPi">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fsmart-office-lorawan-gcp%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=QAware%20Smart%20Office%20with%20LoRaWAN%20and%20GCP&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fsmart-office-lorawan-gcp%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

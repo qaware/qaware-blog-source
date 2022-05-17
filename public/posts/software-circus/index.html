@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>Software Circus - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='The most interesting topics we experienced during this year&rsquo;s Software Circus include AI/ Machine Learning, Software Architecture, DevOps.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'Software Circus' />
+<meta property = 'og:description' content = 'The most interesting topics we experienced during this year&rsquo;s Software Circus include AI/ Machine Learning, Software Architecture, DevOps.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/software-circus/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/blue.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/software-circus/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>18. September 2017</p>
+      <h1 class = 'post_title'>Software Circus</h1>
+      <p class = 'pale'>by Felix Obenauer |  1139 words | ~6 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/conference/'>conference</a>
+          <a class="post_tag" href='/tags/machine-learning/'>machine learning</a>
+          <a class="post_tag" href='/tags/ai/'>ai</a>
+          <a class="post_tag" href='/tags/software-architecture/'>software architecture</a>
+          <a class="post_tag" href='/tags/devops/'>devops</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <img src = 'https://blog.qaware.de/images/blue.png' alt = 'blue.png' class = 'post_thumbnail mt-1'>
+        
+          <h2 id="intro">Intro</h2>
+<p>We just came home from two days of talks, workshops and lots of fun during this year&rsquo;s Software Circus. &ldquo;Cloudbusting&rdquo; was the theme this year and it took place in the lovely city of Amsterdam. The organization team did a great job finding a unique venue: A festival location including a Big Top circus tent, a rusty hangar and a large outdoor area is not quite the setting you expect from a software conference!</p>
+<p>Not your standard conference at all, the Circus provided some relaxed, fun and joyful atmosphere for learning new stuff, meeting new people and chatting to old friends of the cloud native community. The conference was embedded into a futuristic story arch that was moved forward by several great performances of actors, singers and dancers in between talks and sessions. Loud music, great food and Dutch beer rounded out the experience.</p>
+<p>Maybe - just maybe, but don&rsquo;t tell our boss - especially the first day was a bit heavy on the show and too light on the content side. We did, however, get to talk tech, as there were several tracks throughout the day. If anything, we would wish for more talks and hands-on sessions during the next year&rsquo;s event!</p>
+<p>The second day was reserved for workshops and some deep-dive sessions. Heavy rain and wet feet couldn&rsquo;t stop us from being there, not like many of the other attendants.</p>
+<p>The following sections cover the most interesting topics and talks that we experienced this year.</p>
+<h2 id="machine-learningai">Machine Learning/AI</h2>
+<p>One big topic at the Software Circus 2017 was Artificial Intelligence (AI), especially Machine Learning (ML).</p>
+<p>In a practical part Google gave an intro into Tensorflow. It’s an Open Source library for AI and ML, that is developed by Google’s Brain Team. It performs operations on multidimensional arrays, so called tensors. As Google uses it for it’s search ranking, Tensorflow is worth a closer look.</p>
+<p>In a theoretical talk Thiago de Faria spoke about ML, AI and DevOps. He introduced the history of AI and ML which goes back to the late 50’s and 60’s, where the first algorithms occurred. In the 90’s support vector machines mark another big step until 1997 IBM’s Deep Blue beat the World Champion at chess. Nowadays IBM’s Watson is one of the most famous AI / ML projects.</p>
+<p>As Thiago is an ML practitioner he pointed out some very important questions concerning DevOps in AI and ML systems which still remain unanswered. A normal program is tested automatically in the context of Continuous Integration (CI). But how can you apply CI to AI and ML systems? Can you create automated tests for such a system? As even the smallest change in an AI has unpredictable effects and might break completely disjoint features, this is a very important point. Furthermore, a normal program is debuggable. You can set breakpoints and follow the program execution. But how can you debug AI and ML systems as there exists no traditional program flow? He hopes that those questions might be answered as AI and ML become more and more explainable.</p>
+<p>At last he expressed his concerns and fears regarding ML. On the one hand existing biases might propagate into a system’s learned behavior and influence its decisions, on the other hand people might tend to delegate decisions to algorithms as they are too afraid to decide for themselves. Only time will reveal if his concerns were unfounded.</p>
+<h2 id="software-architecture">Software Architecture</h2>
+<p>With many buzzwords flying around, it is sometimes forgotten that certain topics never loose their relevance. Independent technology consultant Simon Brown delivered an inspiring (re-) imagination of the modern Software Architect. He debunks the notion that a capable architect is only doing the up-front specification work (the seagull approach), and is an avid proponent of a hands-on approach to software architecture. An architect needs to have people skills as much as technological expertise and is an essential building block for well-performing dev teams.</p>
+<p>Simon also advocates the use of modelling tools to support development. This does not mean UML necessarily, he introduced his own creation as an alternative: The C4 model for software architecture is a lightweight alternative to get started with a better architectural documentation.</p>
+<h2 id="devops">DevOps</h2>
+<p>Improving the software delivery process is still a key concern today and it was an important topic at the Software Circus as well. Often summarized under the &lsquo;DevOps&rsquo; term, speakers and workshop organizers examined the matter from different perspectives, sharing success stories and cautionary tales. Maarten Dirkse of dutch online bookstore bol.com gave a workshop on doing continuous delivery - including automating canary deployments - using Gitlab-CI and Spinnaker.</p>
+<p>DevOps is not about a particular technology, it is about culture and collaboration. This is the primary takeaway from Kris Buytaerts emotional talk in which he explained how &ldquo;Docker Is Killing DevOps Efforts&rdquo;. He uses the Anti-Pattern of the &ldquo;Enterprise Container&rdquo;, which contain an entire application-stack from Message-Queue to Database. By that he shows that simply adopting a particular technology does not solve the delivery problems and reminds everyone of the core values of the DevOps movement: culture, automation, measurement and sharing (CAMS).</p>
+<p>DevOps principals are not only important in application development, as &ldquo;DataOps&rdquo; practitioner Thiago de Faria explained. With increasing importance, machine learning and AI projects need to think about their own delivery pipelines to tackle lock-in, onboarding and delivery problems.</p>
+<p><img src="/images/bigtop.png" alt=""></p>
+<p>Dealing with Legacy Applications
+Even if this year&rsquo;s Software Circus was using the theme &ldquo;Cloudbusting&rdquo;, there was some good news for those of us dealing with monolithic legacy applications: David Pilato from Elastic Search demonstrated how legacy applications can easily adopt the Elastic stack with incredibly small effort (see <a href="http://github.com/dadoonet/legacy-search">github.com/dadoonet/legacy-search</a>). Twelve brave attendants watched this morning&rsquo;s first demo on adopting Elastic Search, all of us defying rain, wind, cold and noise from trains and ice carving&hellip;</p>
+<p>The new 6.0.0-beta version contains some really cool features: the now build-in client for Elastic&rsquo;s API can be integrated in your JAVA applications quite easily, comes with convenient query builders, and grants out-of-the-box access to the following features:</p>
+<ul>
+<li>Bulk processing for high performance index operations</li>
+<li>Custom analyzers for easy index token definitions</li>
+<li>Easy data aggregations for your application specific needs</li>
+<li>Fuzziness factor for typo tolerance</li>
+<li>Easy Kibana integration</li>
+</ul>
+<p>Good to know that Elastic Search cannot be used for time series only. Can&rsquo;t wait to try it out in our applications!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Software Circus is worth a visit, especially if you tire a bit of the conventional conference setting. It is a community event in the truest sense, bringing the people together and creating a comfortable backdrop for talks and sessions. If you come for the conversations and the spirit, you will be delighted. If you are only in for the content, then you may leave longing for some more - even though the Circus had lots to offer in that regards as well!</p>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about Software%20Circus&url=https%3a%2f%2fblog.qaware.de%2fposts%2fsoftware-circus%2f&hashtags=Conference%2cMachineLearning%2cAI%2cSoftwareArchitecture%2cDevOps">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fsoftware-circus%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=Software%20Circus&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fsoftware-circus%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>

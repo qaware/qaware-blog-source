@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migration on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/migration/</link>
+    <description>Recent content in Migration on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Wed, 28 Jul 2021 10:54:33 +0200</lastBuildDate><atom:link href="https://blog.qaware.de/tags/migration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cloud Migration: This is the Way</title>
+      <link>https://blog.qaware.de/posts/cloud-migration-this-is-the-way/</link>
+      <pubDate>Wed, 28 Jul 2021 10:54:33 +0200</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/cloud-migration-this-is-the-way/</guid>
+      <description>There is only one way to to do cloud migration properly: Linking business and technology.</description>
+    </item>
+    
+  </channel>
+</rss>

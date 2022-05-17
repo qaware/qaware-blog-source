@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Open Source on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/open-source/</link>
+    <description>Recent content in Open Source on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 08 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.qaware.de/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introducing Minikube Support Tools</title>
+      <link>https://blog.qaware.de/posts/introducing-minikube-support-tools/</link>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/introducing-minikube-support-tools/</guid>
+      <description>In this blog post, we want to introduce the minikube-support tools, which we recently released in the first version. The minikube-support tools are intended to automate and simplify common tasks which you need to do every time you set up a new minikube cluster. For this, they combine some cluster internal and external tools to provide a better interaction between minikube and the developers local os. Basically the minikube-support tools are a collection of tools and their configuration which are usually required to work or develop with a minikube cluster but are not pre-installed or properly configured.</description>
+    </item>
+    
+  </channel>
+</rss>

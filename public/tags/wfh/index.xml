@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WFH on QAware | Software Engineering Blog</title>
+    <link>https://blog.qaware.de/tags/wfh/</link>
+    <description>Recent content in WFH on QAware | Software Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2020, QAware GmbH; all rights reserved.</copyright>
+    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.qaware.de/tags/wfh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zero Presence But Many Presents: My Remote Start at QAware</title>
+      <link>https://blog.qaware.de/posts/remote-start/</link>
+      <pubDate>Wed, 25 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.qaware.de/posts/remote-start/</guid>
+      <description>Felix shares his impressions of starting work at QAware 100% remotely.</description>
+    </item>
+    
+  </channel>
+</rss>

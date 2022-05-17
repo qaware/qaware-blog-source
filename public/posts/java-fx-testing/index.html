@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  <title>GUI Tests for JavaFX - QAware | Software Engineering Blog</title>
+  <meta charset='utf-8'>
+  
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes'>
+  <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
+  <meta name="description" content='This article summarizes my experiences when setting up UI tests for a new JavaFX application at QAware.'>
+<meta property = 'og:locale' content = 'en_US' />
+<meta property = 'og:type' content = 'article' />
+<meta property = 'og:title' content = 'GUI Tests for JavaFX' />
+<meta property = 'og:description' content = 'This article summarizes my experiences when setting up UI tests for a new JavaFX application at QAware.'>
+<meta property = 'og:url' content = 'https://blog.qaware.de/posts/java-fx-testing/' />
+<meta property = 'og:image' content = 'https://blog.qaware.de/images/images/qaware_logo.png'/>
+<link rel='apple-touch-icon' sizes='180x180' href='https://blog.qaware.de/images/icons/apple-touch-icon.png'>
+<link rel='icon' type='image/png' sizes='32x32' href='https://blog.qaware.de/images/icons/favicon-32x32.png'>
+<link rel='icon' type='image/png' sizes='16x16' href='https://blog.qaware.de/images/icons/favicon-16x16.png'>
+<link rel='manifest' href='https://blog.qaware.de/images/icons/site.webmanifest'>
+<meta name='msapplication-TileColor' content='#da532c'>
+<meta name='theme-color' content='#ffffff'>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/QAware_Logo_Icon_RGB_Petrol.svg" type="image/svg+xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+  <link rel='canonical' href='https://blog.qaware.de/posts/java-fx-testing/'>
+  <link rel = 'stylesheet' href = 'https://blog.qaware.de/css/main.098c0e189cad2e9f36cf297e63d68287a9f1e1ba37b72c316aafe78722aca094738d3238a359d91fca3eb48fc356b73c7e436c50fac13d61ddfa699fca90005d.css' integrity = 'sha512-CYwOGJytLp82zyl&#43;Y9aCh6nx4bo3tywxaq/nhyKsoJRzjTI4o1nZH8o&#43;tI/DVrc8fkNsUPrBPWHd&#43;mmfypAAXQ==' title="templateStyle">
+
+  
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="4e938949-aa56-465e-9c2a-175bb6c31d81" data-blockingmode="auto" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header>
+    <div id="main-header">
+        <a href="/" id="main-header-logo">
+            <img src="/images/icons/logo_qaware.svg"
+                 alt="QAware" id="main-header-logo-img">
+        </a>
+        <div id="main-header-nav-items-container">
+            <nav id="main-nav">
+                <ul class="main-nav-menu">
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Posts</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/tags/" class="main-nav-sub-menu nav-item">Tags</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://blog.qaware.de/posts/" class="main-nav-sub-menu nav-item">Archive</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://blog.qaware.de/' class="main-nav-menu nav-item">Resources</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.github.com/qaware" class="main-nav-sub-menu ">GitHub</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://de.slideshare.net/QAware" class="main-nav-sub-menu ">SlideShare</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.youtube.com/user/QAwareGmbH" class="main-nav-sub-menu ">YouTube</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="main-nav-sub-menu ">Meetup Mainz</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="main-nav-sub-menu ">Meetup Munich</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de' class="main-nav-menu ">Company</a>
+                        
+                        <ul class="main-nav-sub-menu">
+                            
+			    <li class="main-nav-sub-menu"><a href="https://www.qaware.de" class="main-nav-sub-menu ">Website</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="https://twitter.com/qaware" class="main-nav-sub-menu ">Twitter</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.linkedin.com/company/qaware-gmbh" class="main-nav-sub-menu ">Linkedin</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.xing.com/companies/qawaregmbh" class="main-nav-sub-menu ">Xing</a></li>
+                            
+			    <li class="main-nav-sub-menu"><a href="http://www.kununu.com/qaware" class="main-nav-sub-menu ">Kununu</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li class="main-nav-menu">
+                        <a href='https://www.qaware.de/kontakt' class="main-nav-menu ">Contact</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+            <a id="mobile-nav-icon-link" href="#">
+                <div id="mobile-nav-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="mobile-nav-dropdown">
+        
+        <nav id="mobile-nav" class="mobile-nav collapsed">
+            <ul>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Posts</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://blog.qaware.de/tags/" class="nav-item">Tags</a></li>
+                            
+			                <li><a href="https://blog.qaware.de/posts/" class="nav-item">Archive</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://blog.qaware.de/' class='nav-item'>Resources</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.github.com/qaware" class="">GitHub</a></li>
+                            
+			                <li><a href="https://de.slideshare.net/QAware" class="">SlideShare</a></li>
+                            
+			                <li><a href="https://www.youtube.com/user/QAwareGmbH" class="">YouTube</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/Cloud-Native-Night" class="">Meetup Mainz</a></li>
+                            
+			                <li><a href="https://www.meetup.com/de-DE/cloud-native-muc/" class="">Meetup Munich</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de' class='nav-item'>Company</a>
+                    
+                        <ul>
+                            
+			                <li><a href="https://www.qaware.de" class="">Website</a></li>
+                            
+			                <li><a href="https://twitter.com/qaware" class="">Twitter</a></li>
+                            
+			                <li><a href="http://www.linkedin.com/company/qaware-gmbh" class="">Linkedin</a></li>
+                            
+			                <li><a href="http://www.xing.com/companies/qawaregmbh" class="">Xing</a></li>
+                            
+			                <li><a href="http://www.kununu.com/qaware" class="">Kununu</a></li>
+                            
+                        </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href='https://www.qaware.de/kontakt' class='nav-item'>Contact</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <main>
+      
+  <div class = 'wrap mt-4 post'>
+    <div><p class = 'post_date pale'>16. April 2015</p>
+      <h1 class = 'post_title'>GUI Tests for JavaFX</h1>
+      <p class = 'pale'>by Andreas Zitzelsberger |  1124 words | ~6 min read</p>
+      <p>
+          <a class="post_tag" href='/tags/testing/'>testing</a>
+          <a class="post_tag" href='/tags/gui/'>gui</a>
+          <a class="post_tag" href='/tags/javafx/'>javafx</a>
+          <a class="post_tag" href='/tags/java/'>java</a>
+          <a class="post_tag" href='/tags/junit/'>junit</a>
+      </p>
+      <div class = 'post_body'>
+        <div class = 'post_inner'>
+        
+          <p>This article summarizes my experiences when setting up UI tests for a new JavaFX application at QAware.</p>
+<p>I had the following requirements for a JavaFX test framework:</p>
+<ul>
+<li>Free (as in beer) Software  with a permissive license</li>
+<li>Lean, pure Java framework</li>
+<li>Integration with  JUnit</li>
+</ul>
+<p>Later on, the requirement to do headless tests was added. I will cover headless tests in a follow-up post.</p>
+<p>A quick search reveals three contenders:</p>
+<ul>
+<li>TestFX: <a href="https://github.com/TestFX/TestFX">https://github.com/TestFX/TestFX</a></li>
+<li>JemmyFX: <a href="https://jemmy.java.net/">https://jemmy.java.net/</a></li>
+<li>MarvinFX: <a href="https://github.com/guigarage/MarvinFX">https://github.com/guigarage/MarvinFX</a></li>
+</ul>
+<p>Of these three, MarvinFX seems dead. The last commit to MarvinFX was on May the 4th, 2013, almost two years ago, so I discarded that option.</p>
+<p>There are several further possibilities such as Automaton and TestComplete. Test Complete is a full-blown GUI testing product and not a lean framework, and the Automaton developers recommend <a href="https://github.com/renatoathaydes/Automaton">TestFX for testing JavaFX</a>).</p>
+<h1 id="testability-restrictions-in-javafx">Testability restrictions in JavaFX</h1>
+<p>Before dealing with the test frameworks, let me mention that  JavaFX has two important issues that restrict testability. To fix them, both require modifications to the JavaFX platform.</p>
+<h2 id="no-lifecylce-management-on-the-javafx-platform">No lifecylce management on the JavaFX platform</h2>
+<p>JavaFX allows to start exactly one application exactly once within a JVM. That means:</p>
+<ul>
+<li>No parallel or sequential execution of UI tests within a JVM.</li>
+<li>Each test case must run within it&rsquo;s own JVM.</li>
+</ul>
+<p>I&rsquo;m not aware of any way to get around this restriction.</p>
+<h2 id="no-headless-testing-of-javafx-applications">No headless testing of JavaFX applications</h2>
+<p>The Oracle and OpenJDK desktop builds to not allow testing JavaFX applications without a physical display. I will show a way to get around this restriction in a follow-up post.</p>
+<h1 id="testfx">TestFX</h1>
+<p>TestFX promises &ldquo;Simple and clean testing for JavaFX&rdquo;. The <a href="https://github.com/TestFX/TestFX/wiki/Getting-started">TestFX Getting Started Guide</a> provides a short primer on how to use TestFX. Currently, TestFX 4 is under active development.</p>
+<p>TestFX is <a href="http://mvnrepository.com/artifact/org.loadui/testFx">available in Maven Central</a>, so integration is just a Maven dependency away.</p>
+<p>To create a TestFX GUI test, you have to extend the GuiTest class:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SomeGuiTest</span> <span class="kd">extends</span> <span class="n">GuiTest</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">Parent</span> <span class="nf">getRootNode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">FXMLLoader</span> <span class="n">fxmlLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FXMLLoader</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">(</span><span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="n">FXML_FILE</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">fxmlLoader</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>You have to override a single method getRootNode(), which will create the node to test. In TestFX 4, currently in alpha state, the idiom is closer to the regular JavaFX application startup. The method to override has the signature void start(Stage stage).
+As you can see, TestFX is geared towards testing GUI components of an application. This approach comes with two important caveats:</p>
+<ol>
+<li>TestFX does not play nice with customized application startup. Application startup is commonly customized in non-trivial applications, for instance to startup DI containers such as Weld or Spring.</li>
+<li>The JavaFX platform does not provide lifecycle management of the JavaFX toolkit. As of JavaFX 8, it is not possible to cleanly startup and shutdown JavaFX within a process. That means while it&rsquo;s nice to be able to easily test each GUI component separately, each of these test cases needs to run in it&rsquo;s own JVM.</li>
+</ol>
+<p>There is a workaround for caveat #1:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="n">Parent</span> <span class="nf">getRootNode</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setupStage</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+    <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">Application</span><span class="o">.</span><span class="na">launch</span><span class="o">(</span><span class="n">SomeApplication</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Override the <code>setupStage()</code> method and startup your application manually. The result of the <code>getRootNode()</code> method is no longer used.</p>
+<p>For the tests themselves, there is a nice and easy fluent API:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">click</span><span class="o">(</span><span class="s">&#34;#userNameTextField&#34;</span><span class="o">).</span><span class="na">type</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">);</span>
+    <span class="n">click</span><span class="o">(</span><span class="s">&#34;#passwordTextField&#34;</span><span class="o">).</span><span class="na">type</span><span class="o">(</span><span class="s">&#34;password&#34;</span><span class="o">);</span>
+    <span class="n">click</span><span class="o">(</span><span class="s">&#34;#loginButton&#34;</span><span class="o">);</span>
+
+    <span class="c1">// Wait for success with a 10s timeout
+</span><span class="c1"></span>    <span class="n">waitUntil</span><span class="o">(</span><span class="s">&#34;#showLabel&#34;</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="n">visible</span><span class="o">()),</span> <span class="n">10</span><span class="o">);</span>
+
+    <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="o">((</span><span class="n">Label</span><span class="o">)</span> <span class="n">find</span><span class="o">(</span><span class="s">&#34;#showLabel&#34;</span><span class="o">)).</span><span class="na">getText</span><span class="o">();</span>
+    <span class="n">verifyThat</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">containsString</span><span class="o">(</span><span class="s">&#34;OK&#34;</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>I like especially that TestFX exposes the lookup by CSS selector functionality of JavaFX. This makes the creation of page objects superfluous in most cases.</p>
+<p>TestFX creates screenshots upon test failures. Unfortunately, it also creates screenshots elsewhen, for example when using the <code>waitUntil()</code>  method. Combine that with the fact that the screenshot location is hard-coded to the current working directory, and the screenshot feature becomes annoying instead of useful.</p>
+<h1 id="jemmyfx">JemmyFX</h1>
+<p>JemmyFX is another JavaFX UI test library and part of the offical OpenJFX project. Since 2012,  it resides in the test branch of OpenJFX.</p>
+<p>JemmyFX is not provided in binary form. To use JemmyFX, you have to checkout and compile the sources yourself:</p>
+<ul>
+<li>For <a href="http://hg.openjdk.java.net/openjfx/8/master/tests/">JavaFX 8</a></li>
+<li>For [JavaFX 2.2.2] (<a href="http://hg.openjdk.java.net/openjfx/2.2.2/master/tests/">http://hg.openjdk.java.net/openjfx/2.2.2/master/tests/</a>)</li>
+</ul>
+<p>The <a href="https://jemmy.java.net/">Jemmy web site</a> is in disrepair which raises doubts about the project&rsquo;s status. However, the test branch is still included in the newest OpenJFX versions and seems to be actively mainained at a low level.</p>
+<p>The build produces quite a number of Jars. In total, 7 JARs are required to use JemmyFX:</p>
+<ul>
+<li><code>GlassImage.jar</code></li>
+<li><code>GlassRobot.jar</code></li>
+<li><code>JemmyAWTInput.jar</code></li>
+<li><code>JemmyBrowser.jar</code></li>
+<li><code>JemmyCore.jar</code></li>
+<li><code>JemmySupport.jar</code></li>
+<li><code>JemmyFX.jar</code></li>
+</ul>
+<p>You can include these JARs in a Maven or Gradle build by installing them in your local repository or on a custom Nexus.</p>
+<p>As soon as all that is done, JemmyFX is quite easy to use. You need to create a setup method that initalizes and launches your application:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@BeforeClass</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">Application</span><span class="o">.</span><span class="na">launch</span><span class="o">(</span><span class="n">LoginApplication</span><span class="o">.</span><span class="na">class</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The test cases are somewhat more verbose than with TestFX:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+ <span class="n">SceneDock</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SceneDock</span><span class="o">();</span>
+
+ <span class="c1">// Create docks for the UI elements. Lookup by Id
+</span><span class="c1"></span> <span class="n">TextInputControlDock</span> <span class="n">userNameDock</span> <span class="o">=</span>
+  <span class="k">new</span> <span class="n">TextInputControlDock</span><span class="o">(</span>
+   <span class="n">scene</span><span class="o">.</span><span class="na">asParent</span><span class="o">(),</span>
+   <span class="k">new</span> <span class="n">ByID</span><span class="o">&lt;&gt;(</span><span class="s">&#34;userNameTextField&#34;</span><span class="o">));</span>
+ <span class="n">TextInputControlDock</span> <span class="n">passwordDock</span> <span class="o">=</span>
+  <span class="k">new</span> <span class="n">TextInputControlDock</span><span class="o">(</span>
+   <span class="n">scene</span><span class="o">.</span><span class="na">asParent</span><span class="o">(),</span>
+   <span class="k">new</span> <span class="n">ByID</span><span class="o">&lt;&gt;(</span><span class="s">&#34;passwordTextField&#34;</span><span class="o">));</span>
+ <span class="n">LabeledDock</span> <span class="n">loginButtonDock</span> <span class="o">=</span>
+  <span class="k">new</span> <span class="n">LabeledDock</span><span class="o">(</span>
+   <span class="n">scene</span><span class="o">.</span><span class="na">asParent</span><span class="o">(),</span>
+   <span class="k">new</span> <span class="n">ByID</span><span class="o">&lt;&gt;(</span><span class="s">&#34;loginButton&#34;</span><span class="o">));</span>
+
+ <span class="n">userNameDock</span><span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="s">&#34;jemand&#34;</span><span class="o">);</span>
+ <span class="n">passwordDock</span><span class="o">.</span><span class="na">mouse</span><span class="o">().</span><span class="na">click</span><span class="o">();</span>
+
+ <span class="n">passwordDock</span><span class="o">.</span><span class="na">type</span><span class="o">(</span><span class="s">&#34;geheim&#34;</span><span class="o">);</span>
+ <span class="n">passwordDock</span><span class="o">.</span><span class="na">mouse</span><span class="o">().</span><span class="na">click</span><span class="o">();</span>
+
+ <span class="n">loginButtonDock</span><span class="o">.</span><span class="na">mouse</span><span class="o">().</span><span class="na">click</span><span class="o">();</span>
+
+ <span class="n">LabeledDock</span> <span class="n">showDock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LabeledDock</span><span class="o">(</span>
+  <span class="n">scene</span><span class="o">.</span><span class="na">asParent</span><span class="o">(),</span> <span class="k">new</span> <span class="n">ByID</span><span class="o">&lt;&gt;(</span><span class="s">&#34;showLabel&#34;</span><span class="o">));</span>
+
+ <span class="c1">// Wait for success with the default
+</span><span class="c1"></span> <span class="c1">// &#34;wait for control&#34; timeout
+</span><span class="c1"></span> <span class="n">showDock</span><span class="o">.</span><span class="na">environment</span><span class="o">().</span><span class="na">getWaiter</span><span class="o">(</span><span class="n">WAIT_CONTROL_TIMEOUT</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">waitValue</span><span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="n">showDock</span><span class="o">::</span><span class="n">isVisible</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>JemmyFX requires docks to access each UI element. It offers a intuitive but non-fluent API to operate on these docks.
+JemmyFX does not directly expose the JavaFX lookup by CSS selector functionality. You can work around this restriction by creating the docks using the exposed JavaFX UI controls:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">TextInputControlDock</span> <span class="n">userNameDock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TextInputControlDock</span><span class="o">(</span>
+ <span class="n">scene</span><span class="o">.</span><span class="na">environment</span><span class="o">(),</span>
+ <span class="o">(</span><span class="n">TextInputControl</span><span class="o">)</span> <span class="n">scene</span><span class="o">.</span><span class="na">control</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">lookup</span><span class="o">(</span><span class="s">&#34;#userNameTextField&#34;</span><span class="o">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="conclusion">Conclusion</h1>
+<p>While JavaFX is a powerful and well-engineered GUI framework, it&rsquo;s testability is severely hampered. Once you get around the fundamental restrictions, both TestFX and JemmyFX provide the means to effectively test JavaFX applications.</p>
+<p>At the moment, I&rsquo;d use JemmyFX for a new project because of it&rsquo;s cleaner test case setup and the ability to do headless with Monocle. Also, I dislike abstract base classes used to provide tool-like functionality.
+This recommendation will probably change when TestFX 4 is released.</p>
+
+        </div>
+        <div class ='post_extra mb-2'>
+          <div class='share copy'></div>
+<a href="http://twitter.com/share?text=Check out this post on the QAware Engineering Blog about GUI%20Tests%20for%20JavaFX&url=https%3a%2f%2fblog.qaware.de%2fposts%2fjava-fx-testing%2f&hashtags=Testing%2cGUI%2cJavaFX%2cJava%2cJUnit">
+    <div class='share twitter'></div>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fblog.qaware.de%2fposts%2fjava-fx-testing%2f">
+    <div class='share linkedin'></div>
+</a>
+<a href="mailto:?subject=GUI%20Tests%20for%20JavaFX&amp;body=Hi,%0D%0A%0D%0ACheck out this post on the QAware Engineering Blog: https%3a%2f%2fblog.qaware.de%2fposts%2fjava-fx-testing%2f%0D%0A%0D%0ABest Regards">
+    <div class='share email'></div>
+</a>
+
+        </div>
+        <div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href = 'https://blog.qaware.de/' class = 'post_nav'><span class = 'post_next'>The Latest Posts</span></a>
+
+    </main>
+    
+
+
+
+<footer>
+    <div class="footer-container">
+        <div class="short-link-area">
+            <div class="margin">
+                <div class="logo-qaware">
+                    <a href="/"><img
+                            src="/images/icons/logo-qaware-white.png"
+                            alt="QAware" width="195" height="43"></a>
+                </div>
+                <div class="clr"></div>
+
+                <div class="footer-links">
+                    
+                    <a href="https://www.qaware.de/newsbereich/" class="foot-single-link">News</a>
+                    
+                    <a href="https://www.qaware.de/eventkalender/" class="foot-single-link">Eventkalender</a>
+                    
+                    <a href="https://www.qaware.de/kontakt/" class="foot-single-link">Kontakt</a>
+                    
+                    <div class="footer-table">
+                        <a href="https://info.qaware.de/en/legal-notice"
+                           class="foot-single-link footer-table-cell">Legal Notice</a>&nbsp;|&nbsp;
+                        <a href="https://info.qaware.de/en/legal-notice" class="foot-single-link footer-table-cell">Privacy</a>
+                    </div>
+                </div>
+                <nav class="nav-social">
+                    <ul class="e-social" id="c1375">
+                        
+                        <li>
+                            <a href="http://www.kununu.com/qaware" title="Kununu"
+                               target="_blank" class="icon icon-kununu-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.twitter.com/qaware" title="Twitter"
+                               target="_blank" class="icon icon-twitter-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.linkedin.com/company/qaware-gmbh"
+                               title="LinkedIn" target="_blank" class="icon icon-linkedin-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://github.com/qaware" title="GitHub" target="_blank"
+                               class="icon icon-git-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.slideshare.net/qaware" title="SlideShare"
+                               target="_blank" class="icon icon-slideshare-outline"><span></span></a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCmNf72xADnO57idipq9jvMg" title="Youtube"
+                               target="_blank" class="icon icon-youtube-outline"><span></span></a>
+                        </li>
+                        
+                    </ul>
+                </nav>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <nav class="footer-nav nav-area">
+            <ul class="margin">
+                
+                <li>
+                    <a href="https://www.qaware.de/leistung/">Leistung</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#diagnose">Diagnose</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#sanierung">Sanierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-exploration">Exploration</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#leistung-realisierung">Realisierung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/leistung/#kunden">Referenzen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/karriere/">Karriere</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#arbeitsplatz">Arbeitsplatz</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#kultur">Kultur</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#entwicklung">Entwicklung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#weiterbildung">Weiterbildung</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#jobs">Jobs</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/karriere/#veranstaltungen">Veranstaltungen</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/wissen/">Wissen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#manifest">Manifest</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#blog">Blog</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#konferenzen">Konferenzen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#fachartikel">Fachartikel</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#buecher">Bücher</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#vorlesungen">Vorlesungen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/wissen/#forschung">Forschung</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://www.qaware.de/unternehmen/">Unternehmen</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#unternehmenskultur">Mission</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#kennzahlen">Kennzahlen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://www.qaware.de/unternehmen/#management">Management</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script src='https://blog.qaware.de/js/index.min.8a1f47e1f14a890f4cd4ed7176a260ad67504f0f9ad2aa98650041defa70314d6d638eee309ba5b358769c6d6af791134d255885d21daee0299426b855837ddc.js'></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-538827-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-538827-3');
+</script>
+
+
+  </body>
+</html>
