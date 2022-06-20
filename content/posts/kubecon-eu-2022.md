@@ -14,20 +14,25 @@ Topics (TODO: remove after done with post):
 - [ ] Remote Experience
 - [ ] Community
 - [ ] Women in Tech
+- [ ] CNCF Projects
+  - [ ] Cilium
+  - [ ] Pixie
+  - [ ] slsa.dev
 - [ ] Products
 - [x] New Standards and APIs
 
-Alex:
-> My highlights were Crossplane, eBPF pixie and slsa.dev...
+### Crossplane: Compliant Self Service Infrastructure
 
-Felix: New Standards and APIs!
-
-### CloudEvents: New standard for universal message exchange
-
-Nearly every project in the CNCF landscapes either produces or consumes some kind of event. For example, Prometheus has a PagerDuty integration, KubeEdge has an MQTT integration, and Falco Sidekick can stream data to Slack/Email/S3 and more. A lot of development effort is spent on producing custom integrations (resulting in code duplication and fragility), and many of these protocols are strongly opinionated, resulting in potential isolation.
-
-The new CloudEvents standard (introduced by the CNCF Serverless WG) seeks to define itself as a universal envelope around events, with drop-in support for consumers and producers. Once enough event producers have adopted the lossless, offline-mode-compatible standard, switching out message delivery protocols (for example, Kafka instead of HTTP) should become "trivially possible". Even Microsoft Azure has a beta implementation of the protocol's event registry.
-
+Crossplane is a framework to extend Kubernetes to define your own custom control plane to manage any API.
+Its primary use-case is to provision and manage cloud infrastructure.
+It does so by allowing you to build compositions tailored to your needs and make them usable for the users of your Kubernetes cluster as a CRD.
+This is similar to how a Postgres Terraform module is an abstraction for creating an RDS instance in AWS with a matching secret in your Kubernetes cluster containing the service password.
+However, from a developer perspective Crossplane enables the definition of the application configuration from pure Kubernetes manifests - finally including the required infrastructure in the same GitOps repository.
+Otherwise developers would also have to manage additional Terraform/Pulumi/CloudFormation code, ususally in another GitOps repository, and make sure it stays in sync with application promotions.
+Additionally, Crossplane allows more fine grained control for platform engineers on which infrastructure or compositions can be used by the developers by defining Kubernetes Admission controller policies using [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) or [Kyverno](https://github.com/kyverno/kyverno).
+Crossplane has been a CNCF incubating project for almost a year.
+During this years' KubeCon EU there were eight sessions around Crossplane.
+The high attendee count at the [Crossplane maintainer session](https://www.youtube.com/watch?v=xECc7XlD5kY) forced the organizers to limit physical participation for security reasons, which is an indicator for the large impact Crossplane could have.
 
 ### New Kubernetes Gateway API 
 
