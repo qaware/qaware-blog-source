@@ -1,6 +1,6 @@
 ---
 title: "The highlights of KubeCon + CloudNativeCon EU 2022" # todo
-date: 2021-08-16T16:57:04+02:00 # todo
+date: 2022-06-22T16:57:04+02:00 # todo
 draft: true
 author: "[Alex Krause](https://github.com/alex0ptr), [Felix Kampfer](https://github.com/FelixKampfer), [Sebastian Macke](https://github.com/s-macke), [Markus Zimmermann](https://github.com/markuszm)" # add yourself
 image: "KubeConEU2022_GroupPhoto.jpg"
@@ -59,7 +59,7 @@ The Service Mesh feature is currently in Beta since version 1.11. Combined with 
 
 There is a famous tweet from Solomon Hykes, the creator of Docker:
 
-"If WASM+WASI existed in 2008, we wouldn't have needed to created Docker. That's how important it is. Webassembly on the server is the future of computing."
+```"If WASM+WASI existed in 2008, we wouldn't have needed to created Docker. That's how important it is. Webassembly on the server is the future of computing."```
 
 While the comparison might be exaggerated, it gives a hint of the innovation power of WebAssembly. 
 One of the main benefits is higher security. While the Linux User Space API contains over 300 functions, the WebAssembly interface is limited to the few functions specific for your workload. Also WebAssembly is memory safe by design.
