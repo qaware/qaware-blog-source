@@ -10,20 +10,9 @@ summary: "Our highlights of the KubeCon + CloudNativeCon EU 2022."
 
 The KubeCon + CloudNativeCon Europe is the most important conference for Cloud Native hosted by the Cloud Native Computing Foundation. After 2 years of remote conferences, it was a great opportunity for us to go to this big conference in Valencia to learn everything new about Cloud Native and have interesting conversations with the leaders in the Cloud Native space.
 
-One could feel the enthusiasm around Open Source and the whole community working together to improve the Cloud Native Landscape. There was a lot to do during the conference: from around 8 tracks of talks at the same time, workshops and two big halls of company and project booths to visit. We had the experience that talking directly to the maintainers at the booth of a project was very worthwhile to understand the key features and directly ask some deeper technical questions for the use-cases we could have in our day to day business. Still, there were also some interesting talks that inspired us to evaluate new Cloud Native projects.
+One could feel the enthusiasm around Open Source and the whole community working together to improve the Cloud Native Landscape. There was a lot to do during the conference: around 8 tracks of talks at the same time, many hands-on workshops and two big halls of company and project booths to visit. We had the experience that talking directly to the maintainers at the booth of a project was very helpful to understand the key features of a new project and directly ask some deeper technical questions. Additionally, we saw some interesting talks that inspired us to evaluate new Cloud Native projects.
 
-Overall, there was a lot of content and we could write a very long post about each trending topic. Instead, we want to keep it short and worthwhile for you with the topics we found as most important to us and which could change the landscape of Cloud Native in the future.
-
-Topics (TODO: remove after done with post):
-- [ ] Remote Experience
-- [ ] Community
-- [ ] Women in Tech
-- [ ] CNCF Projects
-  - [ ] Cilium
-  - [ ] Pixie
-  - [ ] slsa.dev
-- [ ] Products
-- [x] New Standards and APIs
+While we could write a blog post for each new interesting topic we saw, you most likely don't have the time to read all of them. Instead, we want to keep it short and worthwhile for you with only the most interesting and impactful topics we saw and a short description why they were so interesting for us.
 
 ### Crossplane: Compliant Self Service Infrastructure
 
@@ -50,7 +39,7 @@ Service Meshes were a prominent topic at this KubeCon. There were lots of experi
 
 One new solution showed at Kubecon was of particular interest. Most of the current Service Meshes use a sidecar proxy which routes all traffic from the actual application container to any other pod in the cluster. Only a application with sidecar can be part of the mesh and the sidecar proxy configures any special routing like A/B testing, tracks traffic metrics and facilitates mutual TLS. This proxy adds overhead to the network and potentially complicates the network debugging when unexplained errors in the application suddenly happen.
 
-What if we could have a sidecar-less solution. This could be done using a eBPF-based Service Mesh. [eBPF](https://ebpf.io/) in it self is not new, [Cilium](https://cilium.io/) is using it from the beginning for networking. The advantage of eBPF is executing code in the Kernel instead of user-space without needing additional Kernel modules or modifying the Kernel source code. Adding service mesh features to it is the novelty of one of the newer versions to be released of Cilium. All the Layer 3-4 traffic routing can be done on eBPF level, for incoming traffic a envoy proxy is still needed on Layer 7 but only one proxy per node. The advantage is a less complex networking flow as the sidecar proxy is gone and also less latency.
+What if we could have a sidecar-less solution? The project [Cilium](https://cilium.io/) achieves this using a eBPF-based Service Mesh. [eBPF](https://ebpf.io/) in it self is not new, Cilium is using it from the beginning for networking and network policies. The advantage of eBPF is executing code in the Kernel instead of user-space without needing additional Kernel modules or modifying the Kernel source code. Adding service mesh features to it is the novelty of one of the newer versions to be released of Cilium. All the Layer 3-4 traffic routing can be done on eBPF level, for incoming traffic a envoy proxy is still needed on Layer 7 but only one proxy per node. The advantage is a less complex networking flow as the sidecar proxy is gone and also less latency.
 It remains to be seen whether a one proxy per-node solution is more performant and resilient than a per-host proxy solution. But it is still great to see an effort to simplify service meshes.
 
 The Service Mesh feature is currently in Beta since version 1.11. Combined with the observability UI Hubble it can be already used to increase the network observability inside your cluster. For traffic routing features, one needs to wait a bit longer since most of these features are not yet integrated but will come with version 1.12. What's great is that Cilium will be compatible with nearly all Service Mesh control planes to manage the service mesh configuration or traffic routing resources. Cilium has also been a CNCF incubating project since October 2021, so while it will still take some time to be fully used in all production environments, it is very promising as a package for all networking, observability and security needs.
@@ -67,3 +56,9 @@ One of the main benefits is higher security. While the Linux User Space API cont
 How a WebAssembly powered cloud might look like can now be experienced on wasmcloud.dev.
 
 With wasmCloud you get a modular platform. With WebAssembly, you just write actors, which just contains the business logic. As such it does not contain technical code. This is added by capability providers such as HTTP-Servers, Postgres, AWS S3 or Logging. The modular system runs also locally and you benefit by an increased producity and portability.
+
+### Pixie: All-in-one observability for developers
+
+One of the most spectacular demos we saw at KubeCon was Pixie. A eBPF-based observability tool which collects metrics, events, traces and logs without needing to instrument any code. The automatically generated service map shows which services talk with each other. Traffic is captured using a deployed module on each node and can be queried using a Web UI. The Web UI which is the control plane of Pixie is either the managed Cloud offering of Pixie or a self-hosted version. Pixie promises that no customer data is shared into the Cloud offering. This is facilitated by services which are deployed into the customer cluster and the Web UI querying these services for all data. The impressive new thing here is that developers can debug issues much easier and through the traffic capturing, production issues could be replicated to find out the root cause.   
+The talk [Reproducing Production Issues in your CI Pipeline Using eBPF - Matthew LeRay & Omid Azizi
+](https://www.youtube.com/watch?v=_RQLY4KXXG8) showed this live in action, so check it out! 
