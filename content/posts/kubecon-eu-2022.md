@@ -91,4 +91,6 @@ The talk [Reproducing Production Issues in your CI Pipeline Using eBPF - Matthew
 
 ### Conclusion
 
-So let's put up the most important question for the end: "Would you recommend this event to your friends and colleagues?" And our answer is: Definitely, YES! The density of Cloud Native topics is unique. There is so much going on in the Cloud Native ecosystem and KubeCon is a great opportunity to suck up all the knowledge and brand-new topics from the Cloud Native space. See you at the next KubeCon + CloudNativeCon Europe 2023 in Amsterdam!
+So let's put up the most important question for the end: "Would you recommend this event to your friends and colleagues?" And our answer is: Definitely, YES! The density of Cloud Native topics is unique. There is so much going on in the Cloud Native ecosystem and KubeCon is a great opportunity to suck up all the knowledge and brand-new topics from the Cloud Native space. 
+
+See you at the next KubeCon + CloudNativeCon Europe 2023 in Amsterdam!
