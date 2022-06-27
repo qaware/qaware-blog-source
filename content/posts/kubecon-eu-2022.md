@@ -2,7 +2,7 @@
 title: "The highlights of KubeCon + CloudNativeCon EU 2022" # todo
 date: 2022-06-22T16:57:04+02:00 # todo
 draft: true
-author: "[Alex Krause](https://github.com/alex0ptr), [Felix Kampfer](https://github.com/FelixKampfer), [Sebastian Macke](https://github.com/s-macke), [Markus Zimmermann](https://github.com/markuszm)", [Dirk Kröhan](https://github.com/dkroehan) # add yourself
+author: "[Alex Krause](https://github.com/alex0ptr), [Felix Kampfer](https://github.com/FelixKampfer), [Sebastian Macke](https://github.com/s-macke), [Markus Zimmermann](https://github.com/markuszm), [Dirk Kröhan](https://github.com/dkroehan)" # add yourself
 image: "KubeConEU2022_GroupPhoto.jpg"
 tags: ["Cloud", "Cloud Native", "Kubernetes"]
 summary: "Our highlights of the KubeCon + CloudNativeCon EU 2022."
