@@ -37,6 +37,19 @@ Another novelty in the realm of standardization will be the new Kubernetes-nativ
 
 To allow for portability, implementations of the API can choose to fulfill one of several levels of conformity. Major features include the binding of routes to gateways, Kubernetes-native typization of routes, the ability to attach RetryPolicies and HealthCheckPolicies to services and gateways, and cross-namespace sharing of resources.
 
+### wasmCloud
+
+There is a famous tweet from Solomon Hykes, the creator of Docker:
+
+```"If WASM+WASI existed in 2008, we wouldn't have needed to created Docker. That's how important it is. Webassembly on the server is the future of computing."```
+
+While the comparison might be exaggerated, it gives a hint of the innovation power of WebAssembly.
+One of the main benefits is higher security. While the Linux User Space API contains over 300 functions, the WebAssembly interface is limited to the few functions specific for your workload. Furthermore, WebAssembly is memory safe by design.
+
+On wasmcloud.dev you can experience how a WebAssembly powered cloud might look like.
+
+With wasmCloud you get a modular platform. With WebAssembly, you write actors, which just contains the business logic. As such it does not contain technical code. This is added by capability providers such as HTTP-Servers, Postgres, AWS S3 or Logging. The modular system runs also locally, and you benefit by an increased productivity and portability.
+
 ### eBPF - the base for the cool stuff
 While eBPF](https://ebpf.io/) itself is not brand new, most of us didn't hear about it before KubeCon. If you wonder, like us, what the name eBPF might stand for, the answer is: it is no longer an acronym for anything. 
 
@@ -54,19 +67,6 @@ What if we could have a sidecar-less solution? The project [Cilium](https://cili
 It remains to be seen whether a one proxy per-node solution is more performant and resilient than a per-host proxy solution. But it is still great to see an effort to simplify service meshes.
 
 The Service Mesh feature is currently in Beta since version 1.11. Combined with the observability UI Hubble it can be already used to increase the network observability inside your cluster. For traffic routing features, one needs to wait a bit longer since most of these features are not yet integrated but will come with version 1.12. What's great is that Cilium will be compatible with nearly all Service Mesh control planes to manage the service mesh configuration or traffic routing resources. Cilium has also been a CNCF incubating project since October 2021, so while it will still take some time to be fully used in all production environments, it is very promising as a package for all networking, observability and security needs.
-
-### wasmCloud
-
-There is a famous tweet from Solomon Hykes, the creator of Docker:
-
-```"If WASM+WASI existed in 2008, we wouldn't have needed to created Docker. That's how important it is. Webassembly on the server is the future of computing."```
-
-While the comparison might be exaggerated, it gives a hint of the innovation power of WebAssembly.
-One of the main benefits is higher security. While the Linux User Space API contains over 300 functions, the WebAssembly interface is limited to the few functions specific for your workload. Furthermore, WebAssembly is memory safe by design.
-
-On wasmcloud.dev you can experience how a WebAssembly powered cloud might look like.
-
-With wasmCloud you get a modular platform. With WebAssembly, you write actors, which just contains the business logic. As such it does not contain technical code. This is added by capability providers such as HTTP-Servers, Postgres, AWS S3 or Logging. The modular system runs also locally, and you benefit by an increased productivity and portability.
 
 ### Pixie: All-in-one observability for developers
 
