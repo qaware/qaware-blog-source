@@ -18,6 +18,8 @@ While we could write a blog post for each new interesting topic we saw, you most
 
 ### Crossplane: Compliant Self Service Infrastructure
 
+{{< img src="/images/kubecon-eu-2022/crossplane-horizontal-color.svg" alt="Crossplane" >}}
+
 Crossplane is a framework that allows you to build your own custom control plane to manage any API. It calls itself "The cloud native control plane framework".
 
 Its primary use-case is to provision and manage cloud infrastructure.
@@ -33,11 +35,15 @@ The high attendee count at the [Crossplane maintainer session](https://www.youtu
 
 ### New Kubernetes Gateway API 
 
+{{< img src="/images/kubecon-eu-2022/kubernetes-horizontal-color.svg" alt="Kubernetes" >}}
+
 Another novelty in the realm of standardization will be the new Kubernetes-native Gateway API. It supports more use cases than the limited Ingress API and overloaded Service API. These use cases entail load-balancing and routing, with many options for advanced configuration such as head-based matching and traffic weighing. It’s meant to be a standard interface for heterogeneous gateway providers, such as Traefik, Kong, Kuma, Consul, or GKE.
 
 To allow for portability, implementations of the API can choose to fulfill one of several levels of conformity. Major features include the binding of routes to gateways, Kubernetes-native typization of routes, the ability to attach RetryPolicies and HealthCheckPolicies to services and gateways, and cross-namespace sharing of resources.
 
 ### wasmCloud
+
+{{< img src="/images/kubecon-eu-2022/wasmcloud-horizontal-color.png" alt="wasmcloud" >}}
 
 There is a famous tweet from Solomon Hykes, the creator of Docker:
 
@@ -51,13 +57,18 @@ On wasmcloud.dev you can experience how a WebAssembly powered cloud might look l
 With wasmCloud you get a modular platform. With WebAssembly, you write actors, which just contains the business logic. As such it does not contain technical code. This is added by capability providers such as HTTP-Servers, Postgres, AWS S3 or Logging. The modular system runs also locally, and you benefit by an increased productivity and portability.
 
 ### eBPF - the base for the cool stuff
-While eBPF](https://ebpf.io/) itself is not brand new, most of us didn't hear about it before KubeCon. If you wonder, like us, what the name eBPF might stand for, the answer is: it is no longer an acronym for anything. 
+
+{{< img src="/images/kubecon-eu-2022/ebpf-horizontaol-color.png" alt="eBPF" >}}
+
+While [eBPF](https://ebpf.io/) itself is not brand new, most of us didn't hear about it before KubeCon. If you wonder, like us, what the name eBPF might stand for, the answer is: it is no longer an acronym for anything. 
 
 The project website states that it is a revolutionary technology with origins in the Linux kernel that can run sandboxed programs in a privileged context such as the operating system kernel. It is used to safely and efficiently extend the capabilities of the kernel without requiring to change kernel source code or load kernel modules.
 
 From our point of view it seems to be a perfect fit for topics like observability, security and network functionality. So it's no big surprise that two topics that are powered by eBPF made it onto our list for the most interesting and impactful topics from this year's KubeCon: Cilium and Pixie.
 
 ### Cilium: The Future Of Service Meshes?
+
+{{< img src="/images/kubecon-eu-2022/cilium-horizontal-color.svg" alt="Cilium" >}}
 
 Service Meshes were a prominent topic at this KubeCon. There were lots of experience reports on [Linkerd](https://linkerd.io). It shows that adoption of service meshes is increasing and many teams have great success in using them either for increased observability or to fulfill the security requirement of mutual TLS authentication between services.
 
@@ -69,6 +80,8 @@ It remains to be seen whether a one proxy per-node solution is more performant a
 The Service Mesh feature is currently in Beta since version 1.11. Combined with the observability UI Hubble it can be already used to increase the network observability inside your cluster. For traffic routing features, one needs to wait a bit longer since most of these features are not yet integrated but will come with version 1.12. What's great is that Cilium will be compatible with nearly all Service Mesh control planes to manage the service mesh configuration or traffic routing resources. Cilium has also been a CNCF incubating project since October 2021, so while it will still take some time to be fully used in all production environments, it is very promising as a package for all networking, observability and security needs.
 
 ### Pixie: All-in-one observability for developers
+
+{{< img src="/images/kubecon-eu-2022/pixie-horizontal-color.svg" alt="Pixie" >}}
 
 One of the most spectacular demos we saw at KubeCon was Pixie. An eBPF-based observability tool which collects metrics, events, traces and logs without needing to instrument any code. The automatically generated service map shows which services talk to each other. Traffic is captured using a deployed module on each node and can be queried using a Web UI. The Web UI, which is the control plane of Pixie, is available as managed Cloud offering by Pixie or can be self-hosted. Pixie promises that no customer data is shared into the Cloud offering. This is facilitated by services which are deployed into the customer cluster and the Web UI querying these services for all data. The impressive new thing here is that developers can debug issues much easier and through the traffic capturing, production issues could be replicated to find out the root cause.   
 The talk [Reproducing Production Issues in your CI Pipeline Using eBPF - Matthew LeRay & Omid Azizi
