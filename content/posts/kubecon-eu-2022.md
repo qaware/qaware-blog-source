@@ -60,7 +60,7 @@ With wasmCloud you get a modular platform. With WebAssembly, you write actors, w
 ### eBPF - the base for the cool stuff
 
 
-{{< img src="/images/kubecon-eu-2022/ebpf-horizontaol-color.png" alt="eBPF" >}}
+{{< img src="/images/kubecon-eu-2022/ebpf-horizontal-color.png" alt="eBPF" >}}
 
 While [eBPF](https://ebpf.io/) itself is not brand new, most of us didn't hear about it before KubeCon. If you wonder, like us, what the name eBPF might stand for, the answer is: it is no longer an acronym for anything. 
 
