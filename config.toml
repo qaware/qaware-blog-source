@@ -16,7 +16,7 @@ github_name = "qaware"
 slideshare_name = "qaware"
 youtube_channel = "UCmNf72xADnO57idipq9jvMg"
 main_sections = ["blog"]
-ga_analytics = "UA-538827-3" # google analytics ID e.g UA-116386578-1
+ga_analytics = "UA-45534590-1" # google analytics ID e.g UA-116386578-1
 cookiebot = "4e938949-aa56-465e-9c2a-175bb6c31d81"
 
 [markup]
