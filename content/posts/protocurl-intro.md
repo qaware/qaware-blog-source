@@ -1,26 +1,26 @@
 ---
-title: "How to use protoCURL to Interact With Protobuf Endpoints in Human-Readable Text Formats"
+title: "Interact With Protobuf Endpoints in Human-Readable Text Formats Using protoCURL"
 date: 2022-12-21T14:20:05+01:00
 author: "[Swaneet Sahoo](https://github.com/GollyTicker)"
 type: "post"
 categories: [todo]
 tags: [todo]
 image: "protocurl-intro/pexels-edgard-motta-flipped.jpg"
-summary: todo metadata here
+summary: "protoCURL is the command-line tool for interacting with Protobuf over HTTP REST endpoints using human-readable text formats"
 draft: true
 ---
 
-This tutorial will demonstrate, how we can use [protoCURL](https://github.com/qaware/protocurl) to quickly and easily write requests in human-readable text formats on the command line against a Protobuf over HTTP endpoint and view the output in text format as well.
+This tutorial will demonstrate, how we can use [protoCURL](https://github.com/qaware/protocurl) to quickly and easily write requests in human-readable text formats on the command line against a Protocol Buffer over HTTP endpoint and view the output in a text-based format as well.
 
-The tool was created by myself ([GollyTicker](https://github.com/GollyTicker)) with initial sponsorship from [QAware](https://qaware.de), because of the need for debugging Protobuf REST endpoints in our projects.
+The tool was created by myself ([GollyTicker](https://github.com/GollyTicker)) with initial sponsorship from [QAware](https://qaware.de), because of the need for debugging Protobuf REST APIs in our projects.
 
 &nbsp; <!-- add artificial spacing -->
 ## Problem
 
-[Protocol Buffers](https://developers.google.com/protocol-buffers) are used as an alternative to a JSON-based REST API in a few circumstances. [^protobuf-uses]
-When working with these Protobuf REST endpoints, we often want to quickly send a small request from the command line to debug or probe a server.
+[Protocol Buffers by Google](https://developers.google.com/protocol-buffers/) are used as an alternative to a JSON-based REST API in a few circumstances. [^protobuf-uses]
+When working with these Protobuf REST APIs, we often want to quickly send a small request from the command line to debug or probe a server.
 
-Unfortunately, we cannot simply use `curl` with `-d <my-payload>` (as we do with JSON/XML), because the Protobuf *payload is binary* and *cannot be written easily by hand*. In theory, we could manually use `protoc` with `--decode` and `--encode` on our request/response in [Protobuf Text Format](https://developers.google.com/protocol-buffers/docs/text-format-spec) - however, that can be cumbersome and unergonomic.
+Unfortunately, we cannot simply use `curl` with `-d <my-payload>` (as we do with JSON/XML), because the Protobuf *payload is binary* and *cannot be written easily by hand*. In theory, we could decode and encode the request and response via `protoc` using the [Protobuf Text Format](https://developers.google.com/protocol-buffers/docs/text-format-spec). But that can be cumbersome and unergonomic.
 
 To showcase the use of protoCURL, we will use a simple Protobuf server in NodeJS that will tell us whether the UTC day of a specific timestamp is a *happy* day or not. We simply say, that everyday, except for wednesdays, is a *happy* day. [^test-server-code]
 
@@ -56,7 +56,7 @@ If you want to reproduce the steps one-by-one, you can expand the spoilers in th
     margin-bottom:1.2em"
     >
     <summary>Start the test server</summary>
-    In your macOS/Linux or Windows MinGW terminal, run:
+    In your macOS / Linux or Windows MinGW terminal, run:
     <code style="white-space:pre">
 
   # Clone the repository and enter the directory
@@ -78,7 +78,7 @@ If you want to reproduce the steps one-by-one, you can expand the spoilers in th
 &nbsp; <!-- add artificial spacing -->
 ## Solution
 
-Given a server with the above logic available at `http://localhost:8080/happy-day/verify`, we can send a simple request with protocurl on the command line. For that, we first need to [install protocurl from GitHub](https://github.com/qaware/protocurl#install).
+Given a server with the above logic available at `http://localhost:8080/happy-day/verify`, we can send a simple request with a protocurl command. For that, we first need to [install protocurl from GitHub](https://github.com/qaware/protocurl#install).
 
 {{< rawhtml >}}
 <details
@@ -87,34 +87,33 @@ Given a server with the above logic available at `http://localhost:8080/happy-da
   padding:0.8em;
   margin-bottom:1.2em"
   >
-	<summary>Install protocurl</summary>
-	<p>
-		Simply follow the CLI <a href="https://github.com/qaware/protocurl#install">installation instructions</a>.
-		
-	</p>
-	<p>
-  When using windows, run <code>protocurl.exe</code> in Powershell/Cmd instead of MinGW.
-	</p>
-	<p>
-	If you use docker, then in the code blocks in this blog post, use
-	<br/>
-	<code style="white-space:pre">docker run -v /path/to/proto:/proto qaware/protocurl [...ARGS]</code>
-	<br/>
-	instead of
+    <summary>Install protocurl</summary>
+    <p>
+        Simply follow the <a href="https://github.com/qaware/protocurl#install">command line installation instructions</a>.
+    </p>
+    <p>
+  When using windows, run <code>protocurl.exe</code> in Powershell or cmd instead of MinGW.
+    </p>
+    <p>
+    If you use docker, then use the command
+    <br/>
+    <code style="white-space:pre">docker run -v /path/to/proto:/proto qaware/protocurl [...ARGS]</code>
+    <br/>
+    instead of
   <br/>
-	<code style="white-space:pre">protocurl -I /path/to/proto [...ARGS]</code>
-	</p>
+    <code style="white-space:pre">protocurl -I /path/to/proto [...ARGS]</code>
+    </p>
 </details>
 {{< /rawhtml >}}
 
-Next, a request is as simple as this:[^powershell-syntax]
+Next, create and send a request using this command:[^powershell-syntax]
 ```bash
 protocurl -I test/proto -i ..HappyDayRequest -o ..HappyDayResponse \
   -u http://localhost:8080/happy-day/verify \
   -d 'includeReason: true'
 ```
 
-The request will produce this output
+The command will produce this output
 ```console
 =========================== Request Text     =========================== >>>
 includeReason: true
@@ -124,12 +123,12 @@ reason: "Thursday is a Happy Day! ⭐"
 formattedDate: "Thu, 01 Jan 1970 00:00:00 GMT"
 ```
 
-We can now easily see the request and response in the [Protobuf Text Format](https://github.com/qaware/protocurl#protobuf-text-format) without needing to use `protoc` or a full-blown programming language. Since we didn't provide a `date`, the Protobuf server implicitly assumes all of the [timestamp.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto) fields to be zero - which corresponds to epoch time.
+We can now easily see the request and response in the [Protobuf Text Format](https://github.com/qaware/protocurl#protobuf-text-format) without needing to use `protoc` or a full-blown programming language to manually (de-) serialize the data. Since we didn't provide a `date`, the Protobuf server implicitly assumes all of the [timestamp.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto) fields to be zero - which corresponds to epoch time.
 
 The command line arguments have this meaning:
-* `-I test/proto` points to the directory of proto definition files
+* `-I test/proto` points to proto files in the filesystem
 * `-i ..HappyDayRequest` and `-o ..HappyDayResponse` tell which message types are used for the input and expected for the output
-	* The `..` instructs protocurl to infer the (unique) full package path instead of us needing to explicitly provide them.
+    * The `..` instructs protocurl to automatically infer the (unique) full package path of the message types
 * `-u <url>` is the HTTP REST endpoint url to send the request to
 * `-d 'includeReason: true'` describes the input data in the Protobuf Text Format
 
@@ -189,7 +188,7 @@ Now, head over to [protocurl on GitHub](https://github.com/qaware/protocurl) and
 
 *[The photo is by Edgard Motta from Pexels.](https://www.pexels.com/photo/arrows-on-a-footpath-12081699/)*
 
-[^protobuf-uses]: The built-in schema format as well as the code generators make it a viable choice for keeping consumers and producers of REST APIs consistent with each other as well as the data serialization format for RPC frameworks such as [Twirp](https://github.com/twitchtv/twirp).
+[^protobuf-uses]: The built-in schema format as well as the ability to generate code make it a viable choice for keeping consumers and producers of REST APIs consistent with each other and documented. It can also be the serialization for RPC frameworks such as [Twirp](https://github.com/twitchtv/twirp).
 
 [^test-server-code]: [NodeJS-based server implementation](https://github.com/qaware/protocurl/blob/main/test/servers/server.ts)
 
