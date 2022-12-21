@@ -3,8 +3,7 @@ title: "Interact With Protobuf Endpoints in Human-Readable Text Formats Using pr
 date: 2022-12-21T14:20:05+01:00
 author: "[Swaneet Sahoo](https://github.com/GollyTicker)"
 type: "post"
-categories: [todo]
-tags: [todo]
+tags: ["Protocol Buffers","HTTP","REST","Command Line","Open Source"]
 image: "protocurl-intro/pexels-edgard-motta-flipped.jpg"
 summary: "protoCURL is the command-line tool for interacting with Protobuf over HTTP REST endpoints using human-readable text formats"
 draft: true
