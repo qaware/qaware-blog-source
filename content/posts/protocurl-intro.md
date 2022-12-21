@@ -1,0 +1,196 @@
+---
+title: "How to use protoCURL to Interact With Protobuf Endpoints in Human-Readable Text Formats"
+date: 2022-12-21T14:20:05+01:00
+author: "[Swaneet Sahoo](https://github.com/GollyTicker)"
+type: "post"
+categories: [todo]
+tags: [todo]
+image: "protocurl-intro/pexels-edgard-motta-flipped.jpg"
+summary: todo metadata here
+draft: true
+---
+
+This tutorial will demonstrate, how we can use [protoCURL](https://github.com/qaware/protocurl) to quickly and easily write requests in human-readable text formats on the command line against a Protobuf over HTTP endpoint and view the output in text format as well.
+
+The tool was created by myself ([GollyTicker](https://github.com/GollyTicker)) with initial sponsorship from [QAware](https://qaware.de), because of the need for debugging Protobuf REST endpoints in our projects.
+
+&nbsp; <!-- add artificial spacing -->
+## Problem
+
+[Protocol Buffers](https://developers.google.com/protocol-buffers) are used as an alternative to a JSON-based REST API in a few circumstances. [^protobuf-uses]
+When working with these Protobuf REST endpoints, we often want to quickly send a small request from the command line to debug or probe a server.
+
+Unfortunately, we cannot simply use `curl` with `-d <my-payload>` (as we do with JSON/XML), because the Protobuf *payload is binary* and *cannot be written easily by hand*. In theory, we could manually use `protoc` with `--decode` and `--encode` on our request/response in [Protobuf Text Format](https://developers.google.com/protocol-buffers/docs/text-format-spec) - however, that can be cumbersome and unergonomic.
+
+To showcase the use of protoCURL, we will use a simple Protobuf server in NodeJS that will tell us whether the UTC day of a specific timestamp is a *happy* day or not. We simply say, that everyday, except for wednesdays, is a *happy* day. [^test-server-code]
+
+The proto file [happyday.proto](https://github.com/qaware/protocurl/blob/main/test/proto/happyday.proto) consists of these (condensed) request and response messages:
+
+```protobuf
+package happyday;
+
+message HappyDayRequest {
+  google.protobuf.Timestamp date = 1;
+  bool includeReason = 2;
+}
+
+message HappyDayResponse {
+  bool isHappyDay = 1;
+  string reason = 2;
+  string formattedDate = 3;
+}
+```
+
+Given a `HappyDayRequest`,
+* the server converts the `date` to `UTC` and sets the boolean `isHappyDay` if and only if the weekday of the date is wednesday.
+* If `includeReason` is set, then a reason for the `isHappyDay` boolean is given as a string.
+* The server will also format the date to UTC as `formattedDate`.
+
+If you want to reproduce the steps one-by-one, you can expand the spoilers in this article:
+
+{{< rawhtml >}}
+  <details
+    style="border:dashed var(--theme) 0.2em;
+    border-radius: 1em;
+    padding:0.8em;
+    margin-bottom:1.2em"
+    >
+    <summary>Start the test server</summary>
+    In your macOS/Linux or Windows MinGW terminal, run:
+    <code style="white-space:pre">
+
+  # Clone the repository and enter the directory
+  git clone protocurl
+  cd protocurl
+
+  # Ensure these are installed and available to you: bash, jq, zip, unzip and curl
+  # e.g. sudo apt install bash jq zip unzip curl
+
+  # Download the latest protoc binaries for the tests
+  ./release/10-get-protoc-binaries.sh
+
+  # Start server
+  (source test/suite/setup.sh && startServer)
+  </code>
+</details>
+{{< /rawhtml >}}
+
+&nbsp; <!-- add artificial spacing -->
+## Solution
+
+Given a server with the above logic available at `http://localhost:8080/happy-day/verify`, we can send a simple request with protocurl on the command line. For that, we first need to [install protocurl from GitHub](https://github.com/qaware/protocurl#install).
+
+{{< rawhtml >}}
+<details
+  style="border:dashed var(--theme) 0.2em;
+  border-radius: 1em;
+  padding:0.8em;
+  margin-bottom:1.2em"
+  >
+	<summary>Install protocurl</summary>
+	<p>
+		Simply follow the CLI <a href="https://github.com/qaware/protocurl#install">installation instructions</a>.
+		
+	</p>
+	<p>
+  When using windows, run <code>protocurl.exe</code> in Powershell/Cmd instead of MinGW.
+	</p>
+	<p>
+	If you use docker, then in the code blocks in this blog post, use
+	<br/>
+	<code style="white-space:pre">docker run -v /path/to/proto:/proto qaware/protocurl [...ARGS]</code>
+	<br/>
+	instead of
+  <br/>
+	<code style="white-space:pre">protocurl -I /path/to/proto [...ARGS]</code>
+	</p>
+</details>
+{{< /rawhtml >}}
+
+Next, a request is as simple as this:[^powershell-syntax]
+```bash
+protocurl -I test/proto -i ..HappyDayRequest -o ..HappyDayResponse \
+  -u http://localhost:8080/happy-day/verify \
+  -d 'includeReason: true'
+```
+
+The request will produce this output
+```console
+=========================== Request Text     =========================== >>>
+includeReason: true
+=========================== Response Text    =========================== <<<
+isHappyDay: true
+reason: "Thursday is a Happy Day! ⭐"
+formattedDate: "Thu, 01 Jan 1970 00:00:00 GMT"
+```
+
+We can now easily see the request and response in the [Protobuf Text Format](https://github.com/qaware/protocurl#protobuf-text-format) without needing to use `protoc` or a full-blown programming language. Since we didn't provide a `date`, the Protobuf server implicitly assumes all of the [timestamp.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto) fields to be zero - which corresponds to epoch time.
+
+The command line arguments have this meaning:
+* `-I test/proto` points to the directory of proto definition files
+* `-i ..HappyDayRequest` and `-o ..HappyDayResponse` tell which message types are used for the input and expected for the output
+	* The `..` instructs protocurl to infer the (unique) full package path instead of us needing to explicitly provide them.
+* `-u <url>` is the HTTP REST endpoint url to send the request to
+* `-d 'includeReason: true'` describes the input data in the Protobuf Text Format
+
+&nbsp; <!-- add artificial spacing -->
+## Explanation
+
+In the background, protocurl essentially does the following:
+1. encode the textual Protobuf message to a binary request payload (using a bundled `protoc`)
+2. send the binary payload in a POST request to the HTTP REST endpoint (via `curl`, if possible) and receive the binary response payload
+3. decode the binary response payload back to text and display it
+
+As a second example, let's see, what happens, when we set the `date` to the first wednesday in 2023:
+```bash
+protocurl -I test/proto -i ..HappyDayRequest -o ..HappyDayResponse \
+  -u http://localhost:8080/happy-day/verify \
+  -d 'includeReason: true, date: { seconds: 1672790400 }'
+```
+Note, the syntax for the text format above.
+
+This will produce:
+```console
+=========================== Request Text     =========================== >>>
+date: {
+  seconds: 1672790400
+}
+includeReason: true
+=========================== Response Text    =========================== <<<
+reason: "Tough luck on Wednesday... 😕"
+formattedDate: "Wed, 04 Jan 2023 00:00:00 GMT"
+```
+
+Furthermore, we can also use JSON as the text format:
+```bash
+protocurl -I test/proto -i ..HappyDayRequest -o ..HappyDayResponse \
+  -u http://localhost:8080/happy-day/verify \
+  -d "{ \"date\": \"2023-01-01T00:00:00Z\", \"includeReason\": true }"
+```
+
+The JSON format is automatically detected and also used for the output:
+```console
+=========================== Request JSON     =========================== >>>
+{"date":"2023-01-01T00:00:00Z","includeReason":true}
+=========================== Response JSON    =========================== <<<
+{"isHappyDay":true,"reason":"Sunday is a Happy Day! ⭐","formattedDate":"Sun, 01 Jan 2023 00:00:00 GMT"}
+```
+
+&nbsp; <!-- add artificial spacing -->
+## Summary
+
+We can use protocurl as a *quick and ergonomic command line* tool to interact with *Protobuf-based HTTP REST endpoints* while working with *human-readable text formats*.
+
+Now, head over to [protocurl on GitHub](https://github.com/qaware/protocurl) and
+* look at the [examples](https://github.com/qaware/protocurl/blob/main/EXAMPLES.md),
+* download the [releases](https://github.com/qaware/protocurl/releases),
+* read the [command line usage](https://github.com/qaware/protocurl/blob/main/doc/generated.usage.txt) or
+* contribute by [creating issues](https://github.com/qaware/protocurl/issues) for bugs or feature requests!
+
+*[The photo is by Edgard Motta from Pexels.](https://www.pexels.com/photo/arrows-on-a-footpath-12081699/)*
+
+[^protobuf-uses]: The built-in schema format as well as the code generators make it a viable choice for keeping consumers and producers of REST APIs consistent with each other as well as the data serialization format for RPC frameworks such as [Twirp](https://github.com/twitchtv/twirp).
+
+[^test-server-code]: [NodeJS-based server implementation](https://github.com/qaware/protocurl/blob/main/test/servers/server.ts)
+
+[^powershell-syntax]: For Powershell, we need to replace `/` by `\` in the path and use a backtick \` instead of `\` as line separators.
