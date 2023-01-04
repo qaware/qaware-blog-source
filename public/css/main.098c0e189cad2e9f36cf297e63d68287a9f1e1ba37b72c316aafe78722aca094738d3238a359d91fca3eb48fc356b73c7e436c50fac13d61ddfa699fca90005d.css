@@ -100,7 +100,8 @@
   --bg: var(--light);
   --text: var(--dark);
   --font: 'Spartan', sans-serif;
-  --theme: #28537d 
+  --theme: #28537d
+  --theme-secondary: #009ee3 /* corporate design color: blue secondary */ 
 ;
 }
 
