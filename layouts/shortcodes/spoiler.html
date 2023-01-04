@@ -1,0 +1,16 @@
+<!--
+    Hugo shortcode used to create collapsable boxes with HTML content
+-->
+
+<details 
+    style="border:dashed var(--theme) 0.2em;
+    border-radius: 1em;
+    padding:0.8em;
+    margin-bottom:1.2em"
+    >
+
+    <summary>{{ .Get "title" }}</summary>
+
+    {{.Inner}}
+
+</details>

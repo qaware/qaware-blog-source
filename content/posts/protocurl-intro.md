@@ -136,17 +136,10 @@ The JSON format is automatically detected and also used for the output:
 
 Want to try this out? You can reproduce these examples by taking the following steps:
 
-{{< rawhtml >}}
-  <details
-    style="border:dashed var(--theme) 0.2em;
-    border-radius: 1em;
-    padding:0.8em;
-    margin-bottom:1.2em"
-    >
-    <summary>Clone repository and start the test server</summary>
-    In your macOS / Linux or Windows MinGW terminal, run:
-    <code style="white-space:pre">
+{{< spoiler title="Clone repository and start the test server" >}}
+  In your macOS / Linux or Windows MinGW terminal, run:
 
+  <code style="white-space:pre">
   # Clone the repository and enter the directory
   git clone protocurl
   cd protocurl
@@ -160,35 +153,28 @@ Want to try this out? You can reproduce these examples by taking the following s
   # Start server
   (source test/suite/setup.sh && startServer)
   </code>
-</details>
-{{< /rawhtml >}}
+{{< /spoiler >}}
 
 
-{{< rawhtml >}}
-<details
-  style="border:dashed var(--theme) 0.2em;
-  border-radius: 1em;
-  padding:0.8em;
-  margin-bottom:1.2em"
-  >
-    <summary><a href="https://github.com/qaware/protocurl#install">Install protocurl from GitHub</a></summary>
-    <p>
-        Simply follow the <a href="https://github.com/qaware/protocurl#install">command line installation instructions</a>.
-    </p>
-    <p>
-  When using windows, run <code>protocurl.exe</code> in Powershell or cmd instead of MinGW.
-    </p>
-    <p>
+{{< spoiler title="Install protocurl from GitHub" >}}
+  <p>
+    Simply follow the <a href="https://github.com/qaware/protocurl#install">command line installation instructions</a>.
+  </p>
+
+  <p>
+    When using windows, run <code>protocurl.exe</code> in Powershell or cmd instead of MinGW.
+  </p>
+  
+  <p>
     If you use docker, then use the command
     <br/>
     <code style="white-space:pre">docker run -v /path/to/proto:/proto qaware/protocurl [...ARGS]</code>
     <br/>
     instead of
-  <br/>
+    <br/>
     <code style="white-space:pre">protocurl -I /path/to/proto [...ARGS]</code>
-    </p>
-</details>
-{{< /rawhtml >}}
+  </p>
+{{< /spoiler >}}
 
 Now you can send requests like the examples above.
 
