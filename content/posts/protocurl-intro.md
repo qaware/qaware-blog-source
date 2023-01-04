@@ -9,9 +9,13 @@ summary: "protoCURL is the command-line tool for interacting with Protobuf over 
 draft: true
 ---
 
-Do you have difficulties debugging [Protocol-Buffers](https://developers.google.com/protocol-buffers)-based HTTP REST endpoints? Since Protobuf uses *binary payloads*, we face the problem, that we *cannot easily write or read our Protobuf payloads* with `curl` directly on the terminal. Ideally, we would like to to use curl with Protobuf just like we use curl with JSON or XML with classic text-based HTTP REST endpoints. [^via-protoc]
+Do you have difficulties debugging [Protocol-Buffers][Protocol-Buffers]-based HTTP REST endpoints? Since Protobuf uses *binary payloads*, we face the problem, that we *cannot easily write or read our Protobuf payloads* with `curl` directly on the terminal. Ideally, we would like to to use curl with Protobuf just like we use curl with JSON or XML with classic text-based HTTP REST endpoints. [^via-protoc]
 
-To this problem, we present [protoCURL](https://github.com/qaware/protocurl) - cURL for Protobuf: The command line tool to quickly and easily write requests in human-readable text formats on the command line against Protocol Buffer over HTTP endpoints and view the output in a text-based format as well.
+[Protocol-Buffers]: https://developers.google.com/protocol-buffers
+
+To this problem, we present [protoCURL][protoCURL] - cURL for Protobuf: The command line tool to quickly and easily write requests in human-readable text formats on the command line against Protocol Buffer over HTTP endpoints and view the output in a text-based format as well.
+
+[protoCURL]: https://github.com/qaware/protocurl
 
 This can become handy when debugging Protobuf-based HTTP endpoints when they are used instead of JSON.[^protobuf-uses]
 
@@ -35,7 +39,9 @@ The command line arguments have this meaning:
 * `-u <url>` is the HTTP REST endpoint url to send the request to
 * `-d 'includeReason: true'` describes the input data in the Protobuf Text Format
 
-The Protobuf endpoint uses the proto file [happyday.proto](https://github.com/qaware/protocurl/blob/main/test/proto/happyday.proto) - which consists of these (condensed) request and response messages:
+The Protobuf endpoint uses the proto file [happyday.proto][happyday.proto] - which consists of these (condensed) request and response messages:
+
+[happyday.proto]: https://github.com/qaware/protocurl/blob/main/test/proto/happyday.proto
 
 ```protobuf
 package happyday;
@@ -70,7 +76,11 @@ reason: "Thursday is a Happy Day! ⭐"
 formattedDate: "Thu, 01 Jan 1970 00:00:00 GMT"
 ```
 
-We can now easily see the request and response in the [Protobuf Text Format](https://github.com/qaware/protocurl#protobuf-text-format) without needing to use `protoc` or a full-blown programming language to manually (de-) serialize the content. Since we didn't provide a `date`, the Protobuf server implicitly assumes all of the [timestamp.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto) fields to be zero - which corresponds to epoch time `0`.
+We can now easily see the request and response in the [Protobuf Text Format][protocurl-protobuf-text-format] without needing to use `protoc` or a full-blown programming language to manually (de-) serialize the content. Since we didn't provide a `date`, the Protobuf server implicitly assumes all of the [timestamp.proto][timestamp.proto] fields to be zero - which corresponds to epoch time `0`.
+
+[protocurl-protobuf-text-format]: https://github.com/qaware/protocurl#protobuf-text-format
+
+[timestamp.proto]: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto
 
 
 &nbsp; <!-- add artificial spacing -->
