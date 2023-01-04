@@ -22,8 +22,7 @@ This can become handy when debugging Protobuf-based HTTP endpoints when they are
 The tool was created by myself ([GollyTicker](https://github.com/GollyTicker)) with initial sponsorship from [QAware](https://qaware.de), because of the need for debugging Protobuf REST APIs in our projects.
 
 
-&nbsp; <!-- add artificial spacing -->
-## An Example with protoCURL
+# An Example with protoCURL
 
 With protoCURL a request can be as simple as this:[^powershell-syntax]
 ```bash
@@ -83,8 +82,7 @@ We can now easily see the request and response in the [Protobuf Text Format][pro
 [timestamp.proto]: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto
 
 
-&nbsp; <!-- add artificial spacing -->
-## Explanation
+# Explanation
 
 In the background, protocurl essentially does the following:
 1. encode the textual Protobuf message to a binary request payload (using a bundled `protoc`)
@@ -92,8 +90,7 @@ In the background, protocurl essentially does the following:
 3. decode the binary response payload back to text and display it
 
 
-&nbsp; <!-- add artificial spacing -->
-## More Examples
+# More Examples
 
 As a second example, let's see, what happens, when we set the `date` to the first Wednesday in 2023:
 ```bash
@@ -131,8 +128,7 @@ The JSON format is automatically detected and also used for the output:
 ```
 
 
-&nbsp; <!-- add artificial spacing -->
-## Reproducing the Examples yourselves
+# Reproducing the Examples yourselves
 
 Want to try this out? You can reproduce these examples by taking the following steps:
 
@@ -171,8 +167,7 @@ Want to try this out? You can reproduce these examples by taking the following s
 Now you can send requests like the examples above.
 
 
-&nbsp; <!-- add artificial spacing -->
-## Summary
+# Summary
 
 We can use protocurl as a *quick and ergonomic command line* tool to interact with *Protobuf-based HTTP REST endpoints* while working with *human-readable text formats*.
 
