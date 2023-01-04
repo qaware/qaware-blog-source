@@ -4,3 +4,5 @@
 .DS_Store
 .idea/
 /.hugo_build.lock
+/public/
+!/public/.gitkeep
