@@ -137,10 +137,9 @@ The JSON format is automatically detected and also used for the output:
 Want to try this out? You can reproduce these examples by taking the following steps:
 
 {{< spoiler title="Clone repository and start the test server" >}}
-  In your macOS / Linux or Windows MinGW terminal, run:
-
-  <code style="white-space:pre">
-  # Clone the repository and enter the directory
+  <p> In your macOS / Linux or Windows MinGW terminal, run: </p>
+ 
+  <code>  # Clone the repository and enter the directory
   git clone protocurl
   cd protocurl
 
@@ -158,21 +157,14 @@ Want to try this out? You can reproduce these examples by taking the following s
 
 {{< spoiler title="Install protocurl from GitHub" >}}
   <p>
-    Simply follow the <a href="https://github.com/qaware/protocurl#install">command line installation instructions</a>.
-  </p>
-
-  <p>
-    When using windows, run <code>protocurl.exe</code> in Powershell or cmd instead of MinGW.
-  </p>
-  
-  <p>
-    If you use docker, then use the command
-    <br/>
-    <code style="white-space:pre">docker run -v /path/to/proto:/proto qaware/protocurl [...ARGS]</code>
-    <br/>
-    instead of
-    <br/>
-    <code style="white-space:pre">protocurl -I /path/to/proto [...ARGS]</code>
+    Simply follow the <a href="https://github.com/qaware/protocurl#install">command line installation instructions</a>. <br/>
+    
+    When using windows, run <code>protocurl.exe</code> in Powershell or cmd instead of MinGW. <br/>
+    
+    If you use docker, then use the command <br/>
+    <code>  docker run -v /path/to/proto:/proto qaware/protocurl [...ARGS]</code> <br/>
+    instead of <br/>
+    <code>  protocurl -I /path/to/proto [...ARGS]</code>
   </p>
 {{< /spoiler >}}
 
