@@ -177,8 +177,6 @@ Head over to [protocurl on GitHub](https://github.com/qaware/protocurl) and
 * read the [command line usage](https://github.com/qaware/protocurl/blob/main/doc/generated.usage.txt)
 * contribute by [creating issues](https://github.com/qaware/protocurl/issues) for bugs or feature requests!
 
-&nbsp; <!-- add artificial spacing -->
-
 *[The photo is by Edgard Motta from Pexels.](https://www.pexels.com/photo/arrows-on-a-footpath-12081699/)*
 
 [^protobuf-uses]: In specific scenarios, Protobuf is used instead of JSON, because the built-in schema format as well as the ability to generate code make it a viable choice for keeping consumers and producers of REST APIs consistent with each other and documented. It can also be the serialization for RPC frameworks such as [Twirp](https://github.com/twitchtv/twirp).
