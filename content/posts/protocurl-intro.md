@@ -1,12 +1,11 @@
 ---
 title: "Interact With Protobuf Endpoints in Human-Readable Text Formats Using protoCURL"
-date: 2022-12-21T14:20:05+01:00
+date: 2023-01-24T09:00:00+01:00
 author: "[Swaneet Sahoo](https://github.com/GollyTicker)"
 type: "post"
 tags: ["Protocol Buffers","HTTP","REST","Command Line","Open Source"]
 image: "protocurl-intro/pexels-edgard-motta-flipped.jpg"
 summary: "protoCURL is the command-line tool for interacting with Protobuf over HTTP REST endpoints using human-readable text formats"
-draft: true
 ---
 
 Do you have difficulties debugging [Protocol-Buffers][Protocol-Buffers]-based HTTP REST endpoints? Since Protobuf uses *binary payloads*, we face the problem, that we *cannot easily write or read our Protobuf payloads* with `curl` directly on the terminal. Ideally, we would like to to use curl with Protobuf just like we use curl with JSON or XML with classic text-based HTTP REST endpoints. [^via-protoc]
