@@ -10,7 +10,7 @@ summary: "protoCURL is the command-line tool for interacting with Protobuf over 
 
 Do you have difficulties debugging [Protocol-Buffers][Protocol-Buffers]-based HTTP REST endpoints? Since Protobuf uses *binary payloads*, we face the problem, that we *cannot easily write or read our Protobuf payloads* with `curl` directly on the terminal. Ideally, we would like to to use curl with Protobuf just like we use curl with JSON or XML with classic text-based HTTP REST endpoints. [^via-protoc]
 
-[Protocol-Buffers]: https://developers.google.com/protocol-buffers
+[Protocol-Buffers]: https://protobuf.dev
 
 To this problem, we present [protoCURL][protoCURL] - cURL for Protobuf: The command line tool to quickly and easily write requests in human-readable text formats on the command line against Protocol Buffer over HTTP endpoints and view the output in a text-based format as well.
 
@@ -184,4 +184,4 @@ Head over to [protocurl on GitHub](https://github.com/qaware/protocurl) and
 
 [^powershell-syntax]: For Powershell, we need to replace `/` by `\` in the path and use a backtick \` instead of `\` as line separators.
 
-[^via-protoc]: In theory, we could manually decode and encode the request and response via `protoc` using the [Protobuf Text Format](https://developers.google.com/protocol-buffers/docs/text-format-spec). But this becomes cumbersome quickly.
+[^via-protoc]: In theory, we could manually decode and encode the request and response via `protoc` using the [Protobuf Text Format](https://protobuf.dev/reference/protobuf/textformat-spec/). But this becomes cumbersome quickly.
