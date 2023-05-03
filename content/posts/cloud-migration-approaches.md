@@ -9,17 +9,19 @@ summary: "There is only one way to to do cloud migration properly: Linking busin
 ---
 
 As we have stated before, there is only one way to o do cloud migration properly: [Linking business and technology](https://blog.qaware.de/posts/cloud-migration-this-is-the-way/)
-but how do we get there, and what are proven strategies and tips on the way?
-Ideally, business has a good cloud strategy and strong commitment pushing the cloud move "top down", and at the same time from the "bottom up" all technical teams have an equally strong desire to leverage the offered technical and organization benefits if cloud technologies.
+
+But how do we get there: What if business and technology is currently in linking phase? What are proven strategies and tips on the way?
+
+Ideally, business has a good cloud strategy and strong commitment pushing the cloud move "top down", and at the same time all technical teams have an equally strong desire to leverage the offered technical and organization benefits of cloud technologies from the "bottom up".
 
 However, there are many "bottom up" cases, where teams are pushing to the cloud before strong business commitment is there.
-And there are cases where companies have a clear "top down" strategy for their cloud platform in place, but lack adoption of their cloud platform and struggle to find a good strategy to move over their legacy landscape.
+And there are cases where companies have a clear "top down" cloud commitment, but lack adoption of their cloud platform and struggle to find a good strategy to move over their legacy landscape.
 
 We will look at both cases and show what has worked for us and our customers.
 
 
 ## Team driven "bottom up" migration
-Doing "bottom up" migrations the teams usually have a lot of questions and "What-Ifs" in their mind. Let me try to tackle some of them following this sytel.
+Doing "bottom up" migrations the teams usually have a lot of questions and "What-Ifs" in their mind. Let me try to tackle some of them following this style.
 
 Imagine your company announced "Hey, we will (probably) moving to the cloud (soon / once its ready)" and your team is sitting on some not-so-cloud-friendly applications that need some love and polishing to keep them maintainable anyway. So now you need to decide what to do.
 Sounds familiar? Good, then this section might be for you.
@@ -29,7 +31,8 @@ So why not take the chance to refactor the applications now, and on the way also
 **Safe harbor statement:**
 We are strong believers in the **cloud-friendly** (or **Lift and extend**) cloud migration strategy, where an existing application can be economically adapted to run on a cloud platform. However, it is not a one-size-fits-all solution, and there are [other migration strategies](https://blog.qaware.de/posts/cloud-migration-this-is-the-way/) that may be better suited for your specific application.
 
-You may ask: But my companies cloud platform is not available yet or still in flux. Cant I just wait?
+You may ask: _But my companies cloud platform is not available yet or still in flux. Cant I just wait?_
+
 You could, but you probably already know your companies cloud platform is very likely to be at least some kind of "container runtime" or better "some sort of kubernetes" being it on-prem, public cloud, or managed or in-house.
 
 **Targeting Kubernetes is a sane choice!**  
@@ -42,7 +45,7 @@ The cloud design (and migration) principles are:
 * Proper isolation of state
 * Observability and diagnosability
 * Resilience
-*
+
 Migration teams are encouraged to exceed this baseline if possible within the frame of the migration. New applications are build cloud-natively.
 With *cloud-friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
 
@@ -57,8 +60,13 @@ By following them early you can avoid doing work twice/wrong! But that's not all
 
 
 Sounds nice but...
-- where do i host my containers if the company platform is not ready? Maybe you can  use a public cloud managed kubernetes. And dont be afraid to host your own kubernetes. There are awesome distributions for each usecase. e.g. coming from a single host world, or maybe some small shop floor on-prem system? Why not microk8s? To list them all and their usecases would go far beyond the scope of this article.
-- i don't need Kubernetes. Plain Docker is dying, swarm is dead. We had to go against the flow at some point and its painful, as you are forced to solve many issues where K8s and its ecosystem already have ready to use solutions. Kubernetes is todos standard for running containerized applications.
+- _"where do i host my containers if the company platform is not ready?"_ 
+   
+   Maybe you can  use a public cloud managed kubernetes. And dont be afraid to host your own kubernetes. There are awesome distributions for each usecase. e.g. coming from a single host world, or maybe some small shop floor on-prem system? Why not microk8s? To list them all and their usecases would go far beyond the scope of this article.
+
+- _"i don't need Kubernetes"_. 
+
+   Plain Docker is dying, swarm is dead. We had to go against the flow at some point and its painful, as you are forced to solve many issues where K8s and its ecosystem already have ready to use solutions. Kubernetes is todos standard for running containerized applications.
 
 
 
