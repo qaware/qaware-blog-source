@@ -116,7 +116,7 @@ Ever wondered why kubernetes called k8s? Developers found "Kubernetes" to long a
 
 
 ## See also
+* [Cloud friendly migration through refactoring is often the best solution](https://medium.com/@sbillet/cloud-friendly-migration-through-refactoring-is-often-the-best-solution-afb67f27661c)
 * [Cloud Migration: This is the Way](https://blog.qaware.de/posts/cloud-migration-this-is-the-way/)
-* [The good, the bad & the ugly of migrating hundreds of legacy applications to a cloud native platform](https://www.slideshare.net/QAware/the-good-the-bad-the-ugly-of-migrating-hundreds-of-legacy-applications-to-a-cloud-native-platform), Robert Bichler, Josef Adersberger, Handelsblatt annual conference on strategic IT management, 2019
 * [IDG Cloud Migration Studie 2021](https://info.qaware.de/de-de/cloud-migration-studie-2021) (German)
-
+* [The good, the bad & the ugly of migrating hundreds of legacy applications to a cloud native platform](https://www.slideshare.net/QAware/the-good-the-bad-the-ugly-of-migrating-hundreds-of-legacy-applications-to-a-cloud-native-platform), (Robert Bichler, Josef Adersberger, Handelsblatt annual conference on strategic IT management, 2019)
