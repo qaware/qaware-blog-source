@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 488 257" width="488" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="61" rows="15"/>
+            <termtosvg:animation type="css"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }
+    ]]></style>
+        <style type="text/css" id="user-style">
+            /* The colors defined below are the default 16 colors used for rendering text of the terminal. Adjust
+               them as needed.
+               Solarized light color theme (http://ethanschoonover.com/solarized) */
+            .foreground {fill: #586e75;}
+            .background {fill: #fdf6e3;}
+            .color0 {fill: #fdf6e3;}
+            .color1 {fill: #dc322f;}
+            .color2 {fill: #859900;}
+            .color3 {fill: #b58900;}
+            .color4 {fill: #268bd2;}
+            .color5 {fill: #6c71c4;}
+            .color6 {fill: #2aa198;}
+            .color7 {fill: #586e75;}
+            .color8 {fill: #839496;}
+            .color9 {fill: #cb4b16;}
+            .color10 {fill: #eee8d5;}
+            .color11 {fill: #93a1a1;}
+            .color12 {fill: #657b83;}
+            .color13 {fill: #073642;}
+            .color14 {fill: #d33682;}
+            .color15 {fill: #002b36;}
+        </style>
+    </defs>
+    <svg id="screen" width="488" height="255" viewBox="0 0 488 255" preserveAspectRatio="xMidYMin slice"><rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text x="0" textLength="320" class="foreground">time:    0s sent: 2     in-flight: 1    </text><text x="320" textLength="136" class="color14">rate:    0/10 RPS</text><text x="456" textLength="8" class="foreground"> </text></g><g id="g2"><text x="0" textLength="88" class="foreground">responses: </text><text x="88" textLength="104" class="color2">[200]: 1     </text><text x="192" textLength="8" class="foreground"> </text></g><g id="g3"><text x="0" textLength="128" class="foreground">       &lt;991 ms: </text><text x="128" textLength="344" fill="#00ff00">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</text><text x="472" textLength="8" class="foreground"> </text></g><g id="g4"><text x="0" textLength="128" class="foreground">    991-993 ms: </text><text x="128" textLength="344" fill="#00ff5f">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g5"><text x="0" textLength="128" class="foreground">    993-998 ms: </text><text x="128" textLength="344" fill="#00ff87">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g6"><text x="0" textLength="128" class="foreground">   998-1012 ms: </text><text x="128" textLength="344" fill="#00ffaf">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g7"><text x="0" textLength="128" class="foreground">  1012-1053 ms: </text><text x="128" textLength="344" fill="#afd75f">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g8"><text x="0" textLength="128" class="foreground">  1053-1166 ms: </text><text x="128" textLength="344" fill="#afd700">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g9"><text x="0" textLength="128" class="foreground">  1166-1485 ms: </text><text x="128" textLength="344" fill="#d7af5f">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g10"><text x="0" textLength="128" class="foreground">  1485-2382 ms: </text><text x="128" textLength="344" fill="#d787d7">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g11"><text x="0" textLength="128" class="foreground">  2382-4905 ms: </text><text x="128" textLength="344" fill="#d75faf">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g12"><text x="0" textLength="128" class="foreground"> 4905-12000 ms: </text><text x="128" textLength="344" fill="#d75f87">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g13"><text x="0" textLength="128" class="foreground">     12000+ ms: </text><text x="128" textLength="344" fill="#ff005f">                                           </text><text x="472" textLength="8" class="foreground"> </text></g><g id="g14"><text x="0" textLength="8" class="background"> </text></g></defs><g><use xlink:href="#g1" y="0"/><use xlink:href="#g2" y="17"/><use xlink:href="#g3" y="51"/><use xlink:href="#g4" y="68"/><use xlink:href="#g5" y="85"/><use xlink:href="#g6" y="102"/><use xlink:href="#g7" y="119"/><use xlink:href="#g8" y="136"/><use xlink:href="#g9" y="153"/><use xlink:href="#g10" y="170"/><use xlink:href="#g11" y="187"/><use xlink:href="#g12" y="204"/><use xlink:href="#g13" y="221"/><rect x="0" y="238" width="8" height="17" class="foreground"/><use xlink:href="#g14" y="238"/></g></svg>
+
+    <svg id="play-icon" x="50%" y="50%" height="70" width="70" viewBox="0 0 1200 1200" overflow="visible">
+        <circle cx="0" cy="0" r="350" class="background"/>
+        <path class="foreground" d="M 0,600 C -331.24, 600 -600,331.35 -600,0 -600,-331.24 -331.24,-600 0,-600 c 331.35,0 600,268.65 600,600 0,331.35 -268.65,600 -600,600 z M -150,-299.55 -150,299.55 300,0 -150,-299.55 z"/>
+    </svg>
+</svg>
