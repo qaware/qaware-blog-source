@@ -12,9 +12,7 @@ privacy:
 bottom_navigation:
   - item: Leistungen
     url: https://www.qaware.de/leistungen/
-  - item: Karriere
-    url: https://www.qaware.de/karriere/
-  - item: News
-    url: https://www.qaware.de/category/news/
   - item: Unternehmen
     url: https://www.qaware.de/unternehmen/
+  - item: Karriere
+    url: https://www.qaware.de/karriere/
