@@ -1,14 +1,12 @@
 ---
 title: "Don't Crack Under Pressure: Java Microservices and the Battle for Stability Under High Load"
-date: 2023-06-12T20:52:33+02:00
+date: 2023-08-32T16:36:33+02:00
 author: "[Sebastian Macke](https://github.com/s-macke)"
 type: "post"
 tags: ["Java", "Web Framework", "REST", "Services", "Thread", "Queue"]
 image: "java-service-queues/connections.png"
-draft: true
 summary: Explore the challenges of Java microservices under high load conditions.
 ---
-
 
 In recent years, I have been working for a large, well-established corporation with an extensive 
 IT ecosystem that spans several decades, including various infrastructure, software, and cloud environments, 
@@ -16,8 +14,8 @@ with Java being the prominent language. Maintaining seamless operations and ensu
 of all these systems is an immense challenge.
 
 As site reliability engineer, I have frequently dealt with outages. Although there 
-could be countless reasons for outages, one technical issue that I find particularly bothersome is *high load* in Java servcices 
-and how to fall over safely. Especially when there is no ressource shortage at all.
+could be countless reasons for outages, one technical issue that I find particularly bothersome is *high load* in Java services 
+and how to fail over safely. Especially when there is no ressource shortage at all.
 
 This article is aimed at those who want to improve the reliability of their Java-based web application services 
 and those interested in gaining insights into load testing their services.
@@ -37,7 +35,7 @@ We'll stick to a basic "hello world" example without any special configuration, 
 
 This code is very simple and just returns the string "Hello world". We can easily perform a performance test on this using the load test tool [SlapperX](https://github.com/s-macke/SlapperX).
 
-This test runs on the same machine as the servcice and sends 5000 requests per second.
+This test runs on the same machine as the service and sends 5000 requests per second.
 
 {{< animated static="/images/java-service-queues/sb_0s_5000req_play.svg"              anim="/images/java-service-queues/sb_0s_5000req.svg" >}}
 
@@ -118,7 +116,7 @@ We might have reached a certain limit, but which one? First, let's check the com
 
 The log output doesn't indicate any issues, and there's nothing in the DEBUG or TRACING log levels either.
 
-Now, let's examine the server's hardware metrics: CPU, RAM, and Network:
+Now, let's examine the server's hardware metrics: CPU performance, memory usage, and network throughput:
 
 {{< img src="/images/java-service-queues/metrics.png" >}}
 
@@ -169,17 +167,19 @@ Calls sent minutes ago are still being processed even if the caller has long dis
 
 To summarize:
 
+We have written a tiny service with a simulated blocking operation and analyzed the response during a high request scenario.
+
 - The service becomes unresponsive and is practically down.
 - There is no log output indicating a problem.
 - No hardware limitations are present.
 - Tracing doesn't reveal any issues. All requests are completed successfully.
-- Because of this, no alerts are triggered which monitors directly the service.
+- For this reason, no alarms are triggered that directly monitor the service.
 - Calls continue to be executed and results are discarded even if the caller disconnects.
 
-**This is the default behaviour of Java microservices under high load conditions!**
+{{< note >}}This is the default behaviour of Java microservices under high load conditions!{{< /note >}}
 
-In real-life situations, such scenarios can arise easily. For instance, a backend might 
-take a second longer due to maintenance or a malfunctioning node. One problematic backend can cause your entire service to fail.
+In real-life situations, such scenarios can arise easily. For instance, a backend system might 
+take a second longer due to maintenance or a malfunctioning node. One problematic backend system can cause your entire service to fail.
 
 But, the problems don't end there. Users sending requests can also create high load conditions. 
 However, this doesn't apply to all endpoints. An example is an endpoint with a large return size, like 5MB:
@@ -232,7 +232,7 @@ This is typically not related to CPU, RAM, or network limitations.
 <!-- That services can run into a high load scenario without exceeding cpu, ram or network capacity should be a running gag in IT. -->
 
 Horizontal scaling fixes the high load problems. With tools like Kubernetes, we made it simple: *Just add more pods*.
-It works, and your services run well again. However, is using more hardware and thorwing money 
+It works, and your services run well again. However, is using more hardware and throwing money 
 to the problem the real solution?
 
 # Manage your queues
@@ -250,7 +250,6 @@ However, I am not sure about its capacity in a shared Kubernetes cluster or in a
 Server operating systems can also impose limits on the maximum number of threads. 
 For example, some Linux server distributions set the default limit to a low number, such as 512.
 
-
 In any case, it is impossible to predict the optimal number of worker threads for every scenario. 
 This makes it a parameter that we want to eliminate in the long term (see Reactive and Virtual Threads below).
 
@@ -265,15 +264,13 @@ In their *Queue Management* chapter they suggest:
 - If the request rate is fairly static: 50% or less of the thread pool size
 - For bursty loads: Choose a number based on average number of threads in use and the processing time of each request and the size and frequency of bursts.
 
-In no line of the book do they mention unbounded queues.
+That are reasonable suggestions. Unbounded queues are not mentioned at all. So the best default value is zero or 50% of the thread pool size.
 
-The worst recommendation I've come across is in the documentation of the [Quarkus](https://quarkus.io/) framework:
+The exact opposite recommendation I've come across is in the documentation of the [Quarkus](https://quarkus.io/) framework:
 {{< img src="/images/java-service-queues/quarkus_queue_suggestion.png" >}}
 
-The discrepancy between the Java Framework developers and Site Reliability Engineers is just 0 vs. infinite. 
-They don't even try to give description of the parameter. As if everyone working with microservices is aware of the implications.
-
-Do framework developers even test their services in real-world conditions?
+The discrepancy between Site Reliability Engineers and the author of the Java Framework documentation is just 0 vs. infinite.
+Also no description of the parameter is given.
 
 You might think that web frameworks would have reasonable default settings 
 in place and provide guidance for configuring services for production use. 
@@ -287,7 +284,10 @@ Well, the existence of this article suggests that neither is the case.
 Here's what we want to achieve:
 - The service should always be up, running, and responsive.
 - If the maximum number of requests is reached, the service should log this issue.
-- The service should stop further requests with an approprite error.
+- The service should stop further requests with an appropriate error.
+
+
+## Tomcat Server
 
 Spring Boot provides three parameters for modifying the behavior of the built-in [Tomcat](https://tomcat.apache.org/) server.
 You can easily change the number of threads with a property like `server.tomcat.threads.max=5000`.
@@ -302,12 +302,27 @@ server.tomcat.accept-count
 These parameters can somewhat address high load issues as connections are loosely related to 
 requests and can be controlled by both the client and server. 
 
-However, these connection parameters are even worse parameters than the number of worker threads. 
+However, these connection parameters are not appropriate to control the service.
 A connection can have different meanings based on the protocol and implementation used. 
-Variations in HTTP/1.1, HTTP/2, HTTP/3, and their definitions of connections and keep-alive logic make these parameters unreliable.
 
-## This lack of control over the server internals makes the default server engine in Spring Boot unsuitable for production environments.
+- HTTP/1.1: One request per connection at the same time. Keep alive feature can keep a connection alive without a request.
+- HTTP/2: Multiplexing allows multiple parallel requests per connection. However, because of [Head-of-line-blocking](https://en.wikipedia.org/wiki/Head-of-line_blocking), this feature might not be used extensively.
+- HTTP/3: The connection is no longer handled by the kernel, but your application. Efficient multiplexing allows for separate streams within one connection. Only one connection necessary.
+
+These variants between the implementations and protocols make these connection parameters unpredictable.
+
+
+
+Because of the lack to controle the queue I gave this article a developer of Spring Boot for review and as result, a new parameter will be introduced:
+
+```
+server.tomcat.threads.max-queue-capacity
+```
+
+{{< note >}}Until this parameter is implemented, the lack of control over server internals makes the default server engine in Spring Boot unsuitable for production environments.{{< /note >}}
 <!-- https://stackoverflow.com/questions/39644830/what-are-acceptcount-maxconnections-and-maxthreads-in-tomcat-http-connector-con/39645362#39645362 -->
+
+## Jetty Server
 
 But Spring Boot allows using another server instead of Tomcat: [Jetty](https://www.eclipse.org/jetty/).
 
@@ -357,14 +372,32 @@ But there is more.
 
 Once you understand the behaviour of Java Micro Services under high load you understand the need for circuit breakers in such frameworks.
 
-Circuit breakers monitor error states and contain the logic to prevent future failures. They usually achieve this by not running the problematic code for a certain period of time. 
+Circuit breakers monitor error states and contain the logic to prevent future failures. They usually achieve this by not running the problematic code for a certain period of time.
+
+In our case they can be used 
+
+* to protect the backend for being bombarded with more and more requests, which fill up their queues.
+* to prevent our service to reach the one-thread-per-request limit.
+* to give the user faster feedback about the failure state.
 
 In this case, a circuit breaker can be employed when a backend stops responding (Timeout exception). 
 It prevents sending too many requests to an overloaded backend. This way, the backend can recover and function properly again.
 
 However, managing circuit breakers can be challenging. A poorly configured or misunderstood circuit breaker might be even more harmful than not having one at all.
+The default of a circuit breaker is usually to trigger on every error state unless the status code is 2xx or 3xx.
 
-Better, the backend server is properly configured and does not use an unlimited request queue.
+Here is a small list of possible errors and how to handle them in general if they are dominant in the response statistics.
+
+* Connection Timeout or Connection Reset: The backend is not even running. No reason to call it. The circuit breaker can trigger.
+* Response Timeout: The backend can be overloaded. Trigger the cricuit breaker.
+* SSL Handshake Error: One reason could be overloading, but also broken nodes. I would trigger the circuit breaker here.
+* Status Code 400 Bad Request: No reason to trigger. The Backend is working as expected.
+* Status Code 401 Unauthorized: No reason to trigger. The Backend is working as expected.
+* Status Code 500 Internal Server Error: Happens so often for so many reasons that this error state should be excluded from the cricuit breaker. Every non-handled error is mapped to this one.
+* Status Code 502 Bad Gateway: The backend is working as expected.
+* Status Code 503 Service Unavailable: Sounds like a good idea to trigger the circuit breaker here? But that means, that the server is already protecting itself. Usually no reason to protect it further. 
+
+This short list depicts the difficulty to configure a circuit breaker. Better, the backend server is properly configured and protects itself.
 
 
 # The argument for Reactive Programming
@@ -395,7 +428,7 @@ public Mono<ServerResponse> hello(ServerRequest request) {
 Using anything outside of the provided dot-syntax can be risky, as it could result in blocking I/O operations. 
 Even an ordinary *System.out.println* line is problematic, because it could be a blocking I/O operation.
 Also your entire code must be written in reactive language, and the same goes for all dependencies. 
-The style fights the design of Java and pays a high price in maintainability and ovservability.
+The style fights the design of Java and pays a high price in maintainability and observability.
 
 But reactive programming for I/O-driven services will soon be replaced by a new Java feature: *Virtual Threads*.
 
@@ -428,7 +461,9 @@ calls is appealing, but it requires unlearning some long-standing Java programmi
 
 In the meantime, while we await the introduction of virtual threads, it's important to remember one key suggestion: 
 
-### Limit your request queues!
+{{< note >}}Limit your request queues!{{< /note >}}
+
+
 
 <!--
 And please make sure, next time, you run into an overload scenario, that its real.
