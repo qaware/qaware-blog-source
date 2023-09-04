@@ -1,6 +1,6 @@
 ---
 title: "Don't Crack Under Pressure: Java Microservices and the Battle for Stability Under High Load"
-date: 2023-08-32T16:36:33+02:00
+date: 2023-09-04T12:36:33+02:00
 author: "[Sebastian Macke](https://github.com/s-macke)"
 type: "post"
 tags: ["Java", "Web Framework", "REST", "Services", "Thread", "Queue"]
