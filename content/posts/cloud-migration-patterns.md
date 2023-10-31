@@ -8,25 +8,29 @@ image: "cloud-migration/road-to-cloud.jpg"
 summary: "There is only one way to to do cloud migration properly: Linking business and technology."
 ---
 
+In a time of rapid technological change, decision-makers in companies are often confronted with the challenge of future-proofing their existing applications and systems. This article is aimed in particular at technical and business decision-makers whose applications and systems are still predominantly running "on-prem", i.e. in classic operation, and are not based on mainframes. Are you driven by the need to migrate your applications to stay competitive? If you're looking for a guiding perspective in this migration dilemma, you've come to the right place.
 
 
-As we have stated before, there is only one way to o do cloud migration properly: [Linking business and technology](https://blog.qaware.de/posts/cloud-migration-this-is-the-way/)
-but how do we get there, and what are proven strategies and tips on the way?
-Ideally, business has a good cloud strategy and strong commitment pushing the cloud move "top down", and at the same time from the "bottom up" all technical teams have an equally strong desire to leverage the offered technical and organization benefits if cloud technologies. 
+In this article, we delve into the "bottom up" perspective and show why it not only makes sense, but is actually necessary, to make applications and systems "cloud-ready" - regardless of whether your organization has already made the leap to the cloud or whether that move is still in the planning stages.
+
+In particular, we point to the [migration strategy we employed in the LEAP project](https://blog.qaware.de/posts/cloud-migration-this-is-the-way/) and why refactoring, even to a limited extent, can be crucial.
+
+
+
+## Bottom up vs Top Down
+Ideally, business has a good cloud strategy and strong commitment pushing the cloud move "top down", and at the same time from the "bottom up" all technical teams have an equally strong desire to leverage the offered technical and organization benefits if cloud technologies.
 
 However, there are many "bottom up" cases, where teams are pushing to the cloud before strong business commitment is there.
 And there are cases where companies have a clear "top down" strategy for their cloud platform in place, but lack adoption of their cloud platform and struggle to find a good strategy to move over their legacy landscape.
 
 We will look at both cases and show what has worked for us and our customers.
 
-
 ## Team driven "bottom up" migration
-Doing "bottom up" migrations the teams usually have a lot of questions and "What-Ifs" in their mind. Let me try to tackle some of them following this style.
+Doing "bottom up" migrations the teams usually have a lot of questions and "What-Ifs" in their mind. Let me try to tackle some of them in a Q&A Style.
 
-Imagine your company announced "Hey, we will (probably) moving to the cloud (soon / once its ready)" and your team is sitting on some not-so-cloud-friendly applications that need some love and polishing to keep them maintainable anyway. So now you need to decide what to do. 
-Sounds familiar? Good, then this section might be for you.
+Imagine your company announced "Hey, we will (probably) moving to the cloud (soon / once its ready)" and your team is sitting on some not-so-cloud-friendly applications that need some love and polishing to keep them maintainable anyway. So now you need to decide on the best course of action. Sound familiar? Good, then this section might be for you.
 
-So why not take the chance to refactor the applications now, and on the way also make them cloud friendly?
+Why not take the chance to refactor the applications right now, and on the way also make them cloud friendly.
 
 **Safe harbor statement:**
 We are strong believers in the **cloud-friendly** (or **Lift and extend**) cloud migration strategy, where an existing application can be economically adapted to run on a cloud platform. However, it is not a one-size-fits-all solution, and there are [other migration strategies](https://blog.qaware.de/posts/cloud-migration-this-is-the-way/) that may be better suited for your specific application.
@@ -37,7 +41,7 @@ You could, but you probably already know your companies cloud platform is very l
 **Targeting Kubernetes is a sane choice!**  
 but leveraging cloud design principles are beneficial for any runtime! So it makes sense to implement them as early as possible and is usually faster than expected.
 
-The cloud design (and migration) principles are: 
+The cloud design (and migration) principles are:
 * Implementing the infamous  [12 factor](https://12factor.net/) principles
 * Security
 * Elimination of toxic dependencies
@@ -45,9 +49,8 @@ The cloud design (and migration) principles are:
 * Observability and diagnosability
 * Resilience
 
-
 Migration teams are encouraged to exceed this baseline if possible within the frame of the migration. New applications are build cloud-natively.
-  With *cloud-friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
+With *cloud-friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
 
 
 By following them early you can avoid doing work twice/wrong! But that's not all:
@@ -77,32 +80,32 @@ Typical goals are:
 
 ![How a migration program is set up](/images/cloud-migration/migration-program-setup.jpg)
 
-Our approach: Transparency, Good Planing, Stakeholder management and Migration Industrialization as a Service: 
+Our approach: Transparency, Good Planing, Stakeholder management and Migration Industrialization as a Service:
 
 1. **We take care to help shape, understand and communicate the goals and constraints of the migration and align the organization**.
    The journey will only be successful if the destination is clear.
 2. **We create a single source of truth that reliably provides in-depth transparency about the state of the application landscape to migrate.**
    We tap into existing sources of information and use a tool-based approach to analyze and classify applications.
    Born from experience, we act with a healthy distrust of pre-existing documentation and high-level declarations. The truth is in the code.
-    - In the past we did this with our own custom tooling!
-    - Today there is CNCF's [Konveyor, most noteably "Konveyor Tackle"](https://www.konveyor.io/) to help you!
+   - In the past we did this with our own custom tooling!
+   - Today there is CNCF's [Konveyor, most noteably "Konveyor Tackle"](https://www.konveyor.io/) to help you!
 3. **We link the business view and the technical foundations.** Results:
-    * Reliable bottom-up assessment and planning of the migrations
-    * Detecting and resolving problems before they hurt
-    * Ensuring compliance and security
-    * Confidence that the goals can be achieved
+   * Reliable bottom-up assessment and planning of the migrations
+   * Detecting and resolving problems before they hurt
+   * Ensuring compliance and security
+   * Confidence that the goals can be achieved
 4. **We ensure and efficient and effective migration by:**
-    * Helping you design and set up the migration program right from the start
-    * Industrializing architecture, common parts and work:
-      We solve challenges once, automated as far as possible and in high quality.
-    * Establishing an *inner source* approach, facilitating communication and providing transparency across teams.
-    * Including enabling from the beginning. The existing teams know their applications best. We ensure that they will be
-      able to maintain their newly cloudified applications easily. Many teams will be able to carry out the migrations themselves.
-    * Taking responsibility for the outcome and working closely with you and your partners.
+   * Helping you design and set up the migration program right from the start
+   * Industrializing architecture, common parts and work:
+     We solve challenges once, automated as far as possible and in high quality.
+   * Establishing an *inner source* approach, facilitating communication and providing transparency across teams.
+   * Including enabling from the beginning. The existing teams know their applications best. We ensure that they will be
+     able to maintain their newly cloudified applications easily. Many teams will be able to carry out the migrations themselves.
+   * Taking responsibility for the outcome and working closely with you and your partners.
 5. **We support the after-migration period, ensuring that cost, stability and performance goals are met.**
 
 
-Trivia: k8s vs kubernetes - never dared to ask? the developers thought the word "kubernetes" (ancient greek for "helmsman") was too long in everyday life. Just leave out the middle 8 letters and replace them with an "8" -> K8s.
+Trivia: k8s vs kubernetes - never dared to ask? the developers thought the word "kubernetes" (ancient greek for "helmsman") was too long in everyday life. Just leave out the middle 8 letters and replace them with an "8" and you get K8s.
 
 
 ## See also
