@@ -1,8 +1,8 @@
 --
 title: "Cloud Migration Approaches"
-date: 2023-05-02T16:17:55+02:00
-draft: true
-author: "[Michael Frank]https://github.com/Michael-Frank/)"
+date: 2023-11-09T12:01:55+02:00
+type: "post"
+author: "[Michael Frank](https://github.com/Michael-Frank/)"
 tags: ["Cloud", "Migration", "Architecture", "Business and IT"]
 image: "cloud-migration/road-to-cloud.jpg"
 summary: "There is only one way to to do cloud migration properly: Linking business and technology. But there are Bottom.up and Top-Down cases as well."
