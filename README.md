@@ -33,10 +33,19 @@ gh repo fork qaware/qaware-blog-source
 After this step, a fork is created for the current GitHub user of the Writer: `https://github.com/<GITHUB_USER>/qaware-blog-source`. 
 
 To work with it locally on a computer, this fork must first be cloned. 
-
+:warning: The `--recurse-submodules` is important as the [qaware-blog-theme](https://github.com/qaware/qaware-blog-theme) is included as a git submodule.
 
 ```bash
 git clone --recurse-submodules https://github.com/<GITHUB_USER>/qaware-blog-source
+```
+
+To track more changes in the remote `qaware-blog-theme`, update the locally checked-out submodule with 
+```bash
+git submodule update --remote
+```
+Otherwise, you might see templating errors such as
+```
+failed to extract shortcode: template for shortcode "img" not found
 ```
 
 ### Write your post (with or without hugo) 
