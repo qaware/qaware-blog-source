@@ -1,5 +1,5 @@
 ---
-title: "Automating the Machine Learning Workflow with MLOps"
+title: "Exploring MLOps: A Practical Journey"
 date: 2024-02-02T14:46:18+01:00
 author: "Victor Wolf, Lars Kleinschmidt, Martin Siehler & Simon Siedersleben"
 type: "post"
@@ -29,7 +29,7 @@ However, this also gave us direct influence on the functionality we needed for o
 With that, we set out to tackle the planned PoC.
 
 
-# PoC
+# Validating Our Decision: The PoC
 
 To validate the decision for Kubeflow, we developed a Proof of Concept (PoC) pipeline to get to know the functionality of Kubeflow in detail. We used a simple TensorFlow model (Fashion MNIST) for this.
 
@@ -40,15 +40,17 @@ The Vertex AI variant is well suited if you want to quickly get into the intrica
 
 However, in terms of independence from cloud providers, a separate Kubeflow instance often makes more sense.The pipeline performs four steps:
 
-### 1. loading data
+### 1. Data Loading
 
 The data for training and evaluating the model must be provided at the beginning. In this case, the data is loaded from the Keras Fahion-MNIST data set. Alternatively, it can also be loaded from CSV files, databases or other data sources.
 
-### 2. train the model
+### 2. Model Training
 
 The model is trained. In this case, TensorFlow is used for training.
 
 However, the functionality is so open by design that any type of model can be trained. The pipeline stores the trained model in a Google Cloud Bucket.### 3. evaluation
+
+### 3. Evaluation
 
 In order to check the correctness of the model and the quality compared to previous versions, tests are carried out in this step using the test data collected in step 1. Metrics such as accuracy can be collected from this. If the model falls below certain minimum values or is worse than the previous one, it can be rejected so that the old one remains available.
 
@@ -60,7 +62,9 @@ We are very satisfied with the functionalities offered. A third-party model was 
 
 However, further steps can easily be added.
 
-# Outlook
+
+# Looking Ahead: The Universal Blueprint
+
 In our quest to realize the ideal MLOps ecosystem, we have used the findings from our PoC to consider other key aspects. One critical point is that our current PoC relies heavily on Google Cloud components. Therefore, we plan to develop a universal blueprint that is not only cloud-agnostic and vendor-independent, but also easy to configure and integrate. The diagram provides an overview of the planned components of the blueprint.
 
 ![](/images/mlops-poc/blueprint_structure.png)
