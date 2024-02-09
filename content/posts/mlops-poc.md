@@ -1,70 +1,73 @@
 ---
-title: "Automating an Machine Learning Pipeline with MLOps"
+title: "Automating the Machine Learning Workflow with MLOps"
 date: 2024-02-02T14:46:18+01:00
-author: "Victor, Lars, Simon & Martin"
+author: "Victor Wolf, Lars Kleinschmidt, Martin Siehler & Simon Siedersleben"
 type: "post"
 image: "mlops-poc/pipeline.png"
 tags: [MLOps, AI, Machine Learning, Kubeflow]
 draft: true
-summary: In diesem Artikel zeigen wir euch unser Konzept eines MLOps Blueprints der QAware.
+summary: In this article we present the QAware concept of an MLOps Blueprint.
 ---
 
-# Was ist MLOps überhaupt?
-MLOps (Machine Learning Operations) ist ein Paradigma, das darauf abzielt, Machine Learning Modelle zuverlässig und effizient zu implementieren und zu warten. MLOps unterscheidet sich vom klassischen DevOps insbesondere dadurch, dass es die Integration von  Modellen und Daten im Entwicklungsprozess, sowie Betrieb umfasst.
-Eine Herausforderung besteht darin, dass diese Daten und Modelle sehr groß sein können, was die aktive Entwicklung und Wartung dieser Systeme erschwert. Im besten Fall orchestriert MLOps nicht nur das Management von Big Data und komplexen Modellen, sondern erleichtert auch die Zusammenarbeit zwischen Data Scientists, Entwicklern und Operations Engineers.
+# What is MLOps anyway?
+MLOps (Machine Learning Operations) is a paradigm that aims to implement and maintain machine learning models reliably and efficiently. MLOps differs from classic DevOps in particular in that it includes the integration of models and data in the development process as well as operations.
+One challenge is that this data and models can be very large, which makes it difficult to actively develop and maintain these systems. At its best, MLOps not only orchestrates the management of big data and complex models, but also facilitates collaboration between data scientists, developers and operations engineers.
 
 
-# Kontext
-Mehr als je zuvor spürt man den Einfluss von KI in der heutigen Gesellschaft. Auch in der Projektwelt gibt es derzeit zahlreiche KI-Projekte oder Projekte, die durch KI optimiert werden können. Sei es in der Gesichtserkennung, Produktempfehlung, Anomalie-Erkennung oder Chatbots. Deswegen haben wir im Rahmen unserer KI-Gilde einen Blueprint entworfen, der KI optimal in die Softwareentwicklung integriert..
+# Context
+More than ever before, the influence of AI can be felt in today's society. In the project world, too, there are currently numerous AI projects or projects that can be optimized using AI. Be it in facial recognition, product recommendation, anomaly detection or chatbots. That is why we have developed a blueprint as part of our AI Guild that optimally integrates AI into software development.
 
-Neben dem Aufbau von Wissen zu diesem Themengebiet wählten wir einen praktischen Ansatz und setzten uns zum Ziel, ein einfaches ML-Problem mittels der typischen MLOps Techniken anzugehen und in einem PoC festzuhalten. Vor allem war uns wichtig, die Pipeline selbst gestalten zu können und sie in einer von uns gemanagten Cloud zu betreiben.
+In addition to building up knowledge on this topic, we chose a practical approach and set ourselves the goal of tackling a simple ML problem using typical MLOps techniques and recording it in a PoC. Above all, it was important for us to be able to design the pipeline ourselves and operate it in a cloud managed by us.
 
-Dabei kam nun direkt die erste Frage auf: Mit welchen Technologien wollen wir diese Pipeline denn überhaupt bauen und deployen? Nach kurzem googeln fanden wir schnell zahlreiche Lösungen, die einen einfachen Einsatz von MLOps mit einem hohen Maß an Anpassbarkeit an Cloud- und Projektbedingungen versprachen. Also folgten wir einfach mal diesen Ansätzen und testeten verschiedene Frameworks aus. Leider mussten wir dann schnell feststellen, dass wir Opfer von viel zu hohen Versprechungen geworden sind. Die Lösungen waren zum Teil technisch viel zu unreif oder eben doch nicht so flexibel einsetzbar wie erhofft.
-ZenML war ein typisches Beispiel dafür. Lokal konnten wir recht schnell eine Pipeline aufsetzen, die unser Problem lösen konnte. Die großen Probleme kamen dann allerdings beim Versuch, diese Pipeline in der Cloud zu betreiben. Die anscheinend einfache Deployment Funktionalität führte zu zahlreichen Fehlern, bei denen wir nach einigen Fix-Versuchen und Einstellen von Issues auf GitHub auch nicht weiter kamen, bis wir das Projekt wieder beiseite legten.
-Einen weiteren Versuch machten wir mit TFX. TFX ist ein TensorFlow Execution Framework, welches auf Kubeflow Pipelines aufbaut. Diese Lösung funktioniert ähnlich zu Kubeflow Pipelines und packt nochmals einen Abstraktionslayer obendrauf. Damit konnten wir Pipelines in der Cloud deployen. Der Mehrwert im Vergleich zu Kubeflow Pipelines allerdings war uns zu gering.
+The first question arose immediately: Which technologies do we actually want to use to build and deploy this pipeline? After a quick google search, we quickly found numerous solutions that promised a simple deployment of MLOps with a high degree of adaptability to cloud and project conditions. So we simply followed these approaches and tested various frameworks. Unfortunately, we soon realized that we had fallen victim to promises that were far too high.Some of the solutions were technically far too immature or not as flexible to use as we had hoped.
+ZenML was a typical example of this.Locally, we were able to quickly set up a pipeline that could solve our problem. However, the big problems came when we tried to operate this pipeline in the cloud.The seemingly simple deployment functionality led to numerous errors, and after a few attempts to fix them and post issues on GitHub, we made no progress until we put the project aside again.
+We made another attempt with TFX. TFX is a TensorFlow execution framework that is based on Kubeflow Pipelines. This solution works similarly to Kubeflow Pipelines and adds an abstraction layer on top. This allowed us to deploy pipelines in the cloud. However, the added value compared to Kubeflow Pipelines was too low for us.
 
-Damit kamen wir unserer Entscheidung jedoch schon einen Schritt näher. Also warum nicht einfach direkt Kubeflow Pipelines einsetzen? Mittels Kubeflow Pipelines lassen sich eigene Pipelines recht einfach definieren und direkt auf einem Kubeflow Cluster deployen. Kubeflow selbst setzt direkt auf den Kubernetes Stack auf und läuft deshalb Cloud agnostisch. Für diese Lösung brauchten wir zwar etwas mehr Anpassungen und Konfiguration, um die Komponenten zu verdrahten. Allerdings hatten wir dadurch auch direkten Einfluss auf die Funktionalität, wie wir sie für unsere Pipeline brauchten. Im Endeffekt begannen wir damals unser eigenes MLOps Framework/Blueprint basierend auf Kubeflow Pipelines aufzubauen. Nun haben wir die volle Kontrolle über die Funktionalität und können bei Problemen einfacher reagieren.
+However, this brought us one step closer to our decision. So why not just use Kubeflow Pipelines directly? With Kubeflow Pipelines, you can easily define your own pipelines and deploy them directly on a Kubeflow cluster. Kubeflow itself is based directly on the Kubernetes stack and therefore runs cloud agnostic. For this solution, we needed a little more customization and configuration to wire the components.
+However, this also gave us direct influence on the functionality we needed for our pipeline. In the end, we started to build our own MLOps framework/blueprint based on Kubeflow pipelines.Now we have full control over the functionality and can react more easily in case of problems.
 
-Damit machten wir uns auf den Weg, den geplanten PoC anzugehen.
+With that, we set out to tackle the planned PoC.
 
 
 # PoC
 
-Um die Entscheidung für Kubeflow zu validieren, haben wir eine Proof of Concept (PoC) Pipeline entwickelt, um die Funktionsweise von Kubeflow im Detail kennenzulernen. Hierfür haben wir ein simples TensorFlow-Modell (Fashion MNIST) genutzt.
+To validate the decision for Kubeflow, we developed a Proof of Concept (PoC) pipeline to get to know the functionality of Kubeflow in detail. We used a simple TensorFlow model (Fashion MNIST) for this.
 
-Für die Ausführung und das Deployment haben wir zwei alternative Varianten aufgebaut. Die eine Variante nutzt eine klassische Kubeflow-Instanz, welche wir in der Google Kubernetes Engine (GKE) laufen lassen, die andere nutzt Vertex AI. Vertex AI kann Kubeflow-Pipelines ausführen, mit wenig administrativen Overhead.
+We developed two alternative variants for execution and deployment. One variant uses a classic Kubeflow instance, which we run in the Google Kubernetes Engine (GKE), while the other uses Vertex AI.
+Vertex AI can run Kubeflow pipelines with little administrative overhead.
 
-Die Vertex AI - Variante ist gut geeignet, wenn man schnell in die Feinheiten von Kubeflow einsteigen möchte, ohne sich um eine Kubeflow-Instanz kümmern zu müssen. Im Sinne der Unabhängigkeit von Cloud-Anbietern macht eine eigene Kubeflow-Instanz aber oftmals mehr Sinn.
+The Vertex AI variant is well suited if you want to quickly get into the intricacies of Kubeflow without having to worry about a Kubeflow instance.
 
-Die Pipeline übernimmt vier Schritte:
+However, in terms of independence from cloud providers, a separate Kubeflow instance often makes more sense.The pipeline performs four steps:
 
-### 1. Daten laden
+### 1. loading data
 
-Die Daten zum Trainieren und Evaluieren des Modells müssen zu Beginn bereitgestellt werden. In diesem Fall werden die Daten aus dem Keras Fahion-MNIST Datensatz geladen. Alternativ können sie aber auch aus CSV-Dateien, Datenbanken oder anderen Datenquellen geladen werden.
+The data for training and evaluating the model must be provided at the beginning. In this case, the data is loaded from the Keras Fahion-MNIST data set. Alternatively, it can also be loaded from CSV files, databases or other data sources.
 
-### 2. Modell trainieren
+### 2. train the model
 
-Das Modell wird trainiert. In diesem Fall wird zum Training TensorFlow genutzt. Die Funktionalität ist per Design jedoch so offen, dass jede Art von Modell trainiert werden kann. Die Pipeline legt das trainierte Modell in ein Google Cloud Bucket ab.
+The model is trained. In this case, TensorFlow is used for training.
 
-### 3. Evaluierung
+However, the functionality is so open by design that any type of model can be trained. The pipeline stores the trained model in a Google Cloud Bucket.### 3. evaluation
 
-Um die Korrektheit des Modells und die Qualität gegenüber vorherigen Versionen zu prüfen, werden in diesem Schritt Tests anhand der in Schritt 1 gesammelten Testdaten durchgeführt. Hieraus können Metriken, wie z. B. die Treffsicherheit erhoben werden. Wenn das Modell gewisse Mindestwerte unterschreitet, oder schlechter ist als das vorherige, kann es abgelehnt werden, damit das alte bereitgestellt bleibt.
+In order to check the correctness of the model and the quality compared to previous versions, tests are carried out in this step using the test data collected in step 1. Metrics such as accuracy can be collected from this. If the model falls below certain minimum values or is worse than the previous one, it can be rejected so that the old one remains available.
 
 ### 4. Serving
 
-Mithilfe eines Serving-Containers, welcher entweder vorgefertigt ist (z. B. der TensorFlow Serving Container) oder selbst erstellt werden kann, wird das Modell an einem Endpunkt bereitgestellt. Hierfür kann entweder Vertex AI Serving genutzt werden, oder der Container wird im bereits für Kubeflow genutzten GKE Cluster deployt.
+The model is deployed to an endpoint using a serving container, which is either pre-built (e.g. the TensorFlow Serving Container) or can be created by the user. Either Vertex AI Serving can be used for this, or the container can be deployed in the GKE cluster already used for Kubeflow.
 
-Wir sind sehr zufrieden über die gebotenen Funktionalitäten. Ein fremdes Modell wurde, mittels unseres PoCs, in kürzester Zeit integriert. Kubeflow zeigt sich vielseitig und vernünftig einsetzbar. Die vier im PoC implementierten Schritte stellen das Minimum für unseren Use Case dar. Allerdings können problemlos weitere Schritte hinzugefügt werden.
+We are very satisfied with the functionalities offered. A third-party model was integrated in a very short time using our PoC. Kubeflow is versatile and can be used sensibly. The four steps implemented in the PoC represent the minimum for our use case.
 
+However, further steps can easily be added.
 
-# Ausblick
-In unserem Bestreben, das ideale MLOps-Ökosystem zu realisieren, haben wir die Erkenntnisse aus unserem PoC genutzt, um weitere wesentliche Aspekte zu berücksichtigen. Ein kritischer Punkt ist, dass unser aktueller PoC stark von Google Cloud Komponenten abhängt. Daher planen wir die Entwicklung eines universellen Blueprints, der nicht nur cloud-agnostisch und anbieterunabhängig ist, sondern auch einfach in der Konfiguration und Integration. Das Schaubild bietet einen Überblick über die geplanten Komponenten des Blueprints.
+# Outlook
+In our quest to realize the ideal MLOps ecosystem, we have used the findings from our PoC to consider other key aspects. One critical point is that our current PoC relies heavily on Google Cloud components. Therefore, we plan to develop a universal blueprint that is not only cloud-agnostic and vendor-independent, but also easy to configure and integrate. The diagram provides an overview of the planned components of the blueprint.
 
 ![](/images/mlops-poc/blueprint_structure.png)
-*Unser MLOps Blueprint Cloud Stack*
+*Our MLOps Blueprint Cloud Stack*
 
-Wir beabsichtigen, unseren PoC durch Observability-Komponenten zu erweitern, wobei ein Prometheus-Grafana-Stack zum Einsatz kommen soll. Evidently AI könnte ebenfalls zur Erfassung ML-spezifischer Metriken verwendet werden. Im Bereich des Continuous Delivery streben wir auch eine Verbesserung an, um eine stärkere Ausrichtung auf GitOps zu erreichen. Das könnte durch die Implementierung von Flux geschehen. Zudem planen wir, unseren aktuellen Serving Container durch ein Serving Framework zu stützen. Hier käme BentoML infrage. Im Datensegment möchten wir mehrere konfigurierbare Datenquellen integrieren. Obwohl der Modellaspekt größtenteils durch unseren PoC abgedeckt ist, sehen wir Potenzial für eine Optimierung durch den Einsatz einer effizienten Modell Registry wie MLflow.
+We intend to extend our PoC with observability components using a Prometheus Grafana stack. Evidently AI could also be used to collect ML-specific metrics. In the area of Continuous Delivery, we are also aiming for an improvement to achieve a stronger focus on GitOps. This could be done by implementing Flux. We are also planning to support our current serving container with a serving framework. BentoML would be an option here. In the data segment, we would like to integrate several configurable data sources. Although the model aspect is largely covered by our PoC, we see potential for optimization through the use of an efficient model registry such as MLflow.
 
-Als Fundament für unseren gesamten MLOps-Stack haben wir uns für Kubeflow entschieden. Dies begründet sich durch dessen Kubernetes-Native Eigenschaften, die eine gewisse Unabhängigkeit von Anbietern  gewährleistet, sowie durch die positiven Erfahrungen, die wir bereits in unserem PoC mit Kubeflow gemacht haben
+We have chosen Kubeflow as the foundation for our entire MLOps stack. This is due to its Kubernetes-native features, which ensure a certain independence from vendors, as well as the positive experiences we have already had with Kubeflow in our PoC
 
-Unser nächstes Ziel ist die Implementierung dieses universellen Blueprints. Damit soll es möglich werden, die vielfältigsten ML Use Cases durch einfache Konfigurationen zu unterstützen. Dies ebnet den Weg für den produktiven Einsatz von ML-Systemen bei QAware, indem es eine flexible und robuste Basis für verschiedene Anwendungen bietet.
+Our next goal is to implement this universal blueprint. This should make it possible to support the most diverse ML use cases with simple configurations. This paves the way for the productive use of ML systems at QAware by providing a flexible and robust basis for various applications.
