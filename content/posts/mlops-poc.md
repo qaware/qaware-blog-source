@@ -1,5 +1,5 @@
 ---
-title: "Exploring MLOps: A Practical Journey"
+title: "MLOps for everyone: A universal MLOps-Pipeline-Blueprint based on Kubeflow"
 date: 2024-02-02T14:46:18+01:00
 author: "Victor Wolf, Lars Kleinschmidt, Martin Siehler & Simon Siedersleben"
 type: "post"
