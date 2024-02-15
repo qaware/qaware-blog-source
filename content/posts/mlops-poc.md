@@ -19,12 +19,12 @@ More than ever before, the influence of AI can be felt in today's society. In th
 
 In addition to building up knowledge on this topic, we chose a practical approach and set ourselves the goal of tackling a simple ML problem using typical MLOps techniques and recording it in a PoC. Above all, it was important for us to be able to design the pipeline ourselves and operate it in a cloud managed by us.
 
-The first question arose immediately: Which technologies do we actually want to use to build and deploy this pipeline? After a quick google search, we quickly found numerous solutions that promised a simple deployment of MLOps with a high degree of adaptability to cloud and project conditions. So we simply followed these approaches and tested various frameworks. Unfortunately, we soon realized that we had fallen victim to promises that were far too high.Some of the solutions were technically far too immature or not as flexible to use as we had hoped.
-ZenML was a typical example of this.Locally, we were able to quickly set up a pipeline that could solve our problem. However, the big problems came when we tried to operate this pipeline in the cloud.The seemingly simple deployment functionality led to numerous errors, and after a few attempts to fix them and post issues on GitHub, we made no progress until we put the project aside again.
+The first question arose immediately: Which technologies do we actually want to use to build and deploy this pipeline? After a quick google search, we quickly found numerous solutions that promised a simple deployment of MLOps with a high degree of adaptability to cloud and project conditions. So we simply followed these approaches and tested various frameworks. Unfortunately, we soon realized that we had fallen victim to promises that were far too high. Some of the solutions were technically far too immature or not as flexible to use as we had hoped.
+ZenML was a typical example of this. Locally, we were able to quickly set up a pipeline that could solve our problem. The significant challenges arose when we attempted to deploy and operate this pipeline in the cloud. The seemingly simple deployment functionality led to numerous errors, and after a few attempts to fix them and post issues on GitHub, we made no progress until we put the project aside again.
 We made another attempt with TFX. TFX is a TensorFlow execution framework that is based on Kubeflow Pipelines. This solution works similarly to Kubeflow Pipelines and adds an abstraction layer on top. This allowed us to deploy pipelines in the cloud. However, the added value compared to Kubeflow Pipelines was too low for us.
 
 However, this brought us one step closer to our decision. So why not just use Kubeflow Pipelines directly? With Kubeflow Pipelines, you can easily define your own pipelines and deploy them directly on a Kubeflow cluster. Kubeflow itself is based directly on the Kubernetes stack and therefore runs cloud agnostic. For this solution, we needed a little more customization and configuration to wire the components.
-However, this also gave us direct influence on the functionality we needed for our pipeline. In the end, we started to build our own MLOps framework/blueprint based on Kubeflow pipelines.Now we have full control over the functionality and can react more easily in case of problems.
+However, this also gave us direct influence on the functionality we needed for our pipeline. In the end, we started to build our own MLOps framework/blueprint based on Kubeflow pipelines. Now we have full control over the functionality and can react more easily in case of problems.
 
 With that, we set out to tackle the planned PoC.
 
@@ -38,7 +38,7 @@ Vertex AI can run Kubeflow pipelines with little administrative overhead.
 
 The Vertex AI variant is well suited if you want to quickly get into the intricacies of Kubeflow without having to worry about a Kubeflow instance.
 
-However, in terms of independence from cloud providers, a separate Kubeflow instance often makes more sense.The pipeline performs four steps:
+However, in terms of independence from cloud providers, a separate Kubeflow instance often makes more sense. The pipeline performs four steps:
 
 ### 1. Data Loading
 
@@ -48,11 +48,11 @@ The data for training and evaluating the model must be provided at the beginning
 
 The model is trained. In this case, TensorFlow is used for training.
 
-However, the functionality is so open by design that any type of model can be trained. The pipeline stores the trained model in a Google Cloud Bucket.### 3. evaluation
+However, the functionality is so open by design that any type of model can be trained. The pipeline stores the trained model in a Google Cloud Bucket.
 
 ### 3. Evaluation
 
-In order to check the correctness of the model and the quality compared to previous versions, tests are carried out in this step using the test data collected in step 1. Metrics such as accuracy can be collected from this. If the model falls below certain minimum values or is worse than the previous one, it can be rejected so that the old one remains available.
+To verify the model's accuracy and assess its quality relative to previous versions, tests are carried out in this step using the test data collected in step one. Metrics such as accuracy can be collected from this. If the model falls below certain minimum values or is worse than the previous one, it can be rejected so that the old one remains available.
 
 ### 4. Serving
 
