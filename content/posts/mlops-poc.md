@@ -1,5 +1,5 @@
 ---
-title: "MLOps for everyone: A universal MLOps-Pipeline-Blueprint based on Kubeflow"
+title: "MLOps for everyone: A universal MLOps-Blueprint based on Kubeflow"
 date: 2024-02-02T14:46:18+01:00
 author: "Victor Wolf, Lars Kleinschmidt, Martin Siehler & Simon Siedersleben"
 type: "post"
@@ -10,20 +10,19 @@ summary: In this article we present the QAware concept of an MLOps Blueprint.
 ---
 
 # What is MLOps anyway?
-MLOps (Machine Learning Operations) is a paradigm that aims to implement and maintain machine learning models reliably and efficiently. MLOps differs from classic DevOps in particular in that it includes the integration of models and data in the development process as well as operations.
-One challenge is that this data and models can be very large, which makes it difficult to actively develop and maintain these systems. At its best, MLOps not only orchestrates the management of big data and complex models, but also facilitates collaboration between data scientists, developers and operations engineers.
-
+MLOps is the abbreviation for Machine Learning Operations and is a paradigm that aims to implement and maintain machine learning models reliably and efficiently. MLOps differs from classic DevOps, in particular, in that it integrates models and data in the development process as well as operations.
+One challenge is that data and models can be very large, which makes it difficult to actively develop and maintain these systems. At its best, MLOps not only orchestrates the management of big data and complex models but also facilitates collaboration between data scientists, developers, and operations engineers.
 
 # Context
-More than ever before, the influence of AI can be felt in today's society. In the project world, too, there are currently numerous AI projects or projects that can be optimized using AI. Be it in facial recognition, product recommendation, anomaly detection or chatbots. That is why we have developed a blueprint as part of our AI Guild that optimally integrates AI into software development.
+More than ever before, the influence of AI can be felt in today's society. In the project world, too, there are currently numerous AI projects or projects that can be optimized using AI, be it in facial recognition, product recommendation, anomaly detection, or chatbots. That is why we have developed a blueprint as part of our AI Guild that optimally integrates AI into software development.
 
-In addition to building up knowledge on this topic, we chose a practical approach and set ourselves the goal of tackling a simple ML problem using typical MLOps techniques and recording it in a PoC. Above all, it was important for us to be able to design the pipeline ourselves and operate it in a cloud managed by us.
+In addition to building up knowledge on this topic, we chose a practical approach and set ourselves the goal of tackling a simple ML problem using typical MLOps techniques and recording it in a Proof of Concept (PoC). Above all, it was important for us to be able to design the pipeline ourselves and operate it in a cloud managed by us.
 
-The first question arose immediately: Which technologies do we actually want to use to build and deploy this pipeline? After a quick google search, we quickly found numerous solutions that promised a simple deployment of MLOps with a high degree of adaptability to cloud and project conditions. So we simply followed these approaches and tested various frameworks. Unfortunately, we soon realized that we had fallen victim to promises that were far too high. Some of the solutions were technically far too immature or not as flexible to use as we had hoped.
-ZenML was a typical example of this. Locally, we were able to quickly set up a pipeline that could solve our problem. The significant challenges arose when we attempted to deploy and operate this pipeline in the cloud. The seemingly simple deployment functionality led to numerous errors, and after a few attempts to fix them and post issues on GitHub, we made no progress until we put the project aside again.
+The first question arose immediately: Which technologies do we actually want to use to build and deploy this pipeline? After a quick Google search, we directly found numerous solutions that promised simple deployment of MLOps with a high degree of adaptability to cloud and project conditions. So we simply followed these approaches and tested various frameworks. Unfortunately, we soon realized that we had fallen victim to promises that were far too high. Some of the solutions were technically far too immature or not as flexible to use as we had hoped.
+ZenML was a typical example of this. Locally, we were able to quickly set up a pipeline that could solve our problem. The significant challenges arose when we attempted to deploy and operate this pipeline in the cloud. The seemingly simple deployment functionality led to numerous errors, and after a few attempts to fix them and posting issues on GitHub, we made no progress until we put the project aside again.
 We made another attempt with TFX. TFX is a TensorFlow execution framework that is based on Kubeflow Pipelines. This solution works similarly to Kubeflow Pipelines and adds an abstraction layer on top. This allowed us to deploy pipelines in the cloud. However, the added value compared to Kubeflow Pipelines was too low for us.
 
-However, this brought us one step closer to our decision. So why not just use Kubeflow Pipelines directly? With Kubeflow Pipelines, you can easily define your own pipelines and deploy them directly on a Kubeflow cluster. Kubeflow itself is based directly on the Kubernetes stack and therefore runs cloud agnostic. For this solution, we needed a little more customization and configuration to wire the components.
+Nevertheless, this brought us one step closer to our decision. So why not just use Kubeflow Pipelines directly? With Kubeflow Pipelines, you can easily define your pipelines and deploy them directly on a Kubeflow cluster. Kubeflow itself is based directly on the Kubernetes stack and therefore runs cloud-agnostic. For this solution, we needed a little more customization and configuration to wire the components.
 However, this also gave us direct influence on the functionality we needed for our pipeline. In the end, we started to build our own MLOps framework/blueprint based on Kubeflow pipelines. Now we have full control over the functionality and can react more easily in case of problems.
 
 With that, we set out to tackle the planned PoC.
@@ -42,7 +41,7 @@ However, in terms of independence from cloud providers, a separate Kubeflow inst
 
 ### 1. Data Loading
 
-The data for training and evaluating the model must be provided at the beginning. In this case, the data is loaded from the Keras Fahion-MNIST data set. Alternatively, it can also be loaded from CSV files, databases or other data sources.
+The data for training and evaluating the model must be provided at the beginning. In this case, the data is loaded from the Keras Fashion-MNIST data set. Alternatively, it can also be loaded from CSV files, databases or other data sources.
 
 ### 2. Model Training
 
