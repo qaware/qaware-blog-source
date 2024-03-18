@@ -1,6 +1,6 @@
 ---
 title: "MLOps for everyone: A universal MLOps-Blueprint based on Kubeflow"
-date: 2024-03-18T12:00:00+01:00
+date: 2024-03-18T06:00:00+01:00
 author: "Victor Wolf, Lars Kleinschmidt, Martin Siehler & Simon Siedersleben"
 type: "post"
 image: "mlops-poc/pipeline.png"
