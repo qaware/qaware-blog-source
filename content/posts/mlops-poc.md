@@ -5,7 +5,7 @@ author: "Victor Wolf, Lars Kleinschmidt, Martin Siehler & Simon Siedersleben"
 type: "post"
 image: "mlops-poc/pipeline.png"
 tags: [MLOps, AI, Machine Learning, Kubeflow]
-draft: true
+draft: false
 summary: In this article we present the QAware concept of an MLOps Blueprint.
 ---
 
