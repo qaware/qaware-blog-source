@@ -27,6 +27,8 @@ Still, Terraform is turning 10 years old next year, a dinosaur in the hype-based
 This blog post explores whether Pulumi and Crossplane can replace Terraform for your next project of 2024. We will also take a look at middle-of-the-road solutions like CDKTF (Cloud Development Kit for Terraform) and vendor-specific Kubernetes operators that offer a compromise of features.
 
 
+TODO: Replace "the company has done little to improve its core product over time"
+
 ## Pulumi
 
 Pulumi has a very similar architectural workflow to Terraform: 
@@ -35,13 +37,13 @@ Pulumi has a very similar architectural workflow to Terraform:
 2. The Pulumi engine reads the state file and creates a plan based on the diff between the known infrastructure state and the defined infrastructure state. (STACKS??)
 3. Platform developers apply the plan to the infrastructure.
 
-However, Pulumi you to define infrastructure using a general-purpose programming language (like Python or Typescript). This means that teams can use the same language to write applications and infrastructure, and enjoy the benefits of a modern language, such as type safety, code completion, refactoring tools and the simple pleasure of using real nestable `for` loops. Infrastructure code can also be tested using standard testing frameworks.
+However, Pulumi lets you define infrastructure using a general-purpose programming language (like Python or Typescript). This means that teams can use the same language to write applications and infrastructure, and enjoy the benefits of a modern language, such as type safety, code completion, refactoring tools and the simple pleasure of using real nestable `for` loops. Infrastructure code can also be tested using standard testing frameworks.
 
-Other major benefits are:
-- Native providers for all major cloud providers, including AWS, Azure, GCP, and Kubernetes.
-- A more flexible plugin system, allowing for more advanced features like post-deploy hooks.
+Pulumi's advantages include:
+- Native providers for AWS, Azure, GCP, Kubernetes, and others.
+- A more flexible plugin system, allowing for more advanced features like post-deployment hooks.
 
-While Pulumi is a serious contender in the realm of IaC, it might not be all sunshine and rainbows:
+While Pulumi is a serious contender in the IaC arena, it might not be all sunshine and rainbows:
 - Pulumi uses Terraform providers as a fallback, meaning it often has the same limitations as Terraform.
 - Pulumi only allows you to save a change plan (e.g. for review with a different tool) when using `PULUMI_EXPERIMENTAL=true`, implying that the feature is not yet stable.
 - Pulumi's language flexibility, while theoretically being interoperable, causes its plugin ecosystem to be split across multiple languages.
@@ -49,28 +51,35 @@ While Pulumi is a serious contender in the realm of IaC, it might not be all sun
 
 ## Cloud Development Kit for Terraform (CDKTF)
 
-If moving to an entirely different IaC tool (with its own ecosystem and peculiarities) is too scary, but the benefits of general-purpose languages are too tempting to ignore, the Cloud Development Kit for Terraform (CDKTF) might be worth a shot.
+Moving to an entirely different IaC tool (with its own ecosystem and peculiarities) can be quite a large step. 
+If the benefits of general-purpose languages are too tempting to ignore, but Pulumi is too heavy, then the Cloud Development Kit for Terraform (CDKTF) might be worth checking out.
 
-CDKTF is built on top of Terraform. While it technically allows you to define infrastructure using a general-purpose language, the code always compiles down to 
-
-**AI_GENERATED** a Terraform configuration. This means that you can use the same language to define infrastructure as you use to define applications, but you still get the benefits of Terraform's ecosystem and the ability to use Terraform providers.**AI_GENERATED**
-
-Vendor-specific flavors of CDKTF also exist in the form of the AWS Cloud Development Kit and the  are
-
-- Serverless Framework (?!!!)
-- 
-
+CDKTF is built on top of Terraform. While it technically allows you to define infrastructure using a general-purpose language, the code always compiles down to Terraform-compatible JSONs files. 
+Of the big three clouds, only AWS offers a vendor-specific flavors of the CDKTF in the form of the AWS Cloud Development Kit, which transpiles code into CloudFormation files.
 
 
 ## Crossplane
 
-## Vendor-Specific Compromises
+Just like other IaC solutions, Crossplane allows a platform team to define their own abstraction layers around sets of infrastructure resources, and to then have developers interact with those abstraction layers. 
+However, Crossplane uses Kubernetes as its backend. 
+
+Crossplane works by having developers create and modify instances of Crossplane resource definitions (defined by platform teams) in a given Kubernetes cluster, which the Crossplane controller then synchronizes with the outside world. 
+This does require you to have a good relationship with YAML.
+
+Two opinionated pairings of Crossplane as a backend and Backstage as a frontend are [CNOE](https://cnoe.io/docs/reference-implementation) and the [BACK Stack](https://github.com/back-stack).
 
 
-There are also other alternatives, specific to each cloud provider.
+## Vendor-Specific K8s-based Control Plane
+
+As with Pulumi and the CDKTF, vendor-specific flavors of Kubernetes-based infrastructure controllers also exist. 
+These are Google's Config Controller, the AWS Controllers for Kubernetes (ACK), and Microsoft's Azure Service Operator.
+
+Crossplane distances itself from these competitors with its support for the compositions of resources, rather than having lone resources that are only a shallow representation of underlying Azure/AWS/Google cloud resources. 
+
 
 
 TODO: Find out more about how CDKTF works (it's not as dumb as HCL, apparently?), add some diagrams to show the differences between the few. Describe Crossplane, consider adding "Serverless Framework" as another alternative...
+
 
 TODO: minimize links to avoid losing audience to distractions
 TODO: design / create diagrams to roughly explain how Pulumi, Crossplane and TF each work? Consider linking to outside Repositories that define things well?
@@ -79,8 +88,6 @@ Other alts: Complete Vendor-LockIn?
 - Azure Resource Manager (ARM) Templates and *Bicep*
 - Google Cloud Deployment Manager 
 - AWS CloudFormation
-
-
 
 Kubernetes as Control Plane? 
 - (Crossplane of course)
