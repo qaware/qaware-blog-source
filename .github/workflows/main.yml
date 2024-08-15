@@ -53,7 +53,7 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1.0.1'
         with:
-          project_id: $PROJECT_ID
+          project_id: ${{ secrets.RUN_PROJECT }}
 
       # Configure docker to use the gcloud command-line tool as a credential helper 
       - run: gcloud auth configure-docker
