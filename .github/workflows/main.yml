@@ -21,7 +21,8 @@ jobs:
       - name: Setup composed environment variables
         run: |
           echo "DOCKER_IMAGE_PATH=${RUN_REGION}-docker.pkg.dev/${PROJECT_ID}/${DOCKER_GAR_NAME}/${SERVICE_NAME}:${GITHUB_SHA}"  >> $GITHUB_ENV
-
+          echo "DOCKER_REGISTRY_BASE_URL=${RUN_REGION}-docker.pkg.dev" >> $GITHUB_ENV
+          
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v2.6.0
         with:
@@ -56,7 +57,7 @@ jobs:
           project_id: ${{ secrets.RUN_PROJECT }}
 
       # Configure docker to use the gcloud command-line tool as a credential helper 
-      - run: gcloud auth configure-docker
+      - run: gcloud auth configure-docker $DOCKER_REGISTRY_BASE_URL
       
       # Build the Docker image for staging environment
       - name: Build
