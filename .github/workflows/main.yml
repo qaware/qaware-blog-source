@@ -20,8 +20,7 @@ jobs:
 
       - name: Setup composed environment variables
         run: |
-          echo "DOCKER_IMAGE_PATH=${RUN_REGION}-docker.pkg.dev/${PROJECT_ID}/{$DOCKER_GAR_NAME}
-          /{$SERVICE_NAME}:${GITHUB_SHA}"  >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_PATH=${RUN_REGION}-docker.pkg.dev/${PROJECT_ID}/{$DOCKER_GAR_NAME}/{$SERVICE_NAME}:${GITHUB_SHA}"  >> $GITHUB_ENV
 
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v2.6.0
