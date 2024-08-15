@@ -4,8 +4,13 @@ on: push
 
 env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
-  RUN_REGION: europe-west4
+  RUN_REGION: europe-west3
+  PROJECT_BASE_URL: https://qawareblog-2ixogl4y4q-ey.a.run.app/
+  DOCKER_GAR_NAME: qawareblog-docker
   SERVICE_NAME: qawareblog
+  DOCKER_GAR_URL: "${{ env.RUN_REGION }}-docker.pkg.dev"
+  DOCKER_GAR_PATH: "${{ env.DOCKER_GAR_URL }}/{{ env.PROJECT_ID }}/{{ env.DOCKER_GAR_NAME}}"
+  DOCKER_IMAGE_PATH: "${{ env.DOCKER_GAR_PATH }}/{{ env.SERVICE_NAME }}:{{ github.sha }}"
 
 jobs:
   deploy:
@@ -47,19 +52,19 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1.0.1'
         with:
-          project_id: ${{ secrets.RUN_PROJECT }}
+          project_id: $PROJECT_ID
 
       # Configure docker to use the gcloud command-line tool as a credential helper 
       - run: gcloud auth configure-docker
       
       # Build the Docker image for staging environment
       - name: Build
-        run: docker build --build-arg BASE_URL=https://qawareblog-zkop4aqvwa-ez.a.run.app/ --tag gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA .
+        run: docker build --build-arg BASE_URL=$PROECT_BASE_URL --tag $DOCKER_IMAGE_PATH .
         
-      # Push the Docker image to Google Container Registry
+      # Push the Docker image to Google Artifact Registry
       - name: Publish
-        run: docker push gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+        run: docker push $DOCKER_IMAGE_PATH
         
       # Deploy the Docker image to Google Cloud Run
       - name: Deploy
-        run: gcloud components install beta && gcloud beta run deploy $SERVICE_NAME --quiet --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA --project $PROJECT_ID --region $RUN_REGION --platform managed --allow-unauthenticated  
+        run: gcloud components install beta && gcloud beta run deploy $SERVICE_NAME --quiet --image $DOCKER_IMAGE_PATH --project $PROJECT_ID --region $RUN_REGION --platform managed --allow-unauthenticated  
