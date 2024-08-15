@@ -6,7 +6,7 @@ env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
   RUN_REGION: europe-west3
   PROJECT_BASE_URL: https://qawareblog-2ixogl4y4q-ey.a.run.app/
-  DOCKER_GAR_NAME: qawareblog-docker
+  DOCKER_GAR_NAME: qaware-blog-docker
   SERVICE_NAME: qawareblog
 
 jobs:
