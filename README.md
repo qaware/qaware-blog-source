@@ -5,8 +5,8 @@
 
 ## Generated websites
 
-* https://blog.qaware.de: Target environment of our QAware software engineering blog
-* https://qawareblog-zkop4aqvwa-ez.a.run.app/: Testing environment with draft posts included (user: qaware, pw: qaware)
+* [https://blog.qaware.de](https://blog.qaware.de): Target environment of our QAware software engineering blog
+* [https://qawareblog-2ixogl4y4q-ey.a.run.app/](https://qawareblog-2ixogl4y4q-ey.a.run.app/): Testing environment with draft posts included (user: qaware, pw: qaware)
 
 ## Write Content
 
@@ -94,7 +94,7 @@ Post text
 4. Add `image` attribute. Put an image to the `/static/images` folder and write the filename (without `images/`) into attribute's value. More infos about providing image files can be found in the next chapter.
 5. Add `tags`: Select one or more fitting tags for your post: e.g. `Testing`, `Architecture`, `Cloud Native`
 6. Add `summary`: Add a short sentence as summary. This will be the description shown under page name and url in search engine result pages.
-7. `draft` is initially set to "true", which means that it will only be visible on the test environment https://qawareblog-zkop4aqvwa-ez.a.run.app/ . Set `draft` to false when your post is ready!
+7. `draft` is initially set to "true", which means that it will only be visible on the test environment [https://qawareblog-2ixogl4y4q-ey.a.run.app/](https://qawareblog-2ixogl4y4q-ey.a.run.app/) . Set `draft` to false when your post is ready!
 
 Final example:
 
