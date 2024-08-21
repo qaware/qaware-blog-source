@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3.1.0
         with:
           submodules: true
 
@@ -24,7 +24,7 @@ jobs:
           echo "DOCKER_REGISTRY_BASE_URL=${RUN_REGION}-docker.pkg.dev" >> $GITHUB_ENV
           
       - name: Setup hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@v2.6.0
         with:
           hugo-version: "0.117.0"
           extended: true
@@ -34,7 +34,7 @@ jobs:
 
       - name: Deploy
         if: github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v3.9.0
         with:
           personal_token: ${{ secrets.TOKEN }}
           external_repository: qaware/qaware.github.io
@@ -47,12 +47,12 @@ jobs:
 
       # Setup gcloud CLI
       - name: 'Setup Cloud Auth'
-        uses: 'google-github-actions/auth@v2'
+        uses: 'google-github-actions/auth@v1.0.0'
         with:
           credentials_json:  ${{ secrets.RUN_SA_KEY }}
 
       - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v2'
+        uses: 'google-github-actions/setup-gcloud@v1.0.1'
         with:
           project_id: ${{ secrets.RUN_PROJECT }}
 
