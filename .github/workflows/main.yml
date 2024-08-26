@@ -61,7 +61,7 @@ jobs:
       
       # Build the Docker image for staging environment
       - name: Build
-        run: docker build --build-arg BASE_URL=$PROECT_BASE_URL --tag $DOCKER_IMAGE_PATH .
+        run: docker build --build-arg BASE_URL=$PROJECT_BASE_URL --tag $DOCKER_IMAGE_PATH .
         
       # Push the Docker image to Google Artifact Registry
       - name: Publish
