@@ -1,16 +1,16 @@
 ---
 title: "Getting started: Chat with your document"
-date: 2024-10-22T06:00:00+01:00
-lastmod: 2024-10-22T06:00:00+01:00
-author: [Alexander Eimer](https://github.com/aeimer)
+date: "2024-10-20T06:00:00+01:00"
+lastmod: "2024-10-20T06:00:00+01:00"
+author: "[Alexander Eimer](https://github.com/aeimer)"
 type: post
 image: getting-started-rag-cwyd/hero.png
-tags: [AI, RAG, Documents]
+tags: [AI, RAG, CWYD, "Retrieval Augmented Generation", "Chat with your documents", "Künstliche Intelligenz"]
 draft: true
-summary: We will discover Chat with your documents and RAG and how you can utilize it to improve your information finding and polishing skills.
+summary: We will discover CWYD and RAG and how you can utilize it to improve your information finding and polishing skills.
 ---
 
-> ℹ️ A talk to the same topic can be found on
+> ℹ️ The related CNN talk can be found on
 [Speakerdeck](https://speakerdeck.com/aeimer/ais-secret-weapon-turning-documents-into-knowledge-cwyd).
 
 "Chat with Your Documents" (CWYD) allows you to interact with text-based documents, such as PDFs or Word files, using a language model (LLM).
@@ -21,9 +21,21 @@ We all know how time-consuming it can be to sift through pages of text, looking 
 CWYD enables us to **find, summarize, and polish information quickly**.
 This technology is set to **revolutionize** the way we work with documents, speeding up research and decision-making processes by providing **quick, accurate insights**.
 
+> **Using an LLM to get answers and findings from documents**   
+> (like txt, pdf, docx or any other format with prosa text)
+
+which enables us to 
+
+> **Find, summarize and polish information efficiently**  
+> It will fundamentally change the way we interact with information as the information gathering is faster and easier than ever before
+
 ## How does CWYD relate to Retrieval-Augmented Generation (RAG)?
 
-Cwyd is a part of a broader system called **Retrieval-Augmented Generation (RAG)**.
+{{< figure figcaption="Hello World Caption" >}}
+    {{< img src="/images/getting-started-rag-cwyd/rag-bigger-picture.png" alt="Hello World title picture" >}}
+{{< /figure >}}
+
+CWYD is a part of a broader system called **Retrieval-Augmented Generation (RAG)**.
 
 RAG combines the power of search with the generative capabilities of language models.
 Here's how it works:
@@ -34,7 +46,7 @@ Here's how it works:
 
 This method ensures that your responses are **grounded in actual data**, rather than relying solely on the model’s internal knowledge.
 
-## Why shouldn't I train an LLM with specific data?
+## Why shouldn't I train an LLM with specific information?
 
 Training your own LLM might sound like a good idea, but it comes with challenges:
 
@@ -46,7 +58,17 @@ Instead, using a pre-trained LLM with RAG allows for **flexible, up-to-date, and
 
 ## How does a RAG-prompt look like?
 
-If you want to pass retrieved information to the 
+Taking a look under the hood usually helps to understand the process better.
+So let's have a look what happens when we have some plain text that we want to chat with.
+
+Applications like ChatGPT will generate a prompt composed of different elements.
+This prompt is ultimately sent to the LLM, which then just answers with the info provided.
+
+* `system_prompt`: The usually hardcoded instructions the developers define.
+* `chat_history`: The messages sent to the LLM so far.
+LLMs are stateless, so the history of the chat needs to be provided with each request.
+* `document`: The document or parts of the document where relevant information are provided
+* `user_input`: The latest question of the user
 
 ```
 ai_model.complete(“
@@ -57,7 +79,9 @@ ai_model.complete(“
 “)
 ```
 
-Which becomes to 
+When the placeholder are replaced with explicit content, it may look something like the following.
+In this case we provided a rental agreement and want to get some specific information from it.
+The output of the LLM is then forwarded to the user and is usually presented as answer of the AI.
 
 ```
 ai_model.complete(“
@@ -75,7 +99,10 @@ What are my obligations when I want to move out of my flat?
 “)
 ```
 
-With the next question it becomes
+If we ask a follow-up question the actual prompt sent to the LLM looks like the following.
+You can see that the previous chat messages are provided.
+The document is provided again.
+The new user input is placed again at the end.
 
 ```
 ai_model.complete(“
@@ -96,9 +123,12 @@ Thanks, but do I also need to return the key or can I just throw it away?
 “)
 ```
 
+The response of the LLM is again forwarded to the user.
+The LLM can now generate a better answer which also builds upon the already happened conversation.
+
 ## Chunks vs. Full Document in CWYD
 
-There are two methods for interacting with documents using CWYD:
+There are two methods for interacting with documents using CWYD/RAG:
 
 **Full Document**: The LLM is provided with the entire document.
 This approach works best with shorter documents and provides a comprehensive overview.
@@ -114,6 +144,11 @@ Earlier models had limitations in this regard, making chunking a necessity.
 Especially the improvements on the "recall" makes it the first model of OpenAI which can be used for larger RAG applications.
 
 ## How does retrieval work?
+
+{{< figure figcaption="Hello World Caption" >}}
+    {{< img src="/images/getting-started-rag-cwyd/rag-information-sources.png" alt="Hello World title picture" >}}
+{{< /figure >}}
+
 RAG relies on retrieval methods to find relevant information.
 The most common techniques are:
 
@@ -122,7 +157,17 @@ The most common techniques are:
 **Semantic Search**: More advanced, it uses embeddings to find documents with similar meanings, not just matching keywords.
 In RAG, semantic search paired with chunking helps the system understand the context better, improving the quality of the responses.
 
+{{< figure figcaption="Hello World Caption" >}}
+    {{< img src="/images/getting-started-rag-cwyd/cwyd-variants.png" alt="Hello World title picture" >}}
+{{< /figure >}}
+
+{{< figure figcaption="Hello World Caption" >}}
+    {{< img src="/images/getting-started-rag-cwyd/semantic-search.png" alt="Hello World title picture" >}}
+{{< /figure >}}
+
+
 ## Why and How Should You Test RAG Systems?
+
 RAG systems aren't perfect.
 Since AI models can change their outputs over time, it's important to test regularly.
 Here’s why:
@@ -135,11 +180,22 @@ Here’s why:
 
 ## Testing approach:
 
+{{< figure figcaption="Hello World Caption" >}}
+    {{< img src="/images/getting-started-rag-cwyd/testing-process.png" alt="Hello World title picture" >}}
+{{< /figure >}}
+
 Create a set of test questions.
 Use an LLM to evaluate the quality of the responses.
 Check that the correct document sections (chunks) are retrieved.
 
+## Stages of Chatbots
+
+{{< figure figcaption="Hello World Caption" >}}
+    {{< img src="/images/getting-started-rag-cwyd/ai-bot-stages.png" alt="Hello World title picture" >}}
+{{< /figure >}}
+
 ## Conclusion
+
 Using CWYD with RAG technologies like GPT-4 Turbo can significantly enhance how we interact with large volumes of text.
 By combining retrieval and generation, you can quickly get answers from your documents, making research and decision-making faster and more efficient.
 
