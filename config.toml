@@ -22,7 +22,7 @@ cookiebot = "4e938949-aa56-465e-9c2a-175bb6c31d81"
 [markup]
    [markup.highlight]
      codeFences = true
-     guessSyntax = false
+     guessSyntax = true
      hl_Lines = ""
      lineNoStart = 1
      lineNos = true
