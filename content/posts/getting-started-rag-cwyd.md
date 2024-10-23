@@ -1,7 +1,7 @@
 ---
 title: "Getting started: Chat with your document"
-date: "2024-10-20T06:00:00+01:00"
-lastmod: "2024-10-20T06:00:00+01:00"
+date: "2024-10-23T06:00:00+01:00"
+lastmod: "2024-10-23T06:00:00+01:00"
 author: "[Alexander Eimer](https://github.com/aeimer)"
 type: post
 image: getting-started-rag-cwyd/hero.png
