@@ -1,0 +1,33 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "QAware | Software Engineering Blog"
+theme = "qaware-blog-theme"
+author = "QAware GmbH"
+copyright = "Copyright © 2024, QAware GmbH; all rights reserved."
+enableEmoji = true
+
+[pagination]
+  pagerSize = 11
+
+[params]
+  logo = "/images/qaware_logo.png"
+  kununu_name = "qaware"
+  twitter_handle = "qaware"
+  linkedin_company = "qaware-gmbh"
+  github_name = "qaware"
+  slideshare_name = "qaware"
+  youtube_channel = "UCmNf72xADnO57idipq9jvMg"
+  main_sections = ["blog"]
+  cookiebot = "4e938949-aa56-465e-9c2a-175bb6c31d81"
+
+[markup]
+   [markup.highlight]
+     codeFences = true
+     guessSyntax = true
+     hl_Lines = ""
+     lineNoStart = 1
+     lineNos = true
+     lineNumbersInTable = true
+     # style = "monokai"
+     noClasses = false
+     tabWidth = 2

@@ -1,0 +1,6 @@
+# Use this environment with "hugo -e staging"
+
+baseURL = "https://qawareblog-2ixogl4y4q-ey.a.run.app/"
+minify = true
+buildDrafts = true
+cleanDestinationDir = true
