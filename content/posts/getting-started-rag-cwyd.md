@@ -26,7 +26,7 @@ summary: We will discover CWYD and RAG and how you can utilize it to improve you
 {{< /rawhtml >}}
 
 {{< note >}}
-ℹ️&nbsp;&nbsp;The related CNN talk can be found on
+ℹ️&nbsp;&nbsp;The related Cloud Native Night Mainz talk can be found on
 <a href="https://speakerdeck.com/aeimer/ais-secret-weapon-turning-documents-into-knowledge-cwyd">Speakerdeck</a>.
 {{< /note >}}
 
