@@ -48,8 +48,8 @@ which enables us to
 
 ## How does CWYD relate to Retrieval-Augmented Generation (RAG)?
 
-{{< figure figcaption="Hello World Caption" >}}
-    {{< img src="/images/getting-started-rag-cwyd/rag-bigger-picture.png" alt="Hello World title picture" >}}
+{{< figure figcaption="Bigger picture: CWYD is a part of RAG" >}}
+    {{< img src="/images/getting-started-rag-cwyd/d2-venn-CWYD-only.cropped.svg" alt="Bigger picture: CWYD is a part of RAG" >}}
 {{< /figure >}}
 
 CWYD is a part of a broader system called **Retrieval-Augmented Generation (RAG)**.
@@ -63,29 +63,19 @@ Here's how it works:
 
 This method ensures that your responses are **grounded in actual data**, rather than relying solely on the model’s internal knowledge.
 
-## Why shouldn't I train an LLM with specific information?
-
-Training your own LLM might sound like a good idea, but it comes with challenges:
-
-- **Cost:** Training a model is expensive, both in terms of computation and time.
-- **Inflexibility:** Once trained, a model is not easily updated without retraining, making it hard to incorporate new data quickly.
-- **Security risks:** Ensuring that your data is protected and that access rights are respected can be difficult during the training process.
-
-Instead, using a pre-trained LLM with RAG allows for **flexible, up-to-date, and cost-efficient** responses.
-
 ## How does a RAG-prompt look like?
 
 Taking a look under the hood usually helps to understand the process better.
 So let's have a look what happens when we have some plain text that we want to chat with.
 
 Applications like ChatGPT will generate a prompt composed of different elements.
-This prompt is ultimately sent to the LLM, which then just answers with the info provided.
+This prompt is ultimately sent to the LLM, which then generates an answer based on the info provided.
 
 * `system_prompt`: The usually hardcoded instructions the developers define.
+This prompt sets the stage so the LLM knows what it has to do.
 * `chat_history`: The messages sent to the LLM so far.
-LLMs are stateless, so the history of the chat needs to be provided with each request.
-* `document`: The document or parts of the document where relevant information are provided
-* `user_input`: The latest question of the user
+* `document`: The document or parts of the document where relevant information are provided.
+* `user_input`: The latest question of the user.
 
 ```
 ai_model.complete(“
@@ -96,8 +86,8 @@ ai_model.complete(“
 “)
 ```
 
-When the placeholder are replaced with explicit content, it may look something like the following.
-In this case we provided a rental agreement and want to get some specific information from it.
+When the placeholders are replaced with explicit content, it may look something like the following.
+In this case we provided a rental agreement as `document` and we want to get some specific information from it.
 The output of the LLM is then forwarded to the user and is usually presented as answer of the AI.
 
 ```
@@ -143,7 +133,19 @@ Thanks, but do I also need to return the key or can I just throw it away?
 The response of the LLM is again forwarded to the user.
 The LLM can now generate a better answer which also builds upon the already happened conversation.
 
+LLMs are stateless, so the **history of the chat** needs to be **provided with each request**.
+This is also the reason why chats with ChatBots at some point ask you to start a new chat.
+The **input context-window** of the **LLM is limited**.
+This also **limits the length** of the **document** which can be passed to the LLM.
+The overall prompt with all parts counted together are required to have less token than the LLM models input context-window limitation.
+
 ## Chunks vs. Full Document in CWYD
+
+{{< figure figcaption="CWYD variants" >}}
+    {{< img src="/images/getting-started-rag-cwyd/d2-venn-CWYD.cropped.svg" alt="CWYD variants" >}}
+{{< /figure >}}
+
+// MARKER
 
 There are two methods for interacting with documents using CWYD/RAG:
 
@@ -153,6 +155,16 @@ This approach works best with shorter documents and provides a comprehensive ove
 **Chunks**: The document is divided into smaller, meaningful parts, or "chunks".
 Each chunk represents a distinct idea or section of the document.
 This method is more cost-effective and can handle larger documents but requires good chunking strategies to maintain context.
+
+## Why shouldn't I train an LLM with specific information?
+
+Training your own LLM might sound like a good idea, but it comes with challenges:
+
+- **Cost:** Training a model is expensive, both in terms of computation and time.
+- **Inflexibility:** Once trained, a model is not easily updated without retraining, making it hard to incorporate new data quickly.
+- **Security risks:** Ensuring that your data is protected and that access rights are respected can be difficult during the training process.
+
+Instead, using a pre-trained LLM with RAG allows for **flexible, up-to-date, and cost-efficient** responses.
 
 ## Why Full Document Works Better with GPT-4 Turbo
 
@@ -173,10 +185,6 @@ The most common techniques are:
 
 **Semantic Search**: More advanced, it uses embeddings to find documents with similar meanings, not just matching keywords.
 In RAG, semantic search paired with chunking helps the system understand the context better, improving the quality of the responses.
-
-{{< figure figcaption="Hello World Caption" >}}
-    {{< img src="/images/getting-started-rag-cwyd/cwyd-variants.png" alt="Hello World title picture" >}}
-{{< /figure >}}
 
 {{< figure figcaption="Hello World Caption" >}}
     {{< img src="/images/getting-started-rag-cwyd/semantic-search.png" alt="Hello World title picture" >}}
