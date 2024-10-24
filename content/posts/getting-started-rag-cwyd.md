@@ -4,14 +4,31 @@ date: "2024-10-23T06:00:00+01:00"
 lastmod: "2024-10-23T06:00:00+01:00"
 author: "[Alexander Eimer](https://github.com/aeimer)"
 type: post
-image: getting-started-rag-cwyd/hero.png
+image: getting-started-rag-cwyd/sprint-start-blocks.jpg
 tags: [AI, RAG, CWYD, "Retrieval Augmented Generation", "Chat with your documents", "Künstliche Intelligenz"]
 draft: true
 summary: We will discover CWYD and RAG and how you can utilize it to improve your information finding and polishing skills.
 ---
 
-> ℹ️ The related CNN talk can be found on
-[Speakerdeck](https://speakerdeck.com/aeimer/ais-secret-weapon-turning-documents-into-knowledge-cwyd).
+{{< rawhtml >}}
+<p style="margin-top: 5px; margin-bottom: 5px;">
+    Hero image:
+    "<a rel="noopener noreferrer" href="https://www.flickr.com/photos/53370644@N06/4976494944">BXP135660</a>"
+    by
+    <a rel="noopener noreferrer" href="https://www.flickr.com/photos/53370644@N06">tableatny</a>
+    is licensed under
+    <a rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">
+        CC BY 2.0
+        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1rem; margin: 0 0.1rem; display: inline;" />
+        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1rem; margin: 0 0.1rem; display: inline;" />
+    </a>
+</p>
+{{< /rawhtml >}}
+
+{{< note >}}
+ℹ️&nbsp;&nbsp;The related CNN talk can be found on
+<a href="https://speakerdeck.com/aeimer/ais-secret-weapon-turning-documents-into-knowledge-cwyd">Speakerdeck</a>.
+{{< /note >}}
 
 "Chat with Your Documents" (CWYD) allows you to interact with text-based documents, such as PDFs or Word files, using a language model (LLM).
 You can query specific information from documents, and the model will provide relevant responses based on the content.
