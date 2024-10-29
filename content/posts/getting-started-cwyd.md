@@ -443,8 +443,6 @@ Whether you're looking for specific information in a legal document or trying to
 Setting up an AI/LLM or RAG application can be hard.
 Some guidelines on what should be done can be found in the blogpost of Eugene Yan[^5].
 
-If you want to enhance your information retrieval we can help you with a custom solution specifically tailored to your needs.
-
 <!-- APPENDIX -->
 
 [^1]: https://www.databricks.com/blog/long-context-rag-performance-llms
