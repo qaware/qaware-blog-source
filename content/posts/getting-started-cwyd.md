@@ -30,7 +30,9 @@ summary: We will discover CWYD and RAG and how you can utilize it to improve you
 <a href="https://speakerdeck.com/aeimer/ais-secret-weapon-turning-documents-into-knowledge-cwyd">Speakerdeck</a>.
 {{< /note >}}
 
-"Chat with Your Documents" (CWYD) allows you to interact with text-based documents, such as PDFs or Word files, using a large language model (LLM --- often referred as AI).
+**In this article we will show you how "Chat with Your Documents" (CWYD) works and how you can use it to push your efficiency working with documents and information in general.**
+
+CWYD allows you to interact with text-based documents, such as PDFs or Word files, using a large language model (LLM --- often referred as AI).
 You can query specific information from documents, and the model will provide relevant responses based on the content.
 It's like having a smart assistant that reads and summarizes documents for you.
 
@@ -66,13 +68,15 @@ Here's how it works:
 
 This method ensures that your responses are **grounded in actual data**, rather than relying solely on the model’s internal knowledge.
 
-## Why shouldn't I train an LLM with specific information?
+## Why shouldn't I fine-tune an LLM with specific information?
 
-Training your own LLM might sound like a good idea, but it comes with challenges:
+Training your **own LLM** is very **expensive**, there is a reason why training GPT-4 costed about **$63 million**[^8]!
+Another option might sound like a good idea, fine-tune an existing LLM.
+But this comes with challenges:
 
-- **Cost:** Training a model is expensive, both in terms of computation and time.
-- **Inflexibility:** Once trained, a model is not easily updated without retraining, making it hard to incorporate new data quickly.
-- **Security risks:** Ensuring that your data is protected and that access rights are respected can be difficult during the training process.
+- **Cost:** Fine-tune a model is expensive, both in terms of computation and time.
+- **Inflexibility:** Once fine-tuned, a model is not easily updated without retraining, making it hard to incorporate new data quickly.
+- **Security risks:** Ensuring that your data is protected and that access rights are respected is almost impossible when using the fine-tuned LLM.
 - **Bad detail retrieval:** LLMs are good at understanding structures, but it can be hard to "remember" details for them.
 
 Instead, using a pre-trained LLM -- like GPT-4o from OpenAI -- with RAG allows for **flexible, up-to-date, and cost-efficient** responses which are more often correct.
@@ -92,6 +96,8 @@ This enables organizations to use the chatbot for more use-cases and live or sec
 This last stage can be used for process-automation and other very specific tasks.
 In contrast to stage 1 and mostly stage 2, this is not a common chatbot.
 It can only handle specific tasks.
+
+In this article we are focusing on stage 2 bots.
 
 {{< figure figcaption="The evolution of chatbots and AI Assistants" >}}
     {{< img src="/images/getting-started-cwyd/ai-bot-stages.png" alt="The evolution of chatbots and AI Assistants" >}}
@@ -113,12 +119,12 @@ This prompt sets the stage so the LLM knows what it has to do.
 * `user_input`: The latest question of the user.
 
 ```
-ai_model.complete(“
+ai_model.complete("
 {{ system_prompt }}
 {{ chat_history }}
 {{ document }}
 {{ user_input }}
-“)
+")
 ```
 
 When the placeholders are replaced with explicit content, it may look something like the following.
@@ -126,8 +132,11 @@ In this case we provided a rental agreement as `document` and we want to get som
 The output of the LLM is then forwarded to the user and is usually presented as answer of the AI.
 
 ```
-ai_model.complete(“
-You are a friendly ChatBot called QAbot. You never get rude or disrespectful.
+ai_model.complete("
+You are a friendly ChatBot called QAbot.
+You never get rude or disrespectful.
+Always stick with the information provided to you.
+Do not answer with knowledge you have outside of the text.
 ---
 Your chat history so far was:
 N/A
@@ -138,7 +147,7 @@ This is a rental agreement between [...]
 ---
 The userinput is:
 What are my obligations when I want to move out of my flat?
-“)
+")
 ```
 
 If we ask a follow-up question the actual prompt sent to the LLM looks like the following.
@@ -147,8 +156,11 @@ The document is provided again.
 The new user input is placed at the end.
 
 ```
-ai_model.complete(“
-You are a friendly ChatBot called QAbot. You never get rude or disrespectful.
+ai_model.complete("
+You are a friendly ChatBot called QAbot.
+You never get rude or disrespectful.
+Always stick with the information provided to you.
+Do not answer with knowledge you have outside of the text.
 ---
 Your chat history so far was:
 USER:
@@ -164,7 +176,7 @@ This is a rental agreement between [...]
 ---
 The userinput is:
 Thanks, but do I also need to return the key or can I just throw it away?
-“)
+")
 ```
 
 The response of the LLM is again forwarded to the user.
@@ -177,6 +189,9 @@ This also **limits the length** of the **document** which can be passed to the L
 The overall prompt with all parts counted together are required to have less token than the LLM models input context-window limitation.
 
 ## Chunks vs. Full Document in CWYD
+
+The techniques used for CWYD can be split into two methods.
+Each method has its own pros and cons, lets have a look at them.
 
 {{< figure figcaption="CWYD variants" >}}
     {{< img src="/images/getting-started-cwyd/d2-venn-CWYD.cropped.svg" alt="CWYD variants" >}}
@@ -191,7 +206,7 @@ This approach works best with shorter documents and provides a comprehensive ove
 Each chunk represents a distinct idea or section of the document.
 This method is more cost-effective regarding token usage and can handle larger documents but requires good chunking-strategies to maintain semantic context.
 
-The simplest way of doing CWYD is to convert the -- lets say Word -- document into a plain text file, add it to the prompt, and you are good to go.
+The simplest way of doing CWYD is to convert the -- lets say `.docx` -- document into a plain text file, add it to the prompt, and you are good to go.
 If we look at **RAG applications** in general **chunking is the dominant mode** as it allows to pass just the _right_ information.
 The method how the chunks are retrieved is another topic, in the image above two common methods are displayed "semantic search" and "keyword search".
 But there are **three problems** with it.
@@ -204,12 +219,18 @@ There are solutions for that, but you have to tweak and test.
 
 ## Why Full Document Works Better with GPT-4 Turbo
 
-GPT-4 Turbo has improved memory -- so-called "recall" -- and can handle larger inputs, making it capable of processing (big) documents in one go[^1].
-Earlier models had limitations in this regard, making chunking a necessity.
-Especially the **improvements on the recall** makes it the first model of OpenAI which can be **used for larger RAG** applications.
+LLMs **struggled** in past with **remembering details**, just like us humans.
+Over time this got better, but **things written in the beginning** of the token-window are **less likely** to be **remembered** when asked at the **end** of the token-window.
 
 The **recall** defines how good a model can **remember a "needle"** -- some specific information placed at the beginning of the context -- in a **lot of information**.
 The better the recall is the longer the documents are that we can pass into the LLM and still get reasonable results.
+
+**GPT-4 Turbo** has **improved** its **memory** -- so-called "recall" -- and can handle larger inputs, making it capable of processing (bigger) documents in one go[^1].
+Earlier models like GPT-3.5 Turbo with only a 4096 token input-window had limitations in this regard, making chunking a necessity.
+Especially the **improvements on the recall** makes GPT-4 Turbo the first model of OpenAI which can be **used for larger RAG** applications.
+
+With the latest **GPT-4o model** the recall is very good.
+This makes it a **perfect choice** for state-of-the-art RAG applications.
 
 ## How does retrieval work?
 
@@ -223,6 +244,7 @@ In RAG applications there can be **any kind of information source** like APIs, G
 Common retrival techniques are:
 
 - **Full Document:** Loads the full document from e.g. a blob store and passes the information to the LLM.
+➡️ _Full document_
 - **Keyword Search:** A basic form of search where specific keywords are matched and the found chunks passed to the LLM.
 ➡️ _Chunks_
 - **Semantic Search:** More advanced, it uses embeddings to find chunks with similar meanings, not just matching keywords.
@@ -238,24 +260,31 @@ The RAG application just passes the data to the LLM, and it will work with it.
 
 ## What is semantic search?
 
+Finding the _relevant_ chunks is essential for a RAG application.
+Only searching by keywords has some good chances to miss relevant context if it is not named exactly the same.
+Therefore, **searching by the semantic** meaning of the text is **better approach**.
+In fact semantic search recently got famous with AI and RAG but got **first mentioned in 2003**[^9]!
+
 {{< figure figcaption="RAG with semantic search" >}}
     {{< img src="/images/getting-started-cwyd/RAG-flow-with-phases.drawio.svg" alt="RAG with semantic search" >}}
 {{< /figure >}}
 
-Semantic search is often at the heart of R**A**G, enabling more relevant and meaningful information retrieval by focusing on the meaning behind words rather than just their lexical similarity.
-This approach utilizes embeddings -- vector representations of text -- allowing the system to understand and compare the semantic "closeness" of different pieces of text.
+Semantic search is often at the heart of R**A**G, enabling more relevant and meaningful information retrieval by **focusing on the meaning** behind words rather than just their lexical similarity.
+This approach utilizes embeddings -- vector representations of text -- allowing the system to understand and compare the **semantic "closeness"** of different pieces of text.
 
-RAG with semantic search typically follows a two-phase process:
+RAG with semantic search typically follows a **two-phase process**:
 
-- **Ingestion Phase:** Text data is broken down into manageable, semantically meaningful chunks.
-- **Retrieval Phase:** When a query is made, the system retrieves the chunks that are semantically close to the query by comparing their vector embeddings.
+- **Ingestion Phase:**
+Text data is broken down into manageable, semantically meaningful chunks.
+- **Retrieval Phase:**
+When a query is made, the system retrieves the chunks that are semantically close to the query by comparing their vector embeddings.
 In this phase, the goal is to match the query to the most relevant content, ensuring that only the text segments with similar semantic value are retrieved.
 
 ### Chunking is hard
 
-Cutting text into "chunks" is crucial for successful RAG.
-Each chunk should ideally represent one primary topic, making it easier for the system to process and retrieve specific information without mixing topics.
-Several chunking strategies can be applied:
+Cutting text into "chunks" is crucial for successful semantic search and therefore for RAG.
+Each chunk should ideally represent **one primary topic**, making it easier for the system to process and retrieve specific information **without mixing topics**.
+Several chunking **strategies** can be applied:
 
 - **Simple Chunking:** Cuts the input text into chunks by counting characters or tokens.
 - **Recursive Chunking:** This is a commonly used technique which works a bit like a binary search.
@@ -303,14 +332,14 @@ And from insights into the real levers for more impact.
 ### Semantic Similarity and Vector Representations
 
 **Semantic similarity measures** how **"close" the meanings** of different pieces of text are.
-Unlike exact keyword matching, semantic similarity calculates the **"distance" between items** based on their meanings, which is represented through **vectors**.
+Unlike exact keyword matching, **semantic similarity** calculates the **"distance" between items** based on their meanings, which is represented through **vectors**.
 These vectors are generated by embedding models like OpenAI’s `text-embedding-ada-002`, which translates text into a high-dimensional vector space, where semantically similar texts are closer together.
 
 > Semantic similarity is a metric defined over a set of documents or terms, where the idea of distance between items is based on the likeness of their meaning or semantic content as opposed to lexicographical similarity.
 > 
 > Wikipedia --- Semantic similarity[^4]
 
-Once text chunks are converted into vectors, they are stored in a vector database, enabling fast retrieval.
+Once text chunks are converted into vectors, they are **stored in a vector database**, enabling fast retrieval.
 Vector databases -- such as `Weaviate`, `Chroma`, or `PostgreSQL` with `pg_vector` -- store and search vectors efficiently.
 The support of the **cosine similarity function** lets the database quickly locate vectors closest to the query’s vector.
 This setup provides the foundation for RAG to retrieve the right information based on meaning, not just surface-level keywords.
@@ -319,10 +348,8 @@ By **combining chunking, semantic embedding**, and **vector storage**, we can bu
 
 ## What should I use?
 
-### Full Document vs. Semantic Search: Which is Right for Your RAG Application?
-
 Choosing between full document and semantic search approaches in a RAG application involves weighing several key considerations.
-Both methods have their pros and cons depending on factors like cost, response time, complexity, and document size.
+Both methods have their pros and cons depending on factors like **cost, response time, complexity, and document size**.
 Here’s a breakdown to help you make the best choice.
 
 **1. Cost Considerations:**
@@ -347,16 +374,17 @@ Beyond that, this method won’t be feasible without truncating content, risking
 - **Semantic Search:** Can handle documents of any size, as larger documents can be split into chunks and queried in sections.
 This scalability makes it a better choice for applications dealing with large or complex documents.
 
-To summarize it: Choose full document search for smaller projects where simplicity, lower cost, and speed are priorities, and the documents fit within the model’s context limits.
-For large, detailed documents or applications requiring more nuanced answers, semantic search offers greater flexibility and scalability, despite at a higher complexity and setup cost.
+To summarize it:
+Choose **full document** for **smaller tasks** where simplicity, lower cost, and speed are priorities, and the **documents fit** within the model’s **context limits**.
+For **large, detailed documents** or applications requiring more nuanced answers, semantic search offers greater flexibility and scalability, despite at a higher complexity and setup cost.
 
-### Why Test Your AI and RAG Application?
+## Why Test Your AI and RAG Application?
 
 RAG systems aren't perfect.
-Since AI models can change their outputs over time, it's important to test regularly.
+Since AI models can change their outputs over time, it's important to **test regularly**.
 In fact to develop and improve your AI systems a **data-driven development** is recommended.
 Testing is essential for AI and RAG systems, ensuring consistent quality, relevance, and user alignment.
-Unlike traditional software, AI responses are not deterministic, meaning that traditional unit tests aren’t effective.
+Unlike traditional software, AI responses are **not deterministic**, meaning that traditional testing approaches -- like unit-tests -- aren’t effective.
 Here’s why testing is crucial:
 
 - **Validating System Prompt Quality:** The prompt shapes AI behavior; regular testing ensures it generates accurate, helpful, and unbiased responses.
@@ -368,11 +396,9 @@ Testing verifies that only correct information is sourced and used.
 
 Given AI's variability, innovative testing strategies, like using LLMs as evaluators, are essential to maintain response quality and relevance over time.
 
-> LLM as a judge is the way to go!
-
 ## How can I test my AI Application?
 
-As AI and Retrieval-Augmented Generation (RAG) systems continue to evolve, thorough testing becomes essential to ensure high-quality and reliable outputs.
+As AI and RAG systems continue to evolve, thorough testing becomes essential to ensure high-quality and reliable outputs.
 Testing these systems involves a structured approach to assess their accuracy, relevance, and ability to retrieve and generate meaningful answers.
 Below, we dive into a step-by-step guide on setting up and running tests for AI/RAG systems, alongside selecting metrics to assess performance.
 
@@ -382,7 +408,7 @@ Below, we dive into a step-by-step guide on setting up and running tests for AI/
 
 **Step 1: Choose the Right Metrics**
 
-The foundation of any testing approach is selecting metrics that capture the critical aspects of the system's performance.
+The foundation of any testing approach is **selecting metrics** that capture the **critical aspects** of the system's performance.
 Commonly used metrics for evaluating AI/RAG systems include:
 
 - **Faithfulness:** Measures the system's accuracy and checks for hallucinations, or false information.
@@ -401,7 +427,7 @@ These metrics form the basis for a comprehensive evaluation but can be tailored 
 
 **Step 2: Create a Test Set**
 
-Once metrics are chosen, the next step is creating a test set that includes well-defined questions, expected answers, and relevant context.
+Once metrics are chosen, the next step is creating a test set that includes **well-defined questions, expected answers**, and **relevant context**.
 Test data set ready to be evaluated typically includes:
 
 - **Question:** A prompt designed for the system to respond to, such as "When was the first Super Bowl?"
@@ -413,13 +439,15 @@ A robust test set offers a clear reference to compare the system's output agains
 
 **Step 3: Implementing an LLM to Rate Responses**
 
-To avoid side effects while testing, consider using a _different_ LLM to rate the generated responses.
-This second LLM can automatically evaluate the main AI model’s answers against the defined metrics, reducing the need for manual checks.
+To avoid side effects while testing, consider using a _different_ LLM to **rate the generated responses**.
+This **second LLM** can automatically **evaluate** the main AI model’s answers against the defined metrics, reducing the need for manual checks.
 By consistently applying rating criteria, this setup provides an objective measure of how well the AI/RAG system meets expectations.
+
+> LLM as a judge is the way to go!
 
 **Step 4: Regularly Run Tests and Analyze Results**
 
-Testing should be a continuous process rather than a one-time task.
+Testing should be a **continuous process** rather than a one-time task.
 Regularly running tests allows teams to monitor performance and identify any degradation or improvements in the system over time.
 To optimize this process, leverage automated tools such as RAGAS[^6] for custom test setups or promptfoo[^7] for a UI-driven testing environment.
 
@@ -452,3 +480,5 @@ Some guidelines on what should be done can be found in the blogpost of Eugene Ya
 [^5]: https://eugeneyan.com/writing/llm-patterns/
 [^6]: https://docs.ragas.io
 [^7]: https://www.promptfoo.dev
+[^8]: https://team-gpt.com/blog/how-much-did-it-cost-to-train-gpt-4/
+[^9]: https://www2003.org/cdrom/papers/refereed/p779/ess.html
