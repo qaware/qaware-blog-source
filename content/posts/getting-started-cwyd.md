@@ -26,11 +26,12 @@ summary: We will discover CWYD and RAG and how you can utilize it to improve you
 {{< /rawhtml >}}
 
 {{< note >}}
-ℹ️&nbsp;&nbsp;The related Cloud Native Night Mainz talk can be found on
+ℹ️&nbsp;&nbsp;
+The related Cloud Native Night Mainz talk can be found on
 <a href="https://speakerdeck.com/aeimer/ais-secret-weapon-turning-documents-into-knowledge-cwyd">Speakerdeck</a>.
 {{< /note >}}
 
-**In this article we will show you how "Chat with Your Documents" (CWYD) works and how you can use it to push your efficiency working with documents and information in general.**
+**In this article we will show you how "Chat with Your Documents" (CWYD) works and how you can use it to push your efficiency working with documents and information in general with AI.**
 
 CWYD allows you to interact with text-based documents, such as PDFs or Word files, using a large language model (LLM --- often referred as AI).
 You can query specific information from documents, and the model will provide relevant responses based on the content.
@@ -59,11 +60,10 @@ which enables us to
 
 CWYD is a part of a broader system called **Retrieval-Augmented Generation (RAG)**.
 
-RAG combines the power of search with the generative capabilities of language models.
-Here's how it works:
+RAG combines three words, which depict the basic working of a RAG system:
 
 - **Retrieval:** The system searches for relevant documents or document chunks to answer the question of the user.
-- **Augmentation:** The retrieved data is provided to the LLM, giving it real-world (live) information to generate a context-aware response.
+- **Augmentation:** The retrieved data is provided to the LLM, which should give it real-world (live) information to generate hopefully a context-aware response.
 - **Generation:** The LLM creates a response based on the retrieved information.
 
 This method ensures that your responses are **grounded in actual data**, rather than relying solely on the model’s internal knowledge.
@@ -76,39 +76,42 @@ But this comes with challenges:
 
 - **Cost:** Fine-tune a model is expensive, both in terms of computation and time.
 - **Inflexibility:** Once fine-tuned, a model is not easily updated without retraining, making it hard to incorporate new data quickly.
-- **Security risks:** Ensuring that your data is protected and that access rights are respected is almost impossible when using the fine-tuned LLM.
+- **Security risks:** Ensuring that your data is protected and that access rights are respected is impossible when using the fine-tuned LLM.
 - **Bad detail retrieval:** LLMs are good at understanding structures, but it can be hard to "remember" details for them.
+You can compare it as if you want to memorize a phonebook vs keep the plot of a novel in mind.
+Learning a whole phonebook is pretty hard and error-prone, remembering the plot of a book is fairly easy.
 
-Instead, using a pre-trained LLM -- like GPT-4o from OpenAI -- with RAG allows for **flexible, up-to-date, and cost-efficient** responses which are more often correct.
+Instead, using a pre-trained LLM -- like GPT-4o from OpenAI -- off the shelf with RAG allows for **flexible, up-to-date, and cost-efficient** responses which are more often correct than a fine-tuned LLM.
+If you want to let a pre-trained LLM know about a whole knowledge-domain then it is often necessary to fine-tune a LLM.
+In any case, data used for the fine-tuning should be allowed to be accessed by anyone who has access to the LLM and should be quite static information.
 
-## Stages of Chatbots
+## Why RAG Works Better with GPT-4 Turbo and later
 
-Chatbots can be grouped into three evolution groups.
-These groups range from very simple and common chatbots up to very specialized AI Assistants.
+LLMs **struggled** in past with **remembering details**, just like us humans.
+Over time this got better, but **things written in the beginning** of the token-window are **less likely** to be **remembered** when asked at the **end** of the token-window.
 
-- **Stage 1:** A common chatbot like ChatGPT or Google's Gemini.
-These chatbots are commonly available, easy to use and have some basic capabilities.
-The knowledge-base to answer the questions is the trained data.
-- **Stage 2:** A common chatbot with RAG.
-The chatbot is used "normally", but the chatbot application adds organizational knowledge to the prompt.
-This enables organizations to use the chatbot for more use-cases and live or secure information.
-- **Stage 3:** A specialized AI Assistant with a fine-tuned model, maybe additional information with RAG.
-This last stage can be used for process-automation and other very specific tasks.
-In contrast to stage 1 and mostly stage 2, this is not a common chatbot.
-It can only handle specific tasks.
+The **recall** defines how good a model can **remember a "needle"** -- some specific information placed at the beginning of the context -- in a **lot of information**.
+The better the recall is the longer the documents can be that we can pass into the LLM and still get reasonable results.
 
-In this article we are focusing on stage 2 bots.
+**GPT-4 Turbo** has **improved** its **memory** -- so-called "recall" -- and can handle larger inputs, making it capable of processing (bigger) documents in one go[^1].
+Earlier models like GPT-3.5 Turbo with only a 4096 token input-window had limitations in this regard, making chunking a necessity.
+The **improvements in recall** make GPT-4 Turbo the first OpenAI model suitable for larger RAG applications, as it consistently provides detailed information from the context it has been given.
 
-{{< figure figcaption="The evolution of chatbots and AI Assistants" >}}
-    {{< img src="/images/getting-started-cwyd/ai-bot-stages.png" alt="The evolution of chatbots and AI Assistants" >}}
-{{< /figure >}}
+With the latest **GPT-4o model** the recall is very good.
+This makes it a **perfect choice** for state-of-the-art RAG applications.
 
 ## How does a RAG-prompt look like?
 
 Taking a look under the hood usually helps to understand the process better.
 So let's have a look what happens when we have some plain text from a document that we want to chat with.
 
-Applications like ChatGPT will generate a prompt composed of different elements.
+{{< note >}}
+ℹ️&nbsp;&nbsp;
+This example show a very basic chatbot with RAG.
+A realworld application is more complex, but for the sake of learning the process is simplified.
+{{< /note >}}
+
+Applications like teh ChatGPT-backend will generate a prompt composed of different elements.
 This prompt is ultimately sent to the LLM, which then generates an answer based on the info provided.
 The prompt usually consists of different elements.
 
@@ -118,16 +121,23 @@ This prompt sets the stage so the LLM knows what it has to do.
 * `document`: The document or parts of the document where relevant information are provided.
 * `user_input`: The latest question of the user.
 
+The example code mimics a backend service of a chatbot like ChatGPT.
+The prompt can be easily templated by just appending strings.
+The function `ai_model.complete()` takes a string and sends a so-called completion request to the AI model, which is the default mode of interacting with an AI.
+
 ```
 ai_model.complete("
 {{ system_prompt }}
+---
 {{ chat_history }}
+---
 {{ document }}
+---
 {{ user_input }}
 ")
 ```
 
-When the placeholders are replaced with explicit content, it may look something like the following.
+Once the placeholders are replaced with specific content, the text may appear as follows.
 In this case we provided a rental agreement as `document` and we want to get some specific information from it.
 The output of the LLM is then forwarded to the user and is usually presented as answer of the AI.
 
@@ -150,10 +160,10 @@ What are my obligations when I want to move out of my flat?
 ")
 ```
 
-If we ask a follow-up question the actual prompt sent to the LLM looks like the following.
-You can see that the previous chat messages are provided.
-The document is provided again.
+In the next example you can see that for asking a follow-up question the previous chat messages are provided.
+Also, the document is provided again.
 The new user input is placed at the end.
+If we ask a follow-up the actual prompt sent to the LLM looks like the following.
 
 ```
 ai_model.complete("
@@ -179,58 +189,63 @@ Thanks, but do I also need to return the key or can I just throw it away?
 ")
 ```
 
-The response of the LLM is again forwarded to the user.
-The LLM can now generate a better answer which also builds upon the already happened conversation.
+The response from the LLM is then forwarded to the user.
+The LLM can now generate an answer that builds upon the previous conversation.
+This enables a chatbot to have an actual conversation.
 
 LLMs are stateless, so the **history of the chat** needs to be **provided with each request**.
 This is also the reason why chats with ChatBots at some point ask you to start a new chat.
-The **input context-window** of the **LLM is limited**.
+The **input context-window** of the **LLM is limited**, at some point the chat-history outgrows the input-limit.
 This also **limits the length** of the **document** which can be passed to the LLM.
 The overall prompt with all parts counted together are required to have less token than the LLM models input context-window limitation.
 
+{{< note >}}
+ℹ️&nbsp;&nbsp;
+The truth is LLMs do have a state, but it is several gigabyte big.
+Therefore, the state of an LLM is <i>not</i> saved between requests.
+There are ways to do it, and we will probably see it used in the future.
+{{< /note >}}
+
+See article about LLM state caching[^10].
+
 ## Chunks vs. Full Document in CWYD
 
-The techniques used for CWYD can be split into two methods.
+The techniques used for CWYD can be split into two variants.
 Each method has its own pros and cons, lets have a look at them.
 
-{{< figure figcaption="CWYD variants" >}}
+{{< figure figcaption="CWYD variants are full document and chunks (e.g. semantic or keyword search)" >}}
     {{< img src="/images/getting-started-cwyd/d2-venn-CWYD.cropped.svg" alt="CWYD variants" >}}
 {{< /figure >}}
 
-There are **two methods** for interacting with documents using **CWYD**:
+The **two variants** for interacting with documents via AI using **CWYD** are:
 
 **Full Document**: The LLM is provided with the entire document.
 This approach works best with shorter documents and provides a comprehensive overview.
+This is usually referred as "Long Context RAG".
 
 **Chunks**: The document is divided into smaller, meaningful parts, or "chunks".
-Each chunk represents a distinct idea or section of the document.
+Each chunk should represent a distinct idea or section of the document.
 This method is more cost-effective regarding token usage and can handle larger documents but requires good chunking-strategies to maintain semantic context.
+The most important part when using chunks is the retrieval-strategy.
+We will come to that soon.
 
 The simplest way of doing CWYD is to convert the -- lets say `.docx` -- document into a plain text file, add it to the prompt, and you are good to go.
+
 If we look at **RAG applications** in general **chunking is the dominant mode** as it allows to pass just the _right_ information.
 The method how the chunks are retrieved is another topic, in the image above two common methods are displayed "semantic search" and "keyword search".
 But there are **three problems** with it.
-First you **can't summarize** the document as you just have a few snippets of the whole document in your prompt.
+First you **can't summarize** the document as you just have a few snippets of the whole document in your prompt if that is what user asks for.
 Second, finding the best **cut-size for chunks** is very hard.
 You want to have quite a block of text, but not too long and then most importantly the text should form one semantic block.
 You don't want to have two topics in one chunk.
+We will have a look into that later on.
 Third, finding the **best matching chunks** for the question the user asked is also hard.
 There are solutions for that, but you have to tweak and test.
 
-## Why Full Document Works Better with GPT-4 Turbo
-
-LLMs **struggled** in past with **remembering details**, just like us humans.
-Over time this got better, but **things written in the beginning** of the token-window are **less likely** to be **remembered** when asked at the **end** of the token-window.
-
-The **recall** defines how good a model can **remember a "needle"** -- some specific information placed at the beginning of the context -- in a **lot of information**.
-The better the recall is the longer the documents are that we can pass into the LLM and still get reasonable results.
-
-**GPT-4 Turbo** has **improved** its **memory** -- so-called "recall" -- and can handle larger inputs, making it capable of processing (bigger) documents in one go[^1].
-Earlier models like GPT-3.5 Turbo with only a 4096 token input-window had limitations in this regard, making chunking a necessity.
-Especially the **improvements on the recall** makes GPT-4 Turbo the first model of OpenAI which can be **used for larger RAG** applications.
-
-With the latest **GPT-4o model** the recall is very good.
-This makes it a **perfect choice** for state-of-the-art RAG applications.
+There are many ways to do RAG.
+In this article, we'll talk about basic RAG.
+In advanced RAG, different techniques are often mixed together.
+So, the line between chunks and the full document is not always as clear.
 
 ## How does retrieval work?
 
@@ -245,15 +260,19 @@ Common retrival techniques are:
 
 - **Full Document:** Loads the full document from e.g. a blob store and passes the information to the LLM.
 ➡️ _Full document_
-- **Keyword Search:** A basic form of search where specific keywords are matched and the found chunks passed to the LLM.
-➡️ _Chunks_
+- **Keyword Search:** The generally most common form of search where specific keywords are matched and the found chunks passed to the LLM.
+➡️ _Chunking based_
 - **Semantic Search:** More advanced, it uses embeddings to find chunks with similar meanings, not just matching keywords.
-In RAG, semantic search paired with chunking helps the system understand the context of the question, improving the relevancy of the found chunks which leads to an improved quality of the LLM responses.
-➡️ _Chunks_
+In RAG, semantic search paired with chunking helps the LLM to understand the context of the question, improving the relevancy of the found chunks which leads to an improved quality of the LLM responses.
+The user usually asks semantic questions when using a chatbot, not "just a Google search".
+Therefore, search results based on semantic search work better with these kind of "seach query".
+➡️ _Chunking based_
 - **Knowledge Graphs:** Just lately retrieval methods based on graph databases got published by Microsoft[^2] and Neo4j[^3].
 Finding the right chunks for the question based on semantic graphs sounds promising.
+Using graphs enables us not only to match for keywords or the semantic of a chunk but also other neighbored chunks can be retrieved and provided.
+This gives the LLM more context to work with, which will improve the answer quality.
 Problem here is the generation of the graph.
-➡️ _Chunks_
+➡️ _Chunking based_
 - **API:** A very generic example is APIs.
 The RAG application can retrieve information from any API/source like the latest weather data, news, a Google search with some specific keywords -- you name it!
 The RAG application just passes the data to the LLM, and it will work with it.
@@ -378,7 +397,10 @@ To summarize it:
 Choose **full document** for **smaller tasks** where simplicity, lower cost, and speed are priorities, and the **documents fit** within the model’s **context limits**.
 For **large, detailed documents** or applications requiring more nuanced answers, semantic search offers greater flexibility and scalability, despite at a higher complexity and setup cost.
 
+
 ## Why Test Your AI and RAG Application?
+
+TODO: Zweiter artikel ab hier?
 
 RAG systems aren't perfect.
 Since AI models can change their outputs over time, it's important to **test regularly**.
@@ -402,7 +424,7 @@ As AI and RAG systems continue to evolve, thorough testing becomes essential to 
 Testing these systems involves a structured approach to assess their accuracy, relevance, and ability to retrieve and generate meaningful answers.
 Below, we dive into a step-by-step guide on setting up and running tests for AI/RAG systems, alongside selecting metrics to assess performance.
 
-{{< figure figcaption="Steps to test your AI/RAG system" >}}
+{{< figure figcaption="Steps to test your AI/RAG system with LLM as a judge" >}}
     {{< img src="/images/getting-started-cwyd/llm-testing.drawio.svg" alt="Steps to test your AI/RAG system" >}}
 {{< /figure >}}
 
@@ -482,3 +504,4 @@ Some guidelines on what should be done can be found in the blogpost of Eugene Ya
 [^7]: https://www.promptfoo.dev
 [^8]: https://team-gpt.com/blog/how-much-did-it-cost-to-train-gpt-4/
 [^9]: https://www2003.org/cdrom/papers/refereed/p779/ess.html
+[^10]: https://medium.com/@plienhar/llm-inference-series-3-kv-caching-unveiled-048152e461c8
