@@ -1,7 +1,7 @@
 ---
 title: "Getting started: Chat with your document"
-date: "2024-10-28T06:00:00+01:00"
-lastmod: "2024-10-28T06:00:00+01:00"
+date: "2024-11-04T06:00:00+01:00"
+lastmod: "2024-11-04T06:00:00+01:00"
 author: "[Alexander Eimer](https://github.com/aeimer)"
 type: post
 image: getting-started-cwyd/sprint-start-blocks.jpg
@@ -13,7 +13,7 @@ summary: We will discover CWYD and RAG and how you can utilize it to improve you
 {{< rawhtml >}}
 <p style="margin-top: 5px; margin-bottom: 5px;">
     Hero image:
-    "<a rel="noopener noreferrer" href="https://www.flickr.com/photos/53370644@N06/4976494944">BXP135660</a>"
+    <a rel="noopener noreferrer" href="https://www.flickr.com/photos/53370644@N06/4976494944">BXP135660</a>
     by
     <a rel="noopener noreferrer" href="https://www.flickr.com/photos/53370644@N06">tableatny</a>
     is licensed under
