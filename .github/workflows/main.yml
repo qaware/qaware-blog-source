@@ -11,30 +11,32 @@ env:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3.1.0
+        uses: actions/checkout@v4.2.2
         with:
           submodules: true
 
       - name: Setup composed environment variables
         run: |
-          echo "DOCKER_IMAGE_PATH=${RUN_REGION}-docker.pkg.dev/${PROJECT_ID}/${DOCKER_GAR_NAME}/${SERVICE_NAME}:${GITHUB_SHA}"  >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_PATH=${RUN_REGION}-docker.pkg.dev/${PROJECT_ID}/${DOCKER_GAR_NAME}/${SERVICE_NAME}:${GITHUB_SHA}" >> $GITHUB_ENV
           echo "DOCKER_REGISTRY_BASE_URL=${RUN_REGION}-docker.pkg.dev" >> $GITHUB_ENV
           
       - name: Setup hugo
-        uses: peaceiris/actions-hugo@v2.6.0
+        uses: peaceiris/actions-hugo@v3.0.0
         with:
-          hugo-version: "0.117.0"
+          hugo-version: "0.136.5"
           extended: true
 
       - name: Build
-        run: hugo -s . --config ./config.toml --minify --cleanDestinationDir
+        # Uses --environment production by default
+        # Uses --source . by default
+        run: hugo
 
       - name: Deploy
         if: github.ref == 'refs/heads/master'
-        uses: peaceiris/actions-gh-pages@v3.9.0
+        uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           personal_token: ${{ secrets.TOKEN }}
           external_repository: qaware/qaware.github.io
@@ -46,13 +48,13 @@ jobs:
           cname: blog.qaware.de
 
       # Setup gcloud CLI
-      - name: 'Setup Cloud Auth'
-        uses: 'google-github-actions/auth@v1.0.0'
+      - name: Setup Cloud Auth
+        uses: google-github-actions/auth@v2.1.6
         with:
           credentials_json:  ${{ secrets.RUN_SA_KEY }}
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1.0.1'
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2.1.1
         with:
           project_id: ${{ secrets.RUN_PROJECT }}
 
@@ -69,4 +71,12 @@ jobs:
         
       # Deploy the Docker image to Google Cloud Run
       - name: Deploy
-        run: gcloud components install beta && gcloud beta run deploy $SERVICE_NAME --quiet --image $DOCKER_IMAGE_PATH --project $PROJECT_ID --region $RUN_REGION --platform managed --allow-unauthenticated  
+        run:
+          gcloud components install beta
+          && gcloud beta run deploy $SERVICE_NAME
+          --quiet
+          --image $DOCKER_IMAGE_PATH
+          --project $PROJECT_ID
+          --region $RUN_REGION
+          --platform managed
+          --allow-unauthenticated

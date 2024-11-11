@@ -1,0 +1,8 @@
+# This environment is used by default if you run "hugo" to build the static files
+
+baseURL = "https://blog.qaware.de/"
+minify = true
+cleanDestinationDir = true
+
+[params]
+  ga_analytics = "UA-45534590-1" # google analytics ID e.g UA-116386578-1

@@ -5,8 +5,10 @@
 
 ## Generated websites
 
-* [https://blog.qaware.de](https://blog.qaware.de): Target environment of our QAware software engineering blog
-* [https://qawareblog-2ixogl4y4q-ey.a.run.app](https://qawareblog-2ixogl4y4q-ey.a.run.app): Testing environment with draft posts included (user: qaware, pw: qaware)
+* [https://blog.qaware.de](https://blog.qaware.de)  
+  Target environment of our QAware software engineering blog
+* [https://qawareblog-2ixogl4y4q-ey.a.run.app](https://qawareblog-2ixogl4y4q-ey.a.run.app)  
+  Testing environment with draft posts included. _(user: qaware, pw: qaware)_
 
 ## Write Content
 
@@ -163,4 +165,14 @@ Push changes to update your fork on Github.
 
 ```bash
 git push
+```
+
+## Build and run Dockerfile locally
+
+To test the preview dockerfile locally run.
+
+```bash
+docker build --tag=qaware-blog-local .
+docker run --rm -p 1313:80 qaware-blog-local
+open localhost:1313
 ```
