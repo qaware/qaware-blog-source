@@ -1,7 +1,7 @@
 ---
 title: "Interact With Protobuf Endpoints in Human-Readable Text Formats Using protoCURL"
 date: 2023-01-24T09:00:00+01:00
-author: "[Swaneet Sahoo](https://github.com/GollyTicker)"
+author: "[Ayake Sahoo](https://github.com/GollyTicker)"
 type: "post"
 tags: ["Protocol Buffers","HTTP","REST","Command Line","Open Source"]
 image: "protocurl-intro/pexels-edgard-motta-flipped.jpg"
