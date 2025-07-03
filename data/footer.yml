@@ -1,18 +1,18 @@
 links:
   - item: News
-    url: https://www.qaware.de/category/news/
-  - item: Kontakt
-    url: https://www.qaware.de/kontakt/
+    url: https://www.qaware.de/en/category/news-en/
+  - item: Contact
+    url: https://www.qaware.de/en/contact/
 legal_notice:
-  name: Legal Notice
-  url : https://www.qaware.de/impressum/
+  name: Imprint
+  url : https://www.qaware.de/en/imprint/
 privacy:
-  name: Privacy
-  url : https://www.qaware.de/datenschutz/
+  name: Data Privacy
+  url : https://www.qaware.de/en/data-privacy/
 bottom_navigation:
-  - item: Leistungen
-    url: https://www.qaware.de/leistungen/
-  - item: Unternehmen
-    url: https://www.qaware.de/unternehmen/
-  - item: Karriere
-    url: https://www.qaware.de/karriere/
+  - item: Services
+    url: https://www.qaware.de/en/services/product-discovery/
+  - item: Company
+    url: https://www.qaware.de/en/company/about-us/
+  - item: Career
+    url: https://www.qaware.de/en/career/
