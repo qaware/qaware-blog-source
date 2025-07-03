@@ -18,11 +18,17 @@
           - item: YouTube
             url: https://www.youtube.com/user/QAwareGmbH 
             external: true
+          - item: Meetup Munich
+            url: https://www.meetup.com/de-DE/cloud-native-muc/
+            external: true
           - item: Meetup Mainz
             url: https://www.meetup.com/de-DE/Cloud-Native-Night 
             external: true
-          - item: Meetup Munich
-            url: https://www.meetup.com/de-DE/cloud-native-muc/
+          - item: Codineers Meetup Rosenheim
+            url: https://www.meetup.com/codineers-meetup/
+            external: true
+          - item: Green Software Development Munich
+            url: https://www.meetup.com/green-software-development-munich
             external: true
 - item: Company
   url: https://www.qaware.de
