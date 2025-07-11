@@ -37,9 +37,6 @@
           - item: Website
             url: https://www.qaware.de
             external: true
-          - item: Twitter
-            url: https://twitter.com/qaware 
-            external: true
           - item: Linkedin
             url: http://www.linkedin.com/company/qaware-gmbh 
             external: true
