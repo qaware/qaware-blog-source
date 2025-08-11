@@ -1,5 +1,5 @@
 ---
-title: "From Monolith to Cloud: Automating Your Migration Journey"
+title: "From Monolith To Cloud: Automating Your Migration Journey"
 date: 2025-08-08T15:43:46+02:00
 lastmod: 2025-08-08T15:43:46+02:00
 draft: true
@@ -35,21 +35,21 @@ Cloud migration is not merely a technical exercise; it is an architectural decis
 * Direct use of infrastructure resources such as local file systems or databases
 * Outdated frameworks or unsupported libraries
 
-{{< figure figcaption="Typical obstacles in cloud migration" >}}
+{{< figure figcaption="Typical obstacles in cloud migration. Image generated with ChatGPT." >}}
   {{< img src="/images/cloud-migration-tooling/typical-obstacles.png" alt="Typical obstacles in cloud migration include tightly coupled components, hardcoded configurations, and outdated technologies—all of which must be systematically identified and addressed." >}}
 {{< /figure >}}
 
 Another challenge is the lack of a consistent testing strategy. Applications without reproducible builds, automated tests, or Infrastructure-as-Code are difficult to integrate into automated CI/CD pipelines—yet such pipelines are essential for cloud-native operations.
 
-## Assessing Cloud Readiness with Konveyor
+## Assessing Cloud Readiness With Konveyor
 
 A central concept we use at QAware in cloud readiness assessments is categorizing applications into three groups:
 
-* **Cloud-native**: Designed for the cloud from the ground up. These applications use containers, are stateless, horizontally scalable, and easily automated.
-* **Cloud-friendly**: Exhibit some cloud-native characteristics (e.g., externalized configuration, modular architecture) but do not fully meet all criteria.
 * **Cloud-alien**: Highly monolithic or technologically outdated applications with minimal decoupling and complex dependencies.
+* **Cloud-friendly**: Exhibit some cloud-native characteristics (e.g., externalized configuration, modular architecture) but do not fully meet all criteria.
+* **Cloud-native**: Designed for the cloud from the ground up. These applications use containers, are stateless, horizontally scalable, and easily automated.
 
-{{< figure figcaption="Cloud Readiness Categories" >}}
+{{< figure figcaption="Cloud Readiness Categories." >}}
   {{< img src="/images/cloud-migration-tooling/readiness-levels.png" alt="Cloud Readiness Categories" >}}
 {{< /figure >}}
 
@@ -60,7 +60,7 @@ Konveyor uses a similar classification that is generated automatically and trans
 * Direct database access without abstraction
 * Absence of logging and monitoring interfaces
 
-### Overview of the Konveyor project 
+### Overview Of The Konveyor Project
 
 The Konveyor project has three key components:
 
@@ -78,13 +78,13 @@ The Konveyor project has three key components:
 
 Konveyor’s analysis is based on static code analysis and heuristics, detecting elements such as JDBC statements, web frameworks, hardcoded paths, or `sun.*` classes. The output can be produced in HTML or JSON and integrated directly into CI/CD pipelines.
 
-### Example: Analyzing a Java Application with the Konveyor CLI Kantra 
+### Example: Analyzing A Java Application With The Konveyor CLI Kantra 
 
 To analyze a Java application using the Konveyor CLI tool Kantra, you can follow these steps:
 
-**1. Install the Kantra CLI by downloading it from the [Kantra releases page](https://github.com/konveyor/kantra/releases).**
+1. Install the Kantra CLI by downloading it from the [Kantra releases page](https://github.com/konveyor/kantra/releases).
 
-**2. Once installed, you can run the following command to analyze your Java application for cloud readiness:**
+2. Once installed, you can run the following command to analyze your Java application for cloud readiness:
 
 ```bash
 kantra \
@@ -95,22 +95,22 @@ kantra \
   --target cloud-readiness 
 ```
 
-**3. Review the generated report to identify any migration blockers and actionable insights:**
+3. Review the generated report to identify any migration blockers and actionable insights:
 
 The report is typically generated in HTML format and can be found in the specified output directory (`../out` in this example).
 
-{{< figure figcaption="Example report generated from the analysis" >}}
+{{< figure figcaption="Example report generated from the analysis." >}}
 {{< img src="/images/cloud-migration-tooling/initial-konveyor-analysis.png" alt="Image of the generated report from the Kantra analysis" >}}
 {{< /figure >}}
 
 The report can be used to assess the cloud readiness of your application, identify potential migration blockers, and provide actionable insights for refactoring or modernization efforts.
 
-## Migration Strategies – Three Paths to the Cloud
+## Migration Strategies – Three Paths To The Cloud
 
 Based on the analysis results, teams can select a migration strategy that fits their application landscape and business goals.
 In practice, three core migration strategies have emerged, each with distinct goals, efforts, and risks.
 
-{{< figure figcaption="Cloud Migration Strategies" >}}
+{{< figure figcaption="Cloud Migration Strategies." >}}
   {{< img src="/images/cloud-migration-tooling/migration-strategies.png" alt="Cloud Migration Strategies" >}}
 {{< /figure >}}
 
@@ -159,13 +159,13 @@ OpenRewrite provides a rich set of community recipes for common migration tasks,
 * Renaming methods, packages, or classes
 * Adding security annotations or upgrading dependencies
 
-### Example: Upgrading Spring Boot from 2.x to 3.x
+### Example: Upgrading Spring Boot From 2.x To 3.x
 
 Using Maven, it is easy to integrate OpenRewrite into your build process and apply a specific recipe.
 
 The following example demonstrates how to upgrade a Spring Boot application from version 2.x to 3.4, which includes significant changes such as Jakarta EE namespace migration.
 
-**1. Add the following plugin configuration to your `pom.xml` under `<plugins>`**
+1. Add the following plugin configuration to your `pom.xml` under `<plugins>`
 
 ```xml
       <plugin>
@@ -190,7 +190,7 @@ The following example demonstrates how to upgrade a Spring Boot application from
       </plugin>
 ```
 
-**2. Run the Maven Rewrite Plugin to execute the upgrade:**
+2. Run the Maven Rewrite Plugin to execute the upgrade:
 
 ```bash
 mvn rewrite:run
@@ -199,7 +199,7 @@ mvn rewrite:run
 
 ### Creating Custom Rules
 
-## Extending OpenRewrite with Custom Recipes
+## Extending OpenRewrite With Custom Recipes
 
 OpenRewrite lets you go beyond community rules by authoring your own recipes. You can do this declaratively with YAML (compose existing building blocks) or imperatively with Java (full control over AST‑level transformations). A pragmatic middle path is to start from Refaster‑style templates to scaffold simple Java recipes quickly.
 
@@ -229,8 +229,7 @@ recipeList:
 
 **Cons**
 
-* Limited to what existing recipes expose
-* Complex, cross‑cutting refactorings may require Java
+* Limited to existing transformations or community recipes
 
 ---
 
@@ -314,7 +313,7 @@ public class StringIsEmpty {
 
 ---
 
-## The Potential of LLMs in Cloud Migration: Complementary Intelligence
+## The Potential Of LLMs In Cloud Migrations: Complementary Intelligence
 
 With the rise of powerful Large Language Models (LLMs) like GPT‑5 or Claude 4, the question arises: how can these technologies contribute to cloud migration? Unlike rule‑based tools such as OpenRewrite, LLMs operate probabilistically—leveraging statistical language models trained on vast code and text corpora.
 
@@ -352,9 +351,9 @@ Combined with rule‑based tools like OpenRewrite and analysis frameworks like K
 * Generating custom rewrite recipes
 * Automating pull request descriptions, migration documentation, and code comments
 
-A hybrid solution where reproducibility is critical and contextual understanding are required, emerges as a promising approach. Konveyor is already exploring this direction with its Konveyor AI component, which integrates LLM capabilities into the migration process.
+A hybrid solution where reproducibility is critical and contextual understanding are required, emerges as a promising approach. Konveyor is already exploring this direction with its [Konveyor AI](https://github.com/konveyor/kai) component, which integrates LLM capabilities into the migration process.
 
-## Conclusion: Automation as the Key to Scalable Migration
+## Conclusion: Automation As The Key To Scalable Migration
 
 Migrating to the cloud demands strong architectural understanding, high code quality, and precise planning. It is rarely a linear process—instead, it is an iterative cycle of analysis, decision-making, adaptation, and validation. This is where open-source tools like Konveyor and OpenRewrite demonstrate their full value:
 
