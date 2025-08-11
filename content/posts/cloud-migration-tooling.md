@@ -12,7 +12,7 @@ summary: "An overview of how Konveyor and OpenRewrite enable automated cloud mig
 
 ## Introduction - Navigating Cloud Migrations
 
-Migrating applications to the cloud is a complex endeavor with substantial technical and organizational implications. It requires assessing cloud readiness, selecting the right migration strategy, and adapting code where necessary. Automated tools now play a key role in streamlining both analysis and transformation.
+Migrating applications to the cloud is a complex endeavour with substantial technical and organisational implications. It requires assessing cloud readiness, selecting the right migration strategy, and adapting code where necessary. Automated tools now play a key role in streamlining both analysis and transformation.
 
 ### Focus Of This Article
 
@@ -24,7 +24,7 @@ Cloud platforms promise scalability, resilience, automation, and cost control. L
 
 ### Keys to Success
 
-Effective projects balance cost, functionality, and modernization. They rely on interdisciplinary teams, clear communication, and tools that deliver transparent analyses and reproducible changes. Konveyor helps evaluate migration needs, while OpenRewrite automates code updates—addressing common issues like classpath conflicts, logging frameworks, configuration, and legacy servlet containers.
+Effective projects balance cost, functionality, and modernisation. They rely on interdisciplinary teams, clear communication, and tools that deliver transparent analyses and reproducible changes. Konveyor helps evaluate migration needs, while OpenRewrite automates code updates—addressing common issues like classpath conflicts, logging frameworks, configuration, and legacy servlet containers.
 
 ## Challenges – Making Complexity Visible
 
@@ -43,7 +43,7 @@ Another challenge is the lack of a consistent testing strategy. Applications wit
 
 ## Assessing Cloud Readiness With Konveyor
 
-A central concept we use at QAware in cloud readiness assessments is categorizing applications into three groups:
+A central concept we use at QAware in cloud readiness assessments is categorising applications into three groups:
 
 * **Cloud-alien**: Highly monolithic or technologically outdated applications with minimal decoupling and complex dependencies.
 * **Cloud-friendly**: Exhibit some cloud-native characteristics (e.g., externalized configuration, modular architecture) but do not fully meet all criteria.
@@ -53,7 +53,7 @@ A central concept we use at QAware in cloud readiness assessments is categorizin
   {{< img src="/images/cloud-migration-tooling/readiness-levels.png" alt="Cloud Readiness Categories" >}}
 {{< /figure >}}
 
-Konveyor uses a similar classification that is generated automatically and transparently from its analysis results. Key checks include:
+Konveyor uses a similar classification that the analysis generates automatically and transparently. Key checks include:
 
 * Use of outdated or proprietary frameworks
 * Reliance on the file system or local state
@@ -64,27 +64,27 @@ Konveyor uses a similar classification that is generated automatically and trans
 
 The Konveyor project has three key components:
 
-1. A deployable web application called [Konveyor Hub](https://konveyor.io/docs/konveyor/) for migration planning composed of several modules:
+1. A deployable web application called [Konveyor Hub](https://konveyor.io/docs/konveyor/) for migration planning composed of three modules:
 
-* **Application Inventory**: Serves as the portfolio management system. It enables you to catalog applications, associate them with business services, define interdependencies, and add metadata via an extensible tagging model.
+* **Application Inventory**: Serves as the portfolio management system. It enables you to catalogue applications, associate them with business services, define interdependencies, and add metadata via an extendable tagging model.
 
 * **Assessment Module** (Pathfinder): A questionnaire-based tool embedded within Tackle that evaluates application suitability for containerization (e.g., Kubernetes). It identifies risks, assesses readiness, and produces reports that help drive an adoption plan.
 
-* **Analysis Module**: Analyzes source code and dependencies using predefined or custom rules. The analysis provides a detailed report outlining what needs to be addressed to migrate to Kubernetes and offers effort estimations.
+* **Analysis Module**: Analyses source code and dependencies using predefined or custom rules. The analysis provides a detailed report outlining all issues that might block a migration to Kubernetes and offers effort estimations.
 
-2. A CLI tool called [Kantra](https://github.com/konveyor/kantra) that encapsulates the analysis capability into a standalone command-line interface. It can be used to analyze source code and dependencies, producing reports that highlight migration blockers and provide actionable insights.
+2. A CLI tool called [Kantra](https://github.com/konveyor/kantra) that encapsulates the analysis capability into a standalone command-line interface. It analyses source code and dependencies, produces reports that highlight migration blockers and provides actionable insights.
 
-3. A new component to include AI capabilities called [Konveyor AI](https://github.com/konveyor/kai). It is using the analysis results and provides automatic fixes using Generative AI. This component is still evolving, but it is very promising.
+3. A new component to include AI capabilities called [Konveyor AI](https://github.com/konveyor/kai). It is using the analysis results and provides automatic fixes using Generative AI. This component is still evolving, but it is promising.
 
-Konveyor’s analysis is based on static code analysis and heuristics, detecting elements such as JDBC statements, web frameworks, hardcoded paths, or `sun.*` classes. The output can be produced in HTML or JSON and integrated directly into CI/CD pipelines.
+Konveyor’s analysis uses static code analysis and heuristics, detecting elements such as JDBC statements, web frameworks, hardcoded paths, or `sun.*` classes. The output is available in HTML or JSON and can integrate directly into CI/CD pipelines.
 
-### Example: Analyzing A Java Application With The Konveyor CLI Kantra 
+### Example: Analysing A Java Application With The Konveyor CLI Kantra
 
 To analyze a Java application using the Konveyor CLI tool Kantra, you can follow these steps:
 
 1. Install the Kantra CLI by downloading it from the [Kantra releases page](https://github.com/konveyor/kantra/releases).
 
-2. Once installed, you can run the following command to analyze your Java application for cloud readiness:
+2. Once installed, you can run the following command to analyse your Java application for cloud readiness:
 
 ```bash
 kantra \
@@ -97,13 +97,13 @@ kantra \
 
 3. Review the generated report to identify any migration blockers and actionable insights:
 
-The report is typically generated in HTML format and can be found in the specified output directory (`../out` in this example).
+Kantra generates the report in HTML format inside the specified output directory (`../out` in this example).
 
 {{< figure figcaption="Example report generated from the analysis." >}}
 {{< img src="/images/cloud-migration-tooling/initial-konveyor-analysis.png" alt="Image of the generated report from the Kantra analysis" >}}
 {{< /figure >}}
 
-The report can be used to assess the cloud readiness of your application, identify potential migration blockers, and provide actionable insights for refactoring or modernization efforts.
+With the report you can assess the cloud readiness of your application, identify potential migration blockers, and provide actionable insights for refactoring or modernisation efforts.
 
 ## Migration Strategies – Three Paths To The Cloud
 
@@ -116,11 +116,11 @@ In practice, three core migration strategies have emerged, each with distinct go
 
 ### Rehosting (“Lift & Shift”)
 
-The application is moved to the cloud without modifications. This approach is fast and requires minimal development effort but delivers no structural improvements. It is often used for short-term capacity needs or infrastructure transitions (e.g., data center shutdowns). Technically, this can mean migrating VMs 1:1 to IaaS offerings like AWS EC2 or Azure VM, preserving most existing CI/CD pipelines. Downsides include limited scalability, restricted observability, and modest cost benefits—often leading to “Cloud in Name Only” scenarios.
+The developer of the application moves it to the cloud without modifications. This approach is fast and requires minimal development effort but delivers no structural improvements. It is often used for short-term capacity needs or infrastructure transitions (e.g., data center shutdowns). Technically, this can mean migrating VMs 1:1 to IaaS offerings like AWS EC2 or Azure VM, preserving most existing CI/CD pipelines. Downsides include limited scalability, restricted observability, and modest cost benefits—often leading to “Cloud in Name Only” scenarios.
 
 ### Refactoring
 
-The existing code is adapted to cloud-native paradigms, typically involving:
+The developer adapts the application to cloud-native paradigms, typically involving:
 
 * Modularization and decoupling
 * Containerization (e.g., Docker)
@@ -132,7 +132,7 @@ Refactoring is common for functionally stable but technically outdated applicati
 
 ### Rebuilding
 
-A complete rewrite based on modern cloud architectures. This is justified when:
+The developer performs a complete rewrite based on modern cloud architectures. A rewrite is necessary when:
 
 * The current application is unmaintainable
 * Business logic has fundamentally changed
@@ -142,13 +142,13 @@ Typical technologies include microservices, serverless components (AWS Lambda, A
 
 ### Hybrid Approaches
 
-Most real-world migrations blend strategies—for example, refactoring the transactional core while rehosting auxiliary modules, combining quick ROI with long-term modernization. Successful migration balances business continuity with technical renewal.
+Most real-world migrations blend strategies—for example, refactoring the transactional core while rehosting auxiliary modules, combining quick ROI with long-term modernisation. Successful migration balances business continuity with technical renewal.
 
 ## OpenRewrite – Automated Code Transformation
 
 While Konveyor focuses on analysis and strategy planning, OpenRewrite takes the next step: automated code modifications based on declarative rules.
 
-At its core, OpenRewrite parses code into a full Abstract Syntax Tree (AST), enabling semantically precise transformations. The transformation logic is defined in modular, reusable, and versionable recipes.
+At its core, OpenRewrite parses code into a full Abstract Syntax Tree (AST), enabling semantically precise transformations. So-called recipes define the transformation logic as modular, reusable and versionable components.
 
 ### Common Transformation Recipes
 
@@ -315,7 +315,7 @@ public class StringIsEmpty {
 
 ## The Potential Of LLMs In Cloud Migrations: Complementary Intelligence
 
-With the rise of powerful Large Language Models (LLMs) like GPT‑5 or Claude 4, the question arises: how can these technologies contribute to cloud migration? Unlike rule‑based tools such as OpenRewrite, LLMs operate probabilistically—leveraging statistical language models trained on vast code and text corpora.
+With the rise of powerful Large Language Models (LLMs) like GPT‑5 or Claude 4, the question arises: how can these technologies contribute to cloud migration? Unlike rule‑based tools such as OpenRewrite, LLMs operate probabilistically—leveraging statistical language models trained on large code bases and text corpora.
 
 ### Potential Applications
 
@@ -332,7 +332,7 @@ Promising use cases for LLMs in migration include:
 The strengths of LLMs lie in their:
 
 * **Flexibility**: Understand semantic relationships across frameworks and programming languages.
-* **Assistance**: Help developers explore unfamiliar technologies or modernize legacy code.
+* **Assistance**: Help developers explore unfamiliar technologies or modernise legacy code.
 * **Rapid Prototyping**: Provide quick initial migration recommendations through conversational interfaces.
 
 ### Limitations
@@ -341,7 +341,7 @@ However, LLMs also have significant limitations:
 
 * **Non‑Deterministic**: Results are not guaranteed to be repeatable—an issue for production CI/CD pipelines.
 * **Black‑Box Nature**: Limited transparency into decision‑making and safety guarantees.
-* **Prompt Dependency**: Quality and depth depend heavily on how the request is formulated.
+* **Prompt Dependency**: Quality and depth depend heavily on how the user formulates the request. Without the right context, LLMs can produce incorrect or incomplete results.
 
 ### Outlook
 
@@ -351,7 +351,7 @@ Combined with rule‑based tools like OpenRewrite and analysis frameworks like K
 * Generating custom rewrite recipes
 * Automating pull request descriptions, migration documentation, and code comments
 
-A hybrid solution where reproducibility is critical and contextual understanding are required, emerges as a promising approach. Konveyor is already exploring this direction with its [Konveyor AI](https://github.com/konveyor/kai) component, which integrates LLM capabilities into the migration process.
+A hybrid solution with reproducibility and contextual understanding emerges as a promising approach. Konveyor already explores this direction with its [Konveyor AI](https://github.com/konveyor/kai) component, which integrates LLM capabilities into the migration process.
 
 ## Conclusion: Automation As The Key To Scalable Migration
 
@@ -360,6 +360,6 @@ Migrating to the cloud demands strong architectural understanding, high code qua
 * **Konveyor** provides structured, reproducible analysis to guide planning and decision-making—from assessing cloud readiness to detecting technologies and evaluating risks.
 * **OpenRewrite** applies rule-based, semantically accurate refactorings, enabling traceable, CI/CD-compatible code transformations with minimal manual effort.
 
-Together, they form a complementary toolset: analysis and execution, strategy and implementation, transparency and automation. For organizations aiming to future-proof their software landscapes, these tools offer a scalable, open, and well-integrated path to the cloud. Free of black-box behavior, but with clear rules, high reusability, and growing community support.
+Together, they form a complementary toolset: analysis and execution, strategy and implementation, transparency and automation. For organisations aiming to future-proof their software landscapes, these tools offer a scalable, open, and well-integrated path to the cloud. Free of black-box behaviour, but with clear rules, high reusability, and growing community support.
 
-But, the future lies in the combination: Konveyor and OpenRewrite for structured migration, LLMs for creative enhancements, embedded into DevOps processes and cloud-native principles. Migration thus becomes not a one-time effort, but a continuous modernization process - scalable, traceable, and automated.
+However, the future lies in the combination: Konveyor and OpenRewrite for structured migration, LLMs for creative enhancements, embedded into DevOps processes and cloud-native principles. Migration thus becomes not a one-time effort, but a continuous modernisation process - scalable, traceable, and automated.
