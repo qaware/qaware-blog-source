@@ -2,7 +2,7 @@
 title: "From Monolith To Cloud: Automating Your Migration Journey"
 date: 2025-08-18
 lastmod: 2025-08-13T15:57:46+02:00
-draft: true
+draft: false
 type: post
 author: "[Markus Zimmermann](https://github.com/markuszm/)"
 image: "cloud-migration-tooling/cover.png"
