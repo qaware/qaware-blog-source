@@ -1,7 +1,7 @@
 ---
 title: "From Monolith To Cloud: Automating Your Migration Journey"
-date: 2025-08-08T15:43:46+02:00
-lastmod: 2025-08-08T15:43:46+02:00
+date: 2025-08-18
+lastmod: 2025-08-13T15:57:46+02:00
 draft: true
 type: post
 author: "[Markus Zimmermann](https://github.com/markuszm/)"
@@ -13,8 +13,6 @@ summary: "An overview of how Konveyor and OpenRewrite enable automated cloud mig
 ## Introduction - Navigating Cloud Migrations
 
 Migrating applications to the cloud is a complex endeavour with substantial technical and organisational implications. It requires assessing cloud readiness, selecting the right migration strategy, and adapting code where necessary. Automated tools now play a key role in streamlining both analysis and transformation.
-
-### Focus Of This Article
 
 This article presents two open-source tools, the CNCF project [Konveyor](https://konveyor.io/) and [OpenRewrite](https://docs.openrewrite.org/) by Moderne, that aid in planning and executing Java-based enterprise application migrations. We cover both strategic considerations and technical workflows down to code-level adjustments.
 
@@ -142,7 +140,7 @@ Typical technologies include microservices, serverless components (AWS Lambda, A
 
 ### Hybrid Approaches
 
-Most real-world migrations blend strategies—for example, refactoring the transactional core while rehosting auxiliary modules, combining quick ROI with long-term modernisation. Successful migration balances business continuity with technical renewal.
+Most real-world migrations blend strategies, for example, refactoring the transactional core while rehosting auxiliary modules, combining quick ROI with long-term modernisation. Successful migration balances business continuity with technical renewal.
 
 ## OpenRewrite – Automated Code Transformation
 
@@ -322,7 +320,7 @@ With the rise of powerful Large Language Models (LLMs) like GPT‑5 or Claude 4,
 Promising use cases for LLMs in migration include:
 
 * **Code Analysis**: Detecting code smells, outdated patterns, or security vulnerabilities in context, generating improvement suggestions with textual explanations.
-* **Refactoring Suggestions**: Producing semantically meaningful restructurings from prompts or pull requests—often including corresponding tests.
+* **Refactoring Suggestions**: Producing semantically meaningful restructurings from prompts or pull requests including corresponding tests.
 * **Configuration File Migration**: Updating YAML, XML, Helm charts, or Dockerfiles for new versions or target environments.
 * **CI/CD Definition Generation**: Creating Jenkinsfiles, GitHub Actions, or GitLab CI configurations from natural language descriptions.
 * **Documentation**: Writing technical explanations, architecture diagram descriptions, or changelogs automatically from code.
@@ -339,7 +337,7 @@ The strengths of LLMs lie in their:
 
 However, LLMs also have significant limitations:
 
-* **Non‑Deterministic**: Results are not guaranteed to be repeatable—an issue for production CI/CD pipelines.
+* **Non‑Deterministic**: Results are not guaranteed to be repeatable, which is an issue for production CI/CD pipelines.
 * **Black‑Box Nature**: Limited transparency into decision‑making and safety guarantees.
 * **Prompt Dependency**: Quality and depth depend heavily on how the user formulates the request. Without the right context, LLMs can produce incorrect or incomplete results.
 
