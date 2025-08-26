@@ -25,7 +25,7 @@ Classic quality metrics like "Cyclomatic Complexity" or "Lines of Code" help to 
 This is exactly where DeepQuali comes in. It's not a magic tool that makes decisions for you – but rather a co-worker who quickly gives you a clear picture of a codebase. We at QAware developed DeepQuali together with partners like Fraunhofer IESE as part of a BMBF research project – and particularly contributed the backend. DeepQuali is a building block on the path to better assess and improve software quality.
 It's our contribution to making software quality a bit more transparent and tangible – for developers, by developers.
 
-# What classic quality metrics overlook
+## What classic quality metrics overlook
 
 Many quality approaches still rely on static metrics. Line count, complexity values, test coverage – all of this provides clues. But let's be honest: Every one of us has experienced a project that, despite "green lights," was still hard to grasp, difficult to extend or even fragile! The problem: Numbers alone provide almost no context. They don't tell you whether a project is logically structured, whether a class has a clear responsibility, or whether the interaction of components is coherent. But these are exactly the questions we developers want to answer.
 Important note: DeepQuali is not a black-box oracle, all prompts are visible, the results are comprehensible and based on principles we all know – coupling, cohesion, layer models, and so on.
@@ -81,11 +81,11 @@ The summaries help not only the user but also make the code manageable for the A
 
 Then it goes up one level. The results of the classes flow into the package analyses. And in packages, the analyses of subordinate packages flow in. So we work our way bottom-up from the deepest packages up to the root package. In the end, a picture emerges of how the project is structured – including hints about layers, patterns, or anti-patterns.
 
-# Scalable analysis through smart summaries
+## Scalable analysis through smart summaries
 
 Many approaches for code analysis quickly hit limits with larger projects because the inputs for an AI model become too large. DeepQuali solves this by summarizing agglomeratively. This means: Instead of dumping tens of thousands of lines of code into a model, it generates compact summaries that then serve as context. This keeps the prompts lean and the results still meaningful – even with really large codebases.
 
-# Results that help developers
+## Results that help developers
 
 The AI doesn't evaluate "code lines" or "LOC values." Instead, it focuses on what actually matters:
 
@@ -95,42 +95,42 @@ The AI doesn't evaluate "code lines" or "LOC values." Instead, it focuses on wha
 
 It gives short, focused assessments — and concrete, actionable hints.
 
-# Flexible through scripting
+## Flexible through scripting
 
 One interesting detail (without diving into the nitty-gritty): DeepQuali is built from the ground up for extensibility — with scripting at its core. That makes it easy to adapt to new scenarios, both now and down the road: from architectural assessments to code quality checks — even niche cases like “code archaeology” in legacy system. Just plug in new functionality using Groovy, JavaScript, or any JSR223-compatible script.
 
-# Examples
+## Examples
 
 This is what DeepQuali outputs look like – two examples:
 
-## The "Summary" of the package de.deepquali.impl.llm:
+### 1. The "Summary" of the package de.deepquali.impl.llm:
 
 * __purpose:__ LLM chatbot implementations for multiple providers
 * __functionalSummary:__ Provides LLM chatbot functionality across multiple AI providers including OpenAI, Anthropic Claude, Google Gemini, and OpenAI-compatible services. Handles prompt processing, API communication, response extraction, and token usage tracking with provider-specific configurations and tuning parameters embedded in prompts.
 
 You haven’t seen a single line of code — yet you already know what this package does. Now imagine joining a new project. No documentation. No onboarding. Or suddenly owning that gigantic legacy system. DeepQuali brings that kind of clarity — for every package. Helpful? Yep.
 
-## The architecture assessment for "de.deepquali.impl.dependencies.ClassAnalyzer"
+### 2. The architecture assessment for "de.deepquali.impl.dependencies.ClassAnalyzer"
 
-### recommendations
+#### recommendations
 
 * Extract visitor implementations into separate top-level classes to improve readability and reduce nesting complexity
 * Add comprehensive error handling with try-catch blocks around ClassReader.accept() calls to gracefully handle malformed bytecode
 * Consider introducing an abstraction layer over ASM to reduce direct coupling and enable easier testing with mock implementations
 
-### risks
+#### risks
 
 * Tight coupling to ASM library throughout the implementation, making it difficult to replace the bytecode analysis framework
 * Complex nested visitor pattern with anonymous inner classes reduces readability and maintainability
 * Limited error handling for malformed bytecode or ASM parsing failures could cause unexpected crashes
 
-### strengths
+#### strengths
 
 * Clear separation of concerns with dedicated visitor classes (DependencyGraphCollector) implementing the ASM visitor pattern
 * Well-documented public API with comprehensive Javadoc explaining bytecode analysis advantages and limitations
 * Thread-safe design using enum singleton pattern with immutable static methods
 
-### verdict
+#### verdict
 
 Well-designed bytecode analysis utility with clear API and good documentation, but suffers from tight ASM coupling and complex nested visitor implementation.
 
@@ -145,11 +145,11 @@ Well-designed bytecode analysis utility with clear API and good documentation, b
 
 What do you think – do you get a feeling from this excerpt of where the architecture is stable and where it struggles? And: Are the recommendations comprehensible enough to derive concrete next steps from them?
 
-# Recognizing technical debt early
+## Recognizing technical debt early
 
 Today, cycles are shorter, often accompanied by high pressure. This quickly leads to technical debt that you don't immediately notice in daily work – until it becomes expensive. With DeepQuali, we want to create a way to make such debt visible early. Not through abstract charts, but through concrete hints that come directly from the code. And yes, sometimes it almost feels like code archaeology: An old project without documentation? No problem. DeepQuali works its way through the classes and packages and delivers an overview in minutes that would otherwise take much longer.
 
-# Layers & God Classes - first experiences with DeepQuali
+## Layers & God Classes - first experiences with DeepQuali
 
 But that’s the theory.
 What happens when DeepQuali meets the real world?
@@ -168,7 +168,7 @@ We see two main ways DeepQuali can provide value in everyday development:
 * __Ad hoc analyses:__ When you want to quickly get a picture of a project – whether at startup, during a review, or when doing "code archaeology."
 * __Integration into CI/CD pipelines:__ DeepQuali should be usable as a lightweight tool in pipelines. Instead of building a hard quality gate, we want to offer notifications – because scores may fluctuate a bit.
 
-# Insights and Outlook
+## Insights and Outlook
 
 * Prompt quality is critical to success. We've learned a lot here, but we're probably not at the end of the road yet.
 * LLMs don't always deliver 100% the same answers, even with a fixed seed. With lower temperatures (e.g., 0.3) we get more stable assessments, but a bit of fluctuation remains, and we want that too! Because sometimes the unconventional thought provides exactly the impulse you need.
