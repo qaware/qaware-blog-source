@@ -1,6 +1,6 @@
 ---
 title: "DeepQuali: Determining Software Quality with AI"
-date: 2025-08-12T17:50:10+02:00
+date: 2025-09-01T08:00:00+02:00
 author: "[Jörg Viechtbauer](https://www.xing.com/profile/Joerg_Viechtbauer)"
 type: "post"
 draft: true
