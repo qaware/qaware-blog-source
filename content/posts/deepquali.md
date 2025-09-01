@@ -3,7 +3,7 @@ title: "DeepQuali: Determining Software Quality with AI"
 date: 2025-09-01T08:00:00+02:00
 author: "[Jörg Viechtbauer](https://www.xing.com/profile/Joerg_Viechtbauer)"
 type: "post"
-draft: true
+draft: false
 image: DeepQuali.png
 tags: [AI, Code Quality, DeepQuali, Co-Pilot]
 summary: DeepQuali is an AI-powered “co-pilot” that helps developers quickly spot issues, anti-patterns, and improvement opportunities in software architecture beyond what traditional metrics reveal.
