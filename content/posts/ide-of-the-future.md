@@ -55,7 +55,9 @@ Agents have seen vast improvements this year, but their fundamentals haven't cha
 much. I will therefore assume that the IDE contains or communicates with an agent
 loop that manages context, conversation and makes files and a terminal available
 through "tools". We have seen some changes around context management, such as
-managing agent instruction files and things like _skills_, and there will probably be
+managing agent instruction files and [skills](https://code.claude.com/docs/en/skills)
+(incrementally discoverable instructions for certain types of tasks).
+There will probably be
 further innovations in this area, which allow models to make better use of
 their limited context.
 
@@ -78,11 +80,13 @@ clearly is a need for that.
 Current IDEs would not be complete without at least some integration with git.
 However, their current workflow addresses mostly manual commits, push/pull and merges.
 At the same time, many coding agents have invented some form of undo functionality,
-which is sometimes even built on git, but not integrated well.
+which is sometimes even built on git but introduces another (primitive, non-branching)
+notion of history and changes, even though we already have a richer notion
+available.
 
-While git is dominating the market entirely, we are seeing notable conceptual
+Currently, git is dominating the market entirely, but we are seeing notable conceptual
 simplifications in [Jujutsu](https://www.jj-vcs.dev/), which might free us from
-some baggage.
+some baggage once it becomes more popular.
 
 In my imagined IDE, the integration is seamless: When agents make modifications,
 their modifications are tracked as changesets in every conversation turn, maybe together
@@ -113,6 +117,10 @@ Agents will also make use of language-specific tools: Some agent tools (e.g.,
 [opencode](https://opencode.ai/)) have had such integrations for some time, and
 now Claude Code follows, so I guess we will soon see all agents support language
 servers. I can also imagine extensions to LSP that work better with agents as clients.
+It is possible that a mature integration of language servers will also require training
+the models to use these new agentic capabilities better. But it is just hard to
+imagine a future where basic refactorings are spelled out in terms of atomic edits
+instead of proper refactoring operations on code.
 
 ## Tool integration
 
@@ -135,27 +143,6 @@ Tools must be easy to use, provide concise and self-explanatory feedback, and th
 must be fast, since we will want to run them in closed loops to give feedback to
 our agents.
 
-## Agent isolation and sandboxing
-
-Our new agent reality comes with a strong caveat: Agents are smart and dumb at the
-same time and susceptible to prompt injection attacks. In particular, the combination
-of access to untrusted content, the access to code and potentially private data on
-the development machine and the fact that it is relatively easy to exfiltrate data
-(this combination has been named the [lethal trifecta](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/))
-make the whole setup very vulnerable.
-
-Since scrutinizing every single agent action quickly becomes a new annoying bottleneck
-and source of frustration, people are using a combination of countermeasures, the
-most important being sandboxing. We want the agent to have only limited filesystem
-access to give it the code it needs, but not the other things on the user's file
-system such as personal information, API keys, etc. We also want to be able to restrict
-internet access for the agent.
-
-Since we postulated that the IDE of the future manages and orchestrates agents,
-it will also need to take care of sandboxing. An agent definition will come not
-only with instructions and tool definitions but also with access privileges
-and isolation configuration.
-
 ## Review support
 
 Yes, we are going to review software written by agents. But that review will
@@ -172,6 +159,33 @@ such as changing the dependencies between modules? How do I show how code was re
 and how it was decoupled? I very much hope that there will be innovation in this
 space, since we will really need it to be able to work on a higher level.
 
+## Agent isolation and sandboxing
+
+Our new agent reality comes with a strong caveat: Agents are smart and dumb at the
+same time and susceptible to prompt injection attacks. In particular, the combination
+of access to untrusted content, the access to code and potentially private data on
+the development machine and the fact that it is relatively easy to exfiltrate data
+(this combination has been named the [lethal trifecta](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/))
+make the whole setup very vulnerable. Moreover, the combination of generating and
+subsequently executing arbitrary code with the privileges of the developer and
+access to data on their machine is a recipe for disaster.
+
+Currently, there are only two valid approaches. One is to scrutinize every single
+agent action manually, quickly becomes a new annoying bottleneck
+and source of frustration.
+The other approach is to run the agent with minimal privileges and data
+access possible, by means of sandboxing. We want the agent to have only limited filesystem
+access to give it the code it needs, but not the other things on the user's file
+system such as personal information, API keys, etc. We also want to be able to restrict
+internet access for the agent, which restricts access to (potentially malicious)
+data out there and avoids exfiltration vectors.
+
+Since we postulated that the IDE of the future manages and orchestrates agents,
+it will also need to take care of sandboxing. An agent definition will come not
+only with instructions and tool definitions but also with access privileges
+and isolation configuration. We must then reason about the different agent types
+and their properties to derive security properties of the agentic process.
+
 ## Cloud execution
 
 The most successful coding agents currently run on the developer machine. However,
@@ -181,11 +195,13 @@ a decent machine comparable to a good developer laptop and competitive cost is h
 to get right, and moving a traditional IDE into the cloud is also non-trivial.
 
 But when we get into the territory of agents running independently for a couple of hours
-(which is what we can expect when continuing on the current trajectory), then having
-it run only locally is no longer feasible, and this will further incentivise us to
-move the process into the cloud.
+([research suggests](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)
+we can expect this when continuing on the current trajectory), then running them locally
+is no longer practical, and we want to move the process to the cloud, into a well-defined
+runtime environment which also provides the necessary sandboxing.
 
-This is a shift: Traditionally, we had a separation of a _local_ loop running
+Besides technical challenges, this is a conceptual shift: Traditionally, we had
+a separation of _local_ development running
 on the developer's machine and a _CI_ that was running on some server. The move between
 one and the other was mediated via version control. In a future setting, I see the
 distinction between local and server disappear. Instead three new loops arise, based
@@ -213,20 +229,24 @@ thing as a product just yet. This is just fair, as there are a lot of things to 
 out and not everything that I can think of when going on a walk will probably be
 practical. But we see that (1) the product category of an IDE is getting a major
 update, and it is not at all clear if the existing players (Jetbrains, I am looking
-at you) can reinvent themselves in order to play a role in the next generation. And
-(2), the IDE will not collapse into some simplistic terminal application that we
-now see emerging. It remains a complex integration product that combines AI agents,
-specialized GUIs and system integration.
+at you) can reinvent themselves in order to play a role in the next generation.
+Neither are agents just yet another IDE plugin that lives in a sidebar. And
+(2), the IDE will not collapse into a simplistic terminal application as we now
+now see it everywhere. It remains a complex integration product that combines AI
+agents, specialized GUIs and system integration.
 
 In such a system, I can imagining opening the revision graph, seeing three running
 agent branches, each with a diff + tests + budget + permissions; After visualizing
 the architectural impact and checking that there are no unexpected dependencies,
 and after noting that the tests cover the properties that I want to see, I promote
-one branch and squash provenance into a review packet, which I'll later discuss with
+one branch and squash provenance into a review changeset, which I'll later discuss with
 a teammate. I'll directly push one other branch (an easy change) and abandon the
 third since it did not match my assumptions. I still learned something from the
-failed attempt, and add that learning to the spec before restarting another attempt.
+failed attempt, and I add that learning to my concise spec document that will guide
+the agent whe restarting another attempt.
 
 I am looking forward to using these new generation of IDEs. In the meantime we'll have
 to resort to the individual parts taped together with custom scripts, reusing some pieces
 of a classic IDE.
+
+_Sebastian Macke provided valuable suggestions and thoughts reviewing a draft of this article._
