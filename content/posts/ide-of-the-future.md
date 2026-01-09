@@ -3,7 +3,7 @@ title: "The IDE of the future"
 date: 2026-01-09T14:00:00+01:00
 author: "[Alexander Krauss](https://www.linkedin.com/in/alexander-krauss-70a9341b1/)"
 type: "post"
-image: "ide-of-the-future.png"
+image: "ide-of-the-future.jpg"
 tags: ["IDE", "Developer Tooling", "Coding Agents", "Developer Experience", "AI-Driven Development"]
 draft: false
 summary: What makes up a good IDE in 2026 and beyond? Let's have a look!
