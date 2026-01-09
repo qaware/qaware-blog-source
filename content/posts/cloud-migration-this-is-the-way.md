@@ -5,10 +5,10 @@ draft: false
 author: "[Andreas Zitzelsberger](https://github.com/az82/)"
 tags: ["Cloud", "Migration", "Architecture", "Business and IT"]
 image: "cloud-migration/road-to-cloud.jpg"
-summary: "There is only one way to to do cloud migration properly: Linking business and technology."
+summary: "There is only one way to do cloud migration properly: Linking business and technology."
 ---
 
-There is only one way to to do cloud migration properly: Linking business and technology.
+There is only one way to do cloud migration properly: Linking business and technology.
 Top down, the business goals and constraints of the migration must be clearly defined.
 Typical goals are:
 
@@ -18,11 +18,11 @@ Typical goals are:
 * Improving developer and operations experience
 * Decommissioning data centers
 
-Bottom up, great transparency with technical depth is necessary. on the current state of the application landscape.
-We need reliable, detailled information about the current state of our application landscape consolidated in a single source of truth.
+Bottom up, great transparency with technical depth is necessary on the current state of the application landscape.
+We need reliable, detailed information about the current state of our application landscape consolidated in a single source of truth.
 ![A graph DB as single source of truth](/images/cloud-migration/migration-db.jpg)
 
-Linking the top down goals and constraints with the bottom-up foundation creates the evaluation framework for choosing the best migration strategy for each application.
+Linking the top-down goals and constraints with the bottom-up foundation creates the evaluation framework for choosing the best migration strategy for each application.
 This overall strategy allows to migrate with confidence, in time and budget.
 
 ## Application Migration Strategies
@@ -41,7 +41,7 @@ We've had great success with a *cloud-friendly* strategy - defining a mandatory 
 * Observability and diagnosability
 * Resilience
 
-Migration teams are encouraged to exceed the baseline if possible within the frame of the migration. New applications are build cloud-natively.
+Migration teams are encouraged to exceed the baseline if possible within the frame of the migration. New applications are built cloud-natively.
 With *cloud-friendly*, the focus is on the outcome: Secure applications that can be maintained and operated easily.
 
 ![Cloud Nativity Levels](/images/cloud-migration/cloud-levels.jpg)
@@ -52,7 +52,7 @@ Nevertheless, this can be a good strategy to get going. At first, critical core 
 
 **Full rebuild**: Applications are rebuilt cloud-natively from scratch.
 In most cases, it will be to expensive and time-consuming to rebuild entire application landscapes.
-Therefore, this method should ony be used if an application cannot be brought up to a *cloud-friendly* level in a meaningful, economic way.
+Therefore, this method should only be used if an application cannot be brought up to a *cloud-friendly* level in a meaningful, economic way.
 
 **Replacement**: Applications are replaced by a Software-as-a-Service (SaaS) or a cloud-native self-hosted product. \
 Feasible, if an application implements a functionality already covered by products.
@@ -88,7 +88,7 @@ If you don't rebuild, the mainframe remains a massive liability.
     * Detecting and resolving problems before they hurt
     * Ensuring compliance and security
     * Confidence that the goals can be achieved
-4. **We ensure and efficient and effective migration by:**
+4. **We ensure an efficient and effective migration by:**
     * Helping you design and set up the migration program right from the start
     * Industrializing architecture, common parts and work:
         We solve challenges once, automated as far as possible and in high quality.
@@ -101,4 +101,3 @@ If you don't rebuild, the mainframe remains a massive liability.
 ## See also
 
 * [The good, the bad & the ugly of migrating hundreds of legacy applications to a cloud native platform](https://www.slideshare.net/QAware/the-good-the-bad-the-ugly-of-migrating-hundreds-of-legacy-applications-to-a-cloud-native-platform), Robert Bichler, Josef Adersberger, Handelsblatt annual conference on strategic IT management, 2019
-* [IDG Cloud Migration Studie 2021](https://info.qaware.de/de-de/cloud-migration-studie-2021) (German)
