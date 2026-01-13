@@ -86,11 +86,13 @@ Managing the context will therefore make up a non-trivial part of engineering wo
 
 # Documentation Is Now a First-Class Citizen
 
-The last point, in particular, could become decisive. Code is something like an over-specification. It contains far too many unimportant details. Often you only want to know what the code does, not how it does it. To relieve the context window, it will therefore be crucial which information the agent actually needs to read to learn a task.
+Especially the last point could become decisive. Code is something like an over-specification: it contains far too many unimportant details. Often you only want to know what the code does, not how it does it. To take pressure off the context window, it will therefore be crucial which information the agent actually needs to read in order to complete a task.
 
-The new documentation is likely to receive equal, perhaps even higher priority than the code we have today. The long-term target picture is clear: theoretically, it should be possible to rebuild a piece of software based solely on the documentation. That brings us back to Karpathy’s statement from 2023.
+Nobody yet knows what the right structure for documentation will look like. Where can you explain an entire concept in a single sentence? And when do you have to go into so much detail that even pseudocode belongs in the specification? These questions have occupied us developers since the beginnings of software development. The difference today is that the usefulness of documentation can now be measured.
 
-Nobody yet knows exactly how this documentation has to be structured. But the goal is unambiguous: maximize the agent’s efficiency. That is measurable. And we do not have to speculate here. The fact that this documentation should also be optimal for us humans is a nice side effect.
+The goal is to maximize the agent’s efficiency. So we do not have to speculate: for example, we can have the agent generate code from a specification. If the result is wrong, we adjust the documentation together with the agent and generate the code again. The fact that this documentation should also be optimally understandable for us humans is a welcome side effect.
+
+The new documentation will likely receive equal, perhaps even higher priority than the code we have today. The long-term target picture is clear: in theory, it should be possible to rebuild a piece of software based solely on the documentation. That brings us back to Karpathy’s statement from 2023.
 
 # The Agentic Tipping Point
 
