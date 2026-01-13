@@ -30,7 +30,7 @@ Instead, we shift toward specifications, system prompts for agents, and feedback
 
 # Coding Agents Have Crossed a Threshold
 
-At the end of November, Anthropic shipped an update to their coding agent Claude Code with Opus 4.5 and the first thing I noticed wasn’t “it knows more.” It was that it works differently. For the first time, I had the feeling I wasn’t prompting a model, but collaborating with an agent that can actually carry a project forward on its own.
+At the end of November, Anthropic shipped an update to their coding agent Claude Code with Opus 4.5 and the first thing I noticed wasn’t “it knows more”. It was that it works differently. For the first time, I had the feeling I wasn’t prompting a model, but collaborating with an agent that can actually carry a project forward on its own.
 
 Not autonomously in a hands-off, “set it and forget it” way, but autonomously in the collaborative sense: it can take initiative, make reasonable decisions, and solve problems with me. It asks follow-up questions, drafts a plan, executes it, and critiques its own output as it goes.
 
