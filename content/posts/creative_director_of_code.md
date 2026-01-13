@@ -12,11 +12,9 @@ summary: Programming is shifting from writing code to directing agents, where th
 
 There are not many developers anymore who still need to understand what a programming language compiler actually does, let alone how the generated assembly code works or what the circuits on the chip have to look like to execute the code. Instead, today we develop at a high level of abstraction, together with machines.
 
-These layers of abstraction have emerged over the last hundred years. They have massively increased developer productivity. A factor of one hundred per evolutionary step would probably still be an understatement.
+These layers of abstraction have emerged over the last hundred years. They have massively increased developer productivity. A factor of one hundred per evolutionary step would probably still be an understatement. 
 
-The last few decades, in particular, have been shaped by the attempt to pursue programming approaches that are as declarative as possible. We no longer say how to do something, but what we want to achieve. You describe the intent, and the concrete code is generated from it automatically. However, this only works in clearly bounded domains and comes with a steep learning curve.
-
-The abstraction layers have one thing in common. It is often unnecessary to understand their internal concepts. You only need to know how to apply them. The results are stable and reproducible. Only very few developers still seriously think about assembly. Many would not even need to know what it is and would still be good developers.
+The last few decades, in particular, have been shaped by the attempt to pursue programming approaches that are as declarative as possible. We no longer say how to do something, but what we want to achieve. You describe the intent in a specialized syntax, and the concrete code is generated from it automatically.
 
 # The New Programming Language Will Be English
 
@@ -32,17 +30,15 @@ Instead, we shift toward specifications, system prompts for agents, and feedback
 
 # Coding Agents Have Crossed a Threshold
 
-At the end of November, Anthropic released the next update of their coding agents with Opus 4.5, and very clearly crossed a new threshold. This feels like something new. In short: this is no longer “pretty good.” This is a game changer.
+At the end of November, Anthropic shipped an update to their coding agent Claude Code with Opus 4.5 and the first thing I noticed wasn’t “it knows more.” It was that it works differently. For the first time, I had the feeling I wasn’t prompting a model, but collaborating with an agent that can actually carry a project forward on its own.
 
-Not in the sense of knowledge, that was already phenomenal before. But in the sense of the ability to act independently, make decisions, and solve problems together with me. The agent asks follow-up questions, writes plans, and executes them. It acts proactively and reactively and has the property of self-critique.
+Not autonomously in a hands-off, “set it and forget it” way, but autonomously in the collaborative sense: it can take initiative, make reasonable decisions, and solve problems with me. It asks follow-up questions, drafts a plan, executes it, and critiques its own output as it goes.
 
-It is hard to put this behavior into words if you have so far only chatted with models that practically do not need any agent capabilities. You have to experience it yourself. On your own problems. And over weeks.
+Every coding problem that I could define clearly enough and that fit within the agent’s context size, the chatbot could solve. And these were not simple tasks. It was not just about writing and testing code, but also about reverse engineering and [cracking encoding](https://github.com/s-macke/coding-agent-benchmark?tab=readme-ov-file#8-write-decode-for-an-unknown-encode-function) problems.
 
-Every coding problem that I could define clearly enough and that fit within the agent’s context size, the chatbot could solve. And these were not simple tasks. It was not just about writing and testing code, but also about reverse engineering and [cracking encoding](https://github.com/s-macke/coding-agent-benchmark?tab=readme-ov-file#8-write-decode-for-an-unknown-encode-function) problems. The most impressive part was the active work inside a tight feedback loop. This no longer feels like “an AI,” but like a coworker.
+One example: the long-forgotten German computer game [“Weltendämmerung”](https://github.com/s-macke/weltendaemmerung) from 1990 existed only as an executable [binary file](https://github.com/s-macke/weltendaemmerung/blob/main/disassembly/archive/xxd.txt), meaning pure machine code. Claude Code was able to disassemble the file, reverse engineer it, produce a specification of the game for me, and then [port the game](https://s-macke.github.io/weltendaemmerung/) to the web. In total, that was three days of work for me. Without the agent, I would have needed one to two months.
 
-One example: the long-forgotten German computer game [“Weltendämmerung”](https://github.com/s-macke/weltendaemmerung) from 1990 existed only as an executable [binary file](https://github.com/s-macke/weltendaemmerung/blob/main/disassembly/archive/xxd.txt), meaning pure machine code. Claude Code with Opus 4.5 was able to disassemble the file, reverse engineer it, produce a specification of the game for me, and then [port the game](https://s-macke.github.io/weltendaemmerung/) to the web. In total, that was three days of work for me. Without the agent, I would have needed one to two months.
-
-In the classic sense, I barely coded at all anymore. Instead, I guided, directed, had specifications written, and improved them iteratively.
+It is hard to put this behavior into words if you have so far only chatted with models that practically do not need any agent capabilities. You have to experience it yourself. On your own problems. And over weeks. In the classic sense, I barely coded at all anymore. Instead, I guided, directed, had specifications written, and improved them iteratively.
 
 # The slow burn of recognition
 
@@ -65,7 +61,7 @@ The fear is not unfounded. What used to be a largely closed system (code, specif
 
 This new layer rewards neither memorization nor pure coding speed. It rewards systems thinking: how you break down work, how clearly you formulate intent, how you constrain and check something that can hallucinate, and how you build feedback loops so the tool corrects itself faster than you could.
 
-The good news: it is still engineering. The same instincts apply. Isolate error patterns. Make behavior visible. Set guardrails, keep the blast radius small, automate verification. This is a different form of intelligence, closer to leadership and control than to hands-on execution.
+The good news: it is still engineering. The same instincts apply: isolate error patterns, make behavior visible, set guardrails, keep the blast radius small, and automate verification. This is a different form of intelligence. Closer to leadership and control than to hands-on execution.
 
 # Working with Amnesia
 
