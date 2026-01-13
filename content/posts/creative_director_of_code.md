@@ -61,7 +61,7 @@ The fear is not unfounded. What used to be a largely closed system (code, specif
 
 This new layer rewards neither memorization nor pure coding speed. It rewards systems thinking: how you break down work, how clearly you formulate intent, how you constrain and check something that can hallucinate, and how you build feedback loops so the tool corrects itself faster than you could.
 
-The good news: it is still engineering. The same instincts apply: isolate error patterns, make behavior visible, set guardrails, keep the blast radius small, and automate verification. This is a different form of intelligence. Closer to leadership and control than to hands-on execution.
+The good news: it is still engineering. The same instincts apply: isolate error patterns, make behavior visible, set guardrails, keep the blast radius small, and automate verification. This is a different form of engineering. Closer to leadership and control than to hands-on execution.
 
 # Working with Amnesia
 
