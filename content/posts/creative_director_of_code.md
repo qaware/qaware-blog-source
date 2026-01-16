@@ -1,11 +1,11 @@
 ---
 title: "The Creative Director of Code - Orchestrating Agents, Building Systems"
-date: 2026-01-12T18:00:00+01:00
+date: 2026-01-16T12:00:00+01:00
 author: "Sebastian Macke"
 type: "post"
 image: "creative_director_of_code.png"
 categories: []
-tags: [AI agents, Coding Agents, Software abstraction, Developer productivity]
+tags: [AI agents, Coding Agents, Software Abstraction, Developer Productivity, AI-Driven Development]
 draft: false
 summary: Programming is shifting from writing code to directing agents, where the key skill is managing uncertainty
 ---
