@@ -45,7 +45,6 @@ jobs:
           user_name: fuchshuber
           user_email: josef.fuchshuber@qaware.de
           publish_branch: master
-          cname: blog.qaware.de
 
       # Setup gcloud CLI
       - name: Setup Cloud Auth
