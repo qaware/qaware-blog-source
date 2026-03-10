@@ -1,6 +1,6 @@
 # This environment is used by default if you run "hugo" to build the static files
 
-baseURL = "https://blog.qaware.de/"
+baseURL = "https://qaware.github.io/"
 minify = true
 cleanDestinationDir = true
 
