@@ -6,7 +6,7 @@ image: "java-service-queues/connections.png"
 summary: Explore the challenges of Java microservices under high load conditions.
 ---
 
-![Title image](../static/images/java-service-queues/connections.png){ width=300px }
+![Title image](../static/images/java-service-queues/connections.png)
 
 In recent years, I have been working for a large, well-established corporation with an extensive 
 IT ecosystem that spans several decades, including various infrastructure, software, and cloud environments, 
