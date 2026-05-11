@@ -1,3 +1,0 @@
-# This is the local "hugo server" env
-buildDrafts = true
-buildFuture = true
