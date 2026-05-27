@@ -3,20 +3,12 @@
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/qaware/qaware-blog-source)
 
 
-## Generated websites
-
-* [https://blog.qaware.de](https://blog.qaware.de)  
-  Target environment of our QAware software engineering blog
-* [https://qawareblog-2ixogl4y4q-ey.a.run.app](https://qawareblog-2ixogl4y4q-ey.a.run.app)  
-  Testing environment with draft posts included. _(user: qaware, pw: qaware)_
-
 ## Write Content
 
 Pre-requisites:
 * Github account
 * git
-* IntelliJ
-* hugo (only required if you want test the blog locally --> for installation see details below)
+* Text- or code editor for writing markdown files
 
 ### Fork our Github Repository
 
@@ -35,41 +27,17 @@ gh repo fork qaware/qaware-blog-source
 After this step, a fork is created for the current GitHub user of the Writer: `https://github.com/<GITHUB_USER>/qaware-blog-source`. 
 
 To work with it locally on a computer, this fork must first be cloned. 
-:warning: The `--recurse-submodules` is important as the [qaware-blog-theme](https://github.com/qaware/qaware-blog-theme) is included as a git submodule.
 
 ```bash
-git clone --recurse-submodules https://github.com/<GITHUB_USER>/qaware-blog-source
+git clone https://github.com/<GITHUB_USER>/qaware-blog-source
 ```
 
-To track more changes in the remote `qaware-blog-theme`, update the locally checked-out submodule with 
-```bash
-git submodule update --remote
-```
-Otherwise, you might see templating errors such as
-```
-failed to extract shortcode: template for shortcode "img" not found
-```
+### Write your post 
 
-### Write your post (with or without hugo) 
 
-If you don't want to use hugo just add and edit your post md-file manually in `content/posts`. Then add the meta data at the beginning of your md-file like in the example below!
-
-If you want to use hugo to generate your new post and to test locally, you'll need to install:
-
-* [Hugo extended](https://gohugo.io/getting-started/installing/) (in doubt: run `hugo version` and check if `extended` is in the version)
-
-Then [get used to Hugo](https://gohugo.io/getting-started/quick-start). 
-
-Now you can use the hugo-commands in your IntelliJ terminal:
-
-1) `hugo new content/posts/<articleTitle>.md` (as file name without blanks, e.g. `hello-world.md`) --> 
-this will locally add a new post as a draft in the blog in `content/posts`.
-2) edit content: write your blog post in the created md-file
-3) `hugo server -D` --> this will start the local webserver and show you the blog locally on http://localhost:1313
 
 ### Edit page meta data
 
-The Hugo Generator creates the content page as a markdown file. After running the generator the meta data must be extended.
 
 Generator example:
 
@@ -165,14 +133,4 @@ Push changes to update your fork on Github.
 
 ```bash
 git push
-```
-
-## Build and run Dockerfile locally
-
-To test the preview dockerfile locally run.
-
-```bash
-docker build --tag=qaware-blog-local .
-docker run --rm -p 1313:80 qaware-blog-local
-open localhost:1313
 ```
