@@ -1,8 +1,5 @@
 # qaware-blog-source
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/qaware/qaware-blog-source)
-
-
 ## Write Content
 
 Pre-requisites:
@@ -34,69 +31,55 @@ git clone https://github.com/<GITHUB_USER>/qaware-blog-source
 
 ### Write your post 
 
+1. Create a new folder `<YOUR-POST-TITLE>` in the posts folder
+2. Create a new markdown file `<YOUR-POST-TITLE>.md` in this folder. Please use our markdown template in folder "post-template".
+3. Start writing
 
+#### Edit page meta data
 
-### Edit page meta data
-
-
-Generator example:
+Template:
 
 ```md
 ---
 title: "Hello World"
-date: 2020-05-11T10:43:02+02:00
 author: ""
-type: "post"
-image: ""
-categories: []
 tags: []
-draft: true
 summary: This post shows you how to ...
 ---
 
 Post text
-
 ```
 
-1. Add `lastmod` attribute. Use value of `date` attribute for the first version of your new page.
-2. Add `author` attribute. Add a markdown link to your GitHub profile as value.
-3. Add `type` attribute with value `post`. Our theme supports more content type. But for the moment we only use `post`.
-4. Add `image` attribute. Put an image to the `/static/images` folder and write the filename (without `images/`) into attribute's value. More infos about providing image files can be found in the next chapter.
-5. Add `tags`: Select one or more fitting tags for your post: e.g. `Testing`, `Architecture`, `Cloud Native`
-6. Add `summary`: Add a short sentence as summary. This will be the description shown under page name and url in search engine result pages.
-7. `draft` is initially set to "true", which means that it will only be visible on the test environment [https://qawareblog-2ixogl4y4q-ey.a.run.app](https://qawareblog-2ixogl4y4q-ey.a.run.app) . Set `draft` to false when your post is ready!
+1. Update `title` attribute with the full title of your post.
+2. Update `author` attribute. Add a markdown link to your QAware website, LinkedIn or GitHub profile as value.
+3. Update `tags`: Select one or more fitting tags for your post: e.g. `Testing`, `Architecture`, `Cloud Native`
+6. Update `summary`: Add a short sentence as summary. This will be the description shown under page name and url in search engine result pages.
 
 Final example:
 
 ```md
 ---
 title: "Hello World"
-date: 2020-05-11T10:43:02+02:00
-lastmod: 2020-05-11T10:43:02+02:00
 author: "[Josef Fuchshuber](https://github.com/fuchshuber)"
-type: "post"
-image: "hello-world.jpg"
 tags: ["Framework", "Tutorial", "Java"]
-draft: true
-summary: An introduction to ... 
+summary: An introduction to funny hello world post
 ---
 ```
 
 ### Add images
 
-Please use only own images, images with creative commons licence or search and download your images by [gettyimages](https://www.gettyimages.de/). Store images for your post in the `static/images` folder with a self explaining file name and refer them in markdown:
+Please use only own images, images with creative commons licence or search and download your images by [gettyimages](https://www.gettyimages.de/). Store images for your post folder with a self explaining file name and refer them in markdown:
 
 ```md
-{{< img src="/images/hello-world.jpg" alt="Hello World title picture" >}}
+![This is my hello world picture](hello-world.png)
 ```
 
-or as a figure with caption:
+Please insert the title image right before your first heading, as shown in the template
 
 ```md
-{{< figure figcaption="Hello World Caption" >}}
-  {{< img src="/images/hello-world.jpg" alt="Hello World title picture" >}}
-{{< /figure >}}
+![Title image](title-image.png)
 ```
+
 ### Create pull request
 
 It is the best to work only on one post at a time and after the work on this post is finished for the time, create a pull request with the changes for the upstream respository.
